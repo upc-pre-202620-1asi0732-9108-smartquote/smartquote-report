@@ -232,7 +232,7 @@ La solución está concebida como una herramienta de apoyo a la decisión, no co
       <td style="vertical-align: top;">Jhon Danny Guerrero Vasquez</td>
       <td style="vertical-align: top;">u202116246</td>
       <td style="vertical-align: top;">Ingeniería de Software</td>
-      <td style="vertical-align: top;">Resumen pendiente de completar por el integrante.</td>
+      <td style="vertical-align: top;">Soy estudiante de noveno ciclo de la carrera de Ingeniería de Software. Me encanta los proyectos innovadores y diseñar arquitecturas de sistemas. Estoy capacitado en diferentes areas de conocimientos tales como programación(C++, Python, etc), manejo de bases de datos (relacionales y no relacionales) para apoyar al equipo y organizar adecuadamente el desarrollo del proyecto. Me caracterizo por </td>
     </tr>
     <tr>
       <td style="text-align: center; vertical-align: top;"><img src="assets/profiles/perfil-fabio-vallejo.png" alt="Foto de Fabio" width="120"></td>
