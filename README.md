@@ -136,6 +136,17 @@ Proyecto
     - [4.8.1. Software Architecture Context Diagram](#481-software-architecture-context-diagram)
     - [4.8.2. Software Architecture Container Diagrams](#482-software-architecture-container-diagrams)
     - [4.8.3. Software Architecture Components Diagrams](#483-software-architecture-components-diagrams)
+      - [Web Services RESTful API (`smartquote-web-services`)](#web-services-restful-api-smartquote-web-services)
+        - [Supply Requests Context](#supply-requests-context)
+        - [Quotation Intake Context](#quotation-intake-context)
+        - [Evaluation \& Simulation Context — Core Domain](#evaluation--simulation-context--core-domain)
+        - [Purchase Ordering Context](#purchase-ordering-context)
+      - [Web Application (`smartquote-frontend-web`)](#web-application-smartquote-frontend-web)
+        - [Supply Requests Context](#supply-requests-context-1)
+        - [Quotation Intake Context](#quotation-intake-context-1)
+        - [Evaluation \& Simulation Context — Core Domain](#evaluation--simulation-context--core-domain-1)
+        - [Purchase Ordering Context](#purchase-ordering-context-1)
+      - [Native Mobile Application (`smartquote-native-mobile`)](#native-mobile-application-smartquote-native-mobile)
   - [4.9. Software Object-Oriented Design](#49-software-object-oriented-design)
     - [4.9.1. Class Diagrams](#491-class-diagrams)
     - [4.9.2. Class Dictionary](#492-class-dictionary)
@@ -190,6 +201,48 @@ El núcleo tecnológico propuesto es un Agente de Inteligencia Artificial (IA) q
 La solución está concebida como una herramienta de apoyo a la decisión, no como sustituto de la responsabilidad profesional de las áreas involucradas. El Agente de IA contrastará la información extraída con los criterios técnicos y comerciales configurados para cada solicitud, y la plataforma presentará una recomendación y una orden de compra propuesta. El área de adquisiciones conservará la revisión y aprobación de la decisión, mientras que producción y sanidad podrán validar las condiciones técnicas. La viabilidad, precisión y límites de esta capacidad de IA deberán comprobarse durante el desarrollo y la validación con usuarios.
 
 ### 1.1.2. Perfiles de integrantes del equipo
+
+<table align="center">
+  <thead>
+    <tr>
+      <th>Foto</th>
+      <th>Apellidos y nombres</th>
+      <th>Código</th>
+      <th>Carrera</th>
+      <th>Resumen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center; vertical-align: top;">Foto pendiente</td>
+      <td style="vertical-align: top;">Luis Alexis Bardales Tejada</td>
+      <td style="vertical-align: top;">u201819276</td>
+      <td style="vertical-align: top;">Ingeniería de Software</td>
+      <td style="vertical-align: top;">Resumen pendiente de completar por el integrante.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: top;">Foto pendiente</td>
+      <td style="vertical-align: top;">Mathias Marcelo De La Cruz De Los Santos</td>
+      <td style="vertical-align: top;">u202424059</td>
+      <td style="vertical-align: top;">Ingeniería de Software</td>
+      <td style="vertical-align: top;">Resumen pendiente de completar por el integrante.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: top;">Foto pendiente</td>
+      <td style="vertical-align: top;">Jhon Danny Guerrero Vasquez</td>
+      <td style="vertical-align: top;">u202116246</td>
+      <td style="vertical-align: top;">Ingeniería de Software</td>
+      <td style="vertical-align: top;">Resumen pendiente de completar por el integrante.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: top;"><img src="assets/profiles/perfil-fabio-vallejo.png" alt="Foto de Fabio" width="120"></td>
+      <td style="vertical-align: top;">Fabio Cesar Vallejo Trujillo</td>
+      <td style="vertical-align: top;">u20211d989</td>
+      <td style="vertical-align: top;">Ingeniería de Software</td>
+      <td style="vertical-align: top;">Soy estudiante de séptimo ciclo de Ingeniería de Software. Me caracterizo por tener conocimientos técnicos en múltiples áreas del desarrollo de software y por mantener organizados los equipos de trabajo para asegurar entregables de alta calidad. Puedo aportar al proyecto mis conocimientos de arquitectura limpia, programación y organización del equipo.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## 1.2. Solution Profile
 
@@ -443,16 +496,122 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 
 ### Architecture Overview Diagram
 
+La arquitectura de **SmartQuote** adopta un **monolito modular** basado en *Domain-Driven Design* (DDD) y *Clean Architecture*. El backend se despliega como una sola aplicación ASP.NET Core, pero organiza el modelo y los casos de uso en módulos con límites de negocio explícitos. Esta decisión permite mantener consistencia transaccional durante la primera etapa del producto sin perder la separación necesaria para que cada módulo pueda evolucionar de forma independiente.
+
+La solución se divide en los siguientes *bounded contexts*:
+
+| Bounded Context | Clasificación | Responsabilidad principal |
+| --- | --- | --- |
+| **Supply Requests Context** | Supporting Domain | Registra las solicitudes de insumos provenientes de la granja, sus requerimientos técnicos y biológicos, prioridad, archivos adjuntos y estado de atención. |
+| **Quotation Intake Context** | Supporting Domain | Recibe cotizaciones en formatos heterogéneos, coordina la extracción mediante IA, conserva el nivel de confianza y permite verificar o corregir los datos obtenidos. |
+| **Evaluation & Simulation Context** | Core Domain | Define escenarios de evaluación, aplica primero las reglas técnicas obligatorias y después pondera criterios como precio y plazo de entrega para producir un ranking y una recomendación trazable. |
+| **Purchase Ordering Context** | Supporting Domain | Autoriza el resultado seleccionado y genera una orden de compra idempotente a partir de una simulación aprobada, preservando la trazabilidad de la decisión. |
+
+El flujo principal del dominio avanza desde la solicitud del insumo hasta la emisión de la orden de compra: **Supply Requests → Quotation Intake → Evaluation & Simulation → Purchase Ordering**. Los contextos no acceden directamente a los modelos internos de otros módulos; intercambian identificadores, contratos de aplicación y *snapshots* inmutables. De esta manera, una simulación conserva los datos con los que fue ejecutada y una orden de compra mantiene la evidencia de la recomendación que le dio origen.
+
+En el backend, cada contexto contiene las capas **Domain**, **Application**, **Infrastructure** e **Interfaces**. En la aplicación web se emplean **Domain**, **Application**, **Infrastructure** y **Presentation**. Las dependencias apuntan hacia el dominio: la presentación ejecuta casos de uso, la infraestructura implementa los puertos definidos por la aplicación y el dominio permanece independiente de frameworks, bases de datos y servicios externos.
+
+Aunque el backend utiliza un único contenedor PostgreSQL, cada contexto es propietario de sus datos y los accede mediante adaptadores de persistencia específicos. Del mismo modo, la comunicación con OpenAI queda encapsulada dentro de la infraestructura de **Quotation Intake**, evitando que el proveedor de IA se convierta en una dependencia del dominio.
+
 ### 4.8.1. Software Architecture Context Diagram
+
+El diagrama de contexto presenta a **SmartQuote** como una caja negra y delimita las interacciones que determinan el alcance del sistema. El **Poultry Purchase Analyst** carga y verifica cotizaciones, configura simulaciones, analiza resultados y gestiona la emisión de órdenes de compra. El **Poultry Production Specialist / Veterinarian** registra desde la granja las solicitudes de alimentos, medicamentos o vacunas con sus especificaciones técnicas, y consulta su estado de atención.
+
+La **OpenAI Platform / LLM Service** es el único sistema externo representado. SmartQuote la consume mediante HTTPS para interpretar cotizaciones no estructuradas y obtener una salida estructurada. La decisión de aceptación, corrección, evaluación y compra permanece bajo el control de SmartQuote y sus usuarios; el servicio externo no accede directamente a la base de datos ni ejecuta reglas del negocio.
+
+![Software Architecture Context Diagram de SmartQuote](assets/architecture/SmartQuoteSystemContext.png)
 
 ### 4.8.2. Software Architecture Container Diagrams
 
+El diagrama de contenedores descompone SmartQuote en las aplicaciones ejecutables y almacenes de datos que participan en la solución. La separación responde a los canales de interacción de cada actor y concentra las reglas de negocio en el backend.
+
+| Contenedor | Tecnología | Responsabilidad |
+| --- | --- | --- |
+| **Landing Page** | HTML5, CSS3 y JavaScript | Comunica la propuesta de valor de SmartQuote, presenta el servicio SaaS y permite a los visitantes conocer el producto. |
+| **Web Application** | Vue.js, PrimeVue y Material Design | Permite al analista consultar solicitudes, cargar y verificar cotizaciones, configurar simulaciones, revisar resultados y gestionar órdenes de compra. |
+| **Native Mobile Application** | Flutter y Dart para Android | Permite al especialista de producción o veterinario registrar solicitudes de insumos desde la granja y consultar su estado e historial. |
+| **Web Services RESTful API** | ASP.NET Core y C# | Expone los casos de uso, aplica las reglas del dominio, controla la seguridad, coordina la persistencia y orquesta la extracción de cotizaciones mediante Semantic Kernel y OpenAI. |
+| **Database** | PostgreSQL | Almacena la información estructurada de los cuatro contextos mediante esquemas y adaptadores de persistencia lógicamente separados. |
+
+Las aplicaciones web y móvil consumen el API mediante HTTPS/JSON. El API es el único contenedor con acceso a PostgreSQL y con autorización para invocar el servicio de OpenAI; por ello, las credenciales, reglas de negocio y transacciones no se exponen en los clientes. La Landing Page es estática e independiente de las operaciones internas del sistema.
+
+![Software Architecture Container Diagram de SmartQuote](assets/architecture/SmartQuoteContainerDiagram.png)
+
 ### 4.8.3. Software Architecture Components Diagrams
+
+Los diagramas de componentes detallan la organización interna del API REST, la aplicación web y la aplicación móvil. En el backend y la aplicación web se conserva la misma división por *bounded contexts*, mientras que cada módulo aplica las responsabilidades de *Clean Architecture* correspondientes a su plataforma.
+
+#### Web Services RESTful API (`smartquote-web-services`)
+
+El API se implementa como un monolito modular en ASP.NET Core. Los controladores de la capa **Interfaces** reciben las solicitudes HTTP; la capa **Application** coordina casos de uso y contratos; la capa **Domain** contiene agregados, objetos de valor y servicios de dominio; y **Infrastructure** implementa persistencia e integraciones externas. Un despachador de eventos en proceso permite comunicar hechos de negocio sin crear dependencias directas entre los modelos internos de los contextos.
+
+![Diagrama general de componentes del Web Services RESTful API](assets/architecture/SmartQuoteBackendComponents.png)
+
+##### Supply Requests Context
+
+Este contexto es propietario del agregado `PurchaseRequest`, de los requerimientos técnicos y de las transiciones de estado de una solicitud. `PurchaseRequestsController` expone el registro, la consulta de estado y el historial; **Purchase Request Application** ejecuta los casos de uso y publica contratos de consulta; y el adaptador de persistencia implementa los puertos del módulo mediante Entity Framework Core y un esquema PostgreSQL propio.
+
+![Componentes backend del Supply Requests Context](assets/architecture/SmartQuoteBackendComponentsSupplyContext.png)
+
+##### Quotation Intake Context
+
+Este contexto administra el ciclo de recepción, extracción, verificación y corrección de las cotizaciones. `PoultryQuotesController` recibe los documentos y las acciones del analista, mientras `QuoteExtractionService` coordina el procesamiento y conserva los valores extraídos, niveles de confianza y correcciones. `SemanticKernelAgentConnector` implementa el puerto de extracción con IA, valida la salida estructurada y conserva como no resueltos los datos que no puede determinar con suficiente certeza, sin inventar información comercial.
+
+![Componentes backend del Quotation Intake Context](assets/architecture/SmartQuoteBackendComponentsQuotationContext.png)
+
+##### Evaluation & Simulation Context — Core Domain
+
+Este es el **Core Domain** de SmartQuote porque transforma solicitudes y cotizaciones verificadas en una decisión comparable y trazable. `SimulationsController` expone la configuración de criterios, la ejecución y la consulta de resultados; **Simulation Application** obtiene *snapshots* inmutables de las entradas y versiona los escenarios; y `SimulationEngine` descarta primero las ofertas que incumplen requisitos técnicos obligatorios antes de aplicar ponderaciones de precio y tiempo de entrega. El resultado contiene exclusiones, puntajes, ranking y recomendación, de modo que distintos escenarios no alteran la evidencia de ejecuciones anteriores.
+
+![Componentes backend del Evaluation and Simulation Context](assets/architecture/SmartQuoteBackendComponentsEvaluationContext.png)
+
+##### Purchase Ordering Context
+
+Este contexto convierte una simulación aprobada en una orden de compra. `PurchaseOrdersController` expone la aprobación y generación; **Purchase Order Application** comprueba la autorización y vigencia del resultado; y `PurchaseOrderGenerator` construye el agregado `PurchaseOrder` a partir de un *snapshot* de la decisión. El adaptador de persistencia aplica idempotencia para impedir que una misma aprobación genere órdenes duplicadas y conserva la referencia hacia la simulación de origen.
+
+![Componentes backend del Purchase Ordering Context](assets/architecture/SmartQuoteBackendComponentsPurchaseContext.png)
+
+#### Web Application (`smartquote-frontend-web`)
+
+La aplicación web se implementa como un monolito modular de cliente con Vue.js, PrimeVue, Pinia y JavaScript. Cada contexto contiene componentes de **Presentation**, casos de uso y estado en **Application**, modelos del lado cliente en **Domain** y un repositorio HTTP en **Infrastructure**. El **Application Shell**, Vue Router, el cliente HTTP común y los tipos verdaderamente genéricos residen en `Shared`; las reglas y modelos particulares permanecen dentro del contexto que los posee.
+
+![Diagrama general de componentes de la Web Application](assets/architecture/SmartQuoteWebComponents.png)
+
+##### Supply Requests Context
+
+La presentación permite al analista consultar las solicitudes y seleccionar la que será atendida con cotizaciones. La capa de aplicación coordina estas consultas y mantiene únicamente el estado necesario del módulo en Pinia. El repositorio del contexto implementa el contrato de acceso al API, mientras el dominio del cliente representa solicitudes, requerimientos técnicos, prioridad y estado sin reutilizar directamente las entidades del backend.
+
+![Componentes web del Supply Requests Context](assets/architecture/SmartQuoteWebComponentsSupplyContext.png)
+
+##### Quotation Intake Context
+
+Este módulo reúne las vistas para cargar documentos, observar el estado de extracción, verificar la información obtenida y registrar correcciones. Su capa de aplicación coordina esas operaciones y mantiene el estado de las cotizaciones pendientes. El repositorio HTTP traduce las acciones del cliente a los endpoints del API y el modelo de dominio del frontend representa cotizaciones, líneas, niveles de confianza y estado de verificación.
+
+![Componentes web del Quotation Intake Context](assets/architecture/SmartQuoteWebComponentsQuotationContext.png)
+
+##### Evaluation & Simulation Context — Core Domain
+
+El módulo de simulación contiene el tablero donde el analista configura escenarios, ejecuta comparaciones y revisa exclusiones, puntajes, rankings y recomendaciones. La capa de aplicación controla el estado de cada escenario y ejecución, y el repositorio consume las operaciones de simulación del API. Los modelos del cliente permiten presentar criterios, reglas de elegibilidad y resultados sin trasladar al navegador el algoritmo de decisión, que permanece en el backend.
+
+![Componentes web del Evaluation and Simulation Context](assets/architecture/SmartQuoteWebComponentsEvaluationContext.png)
+
+##### Purchase Ordering Context
+
+Este módulo presenta el resultado aprobado, permite solicitar la generación de la orden y consultar su detalle. La capa de aplicación coordina la aprobación y conserva su estado, mientras el repositorio del contexto consume los endpoints correspondientes. El dominio del cliente representa la orden, sus líneas, el estado de aprobación y la referencia a la simulación, pero la validación definitiva y la generación idempotente se ejecutan exclusivamente en el backend.
+
+![Componentes web del Purchase Ordering Context](assets/architecture/SmartQuoteWebComponentsPurchaseContext.png)
+
+#### Native Mobile Application (`smartquote-native-mobile`)
+
+La aplicación Flutter se concentra inicialmente en **Supply Requests Context**, porque el especialista de producción o veterinario necesita registrar desde el campo los insumos y requerimientos biológicos, además de consultar el estado e historial de sus solicitudes. `RequestFormWidget` y `RequestTrackingList` conforman la presentación; `RequestStateController` administra los estados de carga, éxito y error; y los casos de uso de registro y seguimiento dependen de un repositorio REST, no de una implementación de red concreta.
+
+El cliente HTTP, el almacenamiento seguro de credenciales y los tipos genéricos se mantienen en **Shared**. Esta carpeta brinda capacidades técnicas comunes, pero no contiene reglas del negocio ni constituye otro *bounded context*. Si el alcance móvil crece en iteraciones posteriores, los nuevos módulos deberán incorporarse respetando los mismos límites del dominio.
+
+![Diagrama de componentes de la Native Mobile Application](assets/architecture/SmartQuoteMobileComponents.png)
 
 ## 4.9. Software Object-Oriented Design
 
 ### 4.9.1. Class Diagrams
-
 
 ### 4.9.2. Class Dictionary
 
