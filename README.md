@@ -228,7 +228,7 @@ La solución está concebida como una herramienta de apoyo a la decisión, no co
       <td style="vertical-align: top;">Resumen pendiente de completar por el integrante.</td>
     </tr>
     <tr>
-      <td style="text-align: center; vertical-align: top;">Foto pendiente</td>
+      <td style="text-align: center; vertical-align: top;"><img src="assets/profiles/foto de batman.png>" alt="El domador salvaje" width="120"></td>
       <td style="vertical-align: top;">Jhon Danny Guerrero Vasquez</td>
       <td style="vertical-align: top;">u202116246</td>
       <td style="vertical-align: top;">Ingeniería de Software</td>
