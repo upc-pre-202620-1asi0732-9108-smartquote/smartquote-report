@@ -156,12 +156,22 @@ Proyecto
     - [4.9.2. Class Dictionary](#492-class-dictionary)
   - [4.10. Database Design](#410-database-design)
     - [4.10.1. Relational/Non-Relational Database Diagram](#4101-relationalnon-relational-database-diagram)
+      - [4.10.1.1. Supply Requests Context](#41011-supply-requests-context)
+      - [4.10.1.2. Quotation Intake Context](#41012-quotation-intake-context)
+      - [4.10.1.3. Evaluation \& Simulation Context — Core Domain](#41013-evaluation--simulation-context--core-domain)
+      - [4.10.1.4. Purchase Ordering Context](#41014-purchase-ordering-context)
 - [Capítulo V: Product Implementation](#capítulo-v-product-implementation)
   - [5.1. Software Configuration Management](#51-software-configuration-management)
     - [5.1.1. Software Development Environment Configuration](#511-software-development-environment-configuration)
     - [5.1.2. Source Code Management](#512-source-code-management)
+      - [GitFlow Workflow](#gitflow-workflow)
+      - [Conventional Commits](#conventional-commits)
+      - [Semantic Versioning](#semantic-versioning)
     - [5.1.3. Source Code Style Guide \& Conventions](#513-source-code-style-guide--conventions)
+      - [Regla de idioma para código y contratos técnicos](#regla-de-idioma-para-código-y-contratos-técnicos)
     - [5.1.4. Software Deployment Configuration](#514-software-deployment-configuration)
+      - [Pipeline de integración y despliegue](#pipeline-de-integración-y-despliegue)
+      - [Configuración local de contingencia](#configuración-local-de-contingencia)
   - [5.2. Product Implementation \& Deployment](#52-product-implementation--deployment)
     - [5.2.1. Sprint Backlogs](#521-sprint-backlogs)
     - [5.2.2. Implemented Landing Page Evidence](#522-implemented-landing-page-evidence)
@@ -685,13 +695,159 @@ Este contexto registra la decisión de compra convertida en una orden. `purchase
 
 ## 5.1. Software Configuration Management
 
+Esta sección define las herramientas, convenciones y controles que permiten al equipo desarrollar SmartQuote de forma consistente. La configuración abarca desde la gestión de requisitos y diseño hasta la construcción, prueba, documentación, publicación y recuperación local del producto. Las decisiones se aplican a los cinco repositorios del proyecto y deben mantenerse alineadas durante todo el ciclo de vida.
+
 ### 5.1.1. Software Development Environment Configuration
+
+El equipo utilizará un entorno de trabajo homogéneo. Cada integrante deberá instalar las herramientas indicadas, usar las versiones de SDK y dependencias fijadas por los archivos de configuración de cada repositorio, y evitar cambios globales de versión no coordinados. Las credenciales, claves de API y cadenas de conexión no se almacenarán en el código fuente; se usarán archivos locales `.env` no versionados y secretos configurados en GitHub y Azure.
+
+| Actividad del Ciclo de Vida | Nombre del Producto | Propósito Específico en el Proyecto |
+| --- | --- | --- |
+| Project Management | Jira Software | Gestionar el Product Backlog, épicas, User Stories, tareas, sprints, responsables y avance del equipo. Cada User Story conservará su identificador en Jira y en las ramas y registros de modificación asociados. |
+| Requirements Management | UXPressia | Elaborar y mantener User Personas, Empathy Maps, Journey Maps e Impact Maps a partir de la investigación con los segmentos objetivo. |
+| Product UX/UI Design | Figma | Diseñar wireframes, mock-ups, prototipos y componentes visuales para la aplicación web, la aplicación móvil y la Landing Page. |
+| Scenario, Wireflow and User Flow Design | Lucidchart | Elaborar los As-Is y To-Be Scenario Maps, Wireflows y User Flows que documenten la experiencia y navegación del producto. |
+| Software Architecture | Structurizr DSL y PlantUML | Modelar los diagramas C4 mediante Structurizr DSL y los diagramas de clases mediante PlantUML, conservando su código fuente versionado junto con el informe. |
+| Database Design | Lucidchart | Diseñar y mantener el modelo relacional PostgreSQL, sus tablas, claves, relaciones y restricciones por bounded context. |
+| Landing Page and Web Frontend Development | WebStorm | Desarrollar la Landing Page con HTML5, CSS3 y JavaScript, y la aplicación web con Vue.js, PrimeVue y Material Design. |
+| Backend Development | JetBrains Rider | Desarrollar el monolito modular RESTful con ASP.NET Core, C#, Entity Framework Core y la estructura Clean Architecture + DDD. |
+| Mobile Development | Flutter SDK y Android Studio | Desarrollar, ejecutar y depurar la aplicación Android en Flutter/Dart, incluyendo la prueba en emulador o dispositivo físico. |
+| Report Documentation | Visual Studio Code | Redactar el informe en Markdown, administrar los assets versionados y previsualizar la documentación antes de integrarla al repositorio del informe. |
+| Source Code Management | Git y GitHub | Controlar versiones, administrar Pull Requests, proteger ramas, almacenar código y centralizar la revisión colaborativa. |
+| Software Testing | Reqnroll, xUnit y Smartsheet | Automatizar escenarios BDD en Gherkin para los Web Services mediante Reqnroll y xUnit; planificar, registrar evidencias y dar seguimiento a pruebas manuales en Smartsheet. |
+| Software Documentation | OpenAPI Specification y Swagger UI | Documentar y probar los endpoints RESTful del backend mediante una especificación OpenAPI publicada con Swagger UI. |
+| Continuous Integration and Deployment | GitHub Actions y Azure Portal | Ejecutar compilación, análisis, pruebas y despliegues controlados desde GitHub hacia los servicios de Azure. |
+| Local Deployment and Contingency | Docker Desktop y Docker Compose | Levantar PostgreSQL y los servicios web en localhost para desarrollo, integración y demostraciones sin depender de Azure. |
+
+
 
 ### 5.1.2. Source Code Management
 
+SmartQuote empleará Git como sistema de control de versiones y GitHub como plataforma central de almacenamiento, revisión y colaboración. Cada producto mantiene un repositorio independiente para reducir acoplamiento entre entregables, permitir pipelines específicos y administrar versiones de manera autónoma.
+
+| Producto | Repositorio | URL | Estado al redactar este informe |
+| --- | --- | --- | --- |
+| Informe | `smartquote-report` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-report](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-report) | Confirmado |
+| Landing Page | `smartquote-landing-page` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page) | URL objetivo; pendiente de crear o confirmar antes del primer despliegue |
+| Frontend Web | `smartquote-frontend-web` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web) | URL objetivo; pendiente de crear o confirmar antes del primer despliegue |
+| Aplicación móvil | `smartquote-native-mobile` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile) | URL objetivo; pendiente de crear o confirmar antes del primer despliegue |
+| Web Services | `smartquote-web-services` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services) | URL objetivo; pendiente de crear o confirmar antes del primer despliegue |
+
+Antes de la entrega pública, el equipo deberá crear o verificar los cuatro repositorios marcados como pendientes y reemplazar su estado por una URL pública comprobada. No se deberá modificar la URL del repositorio del informe sin actualizar esta tabla.
+
+#### GitFlow Workflow
+
+La estrategia de ramificación se basa en GitFlow. No se permiten registros de modificación directos sobre `main` ni `develop`; toda integración se realizará mediante Pull Request, con las comprobaciones automáticas correspondientes y revisión de al menos un integrante distinto del autor cuando el cambio afecte código de producto.
+
+| Rama | Propósito | Nomenclatura y regla de uso |
+| --- | --- | --- |
+| `main` | Contiene versiones estables, demostrables y listas para producción. | Es inmutable mediante protección de rama. Solo recibe merges desde `release/` o `hotfix/` y se etiqueta con una versión SemVer. |
+| `develop` | Integra las funcionalidades aprobadas para la siguiente versión. | Es la rama base de las ramas `feature/` y del siguiente `release/`. |
+| `feature/` | Desarrolla una User Story o una mejora acotada. | `feature/US##-ShortTitle`, por ejemplo: `feature/US07-SimulateQuotations`. Nace de `develop` y retorna a `develop` por Pull Request. |
+| `release/` | Prepara una versión para pruebas finales, documentación, configuración y corrección de defectos menores. | `release/V{Major}.{Minor}.{Patch}`, por ejemplo: `release/V1.0.0`. Nace de `develop` y se integra en `main` y `develop`. |
+| `hotfix/` | Corrige un defecto crítico detectado en producción. | `hotfix/V{Major}.{Minor}.{Patch}-ShortTitle`, por ejemplo: `hotfix/V1.0.1-CorrectOrderDuplication`. Nace de `main` y se integra en `main` y `develop`. |
+
+El repositorio del informe puede emple  | ar ramas documentales con la forma `feature/chapter-##`, porque sus cambios no implementan una User Story de producto. Estas ramas siguen las mismas reglas de Pull Request hacia `develop`.
+
+#### Conventional Commits
+
+Cada registro de modificación seguirá Conventional Commits y utilizará el identificador de la User Story como *scope*. El formato obligatorio será:
+
+```text
+<type>(<scope>): <short imperative description in English>
+```
+
+Ejemplos:
+
+```text
+feat(US07): simulate eligible quotations
+fix(US08): prevent duplicate purchase orders
+test(US05): verify quotation correction scenarios
+docs(US01): update landing page content evidence
+ci(US07): add simulation test workflow
+```
+
+| Tipo | Uso en SmartQuote |
+| --- | --- |
+| `feat` | Incorpora una funcionalidad de producto. |
+| `fix` | Corrige un defecto. |
+| `docs` | Actualiza documentación o evidencias. |
+| `style` | Ajusta formato sin modificar el comportamiento. |
+| `refactor` | Mejora la estructura interna sin cambiar el comportamiento observable. |
+| `test` | Agrega o actualiza pruebas automatizadas o sus datos. |
+| `chore` | Modifica tareas de mantenimiento, dependencias o configuración no funcional. |
+| `ci` | Ajusta GitHub Actions, validaciones o automatización de integración y despliegue. |
+
+Los títulos deben ser breves, estar en inglés, usar modo imperativo y no terminar con punto. La especificación de referencia se incorporará en la bibliografía del informe.
+
+#### Semantic Versioning
+
+Cada producto desplegable utilizará Semantic Versioning 2.0.0 con el formato `V{Major}.{Minor}.{Patch}` y etiquetas anotadas sobre `main`.
+
+| Componente | Cuándo se incrementa | Ejemplo |
+| --- | --- | --- |
+| `Major` | Se introduce una incompatibilidad con contratos públicos, API REST, esquema de datos o comportamiento de cliente ya publicado. | `V1.4.2` → `V2.0.0` |
+| `Minor` | Se agrega una funcionalidad compatible hacia atrás, como una nueva User Story terminada o endpoint no disruptivo. | `V1.4.2` → `V1.5.0` |
+| `Patch` | Se corrige un defecto compatible, una vulnerabilidad o una configuración de producción sin añadir funcionalidad. | `V1.4.2` → `V1.4.3` |
+
+El informe se etiqueta junto con la versión de producto cuya evidencia describe. Los cambios exclusivamente editoriales no modifican la versión funcional del sistema, salvo que se publique una nueva evidencia asociada a una entrega formal.
+
 ### 5.1.3. Source Code Style Guide & Conventions
 
+El equipo aplicará guías oficiales y herramientas de formato para mantener un código legible, consistente y fácil de revisar. Las reglas se aplicarán automáticamente cuando sea posible y se revisarán en los Pull Requests antes de integrar una rama.
+
+| Tecnología o artefacto | Estándar de referencia | Convenciones aplicadas en SmartQuote |
+| --- | --- | --- |
+| HTML5 y CSS3 | Google HTML/CSS Style Guide | HTML semántico, atributos en minúsculas, CSS en archivos o módulos con nombres en kebab-case, diseño responsivo y cumplimiento básico de accesibilidad. |
+| JavaScript | Google JavaScript Style Guide y MDN JavaScript Guide | `const` por defecto, `let` solo cuando se reasigna, funciones pequeñas, manejo explícito de errores, módulos sin código muerto y formato aplicado por Prettier y ESLint. |
+| Vue.js y PrimeVue | Vue Style Guide | Componentes en PascalCase, composables con prefijo `use`, vistas sin reglas de negocio y estado limitado al bounded context correspondiente mediante Pinia. |
+| C# y ASP.NET Core | C# Coding Conventions y ASP.NET Core Guidelines | Cuatro espacios de indentación, tipos y métodos en PascalCase, variables y parámetros en camelCase, interfaces con prefijo `I`, métodos asíncronos con sufijo `Async`, `CancellationToken` en operaciones de E/S y reglas centralizadas en `.editorconfig`. |
+| PostgreSQL | PostgreSQL Documentation | Esquemas y tablas en `snake_case` plural, columnas y restricciones en `snake_case` inglés, claves primarias UUID y nombres explícitos para índices, claves foráneas y restricciones únicas. |
+| Gherkin y BDD | Gherkin Reference y Reqnroll Documentation | Archivos `.feature` en inglés, escenarios independientes y comprobables, una intención por escenario y estructura Given-When-Then. Los criterios académicos del informe pueden estar en español, pero las especificaciones ejecutables y sus *step definitions* permanecen en inglés. |
+| Markdown del informe | CommonMark | Encabezados jerárquicos, enlaces relativos para assets del repositorio, tablas legibles y previsualización en Visual Studio Code antes de integrar cambios. |
+
+#### Regla de idioma para código y contratos técnicos
+
+Todo el código fuente se escribe estrictamente en inglés: variables, métodos, clases, interfaces, namespaces, rutas, endpoints, contratos JSON, archivos de prueba, tablas, columnas, restricciones de base de datos y componentes de OpenAPI/Swagger. La interfaz pública del producto se internacionaliza mediante recursos de idioma para atender los idiomas definidos en las User Stories; esto no modifica la regla de inglés para identificadores técnicos.
+
 ### 5.1.4. Software Deployment Configuration
+
+La publicación de SmartQuote se realiza mediante servicios administrados de Azure y automatización en GitHub Actions. La separación de destinos permite desplegar cada producto con el mecanismo que corresponde a su naturaleza, mantener el backend aislado de los clientes y utilizar PostgreSQL como almacén relacional central.
+
+| Componente | Destino de despliegue | Configuración y justificación |
+| --- | --- | --- |
+| Landing Page | GitHub Pages | Publica los archivos estáticos HTML5, CSS3 y JavaScript desde la rama o artefacto de producción. Es apropiado para contenido informativo, versionado con Git y sin lógica de negocio en servidor. |
+| Aplicación web Vue.js | Azure Static Web Apps | Compila y publica los assets de Vue.js y PrimeVue desde GitHub Actions. Ofrece distribución global de contenido estático, HTTPS y entornos de vista previa asociados a Pull Requests. |
+| Web Services ASP.NET Core | Azure App Service | Ejecuta el monolito modular RESTful en C#. App Service proporciona un entorno PaaS administrado que permite configurar variables, comprobar salud y escalar la aplicación sin administrar servidores. |
+| Base de datos | Azure Database for PostgreSQL Flexible Server | Aloja la base de datos relacional PostgreSQL, sus esquemas por bounded context, copias de seguridad y controles de acceso. El backend es el único componente con acceso directo a la cadena de conexión. |
+| Aplicación móvil Android | GitHub Actions y GitHub Releases | Compila el APK de Flutter, ejecuta sus pruebas y publica artefactos versionados para distribución interna y demostraciones. La aplicación móvil consume el API desplegado en Azure App Service. |
+
+#### Pipeline de integración y despliegue
+
+1. Un Pull Request hacia `develop` activa GitHub Actions para restaurar dependencias, ejecutar análisis de estilo, compilar y ejecutar pruebas automatizadas. No se publica producción desde un Pull Request.
+2. Al integrar una funcionalidad en `develop`, los repositorios pueden desplegar un entorno de validación o generar artefactos de prueba. Azure Static Web Apps puede generar vistas previas para Pull Requests de la aplicación web.
+3. Una rama `release/` consolida la versión candidata, actualiza la documentación y ejecuta las pruebas de regresión.
+4. Al integrar un `release/` o `hotfix/` en `main` y crear una etiqueta `V{Major}.{Minor}.{Patch}`, el pipeline genera los artefactos de producción: publicación de GitHub Pages, compilación de Vue.js hacia Azure Static Web Apps, publicación del API en Azure App Service y construcción del APK Android.
+5. Antes de aplicar migraciones de Entity Framework Core sobre Azure Database for PostgreSQL, el pipeline realiza una copia de seguridad y exige aprobación del responsable. Las migraciones se ejecutan de manera controlada para no introducir cambios destructivos sobre datos existentes.
+6. Las claves de Azure, la cadena de conexión PostgreSQL, `OPENAI_API_KEY` y demás secretos se administran mediante GitHub Secrets y la configuración de Azure App Service. Nunca se registran en Git ni se colocan en archivos de ejemplo con valores reales.
+7. Tras el despliegue, el pipeline comprueba el endpoint de salud del API y registra el resultado de la versión publicada. La aplicación web solo puede consumir los dominios autorizados mediante la configuración CORS del backend.
+
+#### Configuración local de contingencia
+
+El equipo mantendrá una configuración local síncrona mediante Docker Compose para las demostraciones. El archivo `docker-compose.yml` levantará, como mínimo, los siguientes servicios dentro de una red local:
+
+| Servicio local | Puerto de referencia | Responsabilidad |
+| --- | --- | --- |
+| `postgres` | `5432` | Ejecuta PostgreSQL con un volumen persistente para el modelo relacional de SmartQuote. |
+| `api` | `8080` | Ejecuta los Web Services ASP.NET Core, aplica migraciones controladas y se conecta a la base de datos local. |
+| `web` | `5173` | Sirve la aplicación Vue.js para la demostración y consume el API local. |
+| `landing` | `8081` | Sirve la Landing Page estática cuando se requiera mostrar el recorrido completo. |
+
+La demostración local se iniciará con un comando documentado equivalente a `docker compose up --build`. Las credenciales de desarrollo se cargarán desde `.env`, mientras que `.env.example` contendrá únicamente nombres de variables y valores ficticios. La aplicación móvil Android apuntará a `http://10.0.2.2:8080` desde el emulador o a la dirección IP local del equipo anfitrión desde un dispositivo físico.
+
+La extracción real con OpenAI requiere conectividad. Por ello, el backend incluirá una configuración de demostración `AI_PROVIDER=stub` que reemplaza el adaptador externo por resultados estructurados previamente validados para PDFs de prueba. Esta alternativa permite demostrar el flujo completo de carga, verificación, simulación y orden de compra sin Internet, sin afirmar que la IA externa está disponible localmente.
+
+El plan de contingencia se prueba antes de cada demostración: se descarga previamente la imagen de PostgreSQL, se construyen los contenedores, se ejecutan migraciones y datos de ejemplo, se verifica el acceso desde la aplicación web y móvil, y se confirma que el modo `stub` funciona sin conexión a Azure ni a OpenAI.
 
 ## 5.2. Product Implementation & Deployment
 
