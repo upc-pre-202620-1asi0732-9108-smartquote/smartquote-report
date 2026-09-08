@@ -149,6 +149,10 @@ Proyecto
       - [Native Mobile Application (`smartquote-native-mobile`)](#native-mobile-application-smartquote-native-mobile)
   - [4.9. Software Object-Oriented Design](#49-software-object-oriented-design)
     - [4.9.1. Class Diagrams](#491-class-diagrams)
+      - [4.9.1.1. Supply Requests Context](#4911-supply-requests-context)
+      - [4.9.1.2. Quotation Intake Context](#4912-quotation-intake-context)
+      - [4.9.1.3. Evaluation \& Simulation Context — Core Domain](#4913-evaluation--simulation-context--core-domain)
+      - [4.9.1.4. Purchase Ordering Context](#4914-purchase-ordering-context)
     - [4.9.2. Class Dictionary](#492-class-dictionary)
   - [4.10. Database Design](#410-database-design)
     - [4.10.1. Relational/Non-Relational Database Diagram](#4101-relationalnon-relational-database-diagram)
@@ -612,6 +616,32 @@ El cliente HTTP, el almacenamiento seguro de credenciales y los tipos genéricos
 ## 4.9. Software Object-Oriented Design
 
 ### 4.9.1. Class Diagrams
+
+Los diagramas de clases representan el modelo interno del backend para cada *bounded context*. Se mantiene la separación de **Clean Architecture**: las interfaces reciben las solicitudes REST, la aplicación coordina los casos de uso, el dominio concentra las reglas de negocio y la infraestructura implementa persistencia o integraciones externas. Cada contexto posee su propio agregado raíz y sus objetos de valor; la comunicación entre contextos se realiza mediante contratos de aplicación y snapshots, no mediante referencias directas a entidades ajenas.
+
+#### 4.9.1.1. Supply Requests Context
+
+El agregado raíz `PurchaseRequest` representa la necesidad de abastecimiento registrada por el especialista de producción o sanidad. El agregado contiene los ítems solicitados, sus requisitos técnicos, los archivos de sustento y el historial de estados. `PurchaseRequestCommandService` coordina el registro, los adjuntos y las transiciones, mientras `PurchaseRequestQueryService` atiende las consultas y publica un `PurchaseRequestSnapshot` de solo lectura para los contextos que necesitan evaluar la solicitud. La persistencia se implementa mediante un repositorio PostgreSQL y los cambios de estado generan eventos de dominio que pueden activar la notificación al solicitante.
+
+![Diagrama de clases del Supply Requests Context](assets/architecture/SmartQuoteClassDiagramSupplyContext.png)
+
+#### 4.9.1.2. Quotation Intake Context
+
+El agregado `PoultryQuote` encapsula una cotización asociada a una solicitud, su proveedor, documento de origen, líneas y campos extraídos. `QuoteExtractionService` coordina la carga, el procesamiento, la confirmación y la corrección de datos. El puerto `IQuoteExtractionAgent` permite conectar `SemanticKernelAgentConnector` con OpenAI sin introducir esa dependencia en el dominio. Cada campo conserva su nivel de confianza, referencia al documento y registro de correcciones; por ello, una cotización no puede marcarse como verificada si mantiene datos críticos sin resolver. Las cotizaciones verificadas se exponen como `VerifiedQuotationSnapshot` para el contexto de evaluación.
+
+![Diagrama de clases del Quotation Intake Context](assets/architecture/SmartQuoteClassDiagramQuotationContext.png)
+
+#### 4.9.1.3. Evaluation & Simulation Context — Core Domain
+
+`EvaluationScenario` es el agregado que versiona los criterios de una evaluación. Sus criterios pueden ser obligatorios o ponderados y pertenecen a las categorías de cumplimiento técnico, precio y plazo de entrega. `SimulationEngine` es el servicio de dominio central: recibe un conjunto local de datos, aplica primero las reglas obligatorias, excluye las ofertas no elegibles y calcula el puntaje ponderado de las restantes. `SimulationRun` conserva las evaluaciones, exclusiones, ranking, recomendación y la `InputFingerprint` formada por las versiones de la solicitud, cotizaciones y criterios. Esta huella permite comprobar que una ejecución sigue vigente y que el mismo conjunto de entradas produce un resultado determinista. El contexto publica un `ApprovedSimulationSnapshot` para Purchase Ordering.
+
+![Diagrama de clases del Evaluation and Simulation Context](assets/architecture/SmartQuoteClassDiagramEvaluationContext.png)
+
+#### 4.9.1.4. Purchase Ordering Context
+
+El agregado raíz `PurchaseOrder` representa la orden emitida a partir de una decisión de simulación aprobada. `PurchaseOrderApplicationService` valida la autorización, solicita al contexto de evaluación un `ApprovedSimulationSnapshot`, lo transforma mediante `ApprovedDecisionMapper` y delega la construcción a `PurchaseOrderGenerator`. La orden conserva el proveedor, las partidas, las condiciones de entrega y la referencia a la solicitud, cotización y simulación de origen. `Approval` incluye una clave idempotente; junto con las restricciones únicas del repositorio PostgreSQL, evita que una solicitud repetida genere órdenes duplicadas.
+
+![Diagrama de clases del Purchase Ordering Context](assets/architecture/SmartQuoteClassDiagramPurchaseContext.png)
 
 ### 4.9.2. Class Dictionary
 
