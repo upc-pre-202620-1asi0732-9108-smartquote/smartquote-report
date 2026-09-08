@@ -649,6 +649,38 @@ El agregado raíz `PurchaseOrder` representa la orden emitida a partir de una de
 
 ### 4.10.1. Relational/Non-Relational Database Diagram
 
+El diseño de datos de SmartQuote utiliza una base de datos relacional PostgreSQL. El modelo se organiza de acuerdo con los cuatro *bounded contexts* definidos en la arquitectura: **Supply Requests**, **Quotation Intake**, **Evaluation & Simulation** y **Purchase Ordering**. Las tablas que pertenecen a un mismo contexto mantienen relaciones mediante claves foráneas internas, mientras que las referencias entre contextos se conservan mediante identificadores y copias versionadas de los datos utilizados en cada decisión.
+
+El modelo completo integra las entidades necesarias para registrar solicitudes de insumos, almacenar sus requisitos técnicos y adjuntos, recibir cotizaciones, conservar la extracción asistida por IA, verificar y corregir datos, versionar escenarios de evaluación, guardar los snapshots de cada simulación, registrar resultados y exclusiones, conservar la recomendación y generar órdenes de compra trazables e idempotentes.
+
+El diagrama fue elaborado utilizando **Lucidchart**.
+
+![Diagrama relacional completo de la base de datos de SmartQuote](assets/architecture/SmartQuoteDatabaseDiagram.png)
+
+#### 4.10.1.1. Supply Requests Context
+
+Este contexto contiene la información originada en la operación de la granja. `purchase_requests` representa la solicitud de abastecimiento y se relaciona con `requested_items`, que contiene los insumos requeridos. Cada ítem puede tener múltiples `technical_requirements`, donde se registran condiciones como porcentajes nutricionales, concentraciones o características sanitarias. `request_attachments` conserva los documentos de sustento, `request_status_history` permite reconstruir la evolución de la solicitud y `request_notifications` registra los avisos dirigidos al solicitante.
+
+![Diagrama de base de datos del Supply Requests Context](assets/architecture/SmartQuoteDatabaseDiagramSupplyContext.png)
+
+#### 4.10.1.2. Quotation Intake Context
+
+Este contexto administra las cotizaciones recibidas de los proveedores. `poultry_quotes` conserva la solicitud asociada, la referencia del proveedor, los metadatos y hash del documento de origen, el plazo de entrega, la moneda, la versión y el estado de verificación. Sus partidas se almacenan en `quotation_lines` y sus especificaciones en `quoted_specifications`. La tabla `extracted_fields` conserva el valor original, el valor vigente, el nivel de confianza y la referencia al documento; `field_corrections` mantiene el historial de correcciones realizadas por el analista.
+
+![Diagrama de base de datos del Quotation Intake Context](assets/architecture/SmartQuoteDatabaseDiagramQuotationContext.png)
+
+#### 4.10.1.3. Evaluation & Simulation Context — Core Domain
+
+Este contexto conserva la configuración y la evidencia de las evaluaciones. `evaluation_scenarios` permite versionar los escenarios y `evaluation_criteria` almacena sus criterios obligatorios o ponderados. Cada ejecución se registra en `simulation_runs` junto con su `input_fingerprint`. Las tablas `simulation_request_snapshots` y `simulation_quotation_snapshots`, junto con sus tablas de ítems, requisitos, líneas y especificaciones, conservan copias de solo lectura de los datos utilizados en la ejecución. Finalmente, `quotation_evaluations`, `criterion_results`, `exclusion_reasons` y `simulation_recommendations` guardan la elegibilidad, los puntajes, las causas de exclusión y la recomendación resultante.
+
+![Diagrama de base de datos del Evaluation and Simulation Context](assets/architecture/SmartQuoteDatabaseDiagramEvaluationContext.png)
+
+#### 4.10.1.4. Purchase Ordering Context
+
+Este contexto registra la decisión de compra convertida en una orden. `purchase_orders` conserva el número de orden, las referencias de la simulación, solicitud y cotización de origen, la huella de entrada, los datos del proveedor, la autorización, la clave de idempotencia, el estado y las condiciones de entrega. `purchase_order_lines` almacena las partidas emitidas y sus referencias de trazabilidad hacia los datos evaluados. Las restricciones únicas sobre `order_number`, `source_simulation_run_id` e `idempotency_key` evitan la generación de órdenes duplicadas.
+
+![Diagrama de base de datos del Purchase Ordering Context](assets/architecture/SmartQuoteDatabaseDiagramPurchaseContext.png)
+
 # Capítulo V: Product Implementation
 
 ## 5.1. Software Configuration Management
