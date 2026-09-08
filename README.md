@@ -289,7 +289,93 @@ Este segmento representa a los usuarios internos que definen o validan las condi
 
 ## 3.2. User Stories
 
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US01 | Visitante de una empresa avícola | Media | EP01 – Presencia digital |
+| **Title** | Conocer la propuesta de valor de SmartQuote |  |  |
+| **Description** | Como visitante de una empresa avícola, deseo conocer la propuesta de valor, las capacidades y el alcance de SmartQuote para determinar si la solución responde a las necesidades de adquisición de mi organización. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Consulta del contenido dirigido al segmento**<br>**Dado que** el visitante pertenece al sector avícola<br>**Cuando** consulta la información pública de SmartQuote<br>**Entonces** el sistema comunica el problema atendido, la propuesta de valor, las capacidades principales y los segmentos a los que se dirige.<br><br>**Escenario 2: Consulta en un idioma soportado**<br>**Dado que** el contenido público se encuentra disponible<br>**Cuando** el visitante establece inglés de Estados Unidos o español de Latinoamérica como idioma<br>**Entonces** el sistema entrega el contenido equivalente en el idioma seleccionado y mantiene el inglés como idioma predeterminado.<br><br>**Escenario 3: Continuidad hacia la experiencia web**<br>**Dado que** el visitante identifica interés en SmartQuote<br>**Cuando** solicita acceder a la experiencia web o iniciar contacto con la startup<br>**Entonces** el sistema lo dirige al destino correspondiente mediante un enlace válido. |  |  |
+
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US02 | Especialista de producción y sanidad | Alta | EP03 – Solicitudes de compra |
+| **Title** | Registrar una solicitud de insumos desde la operación |  |  |
+| **Description** | Como especialista de producción y sanidad, deseo registrar una solicitud de insumos con sus requisitos técnicos para que el área de adquisiciones reciba una necesidad completa y trazable. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Registro completo de la solicitud**<br>**Dado que** el especialista identifica una necesidad de abastecimiento<br>**Cuando** registra el insumo, la cantidad, la fecha requerida, la prioridad y las especificaciones técnicas obligatorias<br>**Entonces** el sistema crea la solicitud con un identificador único, conserva al solicitante y registra su estado inicial.<br><br>**Escenario 2: Información obligatoria incompleta**<br>**Dado que** una solicitud carece de datos o requisitos obligatorios<br>**Cuando** el especialista intenta registrarla<br>**Entonces** el sistema no crea la solicitud e identifica la información que debe completarse.<br><br>**Escenario 3: Incorporación de sustento técnico**<br>**Dado que** la solicitud requiere documentación complementaria<br>**Cuando** el especialista adjunta un archivo permitido<br>**Entonces** el sistema lo asocia con la solicitud y conserva su nombre, tipo, fecha y autor. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US03 | Especialista de producción y sanidad | Alta | EP03 – Solicitudes de compra |
+| **Title** | Conocer el avance de una solicitud de compra |  |  |
+| **Description** | Como especialista de producción y sanidad, deseo conocer el estado y el historial de mis solicitudes para anticipar riesgos de abastecimiento y coordinar las actividades operativas. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Consulta del estado vigente**<br>**Dado que** existe una solicitud registrada por el especialista<br>**Cuando** consulta su seguimiento<br>**Entonces** el sistema informa el estado vigente, la fecha de la última actualización y el área responsable de la siguiente acción.<br><br>**Escenario 2: Cambio de estado**<br>**Dado que** una solicitud se encuentra activa<br>**Cuando** un usuario autorizado modifica su estado<br>**Entonces** el sistema registra el cambio y notifica al solicitante con el nuevo estado y su motivo cuando corresponda.<br><br>**Escenario 3: Consulta del historial**<br>**Dado que** la solicitud posee cambios registrados<br>**Cuando** el especialista consulta su historial<br>**Entonces** el sistema entrega los eventos en orden cronológico con estado, fecha, responsable y justificación disponible. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US04 | Analista de adquisiciones | Alta | EP04 – Gestión inteligente de cotizaciones |
+| **Title** | Incorporar cotizaciones de proveedores |  |  |
+| **Description** | Como analista de adquisiciones, deseo incorporar las cotizaciones recibidas para asociarlas con una solicitud y preparar su evaluación técnica y comercial. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Incorporación de cotizaciones válidas**<br>**Dado que** existe una solicitud activa<br>**Cuando** el analista incorpora uno o varios archivos PDF válidos e identifica al proveedor correspondiente<br>**Entonces** el sistema registra cada cotización y la vincula con la solicitud y el proveedor indicados.<br><br>**Escenario 2: Archivo no procesable**<br>**Dado que** un archivo posee un formato no permitido, está dañado o no contiene una cotización legible<br>**Cuando** el analista intenta incorporarlo<br>**Entonces** el sistema rechaza ese archivo, conserva los demás archivos válidos e informa la causa del rechazo.<br><br>**Escenario 3: Cotización duplicada**<br>**Dado que** una cotización ya se encuentra registrada para la misma solicitud<br>**Cuando** el analista incorpora nuevamente el mismo documento<br>**Entonces** el sistema evita el registro duplicado e identifica la cotización existente. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| TS01 | Developer | Alta | EP04 – Gestión inteligente de cotizaciones |
+| **Title** | Procesar cotizaciones mediante un servicio RESTful de extracción |  |  |
+| **Description** | Como Developer, deseo disponer de un servicio RESTful que procese cotizaciones PDF y devuelva información normalizada para integrar la extracción asistida por IA con los demás productos de SmartQuote. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Solicitud de procesamiento válida**<br>**Dado que** un consumidor autorizado envía una cotización PDF soportada y su identificador de solicitud<br>**Cuando** el servicio procesa el documento<br>**Entonces** responde con un estado HTTP exitoso y entrega proveedor, vigencia, moneda, partidas, cantidades, precios, plazo de entrega, especificaciones detectadas, nivel de confianza y referencia al origen de cada dato.<br><br>**Escenario 2: Información ausente o ambigua**<br>**Dado que** el documento no contiene un dato requerido o la extracción no alcanza la confianza mínima definida<br>**Cuando** el servicio genera el resultado<br>**Entonces** conserva el dato como no resuelto, informa su nivel de confianza y no inventa un valor.<br><br>**Escenario 3: Solicitud no procesable**<br>**Dado que** el consumidor envía un tipo de archivo no soportado o un documento que no puede interpretarse<br>**Cuando** el servicio valida la solicitud<br>**Entonces** responde con el estado HTTP correspondiente y un error estructurado que permite identificar la causa sin exponer datos sensibles. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US05 | Analista de adquisiciones | Alta | EP04 – Gestión inteligente de cotizaciones |
+| **Title** | Verificar la información extraída de una cotización |  |  |
+| **Description** | Como analista de adquisiciones, deseo verificar y corregir los datos extraídos de cada cotización para asegurar que la evaluación utilice información confiable. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Confirmación de datos extraídos**<br>**Dado que** el agente de IA genera datos para una cotización<br>**Cuando** el analista confirma que los valores son correctos<br>**Entonces** el sistema los registra como verificados y conserva el responsable y la fecha de la confirmación.<br><br>**Escenario 2: Corrección de un dato**<br>**Dado que** un valor extraído difiere del documento de origen<br>**Cuando** el analista registra el valor correcto y su motivo<br>**Entonces** el sistema conserva el valor original, el valor corregido, el autor, la fecha y la justificación.<br><br>**Escenario 3: Datos críticos pendientes**<br>**Dado que** una cotización mantiene información obligatoria sin verificar<br>**Cuando** se intenta incluirla en una evaluación definitiva<br>**Entonces** el sistema impide la evaluación e identifica los datos pendientes. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US06 | Analista de adquisiciones | Alta | EP05 – Evaluación y decisión de compra |
+| **Title** | Definir los criterios de evaluación de cotizaciones |  |  |
+| **Description** | Como analista de adquisiciones, deseo definir criterios comerciales y técnicos para que la comparación de cotizaciones responda a las prioridades de cada solicitud. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Configuración válida**<br>**Dado que** una solicitud se encuentra preparada para recibir ofertas<br>**Cuando** el analista define criterios obligatorios y criterios ponderados para precio, plazo de entrega y cumplimiento técnico<br>**Entonces** el sistema registra una versión identificable de la configuración aplicable a la evaluación.<br><br>**Escenario 2: Ponderación inválida**<br>**Dado que** los criterios ponderados no alcanzan el total requerido o contienen valores fuera del rango permitido<br>**Cuando** el analista intenta confirmar la configuración<br>**Entonces** el sistema rechaza la configuración e identifica las reglas incumplidas.<br><br>**Escenario 3: Modificación posterior a una simulación**<br>**Dado que** existe una simulación basada en una versión de criterios<br>**Cuando** un usuario autorizado modifica los criterios<br>**Entonces** el sistema conserva la versión anterior e identifica que la simulación debe ejecutarse nuevamente. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US07 | Analista de adquisiciones | Alta | EP05 – Evaluación y decisión de compra |
+| **Title** | Simular y comparar las cotizaciones elegibles |  |  |
+| **Description** | Como analista de adquisiciones, deseo simular la evaluación de las cotizaciones elegibles para identificar la alternativa con mejor ajuste técnico y comercial. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Simulación con ofertas elegibles**<br>**Dado que** existen al menos dos cotizaciones verificadas y una versión vigente de los criterios<br>**Cuando** el analista solicita la simulación<br>**Entonces** el sistema calcula el resultado de cada oferta, entrega un orden de preferencia y explica la contribución de cada criterio al resultado.<br><br>**Escenario 2: Incumplimiento de un criterio obligatorio**<br>**Dado que** una cotización incumple un criterio obligatorio<br>**Cuando** el sistema ejecuta la simulación<br>**Entonces** excluye la cotización de la recomendación ordinaria y señala los criterios incumplidos, independientemente de su precio.<br><br>**Escenario 3: Repetibilidad del resultado**<br>**Dado que** las cotizaciones y la versión de criterios no cambian<br>**Cuando** la simulación se ejecuta nuevamente<br>**Entonces** el sistema produce el mismo resultado y lo asocia con la misma versión de datos y reglas. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US08 | Analista o jefe de adquisiciones | Alta | EP06 – Orden y trazabilidad |
+| **Title** | Aprobar la alternativa seleccionada y generar la orden de compra |  |  |
+| **Description** | Como analista o jefe de adquisiciones autorizado, deseo aprobar una alternativa evaluada y generar su orden de compra para continuar el proceso con información consistente y trazable. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Generación autorizada**<br>**Dado que** una cotización se encuentra verificada, técnicamente conforme y seleccionada mediante una simulación vigente<br>**Cuando** un usuario con autorización aprueba la decisión<br>**Entonces** el sistema genera una orden con identificador único, proveedor, partidas, cantidades, precios, moneda, condiciones de entrega y referencia a la solicitud y evaluación de origen.<br><br>**Escenario 2: Datos modificados después de la simulación**<br>**Dado que** una cotización, un requisito o un criterio cambia después de la simulación<br>**Cuando** se intenta aprobar la alternativa anterior<br>**Entonces** el sistema impide la generación y exige una nueva evaluación con la información vigente.<br><br>**Escenario 3: Solicitud repetida de generación**<br>**Dado que** ya existe una orden para la misma aprobación<br>**Cuando** se recibe nuevamente la misma solicitud de generación<br>**Entonces** el sistema devuelve la orden existente y no crea un duplicado. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| SP01 | Developer | Alta | EP04 – Gestión inteligente de cotizaciones |
+| **Title** | Evaluar la viabilidad de extraer datos de cotizaciones heterogéneas con IA |  |  |
+| **Description** | Como Developer, deseo investigar y probar alternativas de extracción de información para determinar si el agente de IA puede procesar cotizaciones PDF heterogéneas con precisión, trazabilidad y límites de confianza adecuados. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Ejecución de la prueba de concepto**<br>**Dado que** se dispone de al menos quince cotizaciones anonimizadas correspondientes a tres o más estructuras documentales diferentes<br>**Cuando** se ejecuta la prueba de concepto sobre los campos priorizados<br>**Entonces** se obtiene una salida estructurada que conserva la referencia al documento de origen y señala los valores no resueltos.<br><br>**Escenario 2: Medición de resultados**<br>**Dado que** la prueba de concepto produce resultados de extracción<br>**Cuando** se comparan con los valores verificados manualmente<br>**Entonces** se documentan la precisión por campo, los casos fallidos, las causas observadas, el tiempo de procesamiento y los riesgos de uso.<br><br>**Escenario 3: Cierre de la investigación**<br>**Dado que** las alternativas seleccionadas cuentan con resultados de evaluación<br>**Cuando** concluye el spike<br>**Entonces** se entrega un informe con la alternativa recomendada, el prototipo mínimo, las limitaciones, el umbral de confianza propuesto y las medidas necesarias para proteger la información de los proveedores. |  |  |
+
 ## 3.3. Product Backlog
+
+El Product Backlog se ordena según el valor para el negocio, la entrega de la presencia digital durante el primer sprint, la reducción temprana de incertidumbre técnica y la secuencia del proceso de adquisición avícola. Los Story Points representan esfuerzo relativo y utilizan únicamente la escala 1, 2, 3, 5 y 8.
+
+| **# Orden** | **User Story Id** | **Título** | **Descripción** | **Story Points (1 / 2 / 3 / 5 / 8)** |
+| ---: | --- | --- | --- | ---: |
+| 1 | US01 | Conocer la propuesta de valor de SmartQuote | Como visitante de una empresa avícola, deseo conocer la propuesta de valor, las capacidades y el alcance de SmartQuote para determinar si la solución responde a las necesidades de adquisición de mi organización. | 3 |
+| 2 | SP01 | Evaluar la viabilidad de extraer datos de cotizaciones heterogéneas con IA | Como Developer, deseo investigar y probar alternativas de extracción de información para determinar si el agente de IA puede procesar cotizaciones PDF heterogéneas con precisión, trazabilidad y límites de confianza adecuados. | 8 |
+| 3 | US02 | Registrar una solicitud de insumos desde la operación | Como especialista de producción y sanidad, deseo registrar una solicitud de insumos con sus requisitos técnicos para que el área de adquisiciones reciba una necesidad completa y trazable. | 5 |
+| 4 | US04 | Incorporar cotizaciones de proveedores | Como analista de adquisiciones, deseo incorporar las cotizaciones recibidas para asociarlas con una solicitud y preparar su evaluación técnica y comercial. | 5 |
+| 5 | TS01 | Procesar cotizaciones mediante un servicio RESTful de extracción | Como Developer, deseo disponer de un servicio RESTful que procese cotizaciones PDF y devuelva información normalizada para integrar la extracción asistida por IA con los demás productos de SmartQuote. | 8 |
+| 6 | US05 | Verificar la información extraída de una cotización | Como analista de adquisiciones, deseo verificar y corregir los datos extraídos de cada cotización para asegurar que la evaluación utilice información confiable. | 5 |
+| 7 | US06 | Definir los criterios de evaluación de cotizaciones | Como analista de adquisiciones, deseo definir criterios comerciales y técnicos para que la comparación de cotizaciones responda a las prioridades de cada solicitud. | 5 |
+| 8 | US07 | Simular y comparar las cotizaciones elegibles | Como analista de adquisiciones, deseo simular la evaluación de las cotizaciones elegibles para identificar la alternativa con mejor ajuste técnico y comercial. | 8 |
+| 9 | US08 | Aprobar la alternativa seleccionada y generar la orden de compra | Como analista o jefe de adquisiciones autorizado, deseo aprobar una alternativa evaluada y generar su orden de compra para continuar el proceso con información consistente y trazable. | 8 |
+| 10 | US03 | Conocer el avance de una solicitud de compra | Como especialista de producción y sanidad, deseo conocer el estado y el historial de mis solicitudes para anticipar riesgos de abastecimiento y coordinar las actividades operativas. | 5 |
 
 ## 3.4. Impact Mapping
 
