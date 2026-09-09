@@ -225,11 +225,11 @@ La solución está concebida como una herramienta de apoyo a la decisión, no co
       <td style="vertical-align: top;">Resumen pendiente de completar por el integrante.</td>
     </tr>
     <tr>
-      <td style="text-align: center; vertical-align: top;">Foto pendiente</td>
+      <td style="text-align: center; vertical-align: top;"><img src="assets/profiles/perfil-mathias-delacruz.jpg" alt="Foto de Fabio" width="120"></td>
       <td style="vertical-align: top;">Mathias Marcelo De La Cruz De Los Santos</td>
       <td style="vertical-align: top;">u202424059</td>
       <td style="vertical-align: top;">Ingeniería de Software</td>
-      <td style="vertical-align: top;">Resumen pendiente de completar por el integrante.</td>
+      <td style="vertical-align: top;">Soy estudiante de la carrera de Ingeniería de Software y actualmente me encuentro cursando el 7to ciclo de la carrera en la Universidad Peruana de Ciencias Aplicadas. Me considero un fanático de la programación, del futbol y los videojuegos. Considero que puedo aportar al equipo y al proyecto mis conocimientos técnicos, además de considerarme una persona disciplinada, responsable y que valora el trabajo en equipo.</td>
     </tr>
     <tr>
       <td style="text-align: center; vertical-align: top;"><img src="assets/profiles/foto de batman.png>" alt="El domador salvaje" width="120"></td>
