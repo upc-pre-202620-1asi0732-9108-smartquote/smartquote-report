@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="120" viewBox="0 0 360 120" role="img" aria-labelledby="title">
+  <title id="title">SmartQuote</title>
+  <rect width="360" height="120" rx="18" fill="#163a63"/>
+  <path d="M32 30h58a12 12 0 0 1 12 12v30A12 12 0 0 1 90 84H61L43 101V84H32a12 12 0 0 1-12-12V42a12 12 0 0 1 12-12Z" fill="#fff"/>
+  <path d="m43 57 10 10 24-25" fill="none" stroke="#26b6a0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="120" y="70" fill="#fff" font-family="Arial, sans-serif" font-size="36" font-weight="700">SmartQuote</text>
+</svg>

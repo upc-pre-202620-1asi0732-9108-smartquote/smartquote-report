@@ -324,17 +324,106 @@ Este segmento representa a los usuarios internos que definen o validan las condi
 
 ## 2.1. Competidores
 
+SmartQuote participa en el mercado de soluciones digitales para la gestión de adquisiciones y evaluación de proveedores. Su propuesta se concentra inicialmente en empresas del sector avícola, donde las cotizaciones deben evaluarse combinando condiciones comerciales con especificaciones técnicas de producción, nutrición y sanidad.
+
+Para este análisis se consideran competidores directos las plataformas que gestionan procesos de abastecimiento, comparación de ofertas y evaluación de proveedores. Asimismo, se consideran competidores indirectos los ERP generalistas y las herramientas con las que el proceso puede desarrollarse manualmente.
+
+**Competidores directos**
+
+- **SAP Ariba Sourcing:** plataforma de abastecimiento estratégico que permite organizar eventos de compra, comparar ofertas, calificar respuestas y colaborar con proveedores.
+- **Oracle Fusion Cloud Procurement:** suite que integra compras, sourcing, calificación y gestión de relaciones con proveedores.
+- **Coupa:** plataforma de gestión del gasto empresarial que permite gestionar órdenes, proveedores y eventos de sourcing.
+
+**Competidores indirectos**
+
+- **Odoo Purchase:** módulo de compras que permite crear solicitudes de cotización, comparar alternativas y convertir la alternativa seleccionada en una orden de compra.
+- **Microsoft Excel y Google Sheets:** herramientas utilizadas para consolidar manualmente precios, cantidades, plazos y características técnicas.
+- **Correo electrónico y aplicaciones de mensajería:** canales utilizados para recibir cotizaciones, solicitar aclaraciones y coordinar aprobaciones.
+- **ERP desarrollados internamente:** sistemas propios que registran solicitudes y órdenes, pero que no necesariamente interpretan automáticamente las cotizaciones ni evalúan requisitos técnicos.
+
 ### 2.1.1. Análisis competitivo
+
+El análisis competitivo permite conocer la posición inicial de SmartQuote frente a plataformas empresariales consolidadas. Se comparan la propuesta de valor, el mercado, el producto, los canales y los factores FODA de la startup y de tres competidores directos.
+
+#### Competitive Analysis Landscape
+
+| ¿Por qué llevar a cabo este análisis? | Objetivo del análisis |
+|---|---|
+| Pregunta que se busca responder | ¿Cómo puede diferenciarse SmartQuote de las principales plataformas digitales de adquisición mediante su especialización en el sector avícola, la evaluación conjunta de criterios técnicos y comerciales y la trazabilidad de sus recomendaciones? |
+
+| Perfil evaluado | **SmartQuote**<br><img src="assets/research/competitors/smartquote-logo.svg" alt="Logo de SmartQuote" width="110"> | **SAP Ariba Sourcing**<br><img src="assets/research/competitors/sap-ariba-logo.svg" alt="Logo referencial de SAP Ariba" width="110"> | **Oracle Fusion Cloud Procurement**<br><img src="assets/research/competitors/oracle-procurement-logo.svg" alt="Logo referencial de Oracle Procurement" width="110"> | **Coupa**<br><img src="assets/research/competitors/coupa-logo.svg" alt="Logo referencial de Coupa" width="110"> |
+|---|---|---|---|---|
+| **Perfil - Overview** | Startup SaaS orientada a digitalizar la evaluación de cotizaciones y apoyar la selección de proveedores en empresas pecuarias, inicialmente avícolas. | Solución cloud de abastecimiento estratégico para gestionar eventos, ofertas, adjudicaciones y colaboración con proveedores. | Suite cloud que integra compras, sourcing, calificación y gestión de proveedores dentro del ecosistema Oracle. | Plataforma de gestión del gasto que conecta sourcing, compras, proveedores, órdenes y control del gasto empresarial. |
+| **Perfil - Ventaja competitiva: ¿qué valor ofrece a los clientes?** | Especialización en requisitos técnicos avícolas; extracción de datos desde cotizaciones heterogéneas; comparación comercial y técnica; recomendación trazable con aprobación humana. | Escala global, red extensa de proveedores, automatización e integración con soluciones SAP y de terceros. | Integración de datos y procesos de adquisiciones, finanzas, logística y cadena de suministro en una misma suite. | Visibilidad integral del gasto y colaboración digital entre compradores y proveedores dentro de una plataforma madura. |
+| **Perfil de Marketing - Mercado objetivo** | Empresas avícolas medianas; analistas y jefes de adquisiciones; médicos veterinarios, nutricionistas y responsables de producción y sanidad. | Empresas medianas y grandes con procesos formales de abastecimiento y redes amplias de proveedores. | Organizaciones medianas y grandes que utilizan o buscan integrar aplicaciones empresariales Oracle. | Empresas medianas y grandes que requieren controlar compras, proveedores y gasto corporativo. |
+| **Perfil de Marketing - Estrategias de marketing** | Pilotos con empresas avícolas, demostraciones del flujo, contenido especializado, alianzas con profesionales del sector y adopción progresiva por suscripción. | Venta empresarial consultiva, demostraciones, red de socios, casos de éxito y promoción conjunta con el ecosistema SAP. | Venta B2B, demostraciones, socios de implementación y venta cruzada con ERP, SCM y otras aplicaciones Oracle. | Demostraciones empresariales, contenido sobre gestión del gasto, casos de clientes, eventos y ecosistema de socios. |
+| **Perfil de Producto - Productos y servicios** | Aplicación web para adquisiciones; aplicación móvil para producción y sanidad; registro de solicitudes; carga e interpretación de cotizaciones; matriz comparativa; validación y orden de compra propuesta. | Sourcing estratégico, eventos RFx, evaluación de ofertas, gestión de proveedores, contratos, análisis de gasto y SAP Business Network. | Purchasing, Sourcing, Supplier Qualification Management, Self Service Procurement y portal de proveedores. | Sourcing, procurement, gestión de proveedores, órdenes, facturación y analítica del gasto. |
+| **Perfil de Producto - Precios y costos** | Modelo SaaS por membresía periódica. Los precios definitivos quedan pendientes de validación con clientes y del alcance de cada plan. | Precio mediante cotización comercial, condicionado por módulos, usuarios, volumen e implementación. | Precio mediante cotización comercial según módulos, usuarios, servicios e integración requerida. | Precio mediante cotización comercial de acuerdo con módulos, usuarios y alcance de implementación. |
+| **Perfil de Producto - Canales de distribución** | Aplicación web para adquisiciones y aplicación móvil nativa para producción y sanidad; atención directa y futura API de integración. | Aplicación web cloud, aplicaciones móviles, SAP Business Network e integraciones empresariales. | Aplicación web cloud, experiencia móvil e integraciones con Oracle Fusion y servicios empresariales. | Aplicación web cloud, portal de proveedores, acceso móvil e integraciones con sistemas empresariales. |
+| **Análisis SWOT - Fortalezas** | Especialización avícola; criterios técnicos y comerciales; flujo entre áreas; trazabilidad; supervisión humana; experiencia web y móvil diferenciada por rol. | Marca reconocida; red global; amplitud funcional; capacidades de sourcing e integración; experiencia empresarial. | Integración con finanzas y cadena de suministro; amplitud funcional; infraestructura global; gestión integral de proveedores. | Cobertura del ciclo de gasto; experiencia consolidada; colaboración con proveedores; analítica e integración. |
+| **Análisis SWOT - Debilidades** | Producto nuevo; precisión aún no validada; pocas integraciones iniciales; menor reconocimiento y cobertura funcional. | Complejidad de adopción e implementación para empresas con procesos pequeños; solución amplia para una necesidad especializada. | Implementación y configuración de alcance empresarial; dependencia del ecosistema y conocimiento especializado. | Alcance amplio y configuración empresarial frente a un problema sectorial específico; precio no publicado. |
+| **Análisis SWOT - Oportunidades** | Digitalización del sector pecuario; documentos no estructurados; necesidad de trazabilidad; expansión a otros sectores e integración con ERP. | Mayor automatización del abastecimiento; expansión de redes digitales; incorporación de IA y analítica en decisiones de compra. | Migración de procesos empresariales a la nube; adopción de IA; demanda de integración entre compras y operaciones. | Crecimiento de la gestión digital del gasto; automatización; fortalecimiento de portales y redes de proveedores. |
+| **Análisis SWOT - Amenazas** | Entrada de competidores consolidados al nicho; resistencia al cambio; preocupación por confidencialidad; errores de extracción o recomendación. | Competencia de otras suites source-to-pay; presión por costos; clientes que prefieren soluciones más simples o especializadas. | Competencia de SAP, Coupa y ERP flexibles; complejidad de migración; preferencia por soluciones modulares. | Competencia de suites ERP y plataformas especializadas; presión por demostrar retorno de inversión; cambios en expectativas de IA. |
+
+El Landscape evidencia que SAP Ariba, Oracle Procurement y Coupa poseen mayor alcance, reconocimiento e integración empresarial. SmartQuote no debe competir por cantidad de módulos, sino por resolver con menor complejidad un problema concreto: transformar cotizaciones heterogéneas en una comparación que combine requisitos comerciales y técnicos del sector avícola y conserve evidencia de la decisión.
 
 ### 2.1.2. Estrategias y tácticas frente a competidores
 
+A partir del análisis competitivo y del FODA, se plantean estrategias ofensivas, adaptativas, defensivas y de supervivencia. Cada estrategia combina factores internos de SmartQuote con las condiciones del mercado.
+
+| Competidor | Fortaleza que SmartQuote debe afrontar | Debilidad u oportunidad aprovechable | Respuesta estratégica de SmartQuote |
+|---|---|---|---|
+| SAP Ariba Sourcing | Marca, red global, automatización e integración empresarial | Amplitud y complejidad superiores a las requeridas por una empresa que busca resolver un flujo sectorial concreto | Especialización avícola, adopción progresiva, configuración reducida y acompañamiento directo |
+| Oracle Fusion Cloud Procurement | Integración de adquisiciones con finanzas, logística y cadena de suministro | Implementación empresarial y dependencia de una suite amplia | Funcionamiento complementario, exportación de datos e integración gradual sin reemplazar el ERP |
+| Coupa | Cobertura integral del gasto y colaboración con proveedores | Propuesta generalista frente a requisitos técnicos pecuarios | Plantillas de insumos, evaluación técnica especializada y participación directa de producción y sanidad |
+
+Las oportunidades comunes son la digitalización del abastecimiento, el tratamiento de documentos heterogéneos y la necesidad de decisiones trazables. Las amenazas principales son la entrada de plataformas consolidadas al nicho, la resistencia al cambio y la desconfianza frente a recomendaciones automáticas.
+
+| Tipo | Estrategia | Tácticas |
+|---|---|---|
+| **FO: Fortalezas–Oportunidades** | Aprovechar la especialización para atender la digitalización de las compras avícolas | Crear plantillas para alimento balanceado, vacunas, medicamentos y otros insumos; configurar criterios técnicos por categoría; presentar comparaciones comerciales y técnicas en una matriz |
+| **FO: Fortalezas–Oportunidades** | Utilizar la IA para disminuir actividades manuales | Extraer proveedor, producto, precio, cantidad, plazo y especificaciones; mostrar el documento de origen; generar una recomendación preliminar |
+| **FO: Fortalezas–Oportunidades** | Fortalecer la colaboración entre adquisiciones y las áreas técnicas | Permitir que producción y sanidad registren requisitos; enviar solicitudes de validación; mantener comentarios y estados visibles |
+| **DO: Debilidades–Oportunidades** | Validar el producto mediante pilotos controlados | Iniciar con pocos usuarios y categorías; utilizar cotizaciones reales autorizadas; medir tiempo, errores, correcciones y satisfacción |
+| **DO: Debilidades–Oportunidades** | Desarrollar integraciones progresivamente | Comenzar con exportaciones CSV y PDF; diseñar posteriormente una API para solicitudes, proveedores, cotizaciones y órdenes |
+| **DO: Debilidades–Oportunidades** | Mejorar la precisión de la IA mediante retroalimentación | Permitir correcciones; registrar los cambios; identificar los campos y formatos que generan más errores |
+| **FA: Fortalezas–Amenazas** | Diferenciarse mediante especialización y facilidad de uso | Evitar funciones ajenas al problema inicial; ofrecer pantallas según el rol; reducir la configuración necesaria |
+| **FA: Fortalezas–Amenazas** | Construir confianza mediante trazabilidad y supervisión humana | Mostrar la fuente de cada dato; registrar revisiones y aprobaciones; impedir que la IA emita automáticamente una orden definitiva |
+| **FA: Fortalezas–Amenazas** | Proteger la información comercial y técnica | Aplicar permisos por rol; restringir el acceso a cotizaciones; mantener un historial de acciones |
+| **DA: Debilidades–Amenazas** | Evitar competir directamente con el alcance completo de un ERP | Posicionar SmartQuote como herramienta especializada que complementa los sistemas existentes |
+| **DA: Debilidades–Amenazas** | Limitar el alcance inicial | Priorizar solicitud, carga, extracción, comparación, validación y orden propuesta; postergar funciones avanzadas |
+| **DA: Debilidades–Amenazas** | Mantener una contingencia frente a errores de IA | Permitir ingreso manual; advertir cuando un dato tenga baja confianza; solicitar revisión cuando falten campos obligatorios |
+
+#### Tácticas de validación
+
+| Indicador | Forma de medición | Meta inicial propuesta |
+|---|---|---|
+| Tiempo de elaboración del cuadro comparativo | Comparar el proceso manual con el proceso apoyado por SmartQuote | Reducir el tiempo respecto de la línea base obtenida en entrevistas |
+| Precisión de extracción | Dividir los campos correctamente extraídos entre el total evaluado | Alcanzar al menos 90 % en los campos obligatorios del piloto |
+| Correcciones por cotización | Contar las modificaciones realizadas por los usuarios | Reducirlas progresivamente durante las iteraciones |
+| Trazabilidad | Verificar documentos, criterios y responsables asociados | Lograr trazabilidad completa en los casos del piloto |
+| Satisfacción | Aplicar una escala de 1 a 5 después de probar el flujo | Obtener un promedio mínimo de 4 |
+| Adopción | Comparar solicitudes procesadas en SmartQuote con el total del piloto | Incrementar el porcentaje durante cada iteración |
+
+Estas metas son objetivos de validación y no resultados alcanzados. Deberán confirmarse o modificarse mediante entrevistas y pruebas con usuarios.
+
+La estrategia competitiva de SmartQuote no consiste solamente en utilizar inteligencia artificial, pues otras plataformas también incorporan automatización. Su diferenciación se encuentra en aplicar esta tecnología a las adquisiciones avícolas, combinar criterios técnicos y comerciales y mantener evidencia trazable para apoyar la decisión profesional.
+
 ## 2.2. Entrevistas
+
+Pendiente
 
 ### 2.2.1. Diseño de entrevistas
 
+Pendiente
+
 ### 2.2.2. Registro de entrevistas
 
+Pendiente
+
 ### 2.2.3. Análisis de entrevistas
+
+Pendiente
 
 ## 2.3. Needfinding
 
@@ -349,6 +438,57 @@ Este segmento representa a los usuarios internos que definen o validan las condi
 ### 2.3.5. As-is Scenario Mapping
 
 ## 2.4. Ubiquitous Language
+
+El Ubiquitous Language de SmartQuote reúne exclusivamente términos del dominio de adquisiciones y de la actividad pecuaria. Los términos canónicos se expresan en inglés y su equivalencia en español aparece entre paréntesis. Estas definiciones deberán emplearse sin ambigüedad por el equipo y los stakeholders.
+
+| Término del dominio | Definición |
+|---|---|
+| **Procurement (Adquisiciones)** | Función empresarial responsable de obtener los bienes requeridos bajo condiciones técnicas y comerciales convenientes. |
+| **Purchase Request (Solicitud de compra)** | Necesidad interna de adquisición registrada por producción, sanidad u otra área solicitante. |
+| **Request for Quotation - RFQ (Solicitud de cotización)** | Invitación enviada a uno o más proveedores para que presenten una oferta bajo requisitos definidos. |
+| **Quotation (Cotización)** | Oferta de un proveedor que detalla productos, cantidades, precios, plazos y condiciones. |
+| **Supplier (Proveedor)** | Empresa o persona que ofrece los insumos solicitados. |
+| **Requester (Solicitante)** | Colaborador que identifica una necesidad y origina una solicitud de compra. |
+| **Buyer (Comprador)** | Responsable de conducir la evaluación comercial y coordinar la adquisición. |
+| **Technical Evaluator (Evaluador técnico)** | Profesional de producción o sanidad que comprueba el cumplimiento de las especificaciones. |
+| **Approver (Aprobador)** | Responsable autorizado para aceptar o rechazar la alternativa recomendada. |
+| **Sourcing Process (Proceso de abastecimiento)** | Conjunto de actividades utilizadas para buscar, evaluar y seleccionar proveedores. |
+| **Bidding Process (Proceso de ofertas)** | Etapa en la que distintos proveedores presentan cotizaciones para una misma necesidad. |
+| **Bid Comparison (Comparación de ofertas)** | Contraste de las condiciones técnicas y comerciales presentadas por los proveedores. |
+| **Evaluation Criterion (Criterio de evaluación)** | Regla utilizada para valorar una oferta. |
+| **Technical Specification (Especificación técnica)** | Característica obligatoria que debe cumplir un insumo. |
+| **Commercial Condition (Condición comercial)** | Condición de una oferta relacionada con precio, pago, cantidad, entrega o garantía. |
+| **Weight (Peso)** | Importancia relativa asignada a un criterio dentro de la evaluación. |
+| **Score (Puntaje)** | Resultado obtenido por una oferta al aplicarle los criterios y pesos definidos. |
+| **Compliance (Cumplimiento)** | Condición en la que una oferta satisface un requisito establecido. |
+| **Non-compliance (Incumplimiento)** | Condición en la que una oferta no satisface un requisito obligatorio. |
+| **Recommendation (Recomendación)** | Alternativa sugerida como resultado de la evaluación técnica y comercial. |
+| **Purchase Order Proposal (Orden de compra propuesta)** | Documento preliminar preparado a partir de la alternativa seleccionada. |
+| **Purchase Order (Orden de compra)** | Documento aprobado que formaliza la adquisición al proveedor. |
+| **Approved Supplier (Proveedor aprobado)** | Proveedor autorizado para abastecer una categoría de insumo. |
+| **Unit Price (Precio unitario)** | Precio correspondiente a una unidad del insumo cotizado. |
+| **Payment Terms (Condiciones de pago)** | Plazo, forma y acuerdos bajo los cuales se realizará el pago. |
+| **Minimum Order Quantity - MOQ (Cantidad mínima de pedido)** | Cantidad mínima que el proveedor acepta vender en una operación. |
+| **Stock Availability (Disponibilidad de stock)** | Existencia del insumo que el proveedor puede entregar. |
+| **Delivery Lead Time (Plazo de entrega)** | Tiempo comprometido por el proveedor desde la orden hasta la entrega. |
+| **Required Date (Fecha requerida)** | Fecha máxima en la que el área solicitante necesita recibir el insumo. |
+| **Poultry Supply (Insumo avícola)** | Producto requerido para la producción, alimentación o sanidad de aves. |
+| **Critical Supply (Insumo crítico)** | Insumo cuya ausencia puede interrumpir la producción o afectar la sanidad. |
+| **Balanced Feed (Alimento balanceado)** | Alimento formulado para cubrir los requisitos nutricionales de las aves. |
+| **Vaccine (Vacuna)** | Producto biológico empleado para prevenir una enfermedad. |
+| **Veterinary Medicine (Medicamento veterinario)** | Producto utilizado para prevenir, controlar o tratar afecciones en animales. |
+| **Active Ingredient (Principio activo)** | Sustancia responsable del efecto principal de un medicamento o producto sanitario. |
+| **Nutritional Composition (Composición nutricional)** | Proporción declarada de nutrientes y componentes de un alimento. |
+| **Concentration (Concentración)** | Cantidad de un componente o principio activo contenida por unidad. |
+| **Dosage (Dosificación)** | Cantidad y frecuencia con la que debe administrarse un producto. |
+| **Presentation (Presentación)** | Forma comercial del insumo, como frasco, bolsa, caja, peso o volumen. |
+| **Batch (Lote)** | Código que identifica un conjunto de unidades producidas bajo condiciones comunes. |
+| **Expiration Date (Fecha de vencimiento)** | Fecha límite declarada para utilizar el producto en condiciones adecuadas. |
+| **Cold Chain (Cadena de frío)** | Conservación de una temperatura controlada durante almacenamiento y transporte. |
+| **Storage Condition (Condición de almacenamiento)** | Requisito ambiental necesario para conservar correctamente un insumo. |
+| **Health Registration (Registro sanitario)** | Autorización oficial que permite comercializar un producto sujeto a control sanitario. |
+
+Para evitar ambigüedades, una **Purchase Request** representa la necesidad interna; una **Request for Quotation** es la invitación dirigida al proveedor; una **Quotation** es la respuesta del proveedor; y una **Purchase Order** formaliza la compra aprobada.
 
 # Capítulo III: Requirements Specification
 
@@ -872,6 +1012,13 @@ El plan de contingencia se prueba antes de cada demostración: se descarga previ
 ## Conclusiones y recomendaciones
 
 # Bibliografía
+
+- Coupa. (s. f.). *Coupa for suppliers*. Recuperado el 9 de septiembre de 2026, de https://docs.coupa.com/en/supplier-documentation/coupa-for-suppliers
+- Fowler, M. (2006, 12 de diciembre). *Ubiquitous language*. MartinFowler.com. https://martinfowler.com/bliki/UbiquitousLanguage.html
+- Odoo. (s. f.). *Calls for tenders*. Recuperado el 9 de septiembre de 2026, de https://www.odoo.com/documentation/18.0/applications/inventory_and_mrp/purchase/manage_deals/calls_for_tenders.html
+- Open Practice Library. (s. f.). *Ubiquitous language*. Recuperado el 9 de septiembre de 2026, de https://openpracticelibrary.com/practice/ubiquitous-language/
+- Oracle. (s. f.). *About Oracle Fusion Cloud Procurement*. Recuperado el 9 de septiembre de 2026, de https://docs.oracle.com/en/cloud/saas/procurement/25c/fainp/about-oracle-fusion-cloud-procurement.html
+- SAP. (s. f.). *SAP Ariba Sourcing software*. Recuperado el 9 de septiembre de 2026, de https://www.sap.com/products/spend-management/ariba-sourcing.html
 
 # Anexos
 

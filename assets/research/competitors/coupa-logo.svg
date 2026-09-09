@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="120" viewBox="0 0 360 120" role="img" aria-labelledby="title">
+  <title id="title">Coupa</title>
+  <rect width="360" height="120" rx="18" fill="#ffffff" stroke="#e2e8f0" stroke-width="4"/>
+  <text x="180" y="75" text-anchor="middle" fill="#253858" font-family="Arial, sans-serif" font-size="52" font-weight="700">coupa</text>
+  <circle cx="299" cy="42" r="8" fill="#17a2b8"/>
+</svg>
