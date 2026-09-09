@@ -442,6 +442,101 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 
 ### 4.1.1. General Style Guidelines
 
+El diseño de SmartQuote parte de una premisa distinta a la de un producto de consumo: quien lo usa no busca una experiencia agradable, busca poder sustentar una decisión de compra ante su organización. Por eso el sistema visual está construido para que la información sea legible bajo densidad, para que el estado de cada cotización se entienda sin interpretación y para que ningún recurso gráfico compita con el dato. Cada decisión visual responde a una sola pregunta: ¿ayuda al analista a entender por qué una cotización es preferible a otra?
+
+#### Colores
+
+La paleta de SmartQuote no es decorativa: está organizada en tres capas con funciones separadas, y esa separación es en sí misma una regla del sistema. Existe un único color de marca, una escala neutra que sostiene la lectura de datos, y tres colores semánticos reservados exclusivamente para comunicar el estado del dominio. El verde, el ámbar y el rojo significan conformidad, revisión y exclusión; si además aparecieran como adorno, el usuario dejaría de leerlos como información y el cuadro comparativo perdería su capacidad de comunicar de un vistazo.
+
+![Paleta de colores de SmartQuote](assets/design/paleta-colores.jpeg)
+
+- **Azul Petróleo Profundo — #093A5A:** transmite autoridad, seriedad y solidez institucional. Se emplea como fondo en las secciones de mayor peso comunicacional de la Landing Page —el encabezado principal y el llamado a la acción final— y en los bloques donde el producto afirma su propuesta. Su profundidad hace que el contenido claro colocado encima se lea como documento sobre una superficie estable.
+- **Azul Institucional — #0F5B8C:** es el color base de la marca y el único color de acción del producto. Se reserva para botones primarios, el elemento activo de la navegación, el indicador de foco y el resaltado de la columna ganadora en una comparación. Al ser el único color que representa acción, el usuario aprende en una pantalla dónde puede pulsar.
+- **Azul Bruma — #E7F0F6:** tono claro derivado del anterior, empleado para fondos de resaltado, filas seleccionadas y fichas de versión. Permite destacar sin recurrir a bordes adicionales ni a sombras, lo que mantiene limpia una tabla ya densa.
+
+- **Grafito — #1F2933:** color del texto principal y de los titulares. Se eligió por encima del negro puro porque reduce el contraste extremo en pantallas de trabajo prolongado, sin sacrificar la relación mínima de 4.5:1 exigida por la norma de accesibilidad.
+- **Gris Neutro — #64748B:** texto secundario, etiquetas de campo, descripciones y unidades. Su función es jerárquica: separa el dato de su rótulo sin necesidad de cambiar de tamaño ni de peso.
+- **Gris Documento — #F5F7FA y #EDF1F5:** fondos del área de contenido y filas alternadas de tabla. Estos tonos permiten que las tarjetas y tablas blancas se perciban como documentos colocados sobre una superficie, metáfora coherente con un producto que trabaja con cotizaciones.
+- **Gris Borde — #E1E5EA:** bordes y divisores. El sistema prefiere el borde a la sombra para separar contenido dentro de una misma superficie, porque la sombra sugiere elevación y en una tabla comparativa todos los elementos están al mismo nivel.
+
+- **Verde Conformidad — #1E8E3E sobre #E6F4EA:** indica que una cotización *cumple* un criterio técnico, que un dato fue verificado, que el nivel de confianza es alto o que una orden fue emitida. Es el color de la certeza.
+- **Ámbar Revisión — #E8A33D sobre #FDF3E3:** indica que una cotización *cumple parcialmente*, que un dato detectado tiene confianza baja o que un resultado de simulación quedó desactualizado. Es el color que reclama la atención de una persona, y por eso nunca se usa para decorar: cada aparición del ámbar en pantalla es una tarea pendiente.
+- **Rojo Exclusión — #C5221F sobre #FBE9E9:** indica que una cotización *no cumple* un criterio obligatorio, que un dato quedó no resuelto, que un documento no es procesable o que una orden fue anulada. Es el color que detiene el proceso.
+
+
+#### Tipografía
+
+SmartQuote emplea dos familias tipográficas con roles claramente separados, ambas de licencia abierta y disponibles en Google Fonts.
+
+Se seleccionó **Manrope** como fuente principal para los títulos de SmartQuote por su estilo geométrico moderno y por sus formas ligeramente estrechas, que le permiten sostener titulares extensos en español sin dividirse en demasiadas líneas. Se utiliza en pesos altos para asegurar que los encabezados sean sólidos, técnicos y de lectura inmediata, transmitiendo el carácter de una herramienta de decisión sin caer en la frialdad de una tipografía puramente industrial.
+
+![Ejemplo de la tipografía Manrope](assets/design/ejemplo-manrope.png)
+
+Se seleccionó **Inter** como fuente secundaria para el texto de cuerpo, la navegación, los formularios y, sobre todo, para las tablas de datos. La razón es funcional antes que estética: Inter dispone de **cifras tabulares**, es decir, todos sus dígitos ocupan el mismo ancho. En un producto cuya pantalla central compara precios por tonelada entre varios proveedores, esta característica hace que las cifras queden alineadas verticalmente en la columna y que la diferencia entre 1,980.00 y 1,890.00 se perciba de inmediato. Con una tipografía de cifras proporcionales, esa misma comparación exigiría un esfuerzo visual innecesario.
+
+![Ejemplo de la tipografía Inter](assets/design/ejemplo-inter.png)
+
+En cuanto al tamaño, se utiliza jerárquicamente en toda la plataforma para resaltar títulos principales, botones de acción y texto de soporte. Los tamaños más grandes en los encabezados guían al usuario rápidamente por los puntos clave del mensaje en la Landing Page, mientras que los más pequeños en párrafos, etiquetas y celdas aseguran la comprensión y la eficiencia en la lectura de detalles secundarios. Dentro de la aplicación web esta escala se comprime de forma deliberada, ya que cada píxel destinado a la tipografía es un píxel menos disponible para comparar cotizaciones. Los titulares emplean además un interletrado ligeramente negativo para compensar la apertura natural de la geometría de Manrope en tamaños grandes, y el texto de cuerpo mantiene líneas de menos de setenta caracteres para no fatigar la lectura en párrafos largos.
+
+#### Branding
+
+El branding de SmartQuote busca comunicar comparación y decisión, no tecnología genérica. El logo  y los iconos están formados por tres barras verticales de distinta altura, que representan las alternativas que se comparan, acompañadas de una marca de verificación sobre la barra seleccionada, que representa la decisión sustentada.
+
+<img src="assets/design/logo-smartquote.png" alt="Logotipo de SmartQuote" width="400px" />
+
+#### Espaciado
+
+El espaciado se organiza en una escala de múltiplos de 4 px, aplicada de forma consistente en las tres superficies. Su función va más allá de la estética: en SmartQuote la densidad es una decisión de diseño que responde a la tarea, no a la plataforma. Una vista de comparación es densa por necesidad, porque el analista debe ver tres cotizaciones y cinco criterios simultáneamente; una sección de la Landing Page respira, porque el visitante está leyendo, no trabajando.
+
+#### Dimensiones para el tono de comunicación y lenguaje aplicado
+
+El tono de SmartQuote es **profesional, directo y verificable**. La plataforma asiste una decisión que el usuario deberá justificar ante su organización y, eventualmente, ante una auditoría; por lo tanto, el lenguaje nunca debe prometer más certeza de la que el sistema realmente posee.
+
+De esa premisa se derivan seis reglas de redacción:
+
+| Regla | Ejemplo correcto | Ejemplo incorrecto |
+|---|---|---|
+| El sistema se refiere a sí mismo en tercera persona, nunca en primera | "El análisis detectó 18.5 % de proteína cruda" | "Encontré 18.5 % de proteína cruda" |
+| La incertidumbre se declara, no se oculta | "Plazo de entrega: no resuelto" | "Plazo de entrega: 7 días (estimado)" |
+| Los errores indican causa y acción correctiva | "El archivo está dañado o no es una cotización legible. Cárgalo nuevamente o registra la cotización de forma manual" | "Error al procesar el archivo" |
+| No se emplea lenguaje promocional sobre la inteligencia artificial | "Análisis automático" | "IA inteligente", "análisis mágico" |
+| No se expone terminología de implementación | "Datos detectados", "Resultado de la simulación" | "Extracción del agente", "snapshot de la simulación" |
+| Las acciones se nombran con verbo y objeto explícito | "Generar orden de compra" | "Continuar", "Enviar" |
+
+Además, se consideraron tres aspectos transversales:
+
+- **Consistencia.** Una acción conserva el mismo nombre a lo largo de todo el flujo: el botón que dice "Emitir orden" produce un estado que dice "Emitida". El vocabulario de la interfaz es la señalización con la que el usuario aprende a moverse por el producto, y cambiar el término a mitad del recorrido lo obliga a reaprender.
+- **Navegación.** La estructura sigue las etapas reales del ciclo de adquisición, de modo que el usuario encuentra la información donde el proceso la produce. Los menús son mínimos y cada vista de detalle mantiene visible el camino recorrido, porque en este producto saber de dónde viene un dato forma parte del dato.
+- **Accesibilidad.** La plataforma se diseña para ser operable por completo con teclado, legible con lector de pantalla y utilizable con el texto ampliado al 200 %.
+
+#### Elementos de diseño
+
+Junto a los lineamientos de color, tipografía y branding, el diseño visual de SmartQuote aplica de forma consciente los elementos fundamentales del diseño gráfico, siempre subordinados a la lectura del dato.
+
+La **línea** cumple una función estructural y no ornamental: separa filas en las tablas de datos, delimita tarjetas y marca la columna congelada de criterios en el cuadro comparativo. Su presencia es deliberadamente discreta, de 1 px y en Gris Borde, porque en una pantalla con tres columnas de datos toda línea adicional compite con la información.
+
+El **color** opera en dos registros simultáneos, ya descritos: identidad y estado. Su valor comunicativo depende por completo de mantenerlos separados, y es la razón por la cual el sistema renuncia a un color de acento decorativo.
+
+El **tamaño** establece la jerarquía sin necesidad de recurrir a más recursos. Los titulares grandes conducen al visitante por los puntos clave de la Landing Page, mientras que dentro de la aplicación la escala se comprime deliberadamente: el título de página mide 24 px y el cuerpo 14 px, porque cada píxel destinado a la tipografía es un píxel menos disponible para comparar cotizaciones.
+
+La **textura** es plana y limpia. El producto no emplea degradados, patrones ni sombras difusas como decoración; la única variación de superficie proviene del contraste entre el fondo Gris Documento y las tarjetas blancas, que produce la sensación de documentos sobre un escritorio, coherente con un sistema cuya materia prima son cotizaciones en PDF.
+
+El **espacio** es el elemento que más trabaja en este sistema, precisamente porque escasea en las vistas de comparación. Se administra con la escala de 4 px y se distribuye de forma asimétrica entre superficies: generoso en la Landing Page, medido en la aplicación web.
+
+El **brillo** o valor separa las capas de la interfaz. El fondo claro sostiene tarjetas blancas, y sobre ellas los elementos de acción concentran el mayor contraste. Esta gradación permite que el usuario identifique en menos de un segundo dónde puede actuar en una pantalla saturada de datos.
+
+La **forma** utiliza geometrías de bordes redondeados con radios diferenciados por jerarquía. El redondeo suaviza una interfaz que de otro modo resultaría severa por su densidad, y el hecho de que el radio varíe según el tipo de elemento aporta una señal adicional sobre qué es un control y qué es un contenedor.
+
+#### Principios de diseño
+
+El **contraste** garantiza que los elementos críticos —el botón primario de cada vista, los distintivos de cumplimiento y la banda de advertencia de un resultado desactualizado— se distingan de inmediato sobre fondos neutros. En SmartQuote el contraste no es solo un recurso estético sino un requisito de accesibilidad verificable, con umbrales medidos antes de cerrar cada pantalla.
+
+La **repetición** de la paleta, de los tres iconos de estado y de los patrones de tabla construye familiaridad a lo largo del producto. Un analista que aprendió a leer el cuadro comparativo puede leer el listado de órdenes sin instrucción adicional, porque ambos emplean el mismo vocabulario visual. Esta consistencia reduce la curva de aprendizaje en un producto que se usa a diario y bajo presión de tiempo.
+
+La **alineación** aporta el orden que un documento de sustento exige. La grilla de 12 columnas, la alineación a la izquierda de las etiquetas y la alineación a la derecha de todas las cifras producen una lectura predecible; esta última es la que permite comparar precios recorriendo la columna con la vista, sin detenerse en cada celda.
+
+La **proximidad** agrupa lo que pertenece junto: el dato detectado con su nivel de confianza, la cotización excluida con el criterio que incumplió, la orden de compra con los enlaces hacia la simulación que la originó. En un producto cuya propuesta de valor es la trazabilidad, la cercanía física entre un hecho y su justificación es la expresión visual del argumento.
+
 ### 4.1.2. Web Style Guidelines
 
 ### 4.1.3. Mobile Style Guidelines
