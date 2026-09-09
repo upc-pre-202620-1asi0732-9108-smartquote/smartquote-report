@@ -689,6 +689,16 @@ La **proximidad** agrupa lo que pertenece junto: el dato detectado con su nivel 
 
 ### 4.1.2. Web Style Guidelines
 
+El diseño web de SmartQuote traduce el sistema visual de 4.1.1 a dos superficies con propósitos distintos: la Landing Page, construida en HTML5, CSS3 y JavaScript, orientada a la lectura y al convencimiento del visitante; y la aplicación web, construida en Vue.js con PrimeVue y Material Design, orientada al trabajo diario del analista de adquisiciones. Ambas comparten los mismos valores de color, tipografía y espaciado, pero los expresan con ritmos diferentes: la Landing emplea contenedores amplios y separaciones generosas entre secciones para permitir descansos visuales, mientras que la aplicación web comprime deliberadamente esos mismos valores, porque su tarea central —comparar varias cotizaciones contra un conjunto de criterios— exige alta densidad de información en pantalla. La composición se resuelve con CSS Grid y Flexbox sobre una grilla de doce columnas, lo que mantiene la alineación entre bloques de distinta naturaleza y evita que la información se disperse al cambiar el tamaño de la ventana.
+
+La estrategia responsiva es intencionalmente mixta. La Landing Page se diseña mobile-first, ya que el descubrimiento del producto ocurre con frecuencia desde el teléfono, y sus secciones de varias columnas se apilan progresivamente hasta los 360 px. La aplicación web se diseña desktop-first y define un comportamiento propio en cada punto de quiebre: la barra lateral pasa de expandida a iconos y finalmente a panel deslizante, mientras que el cuadro comparativo se desplaza horizontalmente conservando congelada la columna de criterios. Esta última decisión es deliberada: reducir el ancho ocultando las etiquetas de estado dejaría al color y al icono comunicando solos, lo que contradice la primera regla del sistema declarada en 4.1.1.
+
+En cuanto a la interactividad, la plataforma utiliza una lógica de componentes claramente identificables, apoyada en la librería PrimeVue para el producto y en componentes propios equivalentes para la Landing. Los botones de acción emplean el azul institucional como único color de acción, con estados visuales de hover, focus, disabled y loading que ofrecen retroalimentación inmediata y enseñan al usuario dónde puede pulsar. La navegación se apoya en un marco persistente —barra lateral, barra superior con búsqueda global y selector de idioma, y migas de pan en cada vista de detalle— que mantiene siempre disponibles las herramientas principales, incluido el sistema de internacionalización con inglés como idioma predeterminado y español de Latinoamérica como alterno. Las transiciones son breves y siempre responden a una acción del usuario, nunca al desplazamiento de la página, y se anulan cuando el sistema declara preferencia de movimiento reducido.
+
+![Mockup Landing Page](assets/)
+![Mockup Comparción](assets/)
+![Mockup footer](assets/)
+
 ### 4.1.3. Mobile Style Guidelines
 
 #### 4.1.3.1. iOS Mobile Style Guidelines
