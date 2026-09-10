@@ -745,57 +745,57 @@ Generar orden de compra: Acción de cierre, deshabilitada mientras el resultado 
 
 ### 4.2.3. SEO Tags and Meta Tags
 
-Landing Page
+1. **Landing Page**
 
-Charset
+**Charset**
 
 <meta charset="UTF-8" />
 
 Establece la codificación universal de caracteres. Su función es garantizar que el navegador interprete correctamente los textos del sistema i18n, asegurando que tildes, la letra "ñ" y símbolos técnicos como el de porcentaje o el de mayor o igual se visualicen sin errores en español e inglés.
 
-Viewport (Responsive)
+**Viewport (Responsive)**
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 Controla el escalado de la página en distintos dispositivos. Su función es ajustar el ancho del contenido al tamaño de la pantalla, algo crítico porque el descubrimiento del producto ocurre con frecuencia desde el teléfono del jefe de compras.
 
-Title (SEO)
+**Title (SEO)**
 
 <title>SmartQuote — Compara cotizaciones y emite tu orden de compra</title>
 
 Define el título que aparece en la pestaña del navegador y en los resultados de búsqueda. Su función es identificar de inmediato la marca y el problema que resuelve, siendo un factor determinante para el posicionamiento orgánico.
 
-Meta Description (SEO)
+**Meta Description (SEO)**
 
 <meta name="description" content="Plataforma SaaS que lee las cotizaciones de tus proveedores en PDF, las contrasta con tus criterios técnicos y comerciales, y entrega una recomendación trazable y la orden de compra lista para aprobar.">
 
 Provee un resumen conciso del contenido del sitio. Su función es aparecer como fragmento en los resultados de Google, explicando cómo SmartQuote resuelve la evaluación manual de cotizaciones heterogéneas.
 
-Meta Keywords (SEO)
+**Meta Keywords (SEO)**
 
 <meta name="keywords" content="comparación de cotizaciones, software de compras, sector avícola, evaluación de proveedores, orden de compra, SaaS">
 
 Especifica palabras clave relevantes para la temática. Su función es ayudar a los algoritmos de indexación a clasificar el sitio dentro del nicho de tecnología para abastecimiento y compras del sector pecuario.
 
-Meta Author
+**Meta Author**
 
 <meta name="author" content="SmartQuote">
 
 Identifica formalmente a los creadores de la plataforma, vinculando el desarrollo técnico con la startup responsable.
 
-Meta Copyright
+**Meta Copyright**
 
 <meta name="copyright" content="SmartQuote 2026">
 
 Establece la titularidad de la propiedad intelectual de la página y el año de vigencia, protegiendo el contenido y el diseño del sitio.
 
-Meta Robots
+**Meta Robots**
 
 <meta name="robots" content="index, follow">
 
 Instruye a los motores de búsqueda para que incluyan la página en sus índices y sigan sus enlaces internos. Cabe precisar que la aplicación web declara lo contrario, noindex, nofollow, ya que su contenido es privado y su exposición revelaría rutas internas sin aportar valor.
 
-Meta Language
+**Meta Language**
 
 <html lang="en">
 
