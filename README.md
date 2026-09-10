@@ -950,9 +950,44 @@ A continuación, se presenta la adaptación responsiva de SmartQuote para dispos
 <img src="assets\design\landing-page\Wireframes\mobile\p12.png" alt="Llamado a la acción Mobile" width="320px">
 <img src="assets\design\landing-page\Wireframes\mobile\p13.png" alt="Footer Mobile" width="320px">
 
-
-
 ### 4.3.2. Landing Page Mock-up
+
+A continuación, se presentan los mock-ups de las principales secciones de la landing page. Cada imagen aplica sobre la estructura validada en 4.3.1 el sistema visual definido en 4.1.1 y sus reglas de aplicación web establecidas en 4.1.2, incorporando datos representativos del rubro avícola en lugar de contenido de relleno.
+ 
+##### Versión Desktop Web Browser
+ 
+En esta primera sección se presenta la pantalla Home con el sistema visual aplicado. El encabezado emplea el azul petróleo profundo como fondo para anclar la percepción de solidez, y los tres documentos de cotización se diferencian deliberadamente entre sí mediante tipografías distintas, una con remates, una moderna y una monoespaciada con apariencia de escaneo, ya que la heterogeneidad de los formatos es el problema que la landing comunica.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p1.png" alt="Home SmartQuote" width="900px">
+
+A continuación, se muestra la franja de contexto operativo y el simulador de criterios. El ranking aplica la codificación semántica de la paleta: la cotización recomendada se destaca con el azul institucional y la excluida se presenta atenuada con el rojo de exclusión, acompañada del criterio obligatorio que incumplió, cumpliendo la regla de que ningún estado se comunique únicamente mediante color.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p2.png" alt="Simulador de criterios" width="900px">
+
+Se presenta la sección del proceso, resuelta sobre fondo azul profundo con la numeración en el azul claro de la paleta. La disposición de tres columnas por fila mantiene el título junto a su descripción y aprovecha el ancho disponible, evitando el espacio vacío que produciría una sola columna de texto.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p3.png" alt="Proceso de la plataforma" width="900px">
+
+El siguiente frame corresponde a la sección de trazabilidad. El eslabón seleccionado se marca con el azul institucional y los anteriores con el azul bruma, comunicando visualmente que el recorrido hacia atrás permanece disponible, que es la expresión en interfaz de la trazabilidad descrita en 4.2.5.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p4.png" alt="Cadena de trazabilidad" width="900px">
+
+Se presenta la segmentación de beneficios por rol, donde cada bloque se acompaña de un fragmento real de interfaz en lugar de una fotografía: los datos detectados con sus niveles de confianza para adquisiciones, y las solicitudes con su estado para producción y sanidad. Cierra la franja de enfoque sectorial sobre el azul institucional.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p5.png" alt="Roles SmartQuote" width="900px">
+
+A continuación, se muestran los planes de membresía. El plan intermedio se destaca mediante un borde en el color de marca y un rótulo de recomendación, reservando el único botón primario de la sección para esa alternativa y manteniendo los demás como botones de contorno.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p6.png" alt="Planes SmartQuote" width="900px">
+
+Se presenta la sección de preguntas frecuentes con el sistema visual aplicado, sobre fondo gris documento para separarla de las secciones contiguas sin recurrir a divisores, conforme a la regla de espaciado establecida en 4.1.1.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p7.png" alt="Preguntas frecuentes" width="900px">
+
+Finalmente, se presenta el llamado a la acción de cierre y el footer. El cierre retoma el azul petróleo profundo del encabezado, de modo que el mayor contraste de la página quede reservado para los dos puntos de conversión, mientras que el footer emplea el grafito de la escala neutra para diferenciarse de ambos.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p8.png" alt="Llamado a la acción y footer" width="900px">
+
 
 ## 4.4. Mobile Applications UX/UI Design
 
