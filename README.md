@@ -870,6 +870,46 @@ Finalmente, la experiencia se adapta según el perfil. Los Especialistas de Prod
 
 ### 4.3.1. Landing Page Wireframe
 
+A continuación, se presentan los wireframes de las principales secciones de la landing page. Cada imagen ilustra el diseño propuesto para las distintas secciones, flujos de navegación y elementos de interacción de la plataforma. Se elaboraron en baja fidelidad y en escala de grises, con el fin de validar la estructura y la jerarquía del contenido antes de aplicar el sistema visual definido en 4.1.1.
+ 
+**Principios Aplicados**
+ 
+- **Jerarquía visual clara:** El contenido se ordena de modo que el visitante reconozca primero el problema y luego la solución. El encabezado principal presenta las tres cotizaciones tal como llegan del proveedor, y a partir de ahí se conduce al usuario por el simulador de criterios, el proceso completo, la cadena de trazabilidad, los beneficios por rol y los planes de membresía, cerrando con el llamado a la acción.
+- **Demostración antes que enunciado:** Las dos piezas de mayor peso estructural no describen la propuesta de valor, la ejecutan. El conmutador del encabezado transforma los documentos heterogéneos en el cuadro comparativo normalizado, y el simulador permite que el visitante mueva los pesos y observe cómo cambia la cotización ganadora. La estructura reserva a ambas el espacio más amplio de la página.
+- **Consistencia visual:** Se mantuvieron patrones uniformes en tarjetas, botones y listados, con un único botón primario por sección y con el llamado a la acción principal conservando la misma posición y etiqueta en todas sus apariciones.
+- **Contraste y accesibilidad:** La estructura contempla un contorno de foco visible en todos los controles, objetivos táctiles de al menos 44 px y estados que combinan color, icono y texto, de modo que ningún resultado de comparación dependa únicamente del color para ser comprendido.
+- **Optimización para dispositivos móviles:** Los wireframes contemplan una navegación móvil dedicada, con los enlaces colapsados en un menú desplegable mientras el botón principal permanece visible. Las cuadrículas de varias columnas se reorganizan en una sola columna y el cuadro comparativo se desplaza horizontalmente conservando la columna de criterios, en lugar de suprimir las etiquetas de estado.
+- **Diseño inclusivo:** La estructura es compatible con el sistema i18n, reservando entre 25 % y 30 % de holgura horizontal en botones y etiquetas de navegación para absorber la mayor extensión de las traducciones al español respecto del inglés predeterminado.
+
+##### Versión Desktop Web Browser
+ 
+En esta primera sección se presenta la pantalla Home de la landing page, con el encabezado principal, el acceso al sistema de internacionalización (i18n) y el botón de llamada a la acción. Debajo del titular se ubica el conmutador de dos estados y los tres documentos de cotización tal como los remiten los proveedores, cada uno con una estructura interna distinta para evidenciar el problema que resuelve la plataforma.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p1.png" alt="Home SmartQuote" width="900px">
+
+A continuación, se muestra la franja de contexto operativo y la sección del simulador de criterios. En la columna izquierda se disponen el requisito obligatorio y los tres controles de ponderación; en la derecha, el ranking resultante con el puntaje de cada cotización y la advertencia de la oferta excluida por incumplir la especificación técnica.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p2.png" alt="Simulador de criterios" width="900px">
+Se presenta la sección "Dónde entra la plataforma en tu proceso", estructurada como un riel de cinco pasos numerados. Cada fila mantiene el título a la izquierda y la descripción a la derecha, lo que permite recorrer el proceso completo sin desplazamiento excesivo.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p3.png" alt="Proceso de la plataforma" width="900px">
+El siguiente frame corresponde a la sección de trazabilidad, donde la cadena solicitud, cotización, simulación y orden de compra se presenta como un grupo de eslabones seleccionables acompañados de un bloque de detalle. Debajo inicia la segmentación de beneficios por rol.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p4.png" alt="Cadena de trazabilidad" width="900px">
+Se presenta la sección "Dos equipos, dos formas de entrar", donde se segmentan los beneficios específicos para cada usuario objetivo: los analistas de adquisiciones, orientados a la evaluación y adjudicación en la aplicación web, y los especialistas de producción y sanidad, orientados al registro y seguimiento desde la aplicación móvil. Cierra la franja de enfoque sectorial con los insumos cubiertos.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p5.png" alt="Roles SmartQuote" width="900px">
+A continuación, se muestra la sección de Planes de membresía, con la estructura de precios en tres columnas y el plan intermedio destacado, diseñada de forma escaneable para facilitar la comparación comercial. Debajo inicia la sección de preguntas frecuentes.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p6.png" alt="Planes SmartQuote" width="900px">
+Se presenta la sección de preguntas frecuentes, resuelta como un acordeón de seis filas colapsadas con un campo de filtrado por texto en la parte superior, que permite localizar una duda específica sin recorrer la lista completa.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p7.png" alt="Preguntas frecuentes" width="900px">
+Finalmente, se presenta el llamado a la acción de cierre, con un formulario de contacto de tres campos, seguido del footer con sus cuatro columnas de enlaces, el selector de idioma y la franja legal con los créditos del equipo.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p8.png" alt="Llamado a la acción y footer" width="900px">
+
+
 ### 4.3.2. Landing Page Mock-up
 
 ## 4.4. Mobile Applications UX/UI Design
