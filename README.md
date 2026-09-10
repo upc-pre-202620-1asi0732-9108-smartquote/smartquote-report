@@ -870,7 +870,158 @@ Finalmente, la experiencia se adapta según el perfil. Los Especialistas de Prod
 
 ### 4.3.1. Landing Page Wireframe
 
+A continuación, se presentan los wireframes de las principales secciones de la landing page. Cada imagen ilustra el diseño propuesto para las distintas secciones, flujos de navegación y elementos de interacción de la plataforma. Se elaboraron en baja fidelidad y en escala de grises, con el fin de validar la estructura y la jerarquía del contenido antes de aplicar el sistema visual definido en 4.1.1.
+ 
+**Principios Aplicados**
+ 
+- **Jerarquía visual clara:** El contenido se ordena de modo que el visitante reconozca primero el problema y luego la solución. El encabezado principal presenta las tres cotizaciones tal como llegan del proveedor, y a partir de ahí se conduce al usuario por el simulador de criterios, el proceso completo, la cadena de trazabilidad, los beneficios por rol y los planes de membresía, cerrando con el llamado a la acción.
+- **Demostración antes que enunciado:** Las dos piezas de mayor peso estructural no describen la propuesta de valor, la ejecutan. El conmutador del encabezado transforma los documentos heterogéneos en el cuadro comparativo normalizado, y el simulador permite que el visitante mueva los pesos y observe cómo cambia la cotización ganadora. La estructura reserva a ambas el espacio más amplio de la página.
+- **Consistencia visual:** Se mantuvieron patrones uniformes en tarjetas, botones y listados, con un único botón primario por sección y con el llamado a la acción principal conservando la misma posición y etiqueta en todas sus apariciones.
+- **Contraste y accesibilidad:** La estructura contempla un contorno de foco visible en todos los controles, objetivos táctiles de al menos 44 px y estados que combinan color, icono y texto, de modo que ningún resultado de comparación dependa únicamente del color para ser comprendido.
+- **Optimización para dispositivos móviles:** Los wireframes contemplan una navegación móvil dedicada, con los enlaces colapsados en un menú desplegable mientras el botón principal permanece visible. Las cuadrículas de varias columnas se reorganizan en una sola columna y el cuadro comparativo se desplaza horizontalmente conservando la columna de criterios, en lugar de suprimir las etiquetas de estado.
+- **Diseño inclusivo:** La estructura es compatible con el sistema i18n, reservando entre 25 % y 30 % de holgura horizontal en botones y etiquetas de navegación para absorber la mayor extensión de las traducciones al español respecto del inglés predeterminado.
+
+##### Versión Desktop Web Browser
+ 
+En esta primera sección se presenta la pantalla Home de la landing page, con el encabezado principal, el acceso al sistema de internacionalización (i18n) y el botón de llamada a la acción. Debajo del titular se ubica el conmutador de dos estados y los tres documentos de cotización tal como los remiten los proveedores, cada uno con una estructura interna distinta para evidenciar el problema que resuelve la plataforma.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p1.png" alt="Home SmartQuote" width="900px">
+
+A continuación, se muestra la franja de contexto operativo y la sección del simulador de criterios. En la columna izquierda se disponen el requisito obligatorio y los tres controles de ponderación; en la derecha, el ranking resultante con el puntaje de cada cotización y la advertencia de la oferta excluida por incumplir la especificación técnica.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p2.png" alt="Simulador de criterios" width="900px">
+
+Se presenta la sección "Dónde entra la plataforma en tu proceso", estructurada como un riel de cinco pasos numerados. Cada fila mantiene el título a la izquierda y la descripción a la derecha, lo que permite recorrer el proceso completo sin desplazamiento excesivo.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p3.png" alt="Proceso de la plataforma" width="900px">
+
+El siguiente frame corresponde a la sección de trazabilidad, donde la cadena solicitud, cotización, simulación y orden de compra se presenta como un grupo de eslabones seleccionables acompañados de un bloque de detalle. Debajo inicia la segmentación de beneficios por rol.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p4.png" alt="Cadena de trazabilidad" width="900px">
+
+Se presenta la sección "Dos equipos, dos formas de entrar", donde se segmentan los beneficios específicos para cada usuario objetivo: los analistas de adquisiciones, orientados a la evaluación y adjudicación en la aplicación web, y los especialistas de producción y sanidad, orientados al registro y seguimiento desde la aplicación móvil. Cierra la franja de enfoque sectorial con los insumos cubiertos.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p5.png" alt="Roles SmartQuote" width="900px">
+
+A continuación, se muestra la sección de Planes de membresía, con la estructura de precios en tres columnas y el plan intermedio destacado, diseñada de forma escaneable para facilitar la comparación comercial. Debajo inicia la sección de preguntas frecuentes.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p6.png" alt="Planes SmartQuote" width="900px">
+
+Se presenta la sección de preguntas frecuentes, resuelta como un acordeón de seis filas colapsadas con un campo de filtrado por texto en la parte superior, que permite localizar una duda específica sin recorrer la lista completa.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p7.png" alt="Preguntas frecuentes" width="900px">
+
+Finalmente, se presenta el llamado a la acción de cierre, con un formulario de contacto de tres campos, seguido del footer con sus cuatro columnas de enlaces, el selector de idioma y la franja legal con los créditos del equipo.
+ 
+<img src="assets\design\landing-page\Wireframes\desktop\p8.png" alt="Llamado a la acción y footer" width="900px">
+
+##### Versión Mobile Web Browser
+ 
+A continuación, se presenta la adaptación responsiva de SmartQuote para dispositivos móviles. En estas vistas se observa la reorganización de los elementos en una estructura vertical y el uso de componentes optimizados para la interacción táctil.
+ 
+**Pantalla Home y navegación móvil:** Se muestra la adaptación del encabezado principal, con los enlaces de navegación colapsados en el botón hamburguesa mientras el llamado a la acción permanece visible. Los tres documentos de cotización pasan de una fila de tres columnas a una pila vertical y se enderezan, eliminando la rotación que en escritorio sugiere papeles sobre un escritorio.
+ 
+<img src="assets\design\landing-page\Wireframes\mobile\p1.png" alt="Home Mobile" width="320px">
+<img src="assets\design\landing-page\Wireframes\mobile\p2.png" alt="Cierre del encabezado y franja de contexto Mobile" width="320px">
+
+**Simulador de criterios en móvil:** El simulador pasa de dos columnas a un flujo vertical. Primero se presentan el requisito obligatorio y los tres controles de ponderación con su porcentaje visible, y a continuación el ranking resultante con el puntaje de cada cotización y la nota explicativa de la exclusión. Esta separación asegura que el usuario complete la configuración antes de ver el resultado, reforzando la relación causa-efecto que la sección busca comunicar.
+ 
+<img src="assets\design\landing-page\Wireframes\mobile\p3.png" alt="Controles del simulador Mobile" width="320px">
+<img src="assets\design\landing-page\Wireframes\mobile\p4.png" alt="Ranking del simulador Mobile" width="320px">
+
+**Proceso y trazabilidad en móvil:** El riel de cinco pasos conserva su numeración y apila el título sobre la descripción, alineando el texto respecto del título y no del número. La cadena de trazabilidad reorganiza sus cuatro eslabones en dos filas, manteniendo el bloque de detalle inmediatamente debajo para que la relación entre el eslabón seleccionado y su información no se pierda.
+ 
+<img src="assets\design\landing-page\Wireframes\mobile\p5.png" alt="Proceso Mobile" width="320px">
+<img src="assets\design\landing-page\Wireframes\mobile\p6.png" alt="Trazabilidad Mobile" width="320px">
+
+**Roles del sistema en móvil:** Se adapta la segmentación de beneficios mediante un flujo vertical, presentando primero el bloque de adquisiciones y luego el de producción y sanidad. Cada rol se muestra de forma independiente, con su fragmento de interfaz debajo del texto, para que el impacto de los beneficios específicos no se pierda en pantallas reducidas.
+ 
+<img src="assets\design\landing-page\Wireframes\mobile\p7.png" alt="Rol de adquisiciones Mobile" width="320px">
+<img src="assets\design\landing-page\Wireframes\mobile\p8.png" alt="Rol de producción y sanidad Mobile" width="320px">
+
+**Enfoque sectorial y planes en móvil:** La franja de insumos cubiertos pasa de una disposición horizontal a una lista de etiquetas envolventes. Las tres columnas de planes se transforman en tarjetas apiladas, ubicando primero el plan destacado para que la alternativa recomendada sea la primera que el visitante encuentra al desplazarse.
+ 
+<img src="assets\design\landing-page\Wireframes\mobile\p9.png" alt="Enfoque sectorial Mobile" width="320px">
+<img src="assets\design\landing-page\Wireframes\mobile\p10.png" alt="Planes Mobile" width="320px">
+
+**Preguntas frecuentes, cierre y footer en móvil:** El acordeón conserva el campo de filtrado y ocupa el ancho completo. El formulario de contacto pasa a un solo campo por fila para facilitar el ingreso táctil, y el footer transforma sus cuatro columnas en bloques verticales que incluyen los enlaces, el selector de idioma y los créditos del equipo de forma compacta al final del recorrido.
+ 
+<img src="assets\design\landing-page\Wireframes\mobile\p11.png" alt="Preguntas frecuentes Mobile" width="320px">
+<img src="assets\design\landing-page\Wireframes\mobile\p12.png" alt="Llamado a la acción Mobile" width="320px">
+<img src="assets\design\landing-page\Wireframes\mobile\p13.png" alt="Footer Mobile" width="320px">
+
 ### 4.3.2. Landing Page Mock-up
+
+A continuación, se presentan los mock-ups de las principales secciones de la landing page. Cada imagen aplica sobre la estructura validada en 4.3.1 el sistema visual definido en 4.1.1 y sus reglas de aplicación web establecidas en 4.1.2, incorporando datos representativos del rubro avícola en lugar de contenido de relleno.
+ 
+##### Versión Desktop Web Browser
+ 
+En esta primera sección se presenta la pantalla Home con el sistema visual aplicado. El encabezado emplea el azul petróleo profundo como fondo para anclar la percepción de solidez, y los tres documentos de cotización se diferencian deliberadamente entre sí mediante tipografías distintas, una con remates, una moderna y una monoespaciada con apariencia de escaneo, ya que la heterogeneidad de los formatos es el problema que la landing comunica.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p1.png" alt="Home SmartQuote" width="900px">
+
+A continuación, se muestra la franja de contexto operativo y el simulador de criterios. El ranking aplica la codificación semántica de la paleta: la cotización recomendada se destaca con el azul institucional y la excluida se presenta atenuada con el rojo de exclusión, acompañada del criterio obligatorio que incumplió, cumpliendo la regla de que ningún estado se comunique únicamente mediante color.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p2.png" alt="Simulador de criterios" width="900px">
+
+Se presenta la sección del proceso, resuelta sobre fondo azul profundo con la numeración en el azul claro de la paleta. La disposición de tres columnas por fila mantiene el título junto a su descripción y aprovecha el ancho disponible, evitando el espacio vacío que produciría una sola columna de texto.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p3.png" alt="Proceso de la plataforma" width="900px">
+
+El siguiente frame corresponde a la sección de trazabilidad. El eslabón seleccionado se marca con el azul institucional y los anteriores con el azul bruma, comunicando visualmente que el recorrido hacia atrás permanece disponible, que es la expresión en interfaz de la trazabilidad descrita en 4.2.5.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p4.png" alt="Cadena de trazabilidad" width="900px">
+
+Se presenta la segmentación de beneficios por rol, donde cada bloque se acompaña de un fragmento real de interfaz en lugar de una fotografía: los datos detectados con sus niveles de confianza para adquisiciones, y las solicitudes con su estado para producción y sanidad. Cierra la franja de enfoque sectorial sobre el azul institucional.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p5.png" alt="Roles SmartQuote" width="900px">
+
+A continuación, se muestran los planes de membresía. El plan intermedio se destaca mediante un borde en el color de marca y un rótulo de recomendación, reservando el único botón primario de la sección para esa alternativa y manteniendo los demás como botones de contorno.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p6.png" alt="Planes SmartQuote" width="900px">
+
+Se presenta la sección de preguntas frecuentes con el sistema visual aplicado, sobre fondo gris documento para separarla de las secciones contiguas sin recurrir a divisores, conforme a la regla de espaciado establecida en 4.1.1.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p7.png" alt="Preguntas frecuentes" width="900px">
+
+Finalmente, se presenta el llamado a la acción de cierre y el footer. El cierre retoma el azul petróleo profundo del encabezado, de modo que el mayor contraste de la página quede reservado para los dos puntos de conversión, mientras que el footer emplea el grafito de la escala neutra para diferenciarse de ambos.
+ 
+<img src="assets\design\landing-page\Mockup\desktop\p8.png" alt="Llamado a la acción y footer" width="900px">
+
+##### Versión Mobile Web Browser
+ 
+A continuación, se presentan los mock-ups de la versión móvil. Cada imagen muestra la adaptación responsiva de las secciones principales conservando los mismos tokens de color, tipografía y espaciado declarados para escritorio.
+ 
+**Pantalla Home y navegación móvil:** Se muestra el encabezado con los enlaces colapsados en el botón hamburguesa y el llamado a la acción siempre visible. Los documentos de cotización se apilan y se enderezan, y el conmutador de dos estados conserva su tamaño de objetivo táctil.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p1.png" alt="Home Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p2.png" alt="Cierre del encabezado y franja de contexto Mobile" width="320px">
+
+**Simulador de criterios en móvil:** Los controles y el resultado se presentan en secuencia vertical. Los porcentajes de ponderación mantienen las cifras tabulares para que el usuario perciba el cambio al desplazar cada control, y el ranking conserva la barra de progreso y el distintivo de exclusión.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p3.png" alt="Controles del simulador Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p4.png" alt="Ranking del simulador Mobile" width="320px">
+
+**Proceso y trazabilidad en móvil:** El riel conserva la numeración en azul claro sobre fondo profundo y reduce el tamaño tipográfico sin comprometer la relación mínima de contraste. La cadena de trazabilidad distribuye sus eslabones en dos filas manteniendo visible el estado seleccionado.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p5.png" alt="Proceso Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p6.png" alt="Trazabilidad Mobile" width="320px">
+
+**Roles del sistema en móvil:** Cada rol se presenta de forma independiente con su fragmento de interfaz debajo del texto, conservando los distintivos de nivel de confianza y los estados de solicitud con su codificación semántica completa de color, icono y texto.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p7.png" alt="Rol de adquisiciones Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p8.png" alt="Rol de producción y sanidad Mobile" width="320px">
+
+**Enfoque sectorial y planes en móvil:** La franja de insumos conserva el azul institucional de fondo con las etiquetas envolviendo en varias líneas. Los planes se apilan ubicando primero el destacado, que mantiene su borde en el color de marca y su botón primario.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p9.png" alt="Enfoque sectorial Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p10.png" alt="Planes Mobile" width="320px">
+
+**Preguntas frecuentes, cierre y footer en móvil:** El acordeón ocupa el ancho completo conservando el campo de filtrado. El formulario de contacto pasa a un campo por fila, con las etiquetas siempre visibles sobre cada campo y no como texto de sugerencia, y el footer presenta los enlaces, el selector de idioma y los créditos del equipo de manera compacta y accesible al final del recorrido.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p11.png" alt="Preguntas frecuentes Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p12.png" alt="Llamado a la acción Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p13.png" alt="Footer Mobile" width="320px">
 
 ## 4.4. Mobile Applications UX/UI Design
 
