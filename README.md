@@ -988,6 +988,40 @@ Finalmente, se presenta el llamado a la acción de cierre y el footer. El cierre
  
 <img src="assets\design\landing-page\Mockup\desktop\p8.png" alt="Llamado a la acción y footer" width="900px">
 
+##### Versión Mobile Web Browser
+ 
+A continuación, se presentan los mock-ups de la versión móvil. Cada imagen muestra la adaptación responsiva de las secciones principales conservando los mismos tokens de color, tipografía y espaciado declarados para escritorio.
+ 
+**Pantalla Home y navegación móvil:** Se muestra el encabezado con los enlaces colapsados en el botón hamburguesa y el llamado a la acción siempre visible. Los documentos de cotización se apilan y se enderezan, y el conmutador de dos estados conserva su tamaño de objetivo táctil.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p1.png" alt="Home Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p2.png" alt="Cierre del encabezado y franja de contexto Mobile" width="320px">
+
+**Simulador de criterios en móvil:** Los controles y el resultado se presentan en secuencia vertical. Los porcentajes de ponderación mantienen las cifras tabulares para que el usuario perciba el cambio al desplazar cada control, y el ranking conserva la barra de progreso y el distintivo de exclusión.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p3.png" alt="Controles del simulador Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p4.png" alt="Ranking del simulador Mobile" width="320px">
+
+**Proceso y trazabilidad en móvil:** El riel conserva la numeración en azul claro sobre fondo profundo y reduce el tamaño tipográfico sin comprometer la relación mínima de contraste. La cadena de trazabilidad distribuye sus eslabones en dos filas manteniendo visible el estado seleccionado.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p5.png" alt="Proceso Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p6.png" alt="Trazabilidad Mobile" width="320px">
+
+**Roles del sistema en móvil:** Cada rol se presenta de forma independiente con su fragmento de interfaz debajo del texto, conservando los distintivos de nivel de confianza y los estados de solicitud con su codificación semántica completa de color, icono y texto.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p7.png" alt="Rol de adquisiciones Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p8.png" alt="Rol de producción y sanidad Mobile" width="320px">
+
+**Enfoque sectorial y planes en móvil:** La franja de insumos conserva el azul institucional de fondo con las etiquetas envolviendo en varias líneas. Los planes se apilan ubicando primero el destacado, que mantiene su borde en el color de marca y su botón primario.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p9.png" alt="Enfoque sectorial Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p10.png" alt="Planes Mobile" width="320px">
+
+**Preguntas frecuentes, cierre y footer en móvil:** El acordeón ocupa el ancho completo conservando el campo de filtrado. El formulario de contacto pasa a un campo por fila, con las etiquetas siempre visibles sobre cada campo y no como texto de sugerencia, y el footer presenta los enlaces, el selector de idioma y los créditos del equipo de manera compacta y accesible al final del recorrido.
+ 
+<img src="assets\design\landing-page\Mockup\mobile\p11.png" alt="Preguntas frecuentes Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p12.png" alt="Llamado a la acción Mobile" width="320px">
+<img src="assets\design\landing-page\Mockup\mobile\p13.png" alt="Footer Mobile" width="320px">
 
 ## 4.4. Mobile Applications UX/UI Design
 
