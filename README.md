@@ -235,11 +235,11 @@ La solución está concebida como una herramienta de apoyo a la decisión, no co
       <td style="vertical-align: top;">Resumen pendiente de completar por el integrante.</td>
     </tr>
     <tr>
-      <td style="text-align: center; vertical-align: top;">Foto pendiente</td>
+      <td style="text-align: center; vertical-align: top;"><img src="assets/profiles/perfil-mathias-delacruz.jpg" alt="Foto de Fabio" width="120"></td>
       <td style="vertical-align: top;">Mathias Marcelo De La Cruz De Los Santos</td>
       <td style="vertical-align: top;">u202424059</td>
       <td style="vertical-align: top;">Ingeniería de Software</td>
-      <td style="vertical-align: top;">Resumen pendiente de completar por el integrante.</td>
+      <td style="vertical-align: top;">Soy estudiante de la carrera de Ingeniería de Software y actualmente me encuentro cursando el 7to ciclo de la carrera en la Universidad Peruana de Ciencias Aplicadas. Me considero un fanático de la programación, del futbol y los videojuegos. Considero que puedo aportar al equipo y al proyecto mis conocimientos técnicos, además de considerarme una persona disciplinada, responsable y que valora el trabajo en equipo.</td>
     </tr>
     <tr>
       <td style="text-align: center; vertical-align: top;"><img src="assets/profiles/foto de batman.png>" alt="El domador salvaje" width="120"></td>
@@ -592,7 +592,112 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 
 ### 4.1.1. General Style Guidelines
 
+El diseño de SmartQuote parte de una premisa distinta a la de un producto de consumo: quien lo usa no busca una experiencia agradable, busca poder sustentar una decisión de compra ante su organización. Por eso el sistema visual está construido para que la información sea legible bajo densidad, para que el estado de cada cotización se entienda sin interpretación y para que ningún recurso gráfico compita con el dato. Cada decisión visual responde a una sola pregunta: ¿ayuda al analista a entender por qué una cotización es preferible a otra?
+
+#### Colores
+
+La paleta de SmartQuote no es decorativa: está organizada en tres capas con funciones separadas, y esa separación es en sí misma una regla del sistema. Existe un único color de marca, una escala neutra que sostiene la lectura de datos, y tres colores semánticos reservados exclusivamente para comunicar el estado del dominio. El verde, el ámbar y el rojo significan conformidad, revisión y exclusión; si además aparecieran como adorno, el usuario dejaría de leerlos como información y el cuadro comparativo perdería su capacidad de comunicar de un vistazo.
+
+![Paleta de colores de SmartQuote](assets/design/paleta-colores.jpeg)
+
+- **Azul Petróleo Profundo — #093A5A:** transmite autoridad, seriedad y solidez institucional. Se emplea como fondo en las secciones de mayor peso comunicacional de la Landing Page —el encabezado principal y el llamado a la acción final— y en los bloques donde el producto afirma su propuesta. Su profundidad hace que el contenido claro colocado encima se lea como documento sobre una superficie estable.
+- **Azul Institucional — #0F5B8C:** es el color base de la marca y el único color de acción del producto. Se reserva para botones primarios, el elemento activo de la navegación, el indicador de foco y el resaltado de la columna ganadora en una comparación. Al ser el único color que representa acción, el usuario aprende en una pantalla dónde puede pulsar.
+- **Azul Bruma — #E7F0F6:** tono claro derivado del anterior, empleado para fondos de resaltado, filas seleccionadas y fichas de versión. Permite destacar sin recurrir a bordes adicionales ni a sombras, lo que mantiene limpia una tabla ya densa.
+
+- **Grafito — #1F2933:** color del texto principal y de los titulares. Se eligió por encima del negro puro porque reduce el contraste extremo en pantallas de trabajo prolongado, sin sacrificar la relación mínima de 4.5:1 exigida por la norma de accesibilidad.
+- **Gris Neutro — #64748B:** texto secundario, etiquetas de campo, descripciones y unidades. Su función es jerárquica: separa el dato de su rótulo sin necesidad de cambiar de tamaño ni de peso.
+- **Gris Documento — #F5F7FA y #EDF1F5:** fondos del área de contenido y filas alternadas de tabla. Estos tonos permiten que las tarjetas y tablas blancas se perciban como documentos colocados sobre una superficie, metáfora coherente con un producto que trabaja con cotizaciones.
+- **Gris Borde — #E1E5EA:** bordes y divisores. El sistema prefiere el borde a la sombra para separar contenido dentro de una misma superficie, porque la sombra sugiere elevación y en una tabla comparativa todos los elementos están al mismo nivel.
+
+- **Verde Conformidad — #1E8E3E sobre #E6F4EA:** indica que una cotización *cumple* un criterio técnico, que un dato fue verificado, que el nivel de confianza es alto o que una orden fue emitida. Es el color de la certeza.
+- **Ámbar Revisión — #E8A33D sobre #FDF3E3:** indica que una cotización *cumple parcialmente*, que un dato detectado tiene confianza baja o que un resultado de simulación quedó desactualizado. Es el color que reclama la atención de una persona, y por eso nunca se usa para decorar: cada aparición del ámbar en pantalla es una tarea pendiente.
+- **Rojo Exclusión — #C5221F sobre #FBE9E9:** indica que una cotización *no cumple* un criterio obligatorio, que un dato quedó no resuelto, que un documento no es procesable o que una orden fue anulada. Es el color que detiene el proceso.
+
+
+#### Tipografía
+
+SmartQuote emplea dos familias tipográficas con roles claramente separados, ambas de licencia abierta y disponibles en Google Fonts.
+
+Se seleccionó **Manrope** como fuente principal para los títulos de SmartQuote por su estilo geométrico moderno y por sus formas ligeramente estrechas, que le permiten sostener titulares extensos en español sin dividirse en demasiadas líneas. Se utiliza en pesos altos para asegurar que los encabezados sean sólidos, técnicos y de lectura inmediata, transmitiendo el carácter de una herramienta de decisión sin caer en la frialdad de una tipografía puramente industrial.
+
+![Ejemplo de la tipografía Manrope](assets/design/ejemplo-manrope.png)
+
+Se seleccionó **Inter** como fuente secundaria para el texto de cuerpo, la navegación, los formularios y, sobre todo, para las tablas de datos. La razón es funcional antes que estética: Inter dispone de **cifras tabulares**, es decir, todos sus dígitos ocupan el mismo ancho. En un producto cuya pantalla central compara precios por tonelada entre varios proveedores, esta característica hace que las cifras queden alineadas verticalmente en la columna y que la diferencia entre 1,980.00 y 1,890.00 se perciba de inmediato. Con una tipografía de cifras proporcionales, esa misma comparación exigiría un esfuerzo visual innecesario.
+
+![Ejemplo de la tipografía Inter](assets/design/ejemplo-inter.png)
+
+En cuanto al tamaño, se utiliza jerárquicamente en toda la plataforma para resaltar títulos principales, botones de acción y texto de soporte. Los tamaños más grandes en los encabezados guían al usuario rápidamente por los puntos clave del mensaje en la Landing Page, mientras que los más pequeños en párrafos, etiquetas y celdas aseguran la comprensión y la eficiencia en la lectura de detalles secundarios. Dentro de la aplicación web esta escala se comprime de forma deliberada, ya que cada píxel destinado a la tipografía es un píxel menos disponible para comparar cotizaciones. Los titulares emplean además un interletrado ligeramente negativo para compensar la apertura natural de la geometría de Manrope en tamaños grandes, y el texto de cuerpo mantiene líneas de menos de setenta caracteres para no fatigar la lectura en párrafos largos.
+
+#### Branding
+
+El branding de SmartQuote busca comunicar comparación y decisión, no tecnología genérica. El logo  y los iconos están formados por tres barras verticales de distinta altura, que representan las alternativas que se comparan, acompañadas de una marca de verificación sobre la barra seleccionada, que representa la decisión sustentada.
+
+<img src="assets/design/logo-smartquote.png" alt="Logotipo de SmartQuote" width="400px" />
+
+#### Espaciado
+
+El espaciado se organiza en una escala de múltiplos de 4 px, aplicada de forma consistente en las tres superficies. Su función va más allá de la estética: en SmartQuote la densidad es una decisión de diseño que responde a la tarea, no a la plataforma. Una vista de comparación es densa por necesidad, porque el analista debe ver tres cotizaciones y cinco criterios simultáneamente; una sección de la Landing Page respira, porque el visitante está leyendo, no trabajando.
+
+#### Dimensiones para el tono de comunicación y lenguaje aplicado
+
+El tono de SmartQuote es **profesional, directo y verificable**. La plataforma asiste una decisión que el usuario deberá justificar ante su organización y, eventualmente, ante una auditoría; por lo tanto, el lenguaje nunca debe prometer más certeza de la que el sistema realmente posee.
+
+De esa premisa se derivan seis reglas de redacción:
+
+| Regla | Ejemplo correcto | Ejemplo incorrecto |
+|---|---|---|
+| El sistema se refiere a sí mismo en tercera persona, nunca en primera | "El análisis detectó 18.5 % de proteína cruda" | "Encontré 18.5 % de proteína cruda" |
+| La incertidumbre se declara, no se oculta | "Plazo de entrega: no resuelto" | "Plazo de entrega: 7 días (estimado)" |
+| Los errores indican causa y acción correctiva | "El archivo está dañado o no es una cotización legible. Cárgalo nuevamente o registra la cotización de forma manual" | "Error al procesar el archivo" |
+| No se emplea lenguaje promocional sobre la inteligencia artificial | "Análisis automático" | "IA inteligente", "análisis mágico" |
+| No se expone terminología de implementación | "Datos detectados", "Resultado de la simulación" | "Extracción del agente", "snapshot de la simulación" |
+| Las acciones se nombran con verbo y objeto explícito | "Generar orden de compra" | "Continuar", "Enviar" |
+
+Además, se consideraron tres aspectos transversales:
+
+- **Consistencia.** Una acción conserva el mismo nombre a lo largo de todo el flujo: el botón que dice "Emitir orden" produce un estado que dice "Emitida". El vocabulario de la interfaz es la señalización con la que el usuario aprende a moverse por el producto, y cambiar el término a mitad del recorrido lo obliga a reaprender.
+- **Navegación.** La estructura sigue las etapas reales del ciclo de adquisición, de modo que el usuario encuentra la información donde el proceso la produce. Los menús son mínimos y cada vista de detalle mantiene visible el camino recorrido, porque en este producto saber de dónde viene un dato forma parte del dato.
+- **Accesibilidad.** La plataforma se diseña para ser operable por completo con teclado, legible con lector de pantalla y utilizable con el texto ampliado al 200 %.
+
+#### Elementos de diseño
+
+Junto a los lineamientos de color, tipografía y branding, el diseño visual de SmartQuote aplica de forma consciente los elementos fundamentales del diseño gráfico, siempre subordinados a la lectura del dato.
+
+La **línea** cumple una función estructural y no ornamental: separa filas en las tablas de datos, delimita tarjetas y marca la columna congelada de criterios en el cuadro comparativo. Su presencia es deliberadamente discreta, de 1 px y en Gris Borde, porque en una pantalla con tres columnas de datos toda línea adicional compite con la información.
+
+El **color** opera en dos registros simultáneos, ya descritos: identidad y estado. Su valor comunicativo depende por completo de mantenerlos separados, y es la razón por la cual el sistema renuncia a un color de acento decorativo.
+
+El **tamaño** establece la jerarquía sin necesidad de recurrir a más recursos. Los titulares grandes conducen al visitante por los puntos clave de la Landing Page, mientras que dentro de la aplicación la escala se comprime deliberadamente: el título de página mide 24 px y el cuerpo 14 px, porque cada píxel destinado a la tipografía es un píxel menos disponible para comparar cotizaciones.
+
+La **textura** es plana y limpia. El producto no emplea degradados, patrones ni sombras difusas como decoración; la única variación de superficie proviene del contraste entre el fondo Gris Documento y las tarjetas blancas, que produce la sensación de documentos sobre un escritorio, coherente con un sistema cuya materia prima son cotizaciones en PDF.
+
+El **espacio** es el elemento que más trabaja en este sistema, precisamente porque escasea en las vistas de comparación. Se administra con la escala de 4 px y se distribuye de forma asimétrica entre superficies: generoso en la Landing Page, medido en la aplicación web.
+
+El **brillo** o valor separa las capas de la interfaz. El fondo claro sostiene tarjetas blancas, y sobre ellas los elementos de acción concentran el mayor contraste. Esta gradación permite que el usuario identifique en menos de un segundo dónde puede actuar en una pantalla saturada de datos.
+
+La **forma** utiliza geometrías de bordes redondeados con radios diferenciados por jerarquía. El redondeo suaviza una interfaz que de otro modo resultaría severa por su densidad, y el hecho de que el radio varíe según el tipo de elemento aporta una señal adicional sobre qué es un control y qué es un contenedor.
+
+#### Principios de diseño
+
+El **contraste** garantiza que los elementos críticos —el botón primario de cada vista, los distintivos de cumplimiento y la banda de advertencia de un resultado desactualizado— se distingan de inmediato sobre fondos neutros. En SmartQuote el contraste no es solo un recurso estético sino un requisito de accesibilidad verificable, con umbrales medidos antes de cerrar cada pantalla.
+
+La **repetición** de la paleta, de los tres iconos de estado y de los patrones de tabla construye familiaridad a lo largo del producto. Un analista que aprendió a leer el cuadro comparativo puede leer el listado de órdenes sin instrucción adicional, porque ambos emplean el mismo vocabulario visual. Esta consistencia reduce la curva de aprendizaje en un producto que se usa a diario y bajo presión de tiempo.
+
+La **alineación** aporta el orden que un documento de sustento exige. La grilla de 12 columnas, la alineación a la izquierda de las etiquetas y la alineación a la derecha de todas las cifras producen una lectura predecible; esta última es la que permite comparar precios recorriendo la columna con la vista, sin detenerse en cada celda.
+
+La **proximidad** agrupa lo que pertenece junto: el dato detectado con su nivel de confianza, la cotización excluida con el criterio que incumplió, la orden de compra con los enlaces hacia la simulación que la originó. En un producto cuya propuesta de valor es la trazabilidad, la cercanía física entre un hecho y su justificación es la expresión visual del argumento.
+
 ### 4.1.2. Web Style Guidelines
+
+El diseño web de SmartQuote traduce el sistema visual de 4.1.1 a dos superficies con propósitos distintos: la Landing Page, construida en HTML5, CSS3 y JavaScript, orientada a la lectura y al convencimiento del visitante; y la aplicación web, construida en Vue.js con PrimeVue y Material Design, orientada al trabajo diario del analista de adquisiciones. Ambas comparten los mismos valores de color, tipografía y espaciado, pero los expresan con ritmos diferentes: la Landing emplea contenedores amplios y separaciones generosas entre secciones para permitir descansos visuales, mientras que la aplicación web comprime deliberadamente esos mismos valores, porque su tarea central —comparar varias cotizaciones contra un conjunto de criterios— exige alta densidad de información en pantalla. La composición se resuelve con CSS Grid y Flexbox sobre una grilla de doce columnas, lo que mantiene la alineación entre bloques de distinta naturaleza y evita que la información se disperse al cambiar el tamaño de la ventana.
+
+La estrategia responsiva es intencionalmente mixta. La Landing Page se diseña mobile-first, ya que el descubrimiento del producto ocurre con frecuencia desde el teléfono, y sus secciones de varias columnas se apilan progresivamente hasta los 360 px. La aplicación web se diseña desktop-first y define un comportamiento propio en cada punto de quiebre: la barra lateral pasa de expandida a iconos y finalmente a panel deslizante, mientras que el cuadro comparativo se desplaza horizontalmente conservando congelada la columna de criterios. Esta última decisión es deliberada: reducir el ancho ocultando las etiquetas de estado dejaría al color y al icono comunicando solos, lo que contradice la primera regla del sistema declarada en 4.1.1.
+
+En cuanto a la interactividad, la plataforma utiliza una lógica de componentes claramente identificables, apoyada en la librería PrimeVue para el producto y en componentes propios equivalentes para la Landing. Los botones de acción emplean el azul institucional como único color de acción, con estados visuales de hover, focus, disabled y loading que ofrecen retroalimentación inmediata y enseñan al usuario dónde puede pulsar. La navegación se apoya en un marco persistente —barra lateral, barra superior con búsqueda global y selector de idioma, y migas de pan en cada vista de detalle— que mantiene siempre disponibles las herramientas principales, incluido el sistema de internacionalización con inglés como idioma predeterminado y español de Latinoamérica como alterno. Las transiciones son breves y siempre responden a una acción del usuario, nunca al desplazamiento de la página, y se anulan cuando el sistema declara preferencia de movimiento reducido.
+
+![Mockup Landing Page](assets/)
+![Mockup Comparción](assets/)
+![Mockup footer](assets/)
 
 ### 4.1.3. Mobile Style Guidelines
 
@@ -604,13 +709,162 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 
 ### 4.2.1. Organization Systems
 
+En SmartQuote se emplea una organización jerárquica (visual hierarchy) para destacar la información que sostiene la decisión de compra. En el cuadro comparativo, los criterios obligatorios y el puntaje total ocupan la posición de mayor peso visual, mientras que las condiciones comerciales secundarias descienden a niveles inferiores. Esta jerarquía permite que el analista identifique en segundos qué cotización queda excluida y por qué, sin recorrer el documento completo.
+
+Asimismo, se aplica una organización secuencial (step-by-step) en los procesos que exigen una progresión lógica. En la Landing Page se evidencia en la sección "Cómo funciona", que recorre los cinco pasos del ciclo de adquisición. En la aplicación web se materializa en el asistente que acompaña el flujo Solicitud → Cotizaciones → Criterios → Simulación → Orden, impidiendo que se avance a una simulación mientras existan cotizaciones sin verificar.
+
+Respecto a los esquemas de categorización, el contenido de la aplicación se agrupa por tópicos, reproduciendo los cuatro bounded contexts definidos en la arquitectura, de modo que la interfaz y el modelo de software compartan el mismo mapa mental: Solicitudes, Cotizaciones, Evaluación y Órdenes de compra. Dentro de cada módulo se emplea una organización cronológica para los listados, ordenados por fecha de creación descendente, y una organización por estado del proceso mediante pestañas de filtrado. Finalmente, el contenido se clasifica según audiencia, segmentando funcionalidades de acuerdo con los dos User Personas identificados: Analistas de Adquisiciones, enfocados en la evaluación y adjudicación, y Especialistas de Producción y Sanidad, orientados al registro y seguimiento de solicitudes desde la granja.
+
 ### 4.2.2. Labeling Systems
+
+El sistema de etiquetado de SmartQuote se deriva del Ubiquitous Language del proyecto, buscando que cada término coincida con el vocabulario que el personal de adquisiciones ya emplea. Se evita deliberadamente exponer terminología de implementación: el usuario nunca lee "agente de IA" ni "extracción", sino Análisis automático y Datos detectados.
+
+**Landing Page**
+
+- **Pruébalo**: Conduce al simulador donde el visitante ajusta los pesos y observa cómo cambia la alternativa ganadora.
+- **Cómo funciona**: Explica la ubicación de la plataforma dentro del proceso de compra existente.
+- **Para tu equipo**: Diferencia los beneficios según el área que utilizará cada aplicación.
+- **Planes**: Estructura la oferta comercial según el volumen de cotizaciones analizadas al mes.
+- **Solicitar demostración**: Botón de acción principal, con texto idéntico en todas sus apariciones para reforzar el reconocimiento.
+
+**Aplicación Web – Analistas de Adquisiciones**
+
+- **Solicitudes**: Listado de necesidades registradas por las áreas operativas, con su estado y número de cotizaciones asociadas.
+- **Cotizaciones**: Documentos cargados por proveedor, con el estado del análisis automático.
+- **Datos detectados**: Campos extraídos de cada documento, acompañados de su nivel de confianza y de los valores marcados como No resuelto.
+- **Criterios obligatorios / Criterios ponderados**: Distingue las condiciones que excluyen una oferta de las que solo aportan puntaje.
+- **Ejecutar simulación**: Etiqueta de alta visibilidad que dispara la evaluación comparativa.
+Generar orden de compra: Acción de cierre, deshabilitada mientras el resultado no esté vigente.
+
+**Aplicación Móvil – Especialistas de Producción y Sanidad**
+
+- **Nueva solicitud**: Registro del insumo, cantidad, fecha requerida y prioridad desde el entorno operativo.
+- **Requisitos técnicos**: Condiciones que el insumo debe cumplir, como composición nutricional o concentración.
+- **Mis solicitudes**: Relación de las necesidades registradas por el usuario con su estado vigente.
+- **Seguimiento**: Historial cronológico de cada solicitud, indicando el área responsable de la siguiente acción.
 
 ### 4.2.3. SEO Tags and Meta Tags
 
+Landing Page
+
+Charset
+
+<meta charset="UTF-8" />
+
+Establece la codificación universal de caracteres. Su función es garantizar que el navegador interprete correctamente los textos del sistema i18n, asegurando que tildes, la letra "ñ" y símbolos técnicos como el de porcentaje o el de mayor o igual se visualicen sin errores en español e inglés.
+
+Viewport (Responsive)
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+Controla el escalado de la página en distintos dispositivos. Su función es ajustar el ancho del contenido al tamaño de la pantalla, algo crítico porque el descubrimiento del producto ocurre con frecuencia desde el teléfono del jefe de compras.
+
+Title (SEO)
+
+<title>SmartQuote — Compara cotizaciones y emite tu orden de compra</title>
+
+Define el título que aparece en la pestaña del navegador y en los resultados de búsqueda. Su función es identificar de inmediato la marca y el problema que resuelve, siendo un factor determinante para el posicionamiento orgánico.
+
+Meta Description (SEO)
+
+<meta name="description" content="Plataforma SaaS que lee las cotizaciones de tus proveedores en PDF, las contrasta con tus criterios técnicos y comerciales, y entrega una recomendación trazable y la orden de compra lista para aprobar.">
+
+Provee un resumen conciso del contenido del sitio. Su función es aparecer como fragmento en los resultados de Google, explicando cómo SmartQuote resuelve la evaluación manual de cotizaciones heterogéneas.
+
+Meta Keywords (SEO)
+
+<meta name="keywords" content="comparación de cotizaciones, software de compras, sector avícola, evaluación de proveedores, orden de compra, SaaS">
+
+Especifica palabras clave relevantes para la temática. Su función es ayudar a los algoritmos de indexación a clasificar el sitio dentro del nicho de tecnología para abastecimiento y compras del sector pecuario.
+
+Meta Author
+
+<meta name="author" content="SmartQuote">
+
+Identifica formalmente a los creadores de la plataforma, vinculando el desarrollo técnico con la startup responsable.
+
+Meta Copyright
+
+<meta name="copyright" content="SmartQuote 2026">
+
+Establece la titularidad de la propiedad intelectual de la página y el año de vigencia, protegiendo el contenido y el diseño del sitio.
+
+Meta Robots
+
+<meta name="robots" content="index, follow">
+
+Instruye a los motores de búsqueda para que incluyan la página en sus índices y sigan sus enlaces internos. Cabe precisar que la aplicación web declara lo contrario, noindex, nofollow, ya que su contenido es privado y su exposición revelaría rutas internas sin aportar valor.
+
+Meta Language
+
+<html lang="en">
+
+Declara el idioma principal de la estructura del sitio. Su función es informar a navegadores y buscadores que el texto base está en inglés, coherente con el idioma predeterminado definido para la plataforma, mientras que el español de Latinoamérica se declara como alternativa mediante etiquetas hreflang.
+
 ### 4.2.4. Searching Systems
 
+En esta sección se describen los mecanismos de recuperación de información diseñados para SmartQuote. El objetivo es que el analista localice una solicitud, una cotización o una orden sin recorrer listados extensos, especialmente cuando debe responder a una consulta sobre una compra realizada meses atrás.
+
+**Vista del Analista de Adquisiciones**
+
+**1. Medios de ayuda para la búsqueda de datos**
+
+- Búsqueda global: Disponible en la barra superior desde cualquier vista, accesible además con el atajo de teclado Ctrl/Cmd + K.
+- Autocompletado: Sugiere códigos de solicitud, razones sociales de proveedores y números de orden conforme el usuario escribe, a partir del tercer carácter.
+- Tolerancia a la escritura: La búsqueda es insensible a mayúsculas y tildes y admite coincidencias parciales, evitando resultados vacíos por una letra acentuada.
+- Mensajes contextuales: Cuando no hay coincidencias, el sistema confirma el término buscado y sugiere ampliar el rango de fechas o revisar los filtros activos.
+- Historial reciente: Al abrir el campo vacío se muestran las últimas cinco búsquedas del usuario.
+
+**2. Filtros y opciones**
+
+- Por Estado: Filtrado de solicitudes entre "Abierta", "En evaluación", "Adjudicada" y "Cerrada".
+- Por Proveedor: Localización de todas las cotizaciones remitidas por una misma empresa.
+- Por Tipo de Insumo: Segmentación entre alimento balanceado, vacunas, medicamentos y material de empaque.
+- Por Estado de Verificación: Filtrado de cotizaciones "Verificadas", "Requieren revisión" o "No procesables".
+- Por Rango de Fechas y de Monto: Acotamiento de órdenes de compra por periodo de emisión o por importe.
+
+**3. Visualización de resultados**
+
+- Resultados agrupados: La búsqueda global presenta los hallazgos separados por tipo de entidad, con un máximo de cinco por grupo y un enlace "Ver todos".
+- Tablas de datos: Los listados muestran encabezado fijo, ordenamiento por columna y filas alternadas para facilitar el recorrido horizontal.
+- Indicadores de color, siempre acompañados de icono y texto:
+- Verde: Cotización verificada o criterio cumplido.
+- Ámbar: Nivel de confianza bajo o resultado desactualizado.
+- Rojo: Criterio incumplido, dato no resuelto o documento no procesable.
+- Filtros como fichas removibles: Las condiciones aplicadas permanecen visibles sobre el listado, junto a una acción de "Limpiar filtros".
+
+**Vista del Especialista de Producción y Sanidad**
+
+**1. Medios de ayuda para la búsqueda de datos**
+
+- Buscador de solicitudes: Permite localizar una necesidad registrada por código o por nombre del insumo.
+- Sugerencias por fecha: Selector de periodo para consultar solicitudes de campañas anteriores.
+- Acceso directo al seguimiento: Desde el resultado se llega al historial de estados sin pasos intermedios.
+
+**2. Filtros y opciones**
+
+- Por Estado de Atención: Filtrado entre solicitudes "En evaluación", "Adjudicadas" y "Con orden emitida".
+- Por Prioridad: Separación de las necesidades críticas de abastecimiento respecto de las regulares.
+- Por Tipo de Insumo: Distinción entre alimento, productos sanitarios y materiales.
+
+**3. Visualización de resultados**
+
+- Tarjetas de solicitud: Incluyen código, insumo, cantidad, fecha requerida y una etiqueta de estado de alta visibilidad.
+- Línea de tiempo de eventos: Historial cronológico con la fecha de cada cambio de estado y el responsable de la siguiente acción.
+- Colores de estado:
+  - Verde: Orden emitida para la solicitud.
+  - Ámbar: En evaluación, a la espera de una acción de adquisiciones.
+  - Rojo: Solicitud observada o devuelta por información incompleta.
+
 ### 4.2.5. Navigation Systems
+
+La navegación en SmartQuote se diseñó para que el usuario nunca pierda de vista el origen de un dato, ya que la trazabilidad es la propuesta de valor del producto. En la Landing Page se emplea un sistema de desplazamiento vertical (smooth scroll) que recorre de forma narrativa el problema, el simulador, el proceso y los planes, conduciendo al visitante hacia los llamados a la acción. Esta navegación se apoya en una barra superior persistente (Sticky Nav) que incluye el selector de idioma (i18n), permitiendo cambiar el contexto lingüístico en cualquier punto del recorrido sin perder la posición.
+
+Dentro de la aplicación web, la navegación principal se organiza mediante una barra lateral fija (Sidebar) que otorga acceso inmediato a los módulos del dominio: Solicitudes, Cotizaciones, Evaluación, Órdenes de compra, Proveedores y Configuración. Esta estructura permite que el analista alterne entre la revisión de un documento y el cuadro comparativo sin abandonar el contexto de la solicitud que está atendiendo. La barra superior concentra las herramientas transversales —búsqueda global, idioma, notificaciones y menú de cuenta—, mientras que las migas de pan y las pestañas dentro de cada vista de detalle indican en todo momento la posición dentro del proceso.
+
+Un rasgo distintivo del sistema es la navegación complementaria bidireccional: desde una orden de compra se alcanza la simulación que la originó, desde la simulación se llega a las cotizaciones evaluadas y desde estas a la solicitud inicial, y el recorrido funciona igualmente en sentido inverso. Esta capacidad es la expresión en interfaz de la trazabilidad que el sistema conserva internamente, y responde directamente al problema levantado en la sección 1.2.1 sobre la dificultad de justificar por qué se eligió a un proveedor determinado.
+
+Finalmente, la experiencia se adapta según el perfil. Los Especialistas de Producción y Sanidad acceden desde la aplicación móvil a una vista simplificada, centrada en el registro y el seguimiento de sus solicitudes, mientras que los Analistas de Adquisiciones disponen en la web de controles operativos completos. El uso de un asistente por pasos dentro del flujo de evaluación asegura que el usuario conozca la etapa en que se encuentra y las que ya completó, garantizando un recorrido coherente con la naturaleza secuencial del proceso de compra.
 
 ## 4.3. Landing Page UI Design
 
