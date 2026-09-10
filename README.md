@@ -709,13 +709,162 @@ En cuanto a la interactividad, la plataforma utiliza una lógica de componentes 
 
 ### 4.2.1. Organization Systems
 
+En SmartQuote se emplea una organización jerárquica (visual hierarchy) para destacar la información que sostiene la decisión de compra. En el cuadro comparativo, los criterios obligatorios y el puntaje total ocupan la posición de mayor peso visual, mientras que las condiciones comerciales secundarias descienden a niveles inferiores. Esta jerarquía permite que el analista identifique en segundos qué cotización queda excluida y por qué, sin recorrer el documento completo.
+
+Asimismo, se aplica una organización secuencial (step-by-step) en los procesos que exigen una progresión lógica. En la Landing Page se evidencia en la sección "Cómo funciona", que recorre los cinco pasos del ciclo de adquisición. En la aplicación web se materializa en el asistente que acompaña el flujo Solicitud → Cotizaciones → Criterios → Simulación → Orden, impidiendo que se avance a una simulación mientras existan cotizaciones sin verificar.
+
+Respecto a los esquemas de categorización, el contenido de la aplicación se agrupa por tópicos, reproduciendo los cuatro bounded contexts definidos en la arquitectura, de modo que la interfaz y el modelo de software compartan el mismo mapa mental: Solicitudes, Cotizaciones, Evaluación y Órdenes de compra. Dentro de cada módulo se emplea una organización cronológica para los listados, ordenados por fecha de creación descendente, y una organización por estado del proceso mediante pestañas de filtrado. Finalmente, el contenido se clasifica según audiencia, segmentando funcionalidades de acuerdo con los dos User Personas identificados: Analistas de Adquisiciones, enfocados en la evaluación y adjudicación, y Especialistas de Producción y Sanidad, orientados al registro y seguimiento de solicitudes desde la granja.
+
 ### 4.2.2. Labeling Systems
+
+El sistema de etiquetado de SmartQuote se deriva del Ubiquitous Language del proyecto, buscando que cada término coincida con el vocabulario que el personal de adquisiciones ya emplea. Se evita deliberadamente exponer terminología de implementación: el usuario nunca lee "agente de IA" ni "extracción", sino Análisis automático y Datos detectados.
+
+**Landing Page**
+
+- **Pruébalo**: Conduce al simulador donde el visitante ajusta los pesos y observa cómo cambia la alternativa ganadora.
+- **Cómo funciona**: Explica la ubicación de la plataforma dentro del proceso de compra existente.
+- **Para tu equipo**: Diferencia los beneficios según el área que utilizará cada aplicación.
+- **Planes**: Estructura la oferta comercial según el volumen de cotizaciones analizadas al mes.
+- **Solicitar demostración**: Botón de acción principal, con texto idéntico en todas sus apariciones para reforzar el reconocimiento.
+
+**Aplicación Web – Analistas de Adquisiciones**
+
+- **Solicitudes**: Listado de necesidades registradas por las áreas operativas, con su estado y número de cotizaciones asociadas.
+- **Cotizaciones**: Documentos cargados por proveedor, con el estado del análisis automático.
+- **Datos detectados**: Campos extraídos de cada documento, acompañados de su nivel de confianza y de los valores marcados como No resuelto.
+- **Criterios obligatorios / Criterios ponderados**: Distingue las condiciones que excluyen una oferta de las que solo aportan puntaje.
+- **Ejecutar simulación**: Etiqueta de alta visibilidad que dispara la evaluación comparativa.
+Generar orden de compra: Acción de cierre, deshabilitada mientras el resultado no esté vigente.
+
+**Aplicación Móvil – Especialistas de Producción y Sanidad**
+
+- **Nueva solicitud**: Registro del insumo, cantidad, fecha requerida y prioridad desde el entorno operativo.
+- **Requisitos técnicos**: Condiciones que el insumo debe cumplir, como composición nutricional o concentración.
+- **Mis solicitudes**: Relación de las necesidades registradas por el usuario con su estado vigente.
+- **Seguimiento**: Historial cronológico de cada solicitud, indicando el área responsable de la siguiente acción.
 
 ### 4.2.3. SEO Tags and Meta Tags
 
+Landing Page
+
+Charset
+
+<meta charset="UTF-8" />
+
+Establece la codificación universal de caracteres. Su función es garantizar que el navegador interprete correctamente los textos del sistema i18n, asegurando que tildes, la letra "ñ" y símbolos técnicos como el de porcentaje o el de mayor o igual se visualicen sin errores en español e inglés.
+
+Viewport (Responsive)
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+Controla el escalado de la página en distintos dispositivos. Su función es ajustar el ancho del contenido al tamaño de la pantalla, algo crítico porque el descubrimiento del producto ocurre con frecuencia desde el teléfono del jefe de compras.
+
+Title (SEO)
+
+<title>SmartQuote — Compara cotizaciones y emite tu orden de compra</title>
+
+Define el título que aparece en la pestaña del navegador y en los resultados de búsqueda. Su función es identificar de inmediato la marca y el problema que resuelve, siendo un factor determinante para el posicionamiento orgánico.
+
+Meta Description (SEO)
+
+<meta name="description" content="Plataforma SaaS que lee las cotizaciones de tus proveedores en PDF, las contrasta con tus criterios técnicos y comerciales, y entrega una recomendación trazable y la orden de compra lista para aprobar.">
+
+Provee un resumen conciso del contenido del sitio. Su función es aparecer como fragmento en los resultados de Google, explicando cómo SmartQuote resuelve la evaluación manual de cotizaciones heterogéneas.
+
+Meta Keywords (SEO)
+
+<meta name="keywords" content="comparación de cotizaciones, software de compras, sector avícola, evaluación de proveedores, orden de compra, SaaS">
+
+Especifica palabras clave relevantes para la temática. Su función es ayudar a los algoritmos de indexación a clasificar el sitio dentro del nicho de tecnología para abastecimiento y compras del sector pecuario.
+
+Meta Author
+
+<meta name="author" content="SmartQuote">
+
+Identifica formalmente a los creadores de la plataforma, vinculando el desarrollo técnico con la startup responsable.
+
+Meta Copyright
+
+<meta name="copyright" content="SmartQuote 2026">
+
+Establece la titularidad de la propiedad intelectual de la página y el año de vigencia, protegiendo el contenido y el diseño del sitio.
+
+Meta Robots
+
+<meta name="robots" content="index, follow">
+
+Instruye a los motores de búsqueda para que incluyan la página en sus índices y sigan sus enlaces internos. Cabe precisar que la aplicación web declara lo contrario, noindex, nofollow, ya que su contenido es privado y su exposición revelaría rutas internas sin aportar valor.
+
+Meta Language
+
+<html lang="en">
+
+Declara el idioma principal de la estructura del sitio. Su función es informar a navegadores y buscadores que el texto base está en inglés, coherente con el idioma predeterminado definido para la plataforma, mientras que el español de Latinoamérica se declara como alternativa mediante etiquetas hreflang.
+
 ### 4.2.4. Searching Systems
 
+En esta sección se describen los mecanismos de recuperación de información diseñados para SmartQuote. El objetivo es que el analista localice una solicitud, una cotización o una orden sin recorrer listados extensos, especialmente cuando debe responder a una consulta sobre una compra realizada meses atrás.
+
+**Vista del Analista de Adquisiciones**
+
+**1. Medios de ayuda para la búsqueda de datos**
+
+- Búsqueda global: Disponible en la barra superior desde cualquier vista, accesible además con el atajo de teclado Ctrl/Cmd + K.
+- Autocompletado: Sugiere códigos de solicitud, razones sociales de proveedores y números de orden conforme el usuario escribe, a partir del tercer carácter.
+- Tolerancia a la escritura: La búsqueda es insensible a mayúsculas y tildes y admite coincidencias parciales, evitando resultados vacíos por una letra acentuada.
+- Mensajes contextuales: Cuando no hay coincidencias, el sistema confirma el término buscado y sugiere ampliar el rango de fechas o revisar los filtros activos.
+- Historial reciente: Al abrir el campo vacío se muestran las últimas cinco búsquedas del usuario.
+
+**2. Filtros y opciones**
+
+- Por Estado: Filtrado de solicitudes entre "Abierta", "En evaluación", "Adjudicada" y "Cerrada".
+- Por Proveedor: Localización de todas las cotizaciones remitidas por una misma empresa.
+- Por Tipo de Insumo: Segmentación entre alimento balanceado, vacunas, medicamentos y material de empaque.
+- Por Estado de Verificación: Filtrado de cotizaciones "Verificadas", "Requieren revisión" o "No procesables".
+- Por Rango de Fechas y de Monto: Acotamiento de órdenes de compra por periodo de emisión o por importe.
+
+**3. Visualización de resultados**
+
+- Resultados agrupados: La búsqueda global presenta los hallazgos separados por tipo de entidad, con un máximo de cinco por grupo y un enlace "Ver todos".
+- Tablas de datos: Los listados muestran encabezado fijo, ordenamiento por columna y filas alternadas para facilitar el recorrido horizontal.
+- Indicadores de color, siempre acompañados de icono y texto:
+- Verde: Cotización verificada o criterio cumplido.
+- Ámbar: Nivel de confianza bajo o resultado desactualizado.
+- Rojo: Criterio incumplido, dato no resuelto o documento no procesable.
+- Filtros como fichas removibles: Las condiciones aplicadas permanecen visibles sobre el listado, junto a una acción de "Limpiar filtros".
+
+**Vista del Especialista de Producción y Sanidad**
+
+**1. Medios de ayuda para la búsqueda de datos**
+
+- Buscador de solicitudes: Permite localizar una necesidad registrada por código o por nombre del insumo.
+- Sugerencias por fecha: Selector de periodo para consultar solicitudes de campañas anteriores.
+- Acceso directo al seguimiento: Desde el resultado se llega al historial de estados sin pasos intermedios.
+
+**2. Filtros y opciones**
+
+- Por Estado de Atención: Filtrado entre solicitudes "En evaluación", "Adjudicadas" y "Con orden emitida".
+- Por Prioridad: Separación de las necesidades críticas de abastecimiento respecto de las regulares.
+- Por Tipo de Insumo: Distinción entre alimento, productos sanitarios y materiales.
+
+**3. Visualización de resultados**
+
+- Tarjetas de solicitud: Incluyen código, insumo, cantidad, fecha requerida y una etiqueta de estado de alta visibilidad.
+- Línea de tiempo de eventos: Historial cronológico con la fecha de cada cambio de estado y el responsable de la siguiente acción.
+- Colores de estado:
+  - Verde: Orden emitida para la solicitud.
+  - Ámbar: En evaluación, a la espera de una acción de adquisiciones.
+  - Rojo: Solicitud observada o devuelta por información incompleta.
+
 ### 4.2.5. Navigation Systems
+
+La navegación en SmartQuote se diseñó para que el usuario nunca pierda de vista el origen de un dato, ya que la trazabilidad es la propuesta de valor del producto. En la Landing Page se emplea un sistema de desplazamiento vertical (smooth scroll) que recorre de forma narrativa el problema, el simulador, el proceso y los planes, conduciendo al visitante hacia los llamados a la acción. Esta navegación se apoya en una barra superior persistente (Sticky Nav) que incluye el selector de idioma (i18n), permitiendo cambiar el contexto lingüístico en cualquier punto del recorrido sin perder la posición.
+
+Dentro de la aplicación web, la navegación principal se organiza mediante una barra lateral fija (Sidebar) que otorga acceso inmediato a los módulos del dominio: Solicitudes, Cotizaciones, Evaluación, Órdenes de compra, Proveedores y Configuración. Esta estructura permite que el analista alterne entre la revisión de un documento y el cuadro comparativo sin abandonar el contexto de la solicitud que está atendiendo. La barra superior concentra las herramientas transversales —búsqueda global, idioma, notificaciones y menú de cuenta—, mientras que las migas de pan y las pestañas dentro de cada vista de detalle indican en todo momento la posición dentro del proceso.
+
+Un rasgo distintivo del sistema es la navegación complementaria bidireccional: desde una orden de compra se alcanza la simulación que la originó, desde la simulación se llega a las cotizaciones evaluadas y desde estas a la solicitud inicial, y el recorrido funciona igualmente en sentido inverso. Esta capacidad es la expresión en interfaz de la trazabilidad que el sistema conserva internamente, y responde directamente al problema levantado en la sección 1.2.1 sobre la dificultad de justificar por qué se eligió a un proveedor determinado.
+
+Finalmente, la experiencia se adapta según el perfil. Los Especialistas de Producción y Sanidad acceden desde la aplicación móvil a una vista simplificada, centrada en el registro y el seguimiento de sus solicitudes, mientras que los Analistas de Adquisiciones disponen en la web de controles operativos completos. El uso de un asistente por pasos dentro del flujo de evaluación asegura que el usuario conozca la etapa en que se encuentra y las que ya completó, garantizando un recorrido coherente con la naturaleza secuencial del proceso de compra.
 
 ## 4.3. Landing Page UI Design
 
