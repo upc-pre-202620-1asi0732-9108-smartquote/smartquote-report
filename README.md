@@ -174,6 +174,10 @@ Proyecto
       - [Configuración local de contingencia](#configuración-local-de-contingencia)
   - [5.2. Product Implementation \& Deployment](#52-product-implementation--deployment)
     - [5.2.1. Sprint Backlogs](#521-sprint-backlogs)
+      - [5.2.1.1. Sprint 1](#5211-sprint-1)
+        - [Sprint Planning 1](#sprint-planning-1)
+        - [Aspect Leaders and Collaborators](#aspect-leaders-and-collaborators)
+        - [Sprint Backlog 1](#sprint-backlog-1)
     - [5.2.2. Implemented Landing Page Evidence](#522-implemented-landing-page-evidence)
     - [5.2.3. Implemented Frontend-Web Application Evidence](#523-implemented-frontend-web-application-evidence)
     - [5.2.4. Implemented Native-Mobile Application Evidence](#524-implemented-native-mobile-application-evidence)
@@ -1397,6 +1401,110 @@ El plan de contingencia se prueba antes de cada demostración: se descarga previ
 ## 5.2. Product Implementation & Deployment
 
 ### 5.2.1. Sprint Backlogs
+
+#### 5.2.1.1. Sprint 1
+
+El Sprint 1 comprende todo el alcance funcional priorizado para la primera versión de SmartQuote. Durante esta iteración se desarrollará un incremento integrado y demostrable que cubra el descubrimiento público del producto, el registro y seguimiento de solicitudes de insumos, la incorporación y análisis de cotizaciones, la evaluación técnica y comercial de las alternativas y la generación trazable de una orden de compra.
+
+##### Sprint Planning 1
+
+La reunión de planificación establece el objetivo común, el periodo de trabajo, la capacidad inicial y los ítems que permitirán obtener el primer incremento de SmartQuote. El equipo acuerda desarrollar el flujo de extremo a extremo y validar tempranamente la incertidumbre de la extracción asistida por IA, sin perder la supervisión humana ni la trazabilidad de la decisión de compra.
+
+| Sprint # | Sprint 1 |
+| --- | --- |
+| **Sprint Planning Background** | Primera planificación orientada a entregar y demostrar el flujo integral de SmartQuote para una adquisición avícola. |
+| Date | 2026-09-07 |
+| Time | 07:00 PM – 08:00 PM (GMT-5) |
+| Location | Reunión virtual mediante Google Meet |
+| Prepared By | Vallejo Trujillo, Fabio Cesar |
+| Attendees (to planning meeting) | Bardales Tejada, Luis Alexis / De La Cruz De Los Santos, Mathias Marcelo / Guerrero Vasquez, Jhon Danny / Vallejo Trujillo, Fabio Cesar |
+| Sprint 0 Review Summary |  |
+| Sprint 0 Retrospective Summary |  |
+| **Sprint Goal & User Stories** | US01, US02, US03, US04, TS01, US05, US06, US07, US08 y SP01. |
+| Sprint 1 Goal | **Nuestro enfoque está en** entregar un incremento demostrable de SmartQuote que permita conocer la propuesta de valor, registrar y seguir una solicitud avícola, incorporar y verificar cotizaciones PDF, compararlas mediante criterios técnicos y comerciales y generar una orden de compra trazable.<br><br>**Nosotros creemos que cumple** una decisión de compra más ágil, consistente y justificable a los analistas y jefes de adquisiciones, así como visibilidad y control de los requisitos técnicos a los especialistas de producción y sanidad.<br><br>**Esto sera confirmado cuando** un visitante consulte la Landing Page en inglés y español; un especialista registre una solicitud y consulte su historial; un analista procese al menos dos cotizaciones verificadas, obtenga un ranking repetible con explicación de criterios y genere una única orden ante solicitudes repetidas; y el Spike documente los resultados de extracción sobre al menos quince cotizaciones anonimizadas de tres estructuras diferentes, con una meta inicial de 90 % de precisión en los campos obligatorios. |
+| Sprint 1 Velocity | 60 Story Points de capacidad planificada. Por ser la primera iteración, este valor constituye una línea base y no una velocidad histórica. |
+| Sum of Story Points | 60 Story Points |
+
+El Sprint Goal es específico respecto del flujo que se entregará, medible mediante eventos observables de extremo a extremo, relevante para ambos segmentos objetivo y limitado al periodo del Sprint. Los criterios de aceptación de cada ítem complementan estas medidas y determinan cuándo el trabajo puede considerarse terminado.
+
+##### Aspect Leaders and Collaborators
+
+La Leadership-and-Collaboration Matrix (LACX) organiza el trabajo en cuatro aspectos que corresponden a las superficies y capacidades principales del incremento. Cada aspecto cuenta con un líder responsable de facilitar las decisiones y la integración, mientras los demás integrantes participan como colaboradores. Esta responsabilidad se refleja posteriormente en la asignación de los Work-items del Sprint Backlog.
+
+| Team Member (Last Name, First Name) | GitHub Username | Presencia digital (US01) (L/C) | Solicitudes y experiencia móvil (US02, US03) (L/C) | Cotizaciones y extracción asistida por IA (SP01, US04, TS01, US05) (L/C) | Evaluación, decisión y orden de compra (US06, US07, US08) (L/C) |
+| --- | --- | :---: | :---: | :---: | :---: |
+| Bardales Tejada, Luis Alexis | AlexisBardales | L | C | C | C |
+| De La Cruz De Los Santos, Mathias Marcelo | Dela050406 | C | C | L | C |
+| Guerrero Vasquez, Jhon Danny | Feli386 | C | L | C | C |
+| Vallejo Trujillo, Fabio Cesar | fabiovallejo | C | C | C | L |
+
+La designación de líder no concentra todo el trabajo de un aspecto en una sola persona. El liderazgo implica coordinar las decisiones, verificar que las tareas contribuyan al Sprint Goal y solicitar la colaboración necesaria para mantener integrado el incremento.
+
+##### Sprint Backlog 1
+
+El Sprint Backlog descompone los 10 ítems seleccionados en Work-items verificables y asigna responsables de manera equitativa. Los Story Points expresan complejidad y esfuerzo relativos a nivel de Product Backlog; las horas corresponden a estimaciones operativas de las tareas y no deben interpretarse como una conversión directa de puntos a tiempo. Al representar la línea base acordada durante el Sprint Planning, todos los Work-items comienzan en estado `To-do` y deberán actualizarse en el Board conforme avance la iteración.
+
+**Duración:** 4 semanas
+
+**Board del Sprint 1:** al momento de consolidar esta planificación, el repositorio no contiene una URL pública verificable del Board de Jira ni una captura de su estado inicial. Para evitar registrar evidencia ficticia, ambos elementos quedan pendientes de incorporar antes de la entrega en `assets/product-implementation/sprint-1/sprint-board.png` y en este apartado.
+
+| Sprint # | Sprint 1 |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | ---: | --- | --- |
+| **User Story** |  | **Work-item / Task** |  |  |  |  |  |
+| **Id** | **Title** | **Id** | **Title** | **Description** | **Estimation (Hours)** | **Assigned To** | **Status** |
+| US01 | Conocer la propuesta de valor de SmartQuote | TK01 | Estructurar el contenido bilingüe | Redactar y organizar la propuesta de valor, capacidades, segmentos y llamados a la acción equivalentes en inglés y español. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US01 | Conocer la propuesta de valor de SmartQuote | TK02 | Implementar la Landing Page responsiva | Construir las secciones públicas y su adaptación a desktop y mobile conforme a los mock-ups y Style Guidelines. | 2 | Mathias Marcelo de La Cruz de Los Santos | To-do |
+| US01 | Conocer la propuesta de valor de SmartQuote | TK03 | Validar i18n, accesibilidad y enlaces | Configurar el idioma inglés predeterminado y español alterno, comprobar navegación por teclado y verificar los enlaces hacia contacto y experiencia web. | 2 | Luis Alexis Bardales Tejada | To-do |
+| SP01 | Evaluar la viabilidad de extraer datos de cotizaciones heterogéneas con IA | TK04 | Preparar el corpus anonimizado | Seleccionar, anonimizar y clasificar al menos quince cotizaciones correspondientes a tres o más estructuras documentales. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| SP01 | Evaluar la viabilidad de extraer datos de cotizaciones heterogéneas con IA | TK05 | Implementar la prueba de concepto | Probar alternativas de extracción y producir una salida estructurada con referencias al documento y valores no resueltos. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| SP01 | Evaluar la viabilidad de extraer datos de cotizaciones heterogéneas con IA | TK06 | Medir precisión y rendimiento | Construir la referencia verificada y calcular precisión por campo, fallos y tiempo de procesamiento de la prueba de concepto. | 4 | Luis Alexis Bardales Tejada | To-do |
+| SP01 | Evaluar la viabilidad de extraer datos de cotizaciones heterogéneas con IA | TK07 | Documentar resultados y umbral | Elaborar el informe del Spike con alternativa recomendada, limitaciones, riesgos y umbral de confianza propuesto. | 2 | Luis Alexis Bardales Tejada | To-do |
+| SP01 | Evaluar la viabilidad de extraer datos de cotizaciones heterogéneas con IA | TK08 | Revisar privacidad de los documentos | Verificar la anonimización, el manejo de credenciales y las medidas de protección aplicables a la información de proveedores. | 2 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US02 | Registrar una solicitud de insumos desde la operación | TK09 | Implementar el formulario móvil | Construir el registro del insumo, cantidad, fecha requerida, prioridad y requisitos técnicos en Flutter. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US02 | Registrar una solicitud de insumos desde la operación | TK10 | Implementar el caso de uso de registro | Desarrollar el agregado, endpoint y persistencia de Purchase Request con identificador, solicitante y estado inicial. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US02 | Registrar una solicitud de insumos desde la operación | TK11 | Integrar archivos de sustento | Permitir adjuntar archivos autorizados desde la aplicación móvil y conservar sus metadatos en la solicitud. | 2 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US02 | Registrar una solicitud de insumos desde la operación | TK12 | Probar validaciones de la solicitud | Automatizar los escenarios de creación completa, rechazo por datos faltantes y asociación de documentos. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US04 | Incorporar cotizaciones de proveedores | TK13 | Construir la carga web de cotizaciones | Implementar la selección de PDFs, proveedor y solicitud de destino en la aplicación web. | 2 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US04 | Incorporar cotizaciones de proveedores | TK14 | Implementar recepción y persistencia | Recibir los archivos válidos, registrar metadatos y asociar cada cotización con su solicitud y proveedor. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| US04 | Incorporar cotizaciones de proveedores | TK15 | Controlar archivos inválidos y duplicados | Validar formato y legibilidad, calcular el hash del documento y evitar registros duplicados sin descartar los archivos válidos del lote. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US04 | Incorporar cotizaciones de proveedores | TK16 | Probar la incorporación de cotizaciones | Verificar mediante pruebas de integración los casos válidos, inválidos, dañados y duplicados. | 2 | Fabio Cesar Vallejo Trujillo | To-do |
+| TS01 | Procesar cotizaciones mediante un servicio RESTful de extracción | TK17 | Definir el contrato OpenAPI | Especificar la solicitud, respuesta normalizada, niveles de confianza, referencias de origen y errores del servicio RESTful. | 2 | Luis Alexis Bardales Tejada | To-do |
+| TS01 | Procesar cotizaciones mediante un servicio RESTful de extracción | TK18 | Orquestar el procesamiento autorizado | Implementar el endpoint, autorización y coordinación asíncrona del procesamiento de una cotización soportada. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| TS01 | Procesar cotizaciones mediante un servicio RESTful de extracción | TK19 | Normalizar el resultado de extracción | Mapear proveedor, vigencia, moneda, partidas, cantidades, precios, entrega y especificaciones sin inventar datos ausentes. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| TS01 | Procesar cotizaciones mediante un servicio RESTful de extracción | TK20 | Implementar el adaptador de extracción | Integrar Semantic Kernel y OpenAI detrás de un puerto de infraestructura, validar la salida estructurada y proveer el modo `stub` para contingencia. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| TS01 | Procesar cotizaciones mediante un servicio RESTful de extracción | TK21 | Probar el contrato y los errores REST | Automatizar respuestas exitosas, datos ambiguos, formatos no soportados y errores estructurados sin exposición de información sensible. | 2 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US05 | Verificar la información extraída de una cotización | TK22 | Construir la interfaz de verificación | Mostrar los datos detectados, niveles de confianza, origen y acciones para confirmar o corregir valores. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| US05 | Verificar la información extraída de una cotización | TK23 | Implementar la auditoría de correcciones | Conservar el valor original y vigente, autor, fecha y justificación, e impedir la verificación con datos críticos pendientes. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US05 | Verificar la información extraída de una cotización | TK24 | Probar confirmaciones y correcciones | Automatizar los escenarios de confirmación, corrección trazable y bloqueo por campos obligatorios no verificados. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US06 | Definir los criterios de evaluación de cotizaciones | TK25 | Construir la configuración de criterios | Implementar la interfaz para criterios obligatorios y ponderados de cumplimiento técnico, precio y plazo de entrega. | 2 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US06 | Definir los criterios de evaluación de cotizaciones | TK26 | Modelar escenarios versionados | Implementar Evaluation Scenario, sus versiones y la validación del rango y suma de ponderaciones. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US06 | Definir los criterios de evaluación de cotizaciones | TK27 | Invalidar resultados desactualizados | Marcar las simulaciones que deben repetirse cuando cambie la versión vigente de los criterios. | 2 | Fabio Cesar Vallejo Trujillo | To-do |
+| US06 | Definir los criterios de evaluación de cotizaciones | TK28 | Probar ponderación y versionado | Automatizar configuraciones válidas, ponderaciones inválidas y conservación de versiones anteriores. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US07 | Simular y comparar las cotizaciones elegibles | TK29 | Implementar el motor de simulación | Aplicar requisitos obligatorios, excluir ofertas no elegibles, calcular puntajes ponderados y generar el ranking. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US07 | Simular y comparar las cotizaciones elegibles | TK30 | Construir el cuadro comparativo | Presentar ofertas, contribución por criterio, exclusiones, puntajes y recomendación en la aplicación web. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US07 | Simular y comparar las cotizaciones elegibles | TK31 | Conservar snapshots y huella de entrada | Registrar versiones inmutables de solicitud, cotizaciones y criterios para garantizar la repetibilidad del resultado. | 2 | Fabio Cesar Vallejo Trujillo | To-do |
+| US07 | Simular y comparar las cotizaciones elegibles | TK32 | Probar elegibilidad y repetibilidad | Automatizar la exclusión por criterios obligatorios y la igualdad de resultados con entradas sin cambios. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US07 | Simular y comparar las cotizaciones elegibles | TK33 | Integrar ejecución y consulta de resultados | Conectar la aplicación web con los endpoints de configuración, ejecución y consulta de simulaciones. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US07 | Simular y comparar las cotizaciones elegibles | TK34 | Ejecutar prueba de extremo a extremo | Comprobar el ranking explicable utilizando al menos dos cotizaciones verificadas y una versión vigente de criterios. | 2 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US08 | Aprobar la alternativa seleccionada y generar la orden de compra | TK35 | Implementar generación idempotente | Crear el agregado y la persistencia de Purchase Order a partir de una aprobación autorizada, con restricciones contra duplicados. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US08 | Aprobar la alternativa seleccionada y generar la orden de compra | TK36 | Construir el detalle de la orden | Presentar proveedor, partidas, cantidades, precios, moneda, entrega y referencias de origen en la aplicación web. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US08 | Aprobar la alternativa seleccionada y generar la orden de compra | TK37 | Validar vigencia y trazabilidad | Comprobar que solicitud, cotización, criterios y simulación continúan vigentes antes de aprobar y conservar sus referencias. | 4 | Luis Alexis Bardales Tejada | To-do |
+| US08 | Aprobar la alternativa seleccionada y generar la orden de compra | TK38 | Integrar aprobación y generación | Conectar las acciones de aprobación y generación de la aplicación web con los endpoints del API. | 2 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US08 | Aprobar la alternativa seleccionada y generar la orden de compra | TK39 | Probar duplicados y datos desactualizados | Automatizar el rechazo de simulaciones obsoletas y la devolución de la orden existente ante una solicitud repetida. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US08 | Aprobar la alternativa seleccionada y generar la orden de compra | TK40 | Ejecutar prueba de generación completa | Validar de extremo a extremo que una decisión aprobada produce una orden consistente y que la repetición no crea otra orden. | 2 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US03 | Conocer el avance de una solicitud de compra | TK41 | Construir seguimiento móvil | Implementar la lista de solicitudes y la vista de detalle con estado, última actualización y siguiente área responsable. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US03 | Conocer el avance de una solicitud de compra | TK42 | Implementar historial y notificaciones | Exponer el historial cronológico, registrar cambios con responsable y motivo y notificar al solicitante. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US03 | Conocer el avance de una solicitud de compra | TK43 | Probar seguimiento e historial | Verificar la consulta del estado, el orden cronológico de eventos y la notificación de cambios autorizados. | 2 | Luis Alexis Bardales Tejada | To-do |
+
+La distribución de horas mantiene una carga inicial equivalente entre los integrantes, al mismo tiempo que asigna la mayor participación de cada aspecto a su líder correspondiente.
+
+| Integrante | Horas estimadas | Porcentaje de la capacidad del equipo |
+| --- | ---: | ---: |
+| Luis Alexis Bardales Tejada | 30 | 25 % |
+| Mathias Marcelo De La Cruz De Los Santos | 30 | 25 % |
+| Jhon Danny Guerrero Vasquez | 30 | 25 % |
+| Fabio Cesar Vallejo Trujillo | 30 | 25 % |
+| **Total** | **120** | **100 %** |
 
 ### 5.2.2. Implemented Landing Page Evidence
 
