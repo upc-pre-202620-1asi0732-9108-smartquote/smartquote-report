@@ -232,11 +232,11 @@ La solución está concebida como una herramienta de apoyo a la decisión, no co
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center; vertical-align: top;">Foto pendiente</td>
+      <td style="text-align: center; vertical-align: top;"><img src="assets/profiles/perfil-luis-bardales.jpg" alt="Foto de Luis Alexis Bardales" width="120"></td>
       <td style="vertical-align: top;">Luis Alexis Bardales Tejada</td>
       <td style="vertical-align: top;">u201819276</td>
       <td style="vertical-align: top;">Ingeniería de Software</td>
-      <td style="vertical-align: top;">Resumen pendiente de completar por el integrante.</td>
+      <td style="vertical-align: top;">Soy estudiante de octavo ciclo de la carrera de Ingeniería de Software. Me interesa participar en proyectos que combinan el análisis de problemas, el diseño de soluciones y la documentación técnica. Puedo aportar al equipo mis conocimientos en análisis de requisitos, elaboración de documentación y trabajo colaborativo mediante Git y GitHub. Me caracterizo por ser responsable, perseverante, receptivo a la retroalimentación y dispuesto a aprender, cualidades que me permiten colaborar con el equipo y mejorar continuamente la calidad de los entregables.</td>
     </tr>
     <tr>
       <td style="text-align: center; vertical-align: top;"><img src="assets/profiles/perfil-mathias-delacruz.jpg" alt="Foto de Fabio" width="120"></td>
