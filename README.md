@@ -834,7 +834,7 @@ En esta sección se describen los mecanismos de recuperación de información di
 - Indicadores de color, siempre acompañados de icono y texto:
 - Verde: Cotización verificada o criterio cumplido.
 - Ámbar: Nivel de confianza bajo o resultado desactualizado.
-- Rojo: Criterio incumplido, dato no resuelto o documento no procesable.
+- Rojo: Criterio incumplido, dato no resuelto o documento no procesable. 
 - Filtros como fichas removibles: Las condiciones aplicadas permanecen visibles sobre el listado, junto a una acción de "Limpiar filtros".
 
 **Vista del Especialista de Producción y Sanidad**
