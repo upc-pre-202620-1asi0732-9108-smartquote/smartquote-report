@@ -415,11 +415,80 @@ La estrategia competitiva de SmartQuote no consiste solamente en utilizar inteli
 
 ## 2.2. Entrevistas
 
-Pendiente
+Esta sección presenta el diseño de las entrevistas que se aplicarán a representantes de los dos segmentos objetivo de SmartQuote. La información recolectada permitirá validar el problema, conocer el proceso actual de adquisición e identificar características objetivas y subjetivas necesarias para construir los arquetipos de usuario.
 
 ### 2.2.1. Diseño de entrevistas
 
-Pendiente
+Las entrevistas serán semiestructuradas y tendrán una duración aproximada de 15 a 25 minutos. Se utilizarán preguntas principales para mantener consistencia entre participantes y preguntas complementarias para profundizar en experiencias relevantes. Antes de iniciar, se explicará el propósito académico de la investigación y se solicitará autorización para registrar la sesión en video.
+
+#### Guion de presentación y consentimiento
+
+Buenos días/tardes. Somos estudiantes de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas. Estamos investigando el proceso de adquisición de insumos en empresas del sector avícola para validar una propuesta denominada SmartQuote. La entrevista tiene fines académicos y durará aproximadamente entre 15 y 25 minutos. La información se empleará para analizar necesidades y construir perfiles de usuario. No se publicará información confidencial de la empresa. ¿Autoriza el registro en video de esta entrevista y el uso académico de sus respuestas?
+
+#### Preguntas de perfil para ambos segmentos
+
+Estas preguntas permitirán recolectar las características objetivas y subjetivas necesarias para construir los User Personas. El participante podrá omitir cualquier información personal que no desee compartir.
+
+| N.º | Tipo | Pregunta principal | Preguntas complementarias |
+|---|---|---|---|
+| P1 | Objetiva | ¿Podría indicarnos sus nombres, apellidos, edad, género y distrito de residencia? | ¿Autoriza que estos datos aparezcan en el informe o prefiere ser identificado mediante un código? |
+| P2 | Objetiva | ¿Cuál es su nivel de estudios, profesión y ocupación actual? | ¿En qué área trabaja y cuántos años de experiencia tiene? |
+| P3 | Objetiva | ¿Cuál es su estado civil y cómo está conformada su familia? | ¿Sus responsabilidades familiares influyen en sus horarios o en la forma en que utiliza la tecnología? |
+| P4 | Subjetiva | ¿Cómo describiría su personalidad y su manera de trabajar? | ¿Se considera una persona analítica, práctica, organizada, colaborativa, cautelosa o abierta al cambio? ¿Por qué? |
+| P5 | Subjetiva | ¿Cuáles considera que son sus principales habilidades profesionales? | ¿Qué habilidad utiliza con mayor frecuencia al tomar decisiones o coordinar con otras personas? |
+| P6 | Subjetiva | ¿Cuáles son sus principales objetivos profesionales? | ¿Qué resultado considera exitoso al completar una compra o atender una solicitud? |
+| P7 | Subjetiva | ¿Qué situaciones le producen mayor frustración durante su trabajo? | ¿Qué suele hacer cuando se presenta una demora, error o falta de información? |
+| P8 | Subjetiva | ¿Qué personas, marcas, medios o fuentes influyen en sus decisiones profesionales? | ¿Consulta a colegas, proveedores, asociaciones, redes sociales o páginas especializadas? |
+| P9 | Objetiva | ¿Qué dispositivos utiliza habitualmente durante su trabajo? | ¿Utiliza computadora, teléfono o tableta? ¿Qué sistema operativo y navegador prefiere? |
+| P10 | Objetiva | ¿Qué aplicaciones y canales digitales utiliza con mayor frecuencia? | ¿Utiliza correo, WhatsApp, Microsoft Teams, ERP, Excel, Google Workspace u otras herramientas? |
+| P11 | Subjetiva | ¿Qué tan cómodo se siente aprendiendo una nueva herramienta digital? | ¿Prefiere tutoriales, capacitación, ayuda de un compañero o aprender de manera autónoma? |
+| P12 | Subjetiva | ¿Podría resumir su trayectoria y cómo llegó a desempeñar su función actual? | ¿Qué experiencias han influido más en su forma de trabajar y tomar decisiones? |
+
+#### Segmento 1: Área de Adquisiciones — Analistas y jefes de compras
+
+**Objetivo:** comprender cómo se reciben, revisan y comparan las cotizaciones; cómo se coordina la validación técnica; y qué dificultades enfrentan los responsables de adquisiciones antes de seleccionar un proveedor.
+
+| N.º | Tipo | Pregunta principal | Preguntas complementarias |
+|---|---|---|---|
+| A1 | Objetiva | ¿Qué responsabilidades tiene dentro del proceso de adquisición? | ¿En qué etapas participa y qué decisiones puede aprobar? |
+| A2 | Objetiva | ¿Cuántas solicitudes y cotizaciones procesa aproximadamente por semana o mes? | ¿La cantidad cambia según la temporada o el tipo de insumo? |
+| A3 | Objetiva | ¿Cómo recibe actualmente las solicitudes de compra? | ¿Las recibe mediante ERP, formularios, correo, llamadas o mensajería? |
+| A4 | Objetiva | ¿Qué herramientas utiliza para registrar solicitudes y comparar cotizaciones? | ¿Utiliza Excel, Google Sheets, ERP u otra aplicación? ¿Debe trasladar información manualmente? |
+| A5 | Objetiva | ¿Qué información compara normalmente entre proveedores? | ¿Considera precio, cantidad, disponibilidad, plazo, condiciones de pago, marca y cumplimiento técnico? |
+| A6 | Objetiva | ¿Cuánto tiempo necesita para preparar un cuadro comparativo? | ¿Qué actividad consume más tiempo? ¿Con qué frecuencia debe corregir o rehacer la comparación? |
+| A7 | Subjetiva | ¿Cuál es la parte más difícil o frustrante del proceso? | ¿Puede describir una situación reciente y las consecuencias que produjo? |
+| A8 | Objetiva | ¿Cómo solicita la validación de producción, sanidad u otros especialistas? | ¿Por qué canal se comunican? ¿Cómo conserva la evidencia de la aprobación? |
+| A9 | Subjetiva | ¿Qué tan sencillo es justificar por qué se eligió a un proveedor? | ¿Quién solicita esa justificación y qué documentos debe presentar? |
+| A10 | Objetiva | ¿Qué ocurre cuando una cotización contiene información incompleta o ambigua? | ¿Contacta al proveedor? ¿Cuánto retrasa el proceso? |
+| A11 | Subjetiva | ¿Qué opinión tendría de una herramienta que extraiga información de las cotizaciones mediante inteligencia artificial? | ¿Qué tendría que mostrarle para que confíe en el resultado? ¿Qué información siempre revisaría manualmente? |
+| A12 | Subjetiva | ¿Qué funciones considera indispensables en SmartQuote? | ¿Qué función no utilizaría? ¿Preferiría acceder mediante web, móvil o ambos canales? |
+| A13 | Objetiva | ¿Qué restricciones existen para cargar documentos comerciales en una plataforma? | ¿Se requieren permisos, confidencialidad, auditoría o almacenamiento dentro de la empresa? |
+| A14 | Subjetiva | Si SmartQuote redujera el trabajo manual, ¿qué beneficio sería más importante? | ¿Rapidez, reducción de errores, trazabilidad, coordinación o ahorro? ¿Por qué? |
+
+#### Segmento 2: Área de Producción y Sanidad — Médicos veterinarios, nutricionistas y jefes de granja
+
+**Objetivo:** comprender cómo se originan las necesidades de insumos, qué especificaciones técnicas deben comunicarse, cómo se valida una alternativa y qué información necesitan los responsables operativos para hacer seguimiento a sus solicitudes.
+
+| N.º | Tipo | Pregunta principal | Preguntas complementarias |
+|---|---|---|---|
+| T1 | Objetiva | ¿Qué relación tiene su cargo con la solicitud o validación de insumos? | ¿Qué tipos de insumos solicita o revisa con mayor frecuencia? |
+| T2 | Objetiva | ¿Cómo comunica actualmente una necesidad al área de adquisiciones? | ¿Utiliza formatos, ERP, correo, llamadas o mensajería? |
+| T3 | Objetiva | ¿Qué datos técnicos debe contener una solicitud para evitar errores? | ¿Incluye composición, concentración, presentación, marca, lote, vencimiento o condiciones de almacenamiento? |
+| T4 | Objetiva | ¿Con qué frecuencia una solicitud requiere aclaraciones? | ¿Qué información suele faltar o ser interpretada incorrectamente? |
+| T5 | Subjetiva | ¿Qué dificultades experimenta al hacer seguimiento a una solicitud? | ¿Puede conocer su estado o debe contactar personalmente al área de adquisiciones? |
+| T6 | Objetiva | ¿Cómo valida que una cotización cumpla las condiciones técnicas? | ¿Recibe el documento completo, un resumen o solamente una consulta? |
+| T7 | Subjetiva | ¿Qué consecuencias puede producir la compra tardía o incorrecta de un insumo? | ¿Cómo puede afectar la producción, sanidad, costos o planificación? |
+| T8 | Subjetiva | ¿Qué información necesita para aprobar o rechazar una alternativa? | ¿Necesita comparar documentos, especificaciones, certificados o antecedentes del proveedor? |
+| T9 | Objetiva | ¿Qué insumos o decisiones requieren obligatoriamente aprobación profesional? | ¿Quién debe aprobarlos y cómo se registra actualmente esa decisión? |
+| T10 | Subjetiva | ¿Utilizaría una aplicación móvil para registrar y monitorear solicitudes? | ¿En qué lugar la utilizaría y qué acciones debería realizar rápidamente? |
+| T11 | Subjetiva | ¿Qué nivel de confianza tendría en una recomendación generada mediante inteligencia artificial? | ¿Qué información necesitaría verificar manualmente antes de aceptarla? |
+| T12 | Objetiva | ¿Qué restricciones tecnológicas existen en su entorno de trabajo? | ¿Cuenta siempre con conexión a internet? ¿Utiliza el teléfono mientras se encuentra en granja o campo? |
+| T13 | Subjetiva | ¿Qué cambio mejoraría más la coordinación con adquisiciones? | ¿Alertas, estados, comentarios, formatos técnicos o tiempos de respuesta? |
+| T14 | Subjetiva | ¿Qué funciones considera indispensables en SmartQuote? | ¿Qué función le resultaría innecesaria o difícil de utilizar? |
+
+#### Pregunta de cierre
+
+Para finalizar, ¿existe algún problema, necesidad o experiencia relacionada con el proceso de adquisición que no hayamos mencionado? Muchas gracias por su participación.
 
 ### 2.2.2. Registro de entrevistas
 
