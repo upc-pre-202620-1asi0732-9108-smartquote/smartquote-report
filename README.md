@@ -728,6 +728,9 @@ Para el desarrollo en dispositivos Apple, la interfaz se adapta respetando estri
 
 <img src="assets\design\style-guides\imagen8.png" alt="tipografia ios mobile" width="900px">
 
+* **Espaciado** y Layout: Respeto estricto por las **Safe Areas** para evitar que el contenido se superponga con el *Notch*, la *Dynamic Island* o el *Home Indicator* (barra inferior).
+
+<img src="assets\design\style-guides\imagen9.png" alt="Espaciado y layout ios mobile" width="900px">
 
 #### 4.1.3.2. Android Mobile Style Guidelines
 
