@@ -246,7 +246,7 @@ La solución está concebida como una herramienta de apoyo a la decisión, no co
       <td style="vertical-align: top;">Soy estudiante de la carrera de Ingeniería de Software y actualmente me encuentro cursando el 7to ciclo de la carrera en la Universidad Peruana de Ciencias Aplicadas. Me considero un fanático de la programación, del futbol y los videojuegos. Considero que puedo aportar al equipo y al proyecto mis conocimientos técnicos, además de considerarme una persona disciplinada, responsable y que valora el trabajo en equipo.</td>
     </tr>
     <tr>
-      <td style="text-align: center; vertical-align: top;"><img src="assets/profiles/foto de batman.png>" alt="El domador salvaje" width="120"></td>
+      <td style="text-align: center; vertical-align: top;"><img src="assets/profiles/foto de batman.png" alt="El domador salvaje" width="120"></td>
       <td style="vertical-align: top;">Jhon Danny Guerrero Vasquez</td>
       <td style="vertical-align: top;">u202116246</td>
       <td style="vertical-align: top;">Ingeniería de Software</td>
