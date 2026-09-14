@@ -1093,13 +1093,13 @@ Los presentes diagramas de *user flow* integran los diseños de alta fidelidad c
 
 Se representan dos secuencias de interacción principales:
 
-<img src="assets\design\mobile\Mockups\imagen6.png" alt="User flow mobile inición sesión" width="900px">
-
 * **Flujo de Autenticación y Acceso:** Mapea las transiciones directas entre la pantalla de inicio de sesión (*Login*), la recuperación de credenciales mediante validación (vía código OTP) y el registro de nuevos usuarios.
 
-<img src="assets\design\mobile\Mockups\imagen7.png" alt="User flow mobile solicitud" width="900px">
+<img src="assets\design\mobile\Mockups\imagen6.png" alt="User flow mobile inición sesión" width="900px">
 
 * **Flujo Operativo (US02 y US03):** Detalla la navegación *intra-app*, mostrando cómo el usuario se desplaza desde el panel de inicio hacia el detalle de una solicitud específica. Asimismo, ilustra la ruta transaccional para crear un nuevo requerimiento, desde la pulsación del botón central (CTA) hasta llegar a la confirmación exitosa del sistema.
+
+<img src="assets\design\mobile\Mockups\imagen7.png" alt="User flow mobile solicitud" width="900px">
 
 Estos esquemas validan la ergonomía de la interfaz, asegurando que las secuencias de pantallas fluyan de manera lógica y permitan al personal de campo completar sus tareas con un **número mínimo de interacciones**.
 
