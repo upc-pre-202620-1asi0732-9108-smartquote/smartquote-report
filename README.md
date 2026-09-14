@@ -1072,6 +1072,22 @@ Estos esquemas garantizan una experiencia ágil que **minimiza los clics necesar
 
 ### 4.4.3. Mobile Applications Mock-ups
 
+Los presentes mock-ups exhiben el diseño visual de alta fidelidad (UI) de la aplicación móvil, definiendo la paleta de colores, tipografía y componentes definitivos para el personal de campo.
+
+**Componentes y Estilos Visuales**
+
+* **Autenticación:** Interfaz limpia que utiliza el azul corporativo para jerarquizar las acciones principales de acceso, recuperación y registro de usuarios.
+
+<img src="assets\design\mobile\Mockups\imagen4.png" alt="Mockup de inicio de sesión" width="900px">
+
+* **Operación en Campo (US02 y US03):** Prioriza el alto contraste y el uso de etiquetas de estado por color (verde, rojo, amarillo) para una lectura rápida. El botón de **"Nueva Solicitud"** destaca en verde sobre la barra inferior, agilizando el registro operativo junto con la visualización del sustento técnico.
+
+<img src="assets\design\mobile\Mockups\imagen5.png" alt="Mockup de solicitud" width="900px">
+
+**Especificación Gráfica**
+Estos diseños constituyen la especificación gráfica final para la implementación de la capa de presentación en el *frontend* móvil.
+
+
 ### 4.4.4. Mobile Applications User Flow Diagrams
 
 ## 4.5. Mobile Applications Prototyping
