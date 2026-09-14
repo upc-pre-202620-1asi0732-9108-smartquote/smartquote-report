@@ -1058,6 +1058,24 @@ Los wireframes presentados a continuación materializan las historias de usuario
 
 ### 4.4.2. Mobile Applications Wireflow Diagrams
 
+**WIREFLOWS DE INTERACCIÓN MÓVIL**
+
+Los siguientes wireflows ilustran los flujos de interacción clave de la app móvil de **SmartQuote** para el personal de Producción y Sanidad, asegurando una navegación rápida e intuitiva desde el campo.
+
+**Recorridos Críticos Detallados**
+
+Se detallan dos recorridos críticos para la operación:
+
+* **Flujo de Autenticación y Panel de Inicio:** Muestra la secuencia de acceso seguro (*Login*, recuperación y registro), que desemboca en un tablero central para monitorear y filtrar el estado de los requerimientos (US03).
+* **Flujo de Nueva Solicitud:** Ilustra el recorrido desde el menú inferior hacia el formulario de registro de insumos y sustento técnico (US02), culminando en una pantalla de confirmación de éxito.
+
+**Optimización Operativa**
+
+Estos esquemas garantizan una experiencia ágil que **minimiza los clics necesarios** para reportar las necesidades operativas directamente desde las instalaciones avícolas.
+
+<img src="assets\design\mobile\Wireframes\imagen3.png" alt="flujo de sesion y registro" width="900px">
+
+
 ### 4.4.3. Mobile Applications Mock-ups
 
 ### 4.4.4. Mobile Applications User Flow Diagrams
