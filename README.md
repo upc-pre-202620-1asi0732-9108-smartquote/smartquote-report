@@ -744,6 +744,10 @@ Lineamientos específicos basados en *Material Design 3 (MD3) de Google*.
 
 <img src="assets\design\style-guides\imagen11.png" alt=" Tipogragria android mobile" width="900px">
 
+* **Espaciado y Layout:** Aplicación de la grilla base de 8dp para márgenes y separación de elementos, asegurando áreas táctiles mínimas de 48x48dp.
+
+<img src="assets\design\style-guides\imagen12.png" alt=" Espaciado y layout android mobile" width="900px">
+
 ## 4.2. Information Architecture
 
 ### 4.2.1. Organization Systems
