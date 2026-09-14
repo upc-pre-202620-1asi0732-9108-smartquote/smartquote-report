@@ -60,6 +60,12 @@ Proyecto
 
 ## Registro de Versiones del Informe
 
+| Versión | Fecha | Autor | Descripción de modificación |
+| --- | --- | --- | --- |
+| **AV1** | **13/09/2026** | **Bardales Tejada, Luis Alexis; De La Cruz De Los Santos, Mathias Marcelo; Guerrero Vasquez, Jhon Danny; Vallejo Trujillo, Fabio Cesar** | Consolidación del avance **AV1** del reporte de SmartQuote. Se incorporaron el Student Outcome 4; el Capítulo I (Startup Profile, Solution Profile y segmentos objetivo); el Capítulo II (Competidores, análisis competitivo, estrategias y tácticas, diseño de entrevistas y Ubiquitous Language); el Capítulo III (User Stories y Product Backlog); el Capítulo IV (Style Guidelines, Information Architecture, Landing Page wireframes y mock-ups, arquitectura DDD, diagramas de componentes y clases, y diseño de base de datos); y el Capítulo V (Software Configuration Management y Sprint 1: Sprint Planning, LACX y Sprint Backlog). También se actualizaron los perfiles y assets del equipo, las fuentes citadas, las conclusiones, recomendaciones, bibliografía y anexos. Las evidencias de entrevistas aún no registradas, prototipos de aplicaciones, implementación de productos, documentación de servicios y despliegue se mantienen pendientes para futuras actualizaciones. |
+
+---
+
 ## Project Report Collaboration Insights
 
 ## Contenido
