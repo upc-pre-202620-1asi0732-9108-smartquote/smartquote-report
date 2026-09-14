@@ -1087,8 +1087,22 @@ Los presentes mock-ups exhiben el diseño visual de alta fidelidad (UI) de la ap
 **Especificación Gráfica**
 Estos diseños constituyen la especificación gráfica final para la implementación de la capa de presentación en el *frontend* móvil.
 
-
 ### 4.4.4. Mobile Applications User Flow Diagrams
+
+Los presentes diagramas de *user flow* integran los diseños de alta fidelidad con las rutas lógicas de navegación (señalizadas mediante conectores rojos), ilustrando paso a paso la interacción del usuario final con el sistema.
+
+Se representan dos secuencias de interacción principales:
+
+<img src="assets\design\mobile\Mockups\imagen6.png" alt="User flow mobile inición sesión" width="900px">
+
+* **Flujo de Autenticación y Acceso:** Mapea las transiciones directas entre la pantalla de inicio de sesión (*Login*), la recuperación de credenciales mediante validación (vía código OTP) y el registro de nuevos usuarios.
+
+<img src="assets\design\mobile\Mockups\imagen7.png" alt="User flow mobile solicitud" width="900px">
+
+* **Flujo Operativo (US02 y US03):** Detalla la navegación *intra-app*, mostrando cómo el usuario se desplaza desde el panel de inicio hacia el detalle de una solicitud específica. Asimismo, ilustra la ruta transaccional para crear un nuevo requerimiento, desde la pulsación del botón central (CTA) hasta llegar a la confirmación exitosa del sistema.
+
+Estos esquemas validan la ergonomía de la interfaz, asegurando que las secuencias de pantallas fluyan de manera lógica y permitan al personal de campo completar sus tareas con un **número mínimo de interacciones**.
+
 
 ## 4.5. Mobile Applications Prototyping
 
