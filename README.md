@@ -738,6 +738,12 @@ Para el desarrollo en dispositivos Apple, la interfaz se adapta respetando estri
 
 #### 4.1.3.2. Android Mobile Style Guidelines
 
+Lineamientos específicos basados en *Material Design 3 (MD3) de Google*.
+
+* **Tipografía:** Uso de **Roboto**. Los tamaños de fuente deben definirse obligatoriamente en *sp (Scaleable Pixels)* para adaptarse a las configuraciones de accesibilidad del sistema.
+
+<img src="assets\design\style-guides\imagen11.png" alt=" Tipogragria android mobile" width="900px">
+
 ## 4.2. Information Architecture
 
 ### 4.2.1. Organization Systems
