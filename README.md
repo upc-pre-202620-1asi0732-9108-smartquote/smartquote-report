@@ -1593,6 +1593,26 @@ La distribución de horas mantiene una carga inicial equivalente entre los integ
 
 ## Conclusiones y recomendaciones
 
+El desarrollo documental de SmartQuote permite establecer las siguientes conclusiones y recomendaciones para el avance del proyecto:
+
+1. SmartQuote atiende un problema concreto de las empresas avícolas: la revisión manual y dispersa de cotizaciones con requisitos técnicos y condiciones comerciales heterogéneas. La propuesta articula en un solo flujo la solicitud de insumos, la recepción de ofertas, su comparación, la aprobación y la generación de la orden de compra, manteniendo la participación de adquisiciones, producción y sanidad.
+
+2. El análisis de usuarios, entrevistas, competencia, Lean UX y Needfinding orientó una propuesta especializada en el sector avícola, en lugar de replicar el alcance generalista de una suite de procurement. Esta definición aporta una base coherente para el producto, aunque las hipótesis y metas de adopción, tiempo, precisión y satisfacción todavía deben contrastarse con un piloto y usuarios reales.
+
+3. La arquitectura monolítica modular basada en DDD y Clean Architecture separa los contextos de solicitudes, cotizaciones, evaluación y órdenes de compra, y centraliza las reglas de negocio en el API RESTful. El uso de contratos, snapshots versionados, huellas de entrada e idempotencia proporciona una base técnica adecuada para la trazabilidad y para evitar que una modificación posterior altere la evidencia de una decisión ya evaluada.
+
+4. La extracción asistida por IA puede reducir el esfuerzo de estructurar cotizaciones PDF, pero no elimina la responsabilidad del analista ni garantiza por sí misma resultados confiables. El diseño reconoce esta limitación mediante niveles de confianza, valores no resueltos, correcciones auditables, aprobación humana y un proveedor alterno `stub`; por ello, la viabilidad de la solución depende de medir la precisión y controlar los casos de baja confianza antes de automatizar decisiones.
+
+**Recomendaciones**
+
+1. Ejecutar un piloto controlado con empresas avícolas y representantes de ambos segmentos, utilizando cotizaciones autorizadas y anonimizadas. El piloto debe medir el tiempo de elaboración del cuadro comparativo, la precisión de los campos obligatorios, las correcciones por documento, la trazabilidad, la satisfacción y la adopción, y usar esos resultados para reordenar el Product Backlog y ajustar el alcance de las siguientes iteraciones.
+
+2. Acompañar el despliegue con un plan de adopción y gobierno del producto: definir responsables por rol, capacitar a analistas y especialistas, documentar el tratamiento de información confidencial, obtener consentimiento para las entrevistas y pruebas, y establecer un canal para reportar errores o sugerir mejoras. La expansión a nuevas categorías de insumos debe realizarse progresivamente, después de demostrar valor en el flujo avícola inicial.
+
+3. Priorizar la construcción de un vertical slice integrado —solicitud, carga, extracción, verificación, simulación y orden— antes de ampliar funcionalidades. Cada contexto debe contar con pruebas unitarias, escenarios BDD, pruebas de contrato del API y una prueba de extremo a extremo; el pipeline de GitHub Actions debe bloquear la integración cuando fallen compilación, análisis, pruebas o validaciones de seguridad.
+
+4. Formalizar la evaluación técnica del componente de IA con un corpus mínimo de quince cotizaciones anonimizadas de al menos tres estructuras, una referencia verificada por campo y umbrales de confianza configurables. Los datos bajo el umbral deben pasar a revisión manual, conservar el origen y la corrección, y alimentar métricas de calidad; además, se deben proteger documentos y credenciales mediante secretos administrados, control de acceso, registros de auditoría, monitoreo de errores y el modo `stub` para demostraciones sin conectividad.
+
 # Bibliografía
 
 - Coupa. (s. f.). *Coupa for suppliers*. Recuperado el 9 de septiembre de 2026, de https://docs.coupa.com/en/supplier-documentation/coupa-for-suppliers
