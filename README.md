@@ -709,8 +709,7 @@ En cuanto a la interactividad, la plataforma utiliza una lógica de componentes 
 
 Para el desarrollo en dispositivos Apple, la interfaz se adapta respetando estrictamente las *Human Interface Guidelines* (HIG):
 
-* **Tipografía:** Uso exclusivo de la familia tipográfica **San Francisco (SF Pro)**.
-* Debe soportar *Dynamic Type* para que el usuario pueda escalar el tamaño de lectura de los requerimientos técnicos según sus necesidades operativas de accesibilidad en el campo.
+* **Tipografía:** Uso exclusivo de la familia tipográfica **San Francisco (SF Pro)**. Debe soportar *Dynamic Type* para que el usuario pueda escalar el tamaño de lectura de los requerimientos técnicos según sus necesidades operativas de accesibilidad en el campo.
 
 <img src="assets\design\style-guides\imagen8.png" alt="tipografia ios mobile" width="900px">
 
