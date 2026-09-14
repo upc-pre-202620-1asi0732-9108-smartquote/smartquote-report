@@ -1031,13 +1031,31 @@ A continuación, se presentan los mock-ups de la versión móvil. Cada imagen mu
 
 ### 4.4.1. Mobile Applications Wireframes
 
-La presente sección detalla los wireframes (esquemas visuales de baja y media fidelidad) diseñados para la aplicación móvil de SmartQuote. La conceptualización de esta interfaz se ha desarrollado bajo un enfoque centrado en el usuario (User-Centered Design), orientándose exclusivamente al Segmento 2: Área de Producción y Sanidad (médicos veterinarios, nutricionistas y jefes de granja).
-Dado que estos usuarios operan principalmente en entornos productivos e instalaciones avícolas, la arquitectura de la información y el diseño visual de la aplicación móvil priorizan la accesibilidad, la lectura de alto contraste y la eficiencia en la captura de datos desde el campo. Las funcionalidades complejas de evaluación, procesamiento de Inteligencia Artificial y gestión comercial se han delegado a la aplicación web, manteniendo la aplicación móvil como una herramienta ágil y transaccional.
-Los wireframes presentados a continuación materializan las historias de usuario de mayor prioridad para el entorno operativo, estructurándose en las siguientes pantallas clave:
-Pantalla de Inicio (Dashboard): Actúa como el punto de entrada principal, proporcionando un resumen inmediato del estado operativo y albergando el llamado a la acción (CTA) principal: un botón de acceso rápido para la creación de nuevas solicitudes.
-Registro de Solicitud de Insumos (US02): Representa el flujo de captura de necesidades operativas. El diseño minimiza la carga cognitiva mediante campos estructurados, selectores rápidos de prioridad y accesos directos para la integración de sustento técnico (captura fotográfica o carga de documentos).
-Seguimiento y Trazabilidad (US03): Pantallas destinadas al monitoreo del ciclo de vida de la compra. Se incluye una vista de lista con filtros rápidos (Pendientes, En Evaluación, Aprobadas) y una vista de detalle que expone la línea de tiempo cronológica de los cambios de estado, garantizando la visibilidad del proceso de abastecimiento para el personal de campo.
-Estos esquemas sirven como base arquitectónica para el desarrollo del frontend móvil, asegurando que el despliegue final cumpla con los estándares de usabilidad requeridos para la operación del sector avícola.
+La presente sección detalla los wireframes (esquemas visuales de baja y media fidelidad) diseñados para la aplicación móvil de **SmartQuote**. La conceptualización de esta interfaz se ha desarrollado bajo un enfoque centrado en el usuario (*User-Centered Design*), orientándose exclusivamente al **Segmento 2: Área de Producción y Sanidad** (médicos veterinarios, nutricionistas y jefes de granja).
+
+---
+
+**Enfoque de Diseño y Contexto Operativo**
+
+Dado que estos usuarios operan principalmente en entornos productivos e instalaciones avícolas, la arquitectura de la información y el diseño visual de la aplicación móvil priorizan:
+
+* **Accesibilidad:** Lectura de alto contraste adaptada para entornos de campo.
+* **Eficiencia:** Captura rápida de datos directamente desde el terreno.
+* **Simplicidad:** Las funcionalidades complejas de evaluación, procesamiento de Inteligencia Artificial y gestión comercial se han delegado a la aplicación web, manteniendo la aplicación móvil como una herramienta ágil y transaccional.
+
+---
+
+**Pantallas Clave y Flujos de Usuario**
+
+Los wireframes presentados a continuación materializan las historias de usuario de mayor prioridad para el entorno operativo, estructurándose en las siguientes pantallas:
+
+* **Pantalla de Inicio (Dashboard):** Actúa como el punto de entrada principal, proporcionando un resumen inmediato del estado operativo y albergando el llamado a la acción (CTA) principal: un botón de acceso rápido para la creación de nuevas solicitudes.
+* **Registro de Solicitud de Insumos (US02):** Representa el flujo de captura de necesidades operativas. El diseño minimiza la carga cognitiva mediante campos estructurados, selectores rápidos de prioridad y accesos directos para la integración de sustento técnico (captura fotográfica o carga de documentos).
+* **Seguimiento y Trazabilidad (US03):** Pantallas destinadas al monitoreo del ciclo de vida de la compra. Incluye:
+  * *Vista de lista:* Con filtros rápidos (Pendientes, En Evaluación, Aprobadas).
+  * *Vista de detalle:* Expone la línea de tiempo cronológica de los cambios de estado, garantizando la visibilidad del proceso de abastecimiento para el personal de campo.
+
+---
 
 <img src="assets\design\mobile\Wireframes\imagen1.png" alt="Inicio de sesión mobile" Width="900px">
 <img src="assets\design\mobile\Wireframes\imagen2.png" alt="Registro de solicitud mobile" Width="900px">
