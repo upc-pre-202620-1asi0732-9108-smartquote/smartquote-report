@@ -705,6 +705,21 @@ En cuanto a la interactividad, la plataforma utiliza una lógica de componentes 
 
 ### 4.1.3. Mobile Style Guidelines
 
+Esta sección define los principios visuales compartidos para la aplicación móvil, garantizando la consistencia de la marca en cualquier dispositivo.
+
+**Branding y Colores**
+* **Color Primario:** Azul corporativo, utilizado en cabeceras, botones de confirmación estándar y navegación.
+* **Acción Principal (CTA):** Verde, reservado exclusivamente para el botón central de "Nueva Solicitud".
+* **Colores Semánticos (Estados):** 
+  * Verde: *Aprobada*
+  * Rojo: *Desaprobada*
+  * Amarillo: *En revisión*
+
+**Contenedores y Layout**
+* **Estructura:** Uso de fondos claros (blanco/gris claro) con tarjetas (*Cards*) de bordes redondeados para agrupar la información.
+* **Objetivo:** Maximizar el contraste y la legibilidad del personal durante la operación en campo.
+
+
 #### 4.1.3.1. iOS Mobile Style Guidelines
 
 Para el desarrollo en dispositivos Apple, la interfaz se adapta respetando estrictamente las *Human Interface Guidelines* (HIG):
