@@ -748,6 +748,10 @@ Lineamientos específicos basados en *Material Design 3 (MD3) de Google*.
 
 <img src="assets\design\style-guides\imagen12.png" alt=" Espaciado y layout android mobile" width="900px">
 
+* **Componentes Nativos:** Implementación de un *Floating Action Button (FAB)* anclado en la parte inferior para el botón de "Nueva Solicitud", y uso de Outlined Text Fields (campos con contorno) en los formularios de registro.
+
+<img src="assets\design\style-guides\imagen13.png" alt=" Componentes nativos android mobile" width="900px">
+
 ## 4.2. Information Architecture
 
 ### 4.2.1. Organization Systems
