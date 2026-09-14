@@ -732,6 +732,10 @@ Para el desarrollo en dispositivos Apple, la interfaz se adapta respetando estri
 
 <img src="assets\design\style-guides\imagen9.png" alt="Espaciado y layout ios mobile" width="900px">
 
+* **Componentes Nativos**: Implementación de *Action Sheets* inferiores para menús de selección (ej. opciones de adjuntar archivo) y *Date Pickers* nativos de iOS para los formularios.
+
+<img src="assets\design\style-guides\imagen10.png" alt=" Reglas componentes nativos ios mobile" width="900px">
+
 #### 4.1.3.2. Android Mobile Style Guidelines
 
 ## 4.2. Information Architecture
