@@ -1389,6 +1389,2019 @@ El agregado raíz `PurchaseOrder` representa la orden emitida a partir de una de
 
 ### 4.9.2. Class Dictionary
 
+El diccionario de clases especifica las clases, interfaces, objetos de valor, enumeraciones y eventos que aparecen en los diagramas de clases del backend. La nomenclatura conserva el idioma inglés definido para el código C# y cada ficha identifica el *bounded context*, la responsabilidad, los atributos y las operaciones visibles en el diagrama. Los tipos `UUID` representados en PlantUML se implementan como `Guid` en .NET; las colecciones `IReadOnlyList` representan listas de solo lectura cuyo tipo de elemento está definido por el contrato correspondiente.
+
+Las clases genéricas de **Shared** se reutilizan en los cuatro contextos y se documentan una sola vez. Las demás clases se agrupan por *bounded context*.
+
+#### Shared (tipos genéricos)
+
+##### `AggregateRoot<TId>`
+
+- **Bounded Context:** Shared (reutilizado por todos los contextos).
+- **Descripción / propósito:** Clase abstracta base para los agregados del dominio. Define el concepto común de una raíz de agregado identificada por un tipo de identificador `TId` y sirve como punto de consistencia transaccional.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | El diagrama no declara atributos explícitos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| — | — | — | El diagrama no declara operaciones explícitas. |
+
+##### `IDomainEvent`
+
+- **Bounded Context:** Shared (reutilizado por todos los contextos).
+- **Descripción / propósito:** Contrato marcador para los eventos de dominio publicados por los agregados cuando ocurre un cambio relevante.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz no declara atributos en el diagrama. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz marcadora no declara operaciones en el diagrama. |
+
+##### `UserId`
+
+- **Bounded Context:** Shared (reutilizado por todos los contextos).
+- **Descripción / propósito:** Objeto de valor que representa de forma tipada e inmutable al usuario que origina o autoriza una operación.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Value` | `Guid` | Identificador único del usuario. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran operaciones propias. |
+
+##### `Money`
+
+- **Bounded Context:** Shared (reutilizado por Quotation Intake, Evaluation & Simulation y Purchase Ordering).
+- **Descripción / propósito:** Objeto de valor que mantiene un importe junto con su moneda para impedir cálculos monetarios ambiguos entre contextos.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Amount` | `decimal` | Importe monetario. |
+| `+` | `Currency` | `string` | Código o denominación de la moneda. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran operaciones propias. |
+
+#### 4.9.2.1. Supply Requests Context
+
+##### `PurchaseRequestsController`
+
+- **Bounded Context:** Supply Requests — Interfaces.
+- **Descripción / propósito:** Punto de entrada HTTP de ASP.NET Core para registrar solicitudes de abastecimiento, consultar su información e historial y cambiar su estado.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | El controlador no declara atributos en el diagrama. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Register(request)` | `ActionResult` | Registra una nueva solicitud de insumos. |
+| `+` | `GetById(requestId)` | `ActionResult` | Obtiene una solicitud por su identificador. |
+| `+` | `GetHistory(requestId)` | `ActionResult` | Devuelve el historial de estados de una solicitud. |
+| `+` | `ChangeStatus(requestId, request)` | `ActionResult` | Solicita la transición de estado de la solicitud. |
+
+##### `PurchaseRequestCommandService`
+
+- **Bounded Context:** Supply Requests — Application.
+- **Descripción / propósito:** Servicio de aplicación que coordina los casos de uso que modifican el agregado `PurchaseRequest` y delega la persistencia a un puerto.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Register(command)` | `PurchaseRequestId` | Crea y registra una solicitud. |
+| `+` | `AddAttachment(command)` | `void` | Asocia un adjunto a una solicitud existente. |
+| `+` | `ChangeStatus(command)` | `void` | Ejecuta una transición de estado validada. |
+
+##### `PurchaseRequestQueryService`
+
+- **Bounded Context:** Supply Requests — Application.
+- **Descripción / propósito:** Servicio de aplicación de solo lectura para consultar solicitudes, su historial y el contrato publicado a otros contextos.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetById(requestId)` | `PurchaseRequestView` | Obtiene la vista de una solicitud. |
+| `+` | `GetHistory(requestId)` | `RequestHistoryView` | Obtiene los cambios de estado registrados. |
+| `+` | `GetSnapshot(requestId)` | `PurchaseRequestSnapshot` | Publica una copia versionada de solo lectura. |
+
+##### `IPurchaseRequestRepository`
+
+- **Bounded Context:** Supply Requests — Application (puerto).
+- **Descripción / propósito:** Abstracción de persistencia requerida por la aplicación para mantener el agregado sin depender de Entity Framework Core ni de PostgreSQL.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetByIdAsync(requestId)` | `PurchaseRequest` | Recupera el agregado solicitado. |
+| `+` | `AddAsync(request)` | `void` | Persiste una nueva solicitud. |
+| `+` | `UpdateAsync(request)` | `void` | Persiste cambios de una solicitud. |
+
+##### `IRequestNotificationPort`
+
+- **Bounded Context:** Supply Requests — Application (puerto).
+- **Descripción / propósito:** Puerto que desacopla la notificación de cambios de estado de la implementación concreta de mensajería o notificaciones internas.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `NotifyStatusChanged(event)` | `void` | Notifica que cambió el estado de una solicitud. |
+
+##### `IPurchaseRequestSnapshotProvider`
+
+- **Bounded Context:** Supply Requests — Application (contrato publicado).
+- **Descripción / propósito:** Contrato de lectura que permite a otros contextos obtener una copia inmutable y versionada de una solicitud sin acceder a su agregado interno.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de contrato no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetSnapshot(requestId)` | `PurchaseRequestSnapshot` | Obtiene el snapshot publicado de la solicitud. |
+
+##### `PurchaseRequestSnapshot`
+
+- **Bounded Context:** Supply Requests — Application (DTO inmutable publicado).
+- **Descripción / propósito:** Representación de solo lectura de una solicitud para integraciones con Quotation Intake y Evaluation & Simulation. Incluye la versión utilizada para trazabilidad.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `RequestId` | `string` | Identificador público de la solicitud. |
+| `+` | `Version` | `long` | Versión del agregado al momento de publicar el snapshot. |
+| `+` | `Status` | `string` | Estado actual serializado. |
+| `+` | `RequesterId` | `string` | Identificador del solicitante. |
+| `+` | `RequiredDate` | `DateOnly` | Fecha en la que se necesita el abastecimiento. |
+| `+` | `Priority` | `string` | Prioridad de la solicitud. |
+| `+` | `Items` | `IReadOnlyList` | Ítems y requisitos técnicos solicitados. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| — | — | — | DTO sin operaciones de dominio. |
+
+##### `RequestStatusChangedNotificationHandler`
+
+- **Bounded Context:** Supply Requests — Application.
+- **Descripción / propósito:** Manejador que reacciona al evento `PurchaseRequestStatusChanged` y envía la notificación mediante `IRequestNotificationPort`.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Handle(event)` | `void` | Procesa el evento de cambio de estado. |
+
+##### `PurchaseRequest`
+
+- **Bounded Context:** Supply Requests — Domain.
+- **Descripción / propósito:** Raíz de agregado que representa la solicitud de insumos originada por producción o sanidad. Protege las invariantes de ítems, requisitos, adjuntos, estados y versionado.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `PurchaseRequestId` | Identificador de la solicitud. |
+| `-` | `RequesterId` | `UserId` | Usuario que registra la solicitud. |
+| `-` | `RequiredDate` | `DateOnly` | Fecha requerida para el abastecimiento. |
+| `-` | `Priority` | `RequestPriority` | Nivel de prioridad operacional. |
+| `-` | `Status` | `RequestStatus` | Estado actual del ciclo de vida. |
+| `-` | `Version` | `long` | Versión para concurrencia y trazabilidad. |
+| `-` | `CreatedAt` | `DateTimeOffset` | Fecha y hora de creación. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Create(requesterId, requiredDate, priority)` | `PurchaseRequest` | Crea una solicitud válida. |
+| `+` | `AddItem(item)` | `void` | Agrega un insumo solicitado. |
+| `+` | `AddAttachment(attachment)` | `void` | Agrega un documento de sustento. |
+| `+` | `ChangeStatus(nextStatus, changedBy, reason)` | `void` | Cambia el estado y registra la justificación. |
+
+##### `RequestedItem`
+
+- **Bounded Context:** Supply Requests — Domain.
+- **Descripción / propósito:** Entidad hija que describe un insumo requerido, su cantidad y unidad de medida.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `RequestedItemId` | Identificador del ítem. |
+| `-` | `Description` | `string` | Descripción del insumo. |
+| `-` | `Quantity` | `decimal` | Cantidad requerida. |
+| `-` | `UnitOfMeasure` | `string` | Unidad en la que se expresa la cantidad. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `AddRequirement(requirement)` | `void` | Agrega una condición técnica al ítem. |
+
+##### `TechnicalRequirement`
+
+- **Bounded Context:** Supply Requests — Domain.
+- **Descripción / propósito:** Entidad que formaliza una especificación técnica que debe cumplir el insumo, por ejemplo una concentración, porcentaje o cepa veterinaria.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `TechnicalRequirementId` | Identificador del requisito. |
+| `+` | `Name` | `string` | Nombre de la especificación. |
+| `+` | `Operator` | `ComparisonOperator` | Operador para evaluar el valor. |
+| `+` | `ExpectedValue` | `string` | Valor esperado. |
+| `+` | `UnitOfMeasure` | `string` | Unidad del valor esperado. |
+| `+` | `IsMandatory` | `bool` | Indica si el requisito excluye una oferta cuando no se cumple. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran operaciones propias. |
+
+##### `RequestAttachment`
+
+- **Bounded Context:** Supply Requests — Domain.
+- **Descripción / propósito:** Entidad que registra un archivo adjunto asociado a una solicitud y los datos necesarios para localizarlo y auditar su carga.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `RequestAttachmentId` | Identificador del adjunto. |
+| `-` | `FileName` | `string` | Nombre original del archivo. |
+| `-` | `ContentType` | `string` | Tipo MIME del contenido. |
+| `-` | `StorageKey` | `string` | Clave de almacenamiento del archivo. |
+| `-` | `UploadedBy` | `UserId` | Usuario que cargó el archivo. |
+| `-` | `UploadedAt` | `DateTimeOffset` | Fecha y hora de carga. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran operaciones propias. |
+
+##### `RequestStatusEntry`
+
+- **Bounded Context:** Supply Requests — Domain.
+- **Descripción / propósito:** Entidad de historial que conserva cada transición de estado, quién la realizó, cuándo ocurrió y por qué.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `FromStatus` | `RequestStatus` | Estado anterior. |
+| `-` | `ToStatus` | `RequestStatus` | Nuevo estado. |
+| `-` | `ChangedBy` | `UserId` | Usuario que realizó el cambio. |
+| `-` | `ChangedAt` | `DateTimeOffset` | Fecha y hora de la transición. |
+| `-` | `Reason` | `string` | Justificación del cambio. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran operaciones propias. |
+
+##### `RequestPriority`
+
+- **Bounded Context:** Supply Requests — Domain.
+- **Descripción / propósito:** Enumeración que clasifica la urgencia de una solicitud de abastecimiento.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `Normal` | Solicitud sin urgencia extraordinaria. |
+| `High` | Solicitud prioritaria para la operación. |
+| `Emergency` | Solicitud crítica que requiere atención inmediata. |
+
+**Operaciones:** No aplica.
+
+##### `RequestStatus`
+
+- **Bounded Context:** Supply Requests — Domain.
+- **Descripción / propósito:** Enumeración del ciclo de vida de una solicitud desde su preparación hasta su resolución.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `Draft` | Solicitud en preparación. |
+| `Submitted` | Solicitud enviada para atención. |
+| `UnderReview` | Solicitud en revisión. |
+| `QuotationCollection` | Se están recopilando cotizaciones. |
+| `Evaluation` | Las cotizaciones están siendo evaluadas. |
+| `Approved` | Solicitud aprobada. |
+| `Ordered` | Se generó la orden de compra. |
+| `Rejected` | Solicitud rechazada. |
+| `Cancelled` | Solicitud cancelada. |
+
+**Operaciones:** No aplica.
+
+##### `ComparisonOperator`
+
+- **Bounded Context:** Supply Requests — Domain.
+- **Descripción / propósito:** Enumeración de operadores disponibles para comparar un valor extraído con un requisito técnico.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `Equals` | El valor debe coincidir. |
+| `GreaterThanOrEqual` | El valor debe ser mayor o igual. |
+| `LessThanOrEqual` | El valor debe ser menor o igual. |
+| `Contains` | El texto debe contener el valor esperado. |
+
+**Operaciones:** No aplica.
+
+##### `PurchaseRequestSubmitted`
+
+- **Bounded Context:** Supply Requests — Domain.
+- **Descripción / propósito:** Evento publicado cuando una solicitud queda enviada y disponible para el flujo de adquisiciones.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `RequestId` | `PurchaseRequestId` | Solicitud que originó el evento. |
+| `+` | `OccurredAt` | `DateTimeOffset` | Instante en que ocurrió el evento. |
+
+**Operaciones:** No se muestran operaciones.
+
+##### `PurchaseRequestStatusChanged`
+
+- **Bounded Context:** Supply Requests — Domain.
+- **Descripción / propósito:** Evento que informa una transición de estado para activar notificaciones y mantener la trazabilidad.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `RequestId` | `PurchaseRequestId` | Solicitud afectada. |
+| `+` | `RequesterId` | `UserId` | Solicitante al que corresponde la notificación. |
+| `+` | `PreviousStatus` | `RequestStatus` | Estado anterior. |
+| `+` | `NewStatus` | `RequestStatus` | Estado nuevo. |
+| `+` | `Reason` | `string` | Motivo del cambio. |
+| `+` | `OccurredAt` | `DateTimeOffset` | Instante en que ocurrió. |
+
+**Operaciones:** No se muestran operaciones.
+
+##### `PostgreSqlPurchaseRequestRepository`
+
+- **Bounded Context:** Supply Requests — Infrastructure.
+- **Descripción / propósito:** Adaptador que implementa `IPurchaseRequestRepository` utilizando Entity Framework Core y PostgreSQL.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetByIdAsync(requestId)` | `PurchaseRequest` | Recupera el agregado desde PostgreSQL. |
+| `+` | `AddAsync(request)` | `void` | Inserta la solicitud y sus entidades dependientes. |
+| `+` | `UpdateAsync(request)` | `void` | Actualiza el agregado persistido. |
+
+##### `InAppRequestNotificationAdapter`
+
+- **Bounded Context:** Supply Requests — Infrastructure.
+- **Descripción / propósito:** Implementación interna del puerto de notificaciones para distribuir cambios de estado dentro de la aplicación modular.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `NotifyStatusChanged(event)` | `void` | Publica la notificación interna del cambio. |
+
+#### 4.9.2.2. Quotation Intake Context
+
+##### `PoultryQuotesController`
+
+- **Bounded Context:** Quotation Intake — Interfaces.
+- **Descripción / propósito:** Controlador REST que recibe cotizaciones de proveedores, inicia su procesamiento, expone el resultado de extracción y permite confirmar o corregir campos.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | El controlador no declara atributos en el diagrama. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Upload(requestId, supplier, files)` | `ActionResult` | Registra los documentos de una cotización para una solicitud. |
+| `+` | `Process(quotationId)` | `ActionResult` | Inicia la extracción de información del documento. |
+| `+` | `GetExtraction(quotationId)` | `ActionResult` | Consulta los campos extraídos y su confianza. |
+| `+` | `Confirm(quotationId)` | `ActionResult` | Confirma la información verificada por el usuario. |
+| `+` | `CorrectField(quotationId, fieldId, request)` | `ActionResult` | Registra una corrección manual trazable. |
+
+##### `QuoteExtractionService`
+
+- **Bounded Context:** Quotation Intake — Application.
+- **Descripción / propósito:** Orquesta el ciclo de vida de una cotización: carga, extracción asistida por IA, corrección, confirmación y publicación del snapshot verificado.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Upload(command)` | `PoultryQuoteId` | Crea una cotización a partir de un documento fuente. |
+| `+` | `Process(quotationId)` | `void` | Ejecuta la extracción estructurada. |
+| `+` | `Confirm(quotationId, confirmedBy)` | `void` | Confirma los datos revisados. |
+| `+` | `CorrectField(command)` | `void` | Aplica y registra una corrección de campo. |
+| `+` | `GetVerifiedSnapshots(requestId)` | `IReadOnlyList` | Devuelve las cotizaciones verificadas de una solicitud. |
+
+##### `IPoultryQuoteRepository`
+
+- **Bounded Context:** Quotation Intake — Application (puerto).
+- **Descripción / propósito:** Puerto de persistencia del agregado `PoultryQuote`, incluyendo la comprobación de documentos duplicados.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetByIdAsync(quotationId)` | `PoultryQuote` | Recupera una cotización. |
+| `+` | `ExistsByRequestAndHashAsync(requestId, hash)` | `bool` | Comprueba si el mismo documento ya fue cargado para la solicitud. |
+| `+` | `AddAsync(quotation)` | `void` | Persiste una cotización nueva. |
+| `+` | `UpdateAsync(quotation)` | `void` | Persiste cambios de una cotización. |
+
+##### `IQuoteExtractionAgent`
+
+- **Bounded Context:** Quotation Intake — Application (puerto).
+- **Descripción / propósito:** Abstracción del agente de IA que transforma un documento no estructurado en datos de cotización estructurados.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Extract(document)` | `ExtractionResult` | Extrae campos, líneas y referencias del documento. |
+
+##### `IPurchaseRequestReferenceReader`
+
+- **Bounded Context:** Quotation Intake — Application (puerto anticorrupción).
+- **Descripción / propósito:** Permite comprobar que la solicitud de abastecimiento referenciada sigue activa sin acoplar el contexto a su modelo interno.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `IsActive(requestId)` | `bool` | Indica si la solicitud asociada puede recibir cotizaciones. |
+
+##### `IVerifiedQuotationSnapshotProvider`
+
+- **Bounded Context:** Quotation Intake — Application (contrato publicado).
+- **Descripción / propósito:** Contrato de consulta que expone a Evaluation & Simulation únicamente cotizaciones verificadas e inmutables.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de contrato no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetVerifiedForRequest(requestId)` | `IReadOnlyList` | Obtiene las cotizaciones verificadas de una solicitud. |
+
+##### `ExtractionResult`
+
+- **Bounded Context:** Quotation Intake — Application (DTO del agente).
+- **Descripción / propósito:** Resultado estructurado que devuelve el agente de IA antes de mapearlo al agregado de dominio.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Supplier` | `string` | Proveedor identificado. |
+| `+` | `ValidUntil` | `DateOnly` | Fecha de vigencia detectada. |
+| `+` | `Currency` | `string` | Moneda de la cotización. |
+| `+` | `DeliveryLeadTimeDays` | `int` | Plazo de entrega en días. |
+| `+` | `Lines` | `IReadOnlyList` | Líneas de productos extraídas. |
+| `+` | `Fields` | `IReadOnlyList` | Campos y referencias extraídos. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `ExtractedFieldResult`
+
+- **Bounded Context:** Quotation Intake — Application (DTO del agente).
+- **Descripción / propósito:** Resultado de un campo individual, incluyendo confianza y evidencia textual para facilitar la verificación humana.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `FieldPath` | `string` | Ruta del campo dentro del documento. |
+| `+` | `Value` | `string` | Valor extraído. |
+| `+` | `Confidence` | `decimal` | Confianza asignada por el agente. |
+| `+` | `PageNumber` | `int` | Página donde se encontró el dato. |
+| `+` | `TextReference` | `string` | Fragmento o referencia textual de respaldo. |
+| `+` | `IsResolved` | `bool` | Indica si el campo quedó resuelto. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `VerifiedQuotationSnapshot`
+
+- **Bounded Context:** Quotation Intake — Application (DTO inmutable publicado).
+- **Descripción / propósito:** Copia versionada de una cotización que ya superó la verificación y puede ser consumida por el motor de simulación.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `QuotationId` | `string` | Identificador de la cotización. |
+| `+` | `Version` | `long` | Versión verificada. |
+| `+` | `PurchaseRequestId` | `string` | Solicitud a la que pertenece. |
+| `+` | `Supplier` | `string` | Nombre del proveedor. |
+| `+` | `Currency` | `string` | Moneda de los importes. |
+| `+` | `Lines` | `IReadOnlyList` | Líneas verificadas. |
+| `+` | `DeliveryLeadTimeDays` | `int` | Plazo de entrega verificado. |
+| `+` | `VerifiedAt` | `DateTimeOffset` | Fecha y hora de confirmación. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `PoultryQuote`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Raíz de agregado que representa una oferta de proveedor para una solicitud avícola. Mantiene el documento fuente, la extracción, las correcciones, la verificación y el estado de la cotización.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `PoultryQuoteId` | Identificador de la cotización. |
+| `-` | `RequestReference` | `PurchaseRequestReference` | Referencia a la solicitud de origen. |
+| `-` | `Supplier` | `SupplierReference` | Identidad y datos fiscales del proveedor. |
+| `-` | `SourceDocument` | `SourceDocument` | Metadatos y hash del documento cargado. |
+| `-` | `ValidUntil` | `DateOnly` | Fecha hasta la que es válida la oferta. |
+| `-` | `Currency` | `string` | Moneda de la oferta. |
+| `-` | `DeliveryLeadTimeDays` | `int` | Plazo de entrega ofrecido. |
+| `-` | `Status` | `QuotationStatus` | Estado del procesamiento y verificación. |
+| `-` | `Version` | `long` | Versión del agregado. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Create(requestReference, supplier, document)` | `PoultryQuote` | Crea una cotización asociada a una solicitud activa. |
+| `+` | `BeginExtraction()` | `void` | Marca el inicio de la extracción. |
+| `+` | `ApplyExtraction(data)` | `void` | Aplica datos estructurados al agregado. |
+| `+` | `CorrectField(fieldId, value, author, reason)` | `void` | Corrige un dato y conserva su trazabilidad. |
+| `+` | `Confirm(confirmedBy)` | `void` | Confirma la cotización verificada. |
+| `+` | `Reject(reason)` | `void` | Rechaza la cotización con un motivo. |
+| `+` | `HasUnresolvedRequiredFields()` | `bool` | Comprueba si quedan campos obligatorios sin resolver. |
+
+##### `QuotationLine`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Entidad hija que representa una línea de la oferta del proveedor y permite calcular sus importes.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `QuotationLineId` | Identificador de la línea. |
+| `-` | `RequestedItemId` | `string?` | Identificador del ítem solicitado, si pudo asociarse. |
+| `-` | `LineNumber` | `int` | Número de línea del documento. |
+| `-` | `Description` | `string` | Descripción ofertada. |
+| `-` | `Quantity` | `decimal` | Cantidad ofertada. |
+| `-` | `UnitOfMeasure` | `string` | Unidad de medida. |
+| `-` | `UnitPrice` | `decimal?` | Precio unitario, si fue extraído. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `AsMoney(currency)` | `Money` | Convierte el precio unitario a un objeto monetario. |
+| `+` | `CalculateSubtotal(currency)` | `Money` | Calcula cantidad por precio unitario. |
+| `+` | `AddSpecification(specification)` | `void` | Agrega una especificación ofertada. |
+
+##### `QuotedSpecification`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Objeto de valor con la especificación técnica de un producto tal como fue ofertada.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Name` | `string` | Nombre de la especificación. |
+| `+` | `Value` | `string` | Valor ofertado. |
+| `+` | `UnitOfMeasure` | `string` | Unidad del valor. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `ExtractedField`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Entidad que conserva el valor original extraído, su valor vigente, la confianza, la fuente y el estado de resolución.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `ExtractedFieldId` | Identificador del campo. |
+| `-` | `FieldPath` | `string` | Ruta lógica del campo. |
+| `-` | `OriginalValue` | `string` | Valor entregado originalmente por la IA. |
+| `-` | `CurrentValue` | `string` | Valor actualmente considerado válido. |
+| `-` | `IsRequired` | `bool` | Indica si el campo es obligatorio. |
+| `-` | `Confidence` | `ConfidenceScore` | Nivel de confianza de la extracción. |
+| `-` | `Source` | `SourceReference` | Evidencia de ubicación en el documento. |
+| `-` | `Status` | `FieldResolutionStatus` | Estado de resolución del campo. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `MarkUnresolved()` | `void` | Marca el campo como no resuelto. |
+| `+` | `Confirm()` | `void` | Confirma el valor vigente. |
+| `+` | `Correct(value, author, reason)` | `void` | Corrige el valor y registra la justificación. |
+
+##### `FieldCorrection`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Entidad de auditoría de una corrección aplicada a un campo extraído.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `PreviousValue` | `string` | Valor anterior. |
+| `-` | `CorrectedValue` | `string` | Valor corregido. |
+| `-` | `CorrectedBy` | `UserId` | Usuario que corrigió. |
+| `-` | `CorrectedAt` | `DateTimeOffset` | Fecha y hora de la corrección. |
+| `-` | `Reason` | `string` | Motivo de la corrección. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `PurchaseRequestReference`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Objeto de valor que referencia la solicitud de abastecimiento sin importar su agregado ni su representación interna.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `RequestId` | `string` | Identificador externo de la solicitud. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `SupplierReference`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Objeto de valor con la identidad mínima del proveedor necesaria para comparar y trazabilizar una oferta.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `SupplierId` | `string` | Identificador del proveedor. |
+| `+` | `BusinessName` | `string` | Razón social o nombre comercial. |
+| `+` | `TaxIdentifier` | `string` | Identificador tributario. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `SourceDocument`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Objeto de valor que identifica el documento cargado y permite detectar duplicados mediante su hash SHA-256.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `FileName` | `string` | Nombre del archivo. |
+| `+` | `ContentType` | `string` | Tipo MIME. |
+| `+` | `StorageKey` | `string` | Clave de almacenamiento. |
+| `+` | `SHA256Hash` | `string` | Huella del contenido del documento. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `ConfidenceScore`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Objeto de valor que normaliza la confianza calculada para un campo extraído.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Value` | `decimal` | Confianza expresada como valor decimal. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `IsAbove(threshold)` | `bool` | Indica si supera el umbral de confianza. |
+
+##### `SourceReference`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Objeto de valor que ubica la evidencia utilizada para verificar un dato extraído.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `PageNumber` | `int` | Número de página. |
+| `+` | `TextReference` | `string` | Texto o referencia dentro de la página. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `ExtractedQuotationData`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Objeto de valor que agrupa los datos estructurados que el agregado recibe tras la extracción.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Supplier` | `SupplierReference` | Proveedor extraído. |
+| `+` | `ValidUntil` | `DateOnly` | Vigencia extraída. |
+| `+` | `Currency` | `string` | Moneda detectada. |
+| `+` | `DeliveryLeadTimeDays` | `int` | Plazo de entrega. |
+| `+` | `Lines` | `IReadOnlyList` | Líneas de la oferta. |
+| `+` | `Fields` | `IReadOnlyList` | Campos extraídos. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `QuotationStatus`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Enumeración del ciclo de procesamiento y verificación de una cotización.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `Uploaded` | Documento cargado. |
+| `Processing` | Extracción en ejecución. |
+| `RequiresVerification` | Requiere revisión o corrección humana. |
+| `Verified` | Datos confirmados y publicados. |
+| `Rejected` | Oferta descartada. |
+
+**Operaciones:** No aplica.
+
+##### `FieldResolutionStatus`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Enumeración del estado de resolución de un campo extraído.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `Resolved` | El agente obtuvo un valor utilizable. |
+| `Unresolved` | El valor no pudo resolverse. |
+| `Corrected` | Un usuario modificó el valor. |
+| `Confirmed` | El usuario confirmó el valor. |
+
+**Operaciones:** No aplica.
+
+##### `QuotationUploaded`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Evento que anuncia la creación de una cotización y habilita su procesamiento.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `QuotationId` | `PoultryQuoteId` | Cotización cargada. |
+| `+` | `RequestId` | `string` | Solicitud relacionada. |
+| `+` | `OccurredAt` | `DateTimeOffset` | Instante de publicación. |
+
+**Operaciones:** No se muestran operaciones.
+
+##### `QuotationVerified`
+
+- **Bounded Context:** Quotation Intake — Domain.
+- **Descripción / propósito:** Evento que comunica que una cotización fue verificada y ya puede participar en simulaciones.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `QuotationId` | `PoultryQuoteId` | Cotización verificada. |
+| `+` | `RequestId` | `string` | Solicitud relacionada. |
+| `+` | `Version` | `long` | Versión verificada. |
+| `+` | `OccurredAt` | `DateTimeOffset` | Instante de publicación. |
+
+**Operaciones:** No se muestran operaciones.
+
+##### `PostgreSqlPoultryQuoteRepository`
+
+- **Bounded Context:** Quotation Intake — Infrastructure.
+- **Descripción / propósito:** Adaptador de persistencia para `PoultryQuote`, implementado con Entity Framework Core sobre PostgreSQL.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetByIdAsync(quotationId)` | `PoultryQuote` | Recupera una cotización. |
+| `+` | `ExistsByRequestAndHashAsync(requestId, hash)` | `bool` | Verifica duplicidad por solicitud y hash. |
+| `+` | `AddAsync(quotation)` | `void` | Inserta una cotización. |
+| `+` | `UpdateAsync(quotation)` | `void` | Actualiza una cotización. |
+
+##### `SemanticKernelAgentConnector`
+
+- **Bounded Context:** Quotation Intake — Infrastructure.
+- **Descripción / propósito:** Adaptador de IA que encapsula Semantic Kernel/OpenAI, prepara el prompt estructurado y valida la respuesta JSON antes de entregarla a la aplicación.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Extract(document)` | `ExtractionResult` | Solicita y devuelve la extracción estructurada. |
+| `-` | `BuildStructuredPrompt(document)` | `string` | Construye el prompt con el esquema esperado. |
+| `-` | `ValidateStructuredOutput(response)` | `ExtractionResult` | Valida y convierte la respuesta estructurada. |
+
+##### `SupplyRequestReferenceAdapter`
+
+- **Bounded Context:** Quotation Intake — Infrastructure.
+- **Descripción / propósito:** Adaptador en proceso que implementa la lectura de referencia de solicitudes mediante el contrato público de Supply Requests.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `IsActive(requestId)` | `bool` | Comprueba la vigencia de una solicitud. |
+
+##### `OpenAIPlatform`
+
+- **Bounded Context:** Quotation Intake — Infrastructure (sistema externo).
+- **Descripción / propósito:** Plataforma externa consumida por HTTPS para procesar documentos mediante un modelo de lenguaje y devolver datos estructurados.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Sistema externo sin atributos del dominio local. |
+
+**Operaciones:** No se modelan operaciones locales.
+
+##### `SupplyRequestsPublicContract`
+
+- **Bounded Context:** Quotation Intake — Infrastructure (contrato externo).
+- **Descripción / propósito:** Representación del contrato público publicado por Supply Requests para consultar si una solicitud permanece activa.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | El contrato se consume como interfaz/puerto. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+#### 4.9.2.3. Evaluation & Simulation Context
+
+##### `SimulationsController`
+
+- **Bounded Context:** Evaluation & Simulation — Interfaces.
+- **Descripción / propósito:** Controlador REST que crea escenarios versionados, ejecuta simulaciones y devuelve resultados o snapshots de decisiones aprobadas.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | El controlador no declara atributos en el diagrama. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `CreateScenario(request)` | `ActionResult` | Crea el escenario inicial de una solicitud. |
+| `+` | `CreateScenarioVersion(scenarioId, request)` | `ActionResult` | Crea una nueva versión sin sobrescribir la utilizada. |
+| `+` | `RunSimulation(scenarioId)` | `ActionResult` | Ejecuta la comparación con las cotizaciones verificadas. |
+| `+` | `GetResult(simulationRunId)` | `ActionResult` | Consulta el resultado de una ejecución. |
+
+##### `ScenarioApplicationService`
+
+- **Bounded Context:** Evaluation & Simulation — Application.
+- **Descripción / propósito:** Servicio de aplicación que administra el ciclo de vida de escenarios y sus versiones para una solicitud.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Create(command)` | `EvaluationScenarioId` | Registra un escenario con sus criterios. |
+| `+` | `CreateNextVersion(command)` | `EvaluationScenarioId` | Genera una versión posterior del escenario. |
+| `+` | `GetCurrentForRequest(requestId)` | `EvaluationScenarioView` | Obtiene el escenario vigente de una solicitud. |
+
+##### `SimulationApplicationService`
+
+- **Bounded Context:** Evaluation & Simulation — Application.
+- **Descripción / propósito:** Orquesta la ejecución del motor de simulación, la validación de vigencia y la publicación de una decisión aprobada.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Run(command)` | `SimulationRunId` | Ejecuta y persiste una simulación. |
+| `+` | `GetResult(simulationRunId)` | `SimulationResultView` | Obtiene el resultado calculado. |
+| `+` | `GetApprovedSnapshot(runId, quotationId)` | `ApprovedSimulationSnapshot` | Publica la decisión aprobada para Purchase Ordering. |
+
+##### `SimulationValidityService`
+
+- **Bounded Context:** Evaluation & Simulation — Application.
+- **Descripción / propósito:** Servicio que comprueba que una ejecución sigue basada en las versiones actuales de solicitud y cotizaciones.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `EnsureCurrent(simulationRun)` | `void` | Rechaza el uso de una ejecución obsoleta. |
+| `+` | `CalculateCurrentFingerprint(run)` | `InputFingerprint` | Calcula la huella actual de entradas. |
+
+##### `EvaluationInputAssembler`
+
+- **Bounded Context:** Evaluation & Simulation — Application (mapeador anticorrupción).
+- **Descripción / propósito:** Convierte snapshots publicados de Supply Requests y Quotation Intake en el conjunto de datos propio del motor.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Assemble(request, quotations)` | `EvaluationDataset` | Ensambla la entrada coherente y versionada de la simulación. |
+
+##### `IEvaluationScenarioRepository`
+
+- **Bounded Context:** Evaluation & Simulation — Application (puerto).
+- **Descripción / propósito:** Abstracción para guardar y consultar escenarios y sus versiones.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetByIdAsync(scenarioId)` | `EvaluationScenario` | Recupera un escenario por identificador. |
+| `+` | `GetCurrentForRequestAsync(requestId)` | `EvaluationScenario` | Obtiene la versión vigente de una solicitud. |
+| `+` | `AddAsync(scenario)` | `void` | Persiste un escenario. |
+
+##### `ISimulationRunRepository`
+
+- **Bounded Context:** Evaluation & Simulation — Application (puerto).
+- **Descripción / propósito:** Abstracción de persistencia de ejecuciones, resultados y búsqueda por huella de entradas.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetByIdAsync(runId)` | `SimulationRun` | Recupera una ejecución. |
+| `+` | `FindByFingerprintAsync(fingerprint)` | `SimulationRun` | Busca una ejecución con las mismas entradas. |
+| `+` | `AddAsync(run)` | `void` | Persiste una ejecución nueva. |
+
+##### `IPurchaseRequestSnapshotReader`
+
+- **Bounded Context:** Evaluation & Simulation — Application (puerto).
+- **Descripción / propósito:** Puerto para leer la solicitud publicada por Supply Requests.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetCurrent(requestId)` | `PurchaseRequestSnapshot` | Obtiene el snapshot vigente. |
+
+##### `IVerifiedQuotationSnapshotReader`
+
+- **Bounded Context:** Evaluation & Simulation — Application (puerto).
+- **Descripción / propósito:** Puerto para leer las cotizaciones verificadas publicadas por Quotation Intake.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetCurrentForRequest(requestId)` | `IReadOnlyList` | Obtiene las cotizaciones vigentes. |
+
+##### `ISimulationDecisionReader`
+
+- **Bounded Context:** Evaluation & Simulation — Application (contrato publicado).
+- **Descripción / propósito:** Contrato de lectura utilizado por Purchase Ordering para obtener la decisión aprobada de una cotización.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de contrato no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetApprovedSnapshot(runId, quotationId)` | `ApprovedSimulationSnapshot` | Obtiene una decisión vigente e inmutable. |
+
+##### `PurchaseRequestSnapshot`
+
+- **Bounded Context:** Evaluation & Simulation — Application (DTO importado).
+- **Descripción / propósito:** Copia local de los datos de la solicitud necesarios para evaluar requisitos y fechas, sin importar el agregado de Supply Requests.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `RequestId` | `string` | Solicitud evaluada. |
+| `+` | `Version` | `long` | Versión utilizada. |
+| `+` | `RequiredDate` | `DateOnly` | Fecha de abastecimiento. |
+| `+` | `Priority` | `string` | Prioridad de la solicitud. |
+| `+` | `Items` | `IReadOnlyList` | Ítems y requisitos importados. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `VerifiedQuotationSnapshot`
+
+- **Bounded Context:** Evaluation & Simulation — Application (DTO importado).
+- **Descripción / propósito:** Copia local de una cotización verificada, utilizada como entrada inmutable de una simulación.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `QuotationId` | `string` | Cotización evaluada. |
+| `+` | `Version` | `long` | Versión verificada. |
+| `+` | `Supplier` | `string` | Proveedor. |
+| `+` | `Currency` | `string` | Moneda. |
+| `+` | `Lines` | `IReadOnlyList` | Líneas ofertadas. |
+| `+` | `DeliveryLeadTimeDays` | `int` | Plazo de entrega. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `ApprovedSimulationSnapshot`
+
+- **Bounded Context:** Evaluation & Simulation — Application (DTO inmutable publicado).
+- **Descripción / propósito:** Contrato de salida que conserva la cotización recomendada, sus líneas, condiciones y huella de entradas para generar una orden trazable.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `SimulationRunId` | `string` | Ejecución que produjo la decisión. |
+| `+` | `RequestId` | `string` | Solicitud de origen. |
+| `+` | `SelectedQuotationId` | `string` | Cotización seleccionada. |
+| `+` | `Supplier` | `string` | Proveedor seleccionado. |
+| `+` | `Currency` | `string` | Moneda. |
+| `+` | `OrderLines` | `IReadOnlyList` | Líneas que podrán convertirse en orden. |
+| `+` | `DeliveryTerms` | `string` | Condiciones de entrega. |
+| `+` | `InputFingerprint` | `string` | Huella de solicitud, cotizaciones y criterios. |
+| `+` | `IsCurrent` | `bool` | Indica si la decisión sigue vigente. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `EvaluationScenario`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Raíz de agregado que define cómo se ponderan y comparan las cotizaciones de una solicitud. Sus versiones permiten simular prioridades financieras, urgencias de entrega o cumplimiento técnico sin alterar resultados históricos.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `EvaluationScenarioId` | Identificador del escenario. |
+| `-` | `RequestId` | `string` | Solicitud a la que aplica. |
+| `-` | `Version` | `int` | Número de versión. |
+| `-` | `Status` | `ScenarioStatus` | Estado del escenario. |
+| `-` | `CreatedBy` | `UserId` | Usuario que lo creó. |
+| `-` | `CreatedAt` | `DateTimeOffset` | Fecha y hora de creación. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Create(requestId, createdBy)` | `EvaluationScenario` | Crea un escenario inicial. |
+| `+` | `AddCriterion(criterion)` | `void` | Agrega una regla de evaluación. |
+| `+` | `Activate()` | `void` | Activa un escenario validado. |
+| `+` | `CreateNextVersion()` | `EvaluationScenario` | Genera una versión independiente. |
+| `+` | `ValidateWeights()` | `void` | Comprueba pesos no negativos y suma válida. |
+
+##### `EvaluationCriterion`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Entidad que define una regla obligatoria o ponderada para evaluar precio, plazo de entrega o cumplimiento técnico.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `EvaluationCriterionId` | Identificador del criterio. |
+| `-` | `Name` | `string` | Nombre legible de la regla. |
+| `-` | `TargetField` | `string` | Campo del conjunto de datos que se evalúa. |
+| `-` | `Category` | `CriterionCategory` | Categoría de negocio. |
+| `-` | `Mode` | `CriterionMode` | Modalidad obligatoria o ponderada. |
+| `-` | `Operator` | `ComparisonOperator` | Operador de comparación. |
+| `-` | `ExpectedValue` | `string` | Valor esperado. |
+| `-` | `UnitOfMeasure` | `string` | Unidad del valor. |
+| `-` | `Weight` | `decimal` | Peso relativo del criterio. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Evaluate(input)` | `CriterionResult` | Evalúa una entrada y devuelve el resultado normalizado. |
+
+##### `SimulationRun`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Raíz de agregado que registra una ejecución reproducible del escenario sobre un conjunto versionado de cotizaciones.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `SimulationRunId` | Identificador de la ejecución. |
+| `-` | `ScenarioId` | `EvaluationScenarioId` | Escenario utilizado. |
+| `-` | `CriteriaVersion` | `int` | Versión de criterios aplicada. |
+| `-` | `InputFingerprint` | `InputFingerprint` | Huella de todas las entradas. |
+| `-` | `ExecutedAt` | `DateTimeOffset` | Fecha y hora de ejecución. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `AddEvaluation(evaluation)` | `void` | Agrega el resultado de una cotización. |
+| `+` | `DefineRecommendation()` | `void` | Define la recomendación a partir del ranking. |
+| `+` | `GetEvaluation(quotationId)` | `QuotationEvaluation` | Obtiene la evaluación de una cotización. |
+| `+` | `IsBasedOn(fingerprint)` | `bool` | Comprueba si usa una huella determinada. |
+
+##### `QuotationEvaluation`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Entidad que conserva elegibilidad, puntaje, posición y resultados de criterios de una cotización.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `QuotationId` | `string` | Cotización evaluada. |
+| `-` | `IsEligible` | `bool` | Indica si cumple los criterios obligatorios. |
+| `-` | `TotalScore` | `Score` | Puntaje total. |
+| `-` | `Rank` | `int` | Posición en el ranking. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Exclude(reason)` | `void` | Excluye la oferta y registra el motivo. |
+| `+` | `AddCriterionResult(result)` | `void` | Agrega un resultado de criterio. |
+| `+` | `CalculateTotalScore()` | `void` | Calcula el puntaje acumulado. |
+
+##### `CriterionResult`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Objeto de valor que explica el resultado y la contribución ponderada de un criterio.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `CriterionId` | `EvaluationCriterionId` | Criterio aplicado. |
+| `+` | `Passed` | `bool` | Indica si la condición se cumple. |
+| `+` | `NormalizedScore` | `decimal` | Puntaje normalizado. |
+| `+` | `WeightedContribution` | `decimal` | Aporte después del peso. |
+| `+` | `Explanation` | `string` | Explicación comprobable del resultado. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `ExclusionReason`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Objeto de valor que documenta por qué una cotización no es elegible.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `CriterionId` | `EvaluationCriterionId` | Criterio que provocó la exclusión. |
+| `+` | `Code` | `string` | Código de la causa. |
+| `+` | `Explanation` | `string` | Detalle legible de la causa. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `Recommendation`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Objeto de valor con la cotización elegida por el ranking y la explicación de la recomendación.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `QuotationId` | `string` | Cotización recomendada. |
+| `+` | `Score` | `Score` | Puntaje obtenido. |
+| `+` | `Explanation` | `string` | Justificación de la selección. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `Score`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Objeto de valor que representa un puntaje normalizado para comparar cotizaciones.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Value` | `decimal` | Valor del puntaje. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `InputFingerprint`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Objeto de valor que identifica las versiones de solicitud, cotizaciones y criterios utilizadas en una ejecución determinista.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Value` | `string` | Huella calculada de las entradas. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Matches(other)` | `bool` | Comprueba igualdad con otra huella. |
+
+##### `EvaluationDataset`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Objeto de valor que agrupa la solicitud y todas las cotizaciones verificadas que alimentan el motor.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Request` | `RequestEvaluationSnapshot` | Datos de la solicitud. |
+| `+` | `Quotations` | `IReadOnlyList` | Cotizaciones evaluables. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `CalculateFingerprint()` | `InputFingerprint` | Calcula una huella reproducible del conjunto. |
+
+##### `RequestEvaluationSnapshot`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Snapshot de solo lectura con los datos de la solicitud relevantes para la evaluación.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `RequestId` | `string` | Identificador de la solicitud. |
+| `+` | `Version` | `long` | Versión utilizada. |
+| `+` | `RequiredDate` | `DateOnly` | Fecha requerida. |
+| `+` | `Priority` | `string` | Prioridad. |
+| `+` | `Requirements` | `IReadOnlyList` | Requisitos técnicos. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `QuotationEvaluationSnapshot`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Snapshot de una cotización verificada preparado para comparar precio, plazo y especificaciones.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `QuotationId` | `string` | Identificador de la cotización. |
+| `+` | `Version` | `long` | Versión de datos utilizada. |
+| `+` | `Supplier` | `string` | Proveedor. |
+| `+` | `Lines` | `IReadOnlyList` | Líneas de la cotización. |
+| `+` | `DeliveryLeadTimeDays` | `int` | Plazo de entrega. |
+| `+` | `Specifications` | `IReadOnlyList` | Especificaciones ofertadas. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `TotalPrice()` | `Money` | Calcula el precio total en la moneda de la cotización. |
+
+##### `SimulationEngine`
+
+- **Bounded Context:** Evaluation & Simulation — Domain (servicio de dominio y núcleo del producto).
+- **Descripción / propósito:** Ejecuta el algoritmo de evaluación: aplica criterios obligatorios, excluye ofertas no elegibles, normaliza pesos, calcula puntajes y genera el ranking recomendado.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Run(scenario, dataset)` | `SimulationRun` | Ejecuta la simulación completa. |
+| `-` | `ApplyMandatoryCriteria(scenario, dataset)` | `IReadOnlyList` | Aplica reglas de cumplimiento obligatorio. |
+| `-` | `ScoreEligibleQuotations(scenario, dataset)` | `IReadOnlyList` | Calcula contribuciones de ofertas elegibles. |
+| `-` | `Rank(evaluations)` | `Recommendation` | Ordena resultados y obtiene la recomendación. |
+
+##### `CriterionCategory`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Clasifica el aspecto de negocio que se evalúa.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `Price` | Precio o costo total. |
+| `DeliveryTime` | Plazo de entrega. |
+| `TechnicalCompliance` | Cumplimiento de especificaciones técnicas. |
+
+**Operaciones:** No aplica.
+
+##### `CriterionMode`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Indica si un criterio es una condición de exclusión o una ponderación.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `Mandatory` | Debe cumplirse para ser elegible. |
+| `Weighted` | Aporta un peso al puntaje final. |
+
+**Operaciones:** No aplica.
+
+##### `ComparisonOperator`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Enumeración de operadores para comparar una oferta con el valor esperado.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `Equals` | Coincidencia exacta. |
+| `GreaterThanOrEqual` | Mayor o igual que el valor esperado. |
+| `LessThanOrEqual` | Menor o igual que el valor esperado. |
+| `Contains` | Contiene el texto esperado. |
+
+**Operaciones:** No aplica.
+
+##### `ScenarioStatus`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Estado de una versión de escenario de evaluación.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `Draft` | Versión en construcción. |
+| `Active` | Versión vigente para simular. |
+| `Superseded` | Versión reemplazada por otra. |
+
+**Operaciones:** No aplica.
+
+##### `SimulationCompleted`
+
+- **Bounded Context:** Evaluation & Simulation — Domain.
+- **Descripción / propósito:** Evento publicado cuando termina una simulación y queda definida la cotización recomendada.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `SimulationRunId` | `SimulationRunId` | Ejecución finalizada. |
+| `+` | `ScenarioId` | `EvaluationScenarioId` | Escenario aplicado. |
+| `+` | `RecommendedQuotationId` | `string` | Cotización recomendada. |
+| `+` | `InputFingerprint` | `string` | Huella de entradas. |
+| `+` | `OccurredAt` | `DateTimeOffset` | Instante de finalización. |
+
+**Operaciones:** No se muestran operaciones.
+
+##### `PostgreSqlEvaluationScenarioRepository`
+
+- **Bounded Context:** Evaluation & Simulation — Infrastructure.
+- **Descripción / propósito:** Adaptador Entity Framework Core/PostgreSQL para la persistencia de escenarios y sus criterios.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | El diagrama no declara atributos. |
+
+**Operaciones:** No se muestran operaciones propias en el diagrama.
+
+##### `PostgreSqlSimulationRunRepository`
+
+- **Bounded Context:** Evaluation & Simulation — Infrastructure.
+- **Descripción / propósito:** Adaptador Entity Framework Core/PostgreSQL para persistir ejecuciones, evaluaciones y recomendaciones.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | El diagrama no declara atributos. |
+
+**Operaciones:** No se muestran operaciones propias en el diagrama.
+
+##### `SupplyRequestSnapshotAdapter`
+
+- **Bounded Context:** Evaluation & Simulation — Infrastructure.
+- **Descripción / propósito:** Adaptador en proceso que implementa `IPurchaseRequestSnapshotReader` consumiendo el contrato público de Supply Requests.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetCurrent(requestId)` | `PurchaseRequestSnapshot` | Obtiene la solicitud publicada vigente. |
+
+##### `VerifiedQuotationSnapshotAdapter`
+
+- **Bounded Context:** Evaluation & Simulation — Infrastructure.
+- **Descripción / propósito:** Adaptador en proceso que implementa `IVerifiedQuotationSnapshotReader` mediante el contrato público de Quotation Intake.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetCurrentForRequest(requestId)` | `IReadOnlyList` | Obtiene cotizaciones verificadas vigentes. |
+
+##### `SupplyRequestsPublicContract`
+
+- **Bounded Context:** Evaluation & Simulation — Infrastructure (contrato externo).
+- **Descripción / propósito:** Referencia al contrato publicado por Supply Requests que entrega snapshots de solicitudes.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Contrato sin atributos locales. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `QuotationIntakePublicContract`
+
+- **Bounded Context:** Evaluation & Simulation — Infrastructure (contrato externo).
+- **Descripción / propósito:** Referencia al contrato publicado por Quotation Intake que entrega cotizaciones verificadas.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Contrato sin atributos locales. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+#### 4.9.2.4. Purchase Ordering Context
+
+##### `PurchaseOrdersController`
+
+- **Bounded Context:** Purchase Ordering — Interfaces.
+- **Descripción / propósito:** Controlador REST que autoriza y genera órdenes a partir de decisiones aprobadas, y permite consultar órdenes por identificador o simulación.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | El controlador no declara atributos en el diagrama. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `ApproveAndGenerate(runId, quotationId, request)` | `ActionResult` | Autoriza la decisión y genera la orden idempotentemente. |
+| `+` | `GetById(purchaseOrderId)` | `ActionResult` | Obtiene una orden por su identificador. |
+| `+` | `GetBySimulation(runId)` | `ActionResult` | Obtiene la orden originada por una simulación. |
+
+##### `PurchaseOrderApplicationService`
+
+- **Bounded Context:** Purchase Ordering — Application.
+- **Descripción / propósito:** Coordina la aprobación y generación de la orden, comprueba idempotencia, consulta la decisión publicada y persiste el agregado resultante.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `ApproveAndGenerate(command)` | `PurchaseOrder` | Produce o recupera la orden asociada a una decisión aprobada. |
+| `+` | `GetById(purchaseOrderId)` | `PurchaseOrderView` | Consulta una orden. |
+| `+` | `GetBySimulation(runId)` | `PurchaseOrderView` | Consulta la orden de una ejecución. |
+
+##### `ApprovedDecisionMapper`
+
+- **Bounded Context:** Purchase Ordering — Application (mapeador anticorrupción).
+- **Descripción / propósito:** Traduce el contrato de Evaluation & Simulation al objeto de valor local `ApprovedPurchaseDecision`, evitando compartir modelos internos entre contextos.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Map(snapshot)` | `ApprovedPurchaseDecision` | Convierte una decisión aprobada al modelo local. |
+
+##### `IPurchaseOrderRepository`
+
+- **Bounded Context:** Purchase Ordering — Application (puerto).
+- **Descripción / propósito:** Abstracción de persistencia de órdenes que también permite garantizar una orden única por simulación y clave idempotente.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetByIdAsync(purchaseOrderId)` | `PurchaseOrder` | Recupera una orden. |
+| `+` | `FindBySimulationAsync(simulationRunId)` | `PurchaseOrder` | Busca la orden de una simulación. |
+| `+` | `FindByIdempotencyKeyAsync(key)` | `PurchaseOrder` | Busca una orden ya creada para la misma solicitud. |
+| `+` | `AddAsync(purchaseOrder)` | `void` | Persiste una orden nueva. |
+
+##### `IOrderNumberGenerator`
+
+- **Bounded Context:** Purchase Ordering — Application (puerto).
+- **Descripción / propósito:** Abstracción de generación de números de orden para que la aplicación no dependa de una estrategia concreta de secuenciación.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `NextAsync()` | `OrderNumber` | Obtiene el siguiente número de orden. |
+
+##### `ISimulationDecisionReader`
+
+- **Bounded Context:** Purchase Ordering — Contract from Evaluation & Simulation.
+- **Descripción / propósito:** Contrato importado que permite consultar la decisión aprobada de una simulación sin acceder al modelo del contexto de evaluación.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de contrato no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetApprovedSnapshot(runId, quotationId)` | `ApprovedSimulationSnapshot` | Obtiene la decisión vigente. |
+
+##### `ApprovedSimulationSnapshot`
+
+- **Bounded Context:** Purchase Ordering — Contract from Evaluation & Simulation.
+- **Descripción / propósito:** DTO inmutable que contiene la decisión de simulación necesaria para construir la orden.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `SimulationRunId` | `string` | Ejecución de origen. |
+| `+` | `RequestId` | `string` | Solicitud de origen. |
+| `+` | `SelectedQuotationId` | `string` | Cotización seleccionada. |
+| `+` | `SupplierId` | `string` | Identificador del proveedor. |
+| `+` | `SupplierName` | `string` | Nombre del proveedor. |
+| `+` | `Currency` | `string` | Moneda de la orden. |
+| `+` | `OrderLines` | `IReadOnlyList` | Líneas aprobadas. |
+| `+` | `DeliveryTerms` | `string` | Condiciones de entrega. |
+| `+` | `InputFingerprint` | `string` | Huella de las entradas evaluadas. |
+| `+` | `IsCurrent` | `bool` | Indica si la decisión es vigente. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `PurchaseOrder`
+
+- **Bounded Context:** Purchase Ordering — Domain.
+- **Descripción / propósito:** Raíz de agregado que representa la orden de compra emitida. Conserva la decisión aprobada, el proveedor, la aprobación, las líneas, las condiciones de entrega y el estado final.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `PurchaseOrderId` | Identificador de la orden. |
+| `-` | `OrderNumber` | `OrderNumber` | Número legible de la orden. |
+| `-` | `SourceDecision` | `SourceSimulationReference` | Referencia de la decisión que la originó. |
+| `-` | `Supplier` | `SupplierSnapshot` | Copia inmutable del proveedor. |
+| `-` | `Approval` | `Approval` | Datos de autorización e idempotencia. |
+| `-` | `Status` | `PurchaseOrderStatus` | Estado de la orden. |
+| `-` | `Currency` | `string` | Moneda común de las líneas. |
+| `-` | `DeliveryTerms` | `DeliveryTerms` | Condiciones y destino de entrega. |
+| `-` | `CreatedAt` | `DateTimeOffset` | Fecha y hora de creación. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Create(number, decision, approval)` | `PurchaseOrder` | Crea la orden a partir de una decisión autorizada. |
+| `+` | `AddLine(line)` | `void` | Agrega una línea de compra. |
+| `+` | `Issue()` | `void` | Emite la orden y publica el evento correspondiente. |
+| `+` | `CalculateTotal()` | `Money` | Calcula el total de la orden. |
+
+##### `PurchaseOrderLine`
+
+- **Bounded Context:** Purchase Ordering — Domain.
+- **Descripción / propósito:** Entidad hija que representa un producto o insumo incluido en la orden de compra.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `-` | `Id` | `PurchaseOrderLineId` | Identificador de línea. |
+| `-` | `Description` | `string` | Descripción del producto. |
+| `-` | `Quantity` | `decimal` | Cantidad comprada. |
+| `-` | `UnitOfMeasure` | `string` | Unidad de medida. |
+| `-` | `UnitPrice` | `Money` | Precio unitario y moneda. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `CalculateSubtotal()` | `Money` | Calcula el subtotal de la línea. |
+
+##### `ApprovedPurchaseDecision`
+
+- **Bounded Context:** Purchase Ordering — Domain.
+- **Descripción / propósito:** Objeto de valor local que representa la decisión de simulación validada y lista para convertirse en orden.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `SimulationRunId` | `string` | Ejecución de origen. |
+| `+` | `PurchaseRequestId` | `string` | Solicitud de origen. |
+| `+` | `QuotationId` | `string` | Cotización seleccionada. |
+| `+` | `Supplier` | `SupplierSnapshot` | Proveedor seleccionado. |
+| `+` | `Currency` | `string` | Moneda común. |
+| `+` | `Lines` | `IReadOnlyList` | Líneas aprobadas. |
+| `+` | `DeliveryTerms` | `DeliveryTerms` | Condiciones de entrega. |
+| `+` | `InputFingerprint` | `string` | Huella de trazabilidad. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `ApprovedPurchaseLine`
+
+- **Bounded Context:** Purchase Ordering — Domain.
+- **Descripción / propósito:** Objeto de valor con los datos de una línea autorizada en la decisión de compra.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Description` | `string` | Producto autorizado. |
+| `+` | `Quantity` | `decimal` | Cantidad autorizada. |
+| `+` | `UnitOfMeasure` | `string` | Unidad de medida. |
+| `+` | `UnitPrice` | `Money` | Precio unitario autorizado. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `SupplierSnapshot`
+
+- **Bounded Context:** Purchase Ordering — Domain.
+- **Descripción / propósito:** Copia inmutable de la identidad del proveedor al momento de emitir la orden.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `SupplierId` | `string` | Identificador del proveedor. |
+| `+` | `BusinessName` | `string` | Razón social o nombre comercial. |
+| `+` | `TaxIdentifier` | `string` | Identificador tributario. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `Approval`
+
+- **Bounded Context:** Purchase Ordering — Domain.
+- **Descripción / propósito:** Objeto de valor que registra quién autorizó la compra, cuándo lo hizo y qué clave protege la idempotencia.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `ApprovedBy` | `UserId` | Usuario que aprobó. |
+| `+` | `ApprovedAt` | `DateTimeOffset` | Fecha y hora de aprobación. |
+| `+` | `IdempotencyKey` | `string` | Clave única de la operación. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `SourceSimulationReference`
+
+- **Bounded Context:** Purchase Ordering — Domain.
+- **Descripción / propósito:** Objeto de valor que enlaza la orden con la simulación, solicitud y cotización exactas que la originaron.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `SimulationRunId` | `string` | Ejecución de simulación. |
+| `+` | `PurchaseRequestId` | `string` | Solicitud de abastecimiento. |
+| `+` | `QuotationId` | `string` | Cotización seleccionada. |
+| `+` | `InputFingerprint` | `string` | Huella de las entradas. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `DeliveryTerms`
+
+- **Bounded Context:** Purchase Ordering — Domain.
+- **Descripción / propósito:** Objeto de valor con las condiciones logísticas de la orden.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `LeadTimeDays` | `int` | Plazo de entrega en días. |
+| `+` | `Conditions` | `string` | Condiciones acordadas. |
+| `+` | `Destination` | `string` | Destino del abastecimiento. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `OrderNumber`
+
+- **Bounded Context:** Purchase Ordering — Domain.
+- **Descripción / propósito:** Objeto de valor que encapsula el número único y legible de una orden.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Value` | `string` | Número de orden. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `PurchaseOrderStatus`
+
+- **Bounded Context:** Purchase Ordering — Domain.
+- **Descripción / propósito:** Enumeración del estado de una orden emitida.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `Issued` | Orden emitida. |
+| `Cancelled` | Orden cancelada. |
+
+**Operaciones:** No aplica.
+
+##### `PurchaseOrderGenerator`
+
+- **Bounded Context:** Purchase Ordering — Domain (servicio de dominio).
+- **Descripción / propósito:** Construye una orden válida a partir de una decisión aprobada, los datos de autorización y el número generado.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Generate(decision, approval, orderNumber)` | `PurchaseOrder` | Genera una orden de compra consistente. |
+
+##### `PurchaseOrderIssued`
+
+- **Bounded Context:** Purchase Ordering — Domain.
+- **Descripción / propósito:** Evento publicado cuando la orden queda emitida para permitir integraciones y auditoría.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `PurchaseOrderId` | `PurchaseOrderId` | Orden emitida. |
+| `+` | `SimulationRunId` | `string` | Simulación de origen. |
+| `+` | `PurchaseRequestId` | `string` | Solicitud de origen. |
+| `+` | `OccurredAt` | `DateTimeOffset` | Instante de emisión. |
+
+**Operaciones:** No se muestran operaciones.
+
+##### `PostgreSqlPurchaseOrderRepository`
+
+- **Bounded Context:** Purchase Ordering — Infrastructure.
+- **Descripción / propósito:** Adaptador Entity Framework Core/PostgreSQL para persistir órdenes y consultar sus restricciones de unicidad.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetByIdAsync(purchaseOrderId)` | `PurchaseOrder` | Recupera una orden. |
+| `+` | `FindBySimulationAsync(simulationRunId)` | `PurchaseOrder` | Consulta por simulación. |
+| `+` | `FindByIdempotencyKeyAsync(key)` | `PurchaseOrder` | Consulta por clave idempotente. |
+| `+` | `AddAsync(purchaseOrder)` | `void` | Persiste una orden nueva. |
+
+##### `SequentialOrderNumberGenerator`
+
+- **Bounded Context:** Purchase Ordering — Infrastructure.
+- **Descripción / propósito:** Implementación concreta del puerto `IOrderNumberGenerator` que obtiene números de orden secuenciales.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `NextAsync()` | `OrderNumber` | Genera el siguiente número disponible. |
+
 ## 4.10. Database Design
 
 ### 4.10.1. Relational/Non-Relational Database Diagram
