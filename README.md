@@ -1033,8 +1033,6 @@ A continuación, se presentan los mock-ups de la versión móvil. Cada imagen mu
 
 La presente sección detalla los wireframes (esquemas visuales de baja y media fidelidad) diseñados para la aplicación móvil de **SmartQuote**. La conceptualización de esta interfaz se ha desarrollado bajo un enfoque centrado en el usuario (*User-Centered Design*), orientándose exclusivamente al **Segmento 2: Área de Producción y Sanidad** (médicos veterinarios, nutricionistas y jefes de granja).
 
----
-
 **Enfoque de Diseño y Contexto Operativo**
 
 Dado que estos usuarios operan principalmente en entornos productivos e instalaciones avícolas, la arquitectura de la información y el diseño visual de la aplicación móvil priorizan:
@@ -1042,8 +1040,6 @@ Dado que estos usuarios operan principalmente en entornos productivos e instalac
 * **Accesibilidad:** Lectura de alto contraste adaptada para entornos de campo.
 * **Eficiencia:** Captura rápida de datos directamente desde el terreno.
 * **Simplicidad:** Las funcionalidades complejas de evaluación, procesamiento de Inteligencia Artificial y gestión comercial se han delegado a la aplicación web, manteniendo la aplicación móvil como una herramienta ágil y transaccional.
-
----
 
 **Pantallas Clave y Flujos de Usuario**
 
