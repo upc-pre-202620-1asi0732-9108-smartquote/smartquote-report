@@ -1039,8 +1039,8 @@ Registro de Solicitud de Insumos (US02): Representa el flujo de captura de neces
 Seguimiento y Trazabilidad (US03): Pantallas destinadas al monitoreo del ciclo de vida de la compra. Se incluye una vista de lista con filtros rápidos (Pendientes, En Evaluación, Aprobadas) y una vista de detalle que expone la línea de tiempo cronológica de los cambios de estado, garantizando la visibilidad del proceso de abastecimiento para el personal de campo.
 Estos esquemas sirven como base arquitectónica para el desarrollo del frontend móvil, asegurando que el despliegue final cumpla con los estándares de usabilidad requeridos para la operación del sector avícola.
 
-<img src="assets\design\mobile\Wireframes\Mobile_Applications Wireframes.png>" alt="Inicio de sesión mobile" Width="320px">
-<img src="assets\design\mobile\Wireframes\Mobile Applications Wireframes.png" alt="Registro de solicitud mobile" Width="320px">
+<img src="assets\design\mobile\Wireframes\Mobile_Applications Wireframes.png>" alt="Inicio de sesión mobile" Width="900px">
+<img src="assets\design\mobile\Wireframes\Mobile Applications Wireframes.png" alt="Registro de solicitud mobile" Width="900px">
 
 ### 4.4.2. Mobile Applications Wireflow Diagrams
 
