@@ -652,15 +652,15 @@ Para finalizar, ¿existe algún problema, necesidad o experiencia relacionada co
 
 | Elemento del registro | Información de la entrevista |
 |---|---|
-| **Nombres y apellidos** | `[Completar]` |
-| **Edad** | `[Completar]` |
-| **Distrito de residencia** | `[Completar]` |
-| **Segmento objetivo** | `[Área de Adquisiciones / Área de Producción y Sanidad]` |
-| **Fecha de realización** | `[dd/mm/aaaa]` |
-| **Captura de pantalla (screenshot)** | `[Insertar la imagen representativa del cuadro de video: assets/interviews/interview-XX.png]` |
+| **Nombres y apellidos** | Diego De la Cruz |
+| **Edad** | 24 |
+| **Distrito de residencia** | Santiago de Surco |
+| **Segmento objetivo** | Analista de Compras |
+| **Fecha de realización** | 14/09/26 |
+| **Captura de pantalla (screenshot)** |![Entrevista 2](assets/research/interviews/entrevista-1-diego-delacruz.png) |
 | **Enlace (URL)** | `[Pegar el enlace directo al video publicado en Microsoft Stream o Clipchamp]` |
-| **Minutaje (timing)** | **Inicio:** `[hh:mm:ss]`<br>**Duración:** `[mm:ss]` |
-| **Resumen descriptivo y recolección de datos** | |
+| **Minutaje (timing)** | **Inicio:** `[hh:mm:ss]`<br>**Duración:** 07:29 |
+| **Resumen descriptivo y recolección de datos** | Diego De la Cruz, analista de compras, realiza cotizaciones y gestiona el proceso de compras y ventas apoyándose en el ERP SAP HANA, donde se registran los requerimientos y se formalizan las órdenes. Sin embargo, el tramo intermedio —comparar las ofertas que llegan de distintos proveedores— lo resuelve fuera del sistema, trasladando manualmente precios, disponibilidad y especificaciones técnicas a hojas de cálculo, lo que le consume varias horas por cada requerimiento. Su mayor reto y causa de retrasos es lidiar con cotizaciones incompletas o ambiguas, por lo que considera que una plataforma web con inteligencia artificial como "SmartQuote" sería sumamente útil para automatizar la extracción de datos, ahorrar tiempo y reducir errores. Precisa que la herramienta no debería reemplazar al ERP, sino integrarse con él para recibir el requerimiento y devolver la decisión ya sustentada. Para confiar en esta herramienta y garantizar su éxito, el sistema deberá proteger estrictamente la confidencialidad de la información comercial y mostrar de forma transparente el origen de cada dato extraído, permitiéndole mantener la supervisión final sobre las especificaciones técnicas y la elección del proveedor. |
 
 #### Ficha de registro — Entrevista [N.º2]
 
