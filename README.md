@@ -325,7 +325,20 @@ Proyecto
     - [5.2.3. Implemented Frontend-Web Application Evidence](#523-implemented-frontend-web-application-evidence)
     - [5.2.4. Implemented Native-Mobile Application Evidence](#524-implemented-native-mobile-application-evidence)
     - [5.2.5. Implemented RESTful API and/or Serverless Backend Evidence](#525-implemented-restful-api-andor-serverless-backend-evidence)
+      - [Estructura implementada](#estructura-implementada)
+      - [Ejecución local y persistencia](#ejecución-local-y-persistencia)
+      - [Comprobación local observada](#comprobación-local-observada)
+      - [Registro de modificaciones del backend](#registro-de-modificaciones-del-backend)
     - [5.2.6. RESTful API documentation](#526-restful-api-documentation)
+      - [Acceso y autenticación](#acceso-y-autenticación)
+      - [Evidencias de Swagger y OpenAPI](#evidencias-de-swagger-y-openapi)
+      - [Convención de respuestas y errores](#convención-de-respuestas-y-errores)
+      - [Endpoints — Supply Requests Context](#endpoints--supply-requests-context)
+      - [Endpoints — Quotation Intake Context](#endpoints--quotation-intake-context)
+      - [Endpoints — Evaluation \& Simulation Context](#endpoints--evaluation--simulation-context)
+      - [Endpoints — Purchase Ordering Context](#endpoints--purchase-ordering-context)
+      - [Rutas operativas y de documentación](#rutas-operativas-y-de-documentación)
+      - [Principales esquemas de respuesta](#principales-esquemas-de-respuesta)
     - [5.2.7. Team Collaboration Insights](#527-team-collaboration-insights)
   - [5.3. Video About-the-Product](#53-video-about-the-product)
 - [Conclusiones](#conclusiones)
@@ -3898,7 +3911,195 @@ URL del Trello: [https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c7
 
 ### 5.2.5. Implemented RESTful API and/or Serverless Backend Evidence
 
+Está construido como un monolito modular en ASP.NET Core con C#, Clean Architecture y Domain-Driven Design. Cada *bounded context* conserva sus capas `Domain`, `Application`, `Infrastructure` e `Interfaces`, mientras que `SmartQuote.Shared` concentra las abstracciones genéricas y `SmartQuote.API` actúa como composición y punto de ejecución.
+
+#### Estructura implementada
+
+```text
+smartquote-web-services/
+├── SmartQuote.sln
+├── docker-compose.yml
+└── src/
+    ├── SmartQuote.API/                         # composición, JWT, Swagger y middleware
+    ├── SmartQuote.Shared/                      # kernel compartido y contratos técnicos
+    ├── SmartQuote.Modules.SupplyRequests/      # solicitudes y seguimiento
+    ├── SmartQuote.Modules.QuotationIntake/     # carga, extracción y verificación
+    ├── SmartQuote.Modules.EvaluationSimulation/# escenarios y simulación
+    └── SmartQuote.Modules.PurchaseOrdering/    # aprobación y órdenes de compra
+```
+
+La solución registra los cuatro módulos mediante `AddSupplyRequestsModule`, `AddQuotationIntakeModule`, `AddEvaluationSimulationModule` y `AddPurchaseOrderingModule`. Los controladores dependen de servicios de aplicación; los servicios dependen de puertos; y los adaptadores de Entity Framework Core, PostgreSQL, almacenamiento local y OpenAI se registran en infraestructura. Esta composición mantiene la inversión de dependencias y evita que el dominio dependa de ASP.NET Core o de PostgreSQL.
+
+#### Ejecución local y persistencia
+
+La ejecución de demostración utiliza Docker Compose. El servicio `postgres` levanta PostgreSQL 16 y el servicio `api` ejecuta la imagen construida desde `src/SmartQuote.API/Dockerfile`. La variable `Database__ApplyMigrations=true` aplica las migraciones de los cuatro `DbContext` al iniciar la API. El contenedor `pgadmin` permite inspeccionar las tablas y los datos persistidos.
+
+```powershell
+Copy-Item .env.example .env
+# Completar .env con PostgreSQL, JWT y, si corresponde, OpenAI.
+docker compose up --build -d
+docker compose ps
+```
+
+Las direcciones locales de la demostración son `http://localhost:8080` para la API, `http://localhost:8080/swagger` para Swagger UI, `http://localhost:8080/health/live` para la comprobación de vida, `http://localhost:8080/health` para la comprobación de dependencias y `http://localhost:5050` para pgAdmin. Cuando se ejecuta desde Rider, los perfiles de `launchSettings.json` utilizan `http://localhost:5023` o `https://localhost:7177`.
+
+La API exige un JWT Bearer válido para los endpoints funcionales. Los roles se asignan según el flujo: `ProductionSpecialist` registra solicitudes y consulta notificaciones, `PurchasingStaff` procesa cotizaciones, configura simulaciones y consulta información, y `PurchaseManager` autoriza la generación de órdenes. Las rutas de salud son operativas y no sustituyen la autenticación funcional.
+
+![Anexo 5.2.5.1 — Estructura de la solución en JetBrains Rider](assets/backend/5.2.5-01-solution-structure-rider.png)
+
+![Anexo 5.2.5.2 — API y PostgreSQL ejecutándose en Docker Desktop](assets/backend/5.2.5-02-docker-services.png)
+
+![Anexo 5.2.5.3 — Petición de registro de solicitud en Postman con respuesta 201 Created](assets/backend/5.2.5-03-postman-purchase-request-201.png)
+
+![Anexo 5.2.5.4 — Carga o procesamiento de cotización con respuesta exitosa](assets/backend/5.2.5-04-postman-quotation-success.png)
+
+![Anexo 5.2.5.5 — Ejecución de simulación y respuesta del motor](assets/backend/5.2.5-05-postman-simulation-success.png)
+
+![Anexo 5.2.5.6 — Generación idempotente de la orden de compra](assets/backend/5.2.5-06-postman-purchase-order-201.png)
+
+#### Comprobación local observada
+
+Durante la documentación, el entorno Docker respondió correctamente en las siguientes rutas:
+
+| Comprobación | Resultado observado |
+|---|---|
+| `GET http://localhost:8080/health/live` | `200 OK` con estado `Healthy`. |
+| `GET http://localhost:8080/health` | `200 OK`; los cuatro registros de salud de base de datos están disponibles. |
+| `GET http://localhost:8080/swagger/index.html` | `200 OK`; Swagger UI se sirve en modo Development. |
+| `GET http://localhost:8080/swagger/v1/swagger.json` | `200 OK`; contrato OpenAPI generado por la API. |
+
+Estas comprobaciones demuestran disponibilidad del entorno, pero las capturas de Postman y pgAdmin deben realizarse con datos de prueba controlados para completar la evidencia académica.
+
+#### Registro de modificaciones del backend
+
+La siguiente tabla resume los registros de modificación relevantes observados en el repositorio `smartquote-web-services`. La rama `develop` integra el trabajo; las ramas de funcionalidad conservan el desarrollo específico antes de su integración. El equipo debe actualizar esta tabla cuando se registren nuevas modificaciones.
+
+| Branch | Commit Id | Commit Message | Date |
+|---|---|---|---|
+| `develop` | `e0b4d92` | `fix: fixed local deploy problems` | 2026-09-14 |
+| `develop` | `56503e5` | `feat: added app setings and Dockerfile` | 2026-09-13 |
+| `develop` | `4c53553` | `fix: fixed Purchase Ordering context dependencies` | 2026-09-13 |
+| `develop` | `25b8fa5` | `feat: added controller for Evaluation Simulation context` | 2026-09-13 |
+| `develop` | `25c987e5` | `feat: added REST interfaces for Evaluation Simulation context` | 2026-09-13 |
+| `develop` | `92a4ad5` | `feat: added infrastructure persistence and reference readers for Evaluation Simulation context` | 2026-09-13 |
+| `develop` | `c20b37b` | `feat: added application views and services for Evaluation Simulation context` | 2026-09-13 |
+| `develop` | `64ebce6` | `feat: added ports for Evaluation Simulation context` | 2026-09-13 |
+| `develop` | `a43740f` | `feat: add domain model for Evaluation Simulation context` | 2026-09-13 |
+| `develop` | `edce04a` | `feat(purchase-ordering): add rest controllers and resources` | 2026-09-13 |
+| `develop` | `5ce99c1` | `feat(purchase-ordering): add persistence and repositories` | 2026-09-13 |
+| `develop` | `6a81aa9` | `feat(purchase-ordering): add application layer` | 2026-09-13 |
+| `develop` | `bd2341a` | `feat(purchase-ordering): add domain model layer` | 2026-09-13 |
+| `feature/QuotationIntake` | `9de0b4c` | `feat: added controller for Quotation Intake context` | 2026-09-12 |
+| `feature/QuotationIntake` | `429e91e` | `feat: added AI infrastructure for Quotation Intake context` | 2026-09-12 |
+| `feature/QuotationIntake` | `eaf148f` | `feat: added infrastructure persistence for Quotation Intake context` | 2026-09-12 |
+| `feature/Supply-Requests` | `37f98dc` | `feat(Supply-Requests): add SupplyRequest Module` | 2026-09-12 |
+| `feature/Supply-Requests` | `64750b0` | `feat(Supply-Requests): add rest controllers and resources` | 2026-09-12 |
+| `feature/Supply-Requests` | `bf276dd` | `feat(Supply-Requests): add persistence and repositories` | 2026-09-12 |
+| `main` | `60ca718` | `chore: initial structure` | 2026-09-12 |
+
 ### 5.2.6. RESTful API documentation
+
+La API RESTful está documentada mediante OpenAPI 3 y se genera a partir de los controladores ASP.NET Core. En Docker, la documentación interactiva se encuentra en [Swagger UI local](http://localhost:8080/swagger/index.html) y el contrato JSON en [swagger/v1/swagger.json](http://localhost:8080/swagger/v1/swagger.json). Desde Rider, se utiliza el mismo sufijo `/swagger` sobre el puerto configurado por el perfil (`5023` para HTTP o `7177` para HTTPS).
+
+#### Acceso y autenticación
+
+Swagger incorpora el esquema `Bearer` como autenticación HTTP. Para probar las rutas protegidas, se debe pulsar **Authorize** y proporcionar un JWT válido con el rol requerido. El token, las claves y las contraseñas no deben incluirse en el README, en capturas ni en el repositorio.
+
+| Base URL | Swagger UI | OpenAPI JSON |
+|---|---|---|
+| `http://localhost:8080` (Docker) | `http://localhost:8080/swagger/index.html` | `http://localhost:8080/swagger/v1/swagger.json` |
+| `http://localhost:5023` (Rider HTTP) | `http://localhost:5023/swagger` | `http://localhost:5023/swagger/v1/swagger.json` |
+| `https://localhost:7177` (Rider HTTPS) | `https://localhost:7177/swagger` | `https://localhost:7177/swagger/v1/swagger.json` |
+
+#### Evidencias de Swagger y OpenAPI
+
+![Anexo 5.2.6.1 — Swagger UI local con los cuatro bounded contexts](assets/backend/5.2.6-01-swagger-ui.png)
+
+#### Convención de respuestas y errores
+
+Las respuestas exitosas utilizan los recursos definidos en `Interfaces/REST/Resources` o `Interfaces/REST/Resource`. Los errores gestionados por `ExceptionHandlingMiddleware` se devuelven como `application/problem+json` con la siguiente estructura:
+
+```json
+{
+  "status": 422,
+  "title": "Business rule violation",
+  "detail": "Descripción de la regla que no se pudo cumplir",
+  "type": "https://smartquote.app/problems/domain_rule_violation",
+  "instance": "/api/v1/...",
+  "code": "domain_rule_violation",
+  "traceId": "..."
+}
+```
+
+Los códigos comunes son `400` (solicitud o parámetros inválidos), `401` (JWT ausente o inválido), `403` (rol insuficiente), `404` (recurso inexistente), `409` (conflicto de estado, concurrencia o duplicidad), `413` (archivo demasiado grande), `415` (tipo de archivo no soportado), `422` (regla de negocio o documento no procesable), `503` (servicio externo de IA no disponible) y `500` (error no controlado).
+
+#### Endpoints — Supply Requests Context
+
+| Verbo | Ruta | Parámetros y cuerpo de solicitud | Respuesta exitosa | Errores esperados | Referencia local |
+|---|---|---|---|---|---|
+| `POST` | `/api/v1/purchase-requests` | JWT `ProductionSpecialist`.<br>JSON `CreatePurchaseRequestResource`: `requiredDate`, `priority`, `items[]`; cada ítem contiene `description`, `quantity`, `unitOfMeasure` y `requirements[]` (`name`, `operator`, `expectedValue`, `unitOfMeasure`, `isMandatory`). | `201 Created` + `PurchaseRequestResource` y encabezado `Location`. | `400`, `401`, `403`, `409`, `422`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `GET` | `/api/v1/purchase-requests` | JWT.<br>Query opcional: `status`, `page` (predeterminado `1`), `pageSize` (predeterminado `20`). | `200 OK` + `PagedPurchaseRequestsResource`. | `400`, `401`, `403`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `GET` | `/api/v1/purchase-requests/{requestId}` | JWT.<br>Path `requestId` con formato `Guid`. | `200 OK` + `PurchaseRequestResource`. | `401`, `403`, `404`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `GET` | `/api/v1/purchase-requests/{requestId}/history` | JWT.<br>Path `requestId` con formato `Guid`. | `200 OK` + `RequestHistoryResource`. | `401`, `403`, `404`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `PUT` | `/api/v1/purchase-requests/{requestId}/status` | JWT `PurchasingStaff`.<br>JSON `ChangeRequestStatusResource`: `nextStatus`, `reason`, `expectedVersion`. | `204 No Content`. | `400`, `401`, `403`, `404`, `409`, `422`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `POST` | `/api/v1/purchase-requests/{requestId}/attachments` | JWT `ProductionSpecialist`.<br>`multipart/form-data`: `file` y `expectedVersion`; tamaño máximo `10 MB`. | `204 No Content`. | `400`, `401`, `403`, `404`, `409`, `413`, `415`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `GET` | `/api/v1/notifications` | JWT `ProductionSpecialist`.<br>Query opcional `unreadOnly` (`false` por defecto). | `200 OK` + `IReadOnlyList<RequestNotificationResource>`. | `401`, `403`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `PUT` | `/api/v1/notifications/{notificationId}/read` | JWT `ProductionSpecialist`.<br>Path `notificationId` con formato `Guid`. | `204 No Content`. | `401`, `403`, `404`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+
+#### Endpoints — Quotation Intake Context
+
+| Verbo | Ruta | Parámetros y cuerpo de solicitud | Respuesta exitosa | Errores esperados | Referencia local |
+|---|---|---|---|---|---|
+| `POST` | `/api/v1/purchase-requests/{requestId}/quotations` | JWT `PurchasingStaff`.<br>`multipart/form-data`: `SupplierId`, `SupplierBusinessName`, `SupplierTaxIdentifier` y `file`; tamaño máximo `15 MB`. | `201 Created` + `PoultryQuoteResource` cuando se crea; `200 OK` + el recurso existente si el hash identifica un duplicado. | `400`, `401`, `403`, `404`, `409`, `413`, `415`, `422`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `POST` | `/api/v1/purchase-requests/{requestId}/quotations/batch` | JWT `PurchasingStaff`.<br>`multipart/form-data`: datos del proveedor y `files[]`; entre `1` y `20` documentos, máximo `15 MB` por archivo. | `207 Multi-Status` + `IReadOnlyList<BatchQuotationUploadItemResource>` con resultado individual por archivo. | `400`, `401`, `403`, `404`, `413`, `415`, `422`, `503` por elemento o lote. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `GET` | `/api/v1/purchase-requests/{requestId}/quotations` | JWT `PurchasingStaff`.<br>Path `requestId` con formato `Guid`. | `200 OK` + `IReadOnlyList<PoultryQuoteResource>`. | `401`, `403`, `404`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `POST` | `/api/v1/quotations/{quotationId}/process` | JWT `PurchasingStaff`.<br>Path `quotationId` con formato `Guid`; sin cuerpo. | `200 OK` + `PoultryQuoteResource` con el estado de extracción. | `401`, `403`, `404`, `409`, `422`, `503`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `GET` | `/api/v1/quotations/{quotationId}` | JWT `PurchasingStaff`.<br>Path `quotationId` con formato `Guid`. | `200 OK` + `PoultryQuoteResource`, incluidos campos, confianza y correcciones. | `401`, `403`, `404`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `POST` | `/api/v1/quotations/{quotationId}/confirm` | JWT `PurchasingStaff`.<br>JSON `ConfirmQuotationResource`: `lineMappings[]` (`lineId`, `requestedItemId`) y `expectedVersion`. | `204 No Content`. | `400`, `401`, `403`, `404`, `409`, `422`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `PUT` | `/api/v1/quotations/{quotationId}/fields/{fieldId}` | JWT `PurchasingStaff`.<br>JSON `CorrectFieldResource`: `value`, `reason`, `expectedVersion`. | `204 No Content`. | `400`, `401`, `403`, `404`, `409`, `422`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+
+#### Endpoints — Evaluation & Simulation Context
+
+| Verbo | Ruta | Parámetros y cuerpo de solicitud | Respuesta exitosa | Errores esperados | Referencia local |
+|---|---|---|---|---|---|
+| `POST` | `/api/v1/evaluation-scenarios` | JWT `PurchasingStaff`.<br>JSON `CreateScenarioResource`: `requestId` y `criteria[]`; cada criterio contiene `name`, `targetField`, `category`, `mode`, `operator`, `expectedValue`, `unitOfMeasure`, `weight` y `displayOrder`. | `201 Created` + `EvaluationScenarioResource` y `Location`. | `400`, `401`, `403`, `404`, `422`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `POST` | `/api/v1/evaluation-scenarios/{scenarioId}/versions` | JWT `PurchasingStaff`.<br>Path `scenarioId` con formato `Guid`.<br>JSON `CreateScenarioVersionResource`: `criteria[]` con la misma estructura de criterios. | `201 Created` + `EvaluationScenarioResource` y `Location`. | `400`, `401`, `403`, `404`, `422`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `GET` | `/api/v1/evaluation-scenarios/{scenarioId}` | JWT `PurchasingStaff`.<br>Path `scenarioId` con formato `Guid`. | `200 OK` + `EvaluationScenarioResource`. | `401`, `403`, `404`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `GET` | `/api/v1/purchase-requests/{requestId}/evaluation-scenario` | JWT `PurchasingStaff`.<br>Path `requestId` con formato `Guid`. | `200 OK` + `EvaluationScenarioResource` vigente. | `401`, `403`, `404`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `POST` | `/api/v1/evaluation-scenarios/{scenarioId}/simulations` | JWT `PurchasingStaff`.<br>Path `scenarioId` con formato `Guid`; no requiere cuerpo. | `201 Created` + `SimulationResultResource` para una ejecución nueva; `200 OK` si se reutiliza una ejecución con la misma huella de entradas. | `401`, `403`, `404`, `422`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `GET` | `/api/v1/simulations/{simulationRunId}` | JWT `PurchasingStaff`.<br>Path `simulationRunId` con formato `Guid`. | `200 OK` + `SimulationResultResource` con evaluaciones, exclusiones y recomendación; `isCurrent` identifica si continúa vigente. | `401`, `403`, `404`, `422`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+
+#### Endpoints — Purchase Ordering Context
+
+| Verbo | Ruta | Parámetros y cuerpo de solicitud | Respuesta exitosa | Errores esperados | Referencia local |
+|---|---|---|---|---|---|
+| `POST` | `/api/v1/simulations/{runId}/quotations/{quotationId}/purchase-orders` | JWT `PurchaseManager`.<br>Path `runId` y `quotationId` con formato `Guid`.<br>JSON `ApproveAndGenerateResource`: `deliveryConditions` y `deliveryDestination`. | `201 Created` + `PurchaseOrderResource` cuando se emite; `200 OK` + la orden existente ante una repetición idempotente. | `400`, `401`, `403`, `404`, `409`, `422`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `GET` | `/api/v1/purchase-orders/{purchaseOrderId}` | JWT `PurchasingStaff`.<br>Path `purchaseOrderId` con formato `Guid`. | `200 OK` + `PurchaseOrderResource`. | `401`, `403`, `404`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+| `GET` | `/api/v1/simulations/{runId}/purchase-order` | JWT `PurchasingStaff`.<br>Path `runId` con formato `Guid`. | `200 OK` + `PurchaseOrderResource`. | `401`, `403`, `404`. | [Swagger local](http://localhost:8080/swagger/index.html) |
+
+#### Rutas operativas y de documentación
+
+| Verbo | Ruta | Propósito | Respuesta |
+|---|---|---|---|
+| `GET` | `/health/live` | Comprobar que el proceso de la API está activo. | `200 OK` con `{ "status": "Healthy" }`; acceso anónimo. |
+| `GET` | `/health` | Comprobar la disponibilidad de los cuatro contextos de base de datos registrados en health checks. | `200 OK` cuando las dependencias están saludables; de lo contrario, estado de health check correspondiente. |
+| `GET` | `/swagger/index.html` | Servir la interfaz interactiva de Swagger en entorno Development. | `200 OK` con la interfaz HTML. |
+| `GET` | `/swagger/v1/swagger.json` | Servir el contrato OpenAPI de la API. | `200 OK` con el documento JSON. |
+
+#### Principales esquemas de respuesta
+
+| Esquema | Campos representativos documentados |
+|---|---|
+| `PurchaseRequestResource` | `requestId`, `requesterId`, `requiredDate`, `priority`, `status`, `nextResponsibleArea`, `version`, `createdAt`, `updatedAt`, `items[]`, `attachments[]`. |
+| `PagedPurchaseRequestsResource` | `items[]`, `page`, `pageSize`, `totalItems`, `totalPages`. |
+| `PoultryQuoteResource` | `quotationId`, `requestId`, datos del proveedor, documento, `validUntil`, `currency`, `deliveryLeadTimeDays`, `status`, `version`, `verifiedBy`, `verifiedAt`, `lines[]`, `fields[]`. |
+| `BatchQuotationUploadItemResource` | `fileName`, `quotationId`, `wasCreated`, `errorCode`, `error`. |
+| `EvaluationScenarioResource` | `scenarioId`, `requestId`, `version`, `status`, `createdBy`, `createdAt`, `supersedesScenarioId`, `criteria[]`. |
+| `SimulationResultResource` | `simulationRunId`, `scenarioId`, `criteriaVersion`, `inputFingerprint`, `executedAt`, `isCurrent`, `recommendation`, `evaluations[]`. |
+| `PurchaseOrderResource` | `purchaseOrderId`, `orderNumber`, referencias de simulación/solicitud/cotización, proveedor, aprobación, `status`, moneda, términos de entrega, `total`, `createdAt`, `lines[]`. |
+| `RequestHistoryResource` | `requestId` y `entries[]` con estado anterior, estado nuevo, usuario, fecha y motivo. |
+
+Los nombres y tipos completos de estos esquemas se mantienen en los recursos C# del backend y son publicados automáticamente en el documento OpenAPI, por lo que cualquier cambio de contrato debe reflejarse en esta tabla y en las capturas de Swagger.
 
 ### 5.2.7. Team Collaboration Insights
 
