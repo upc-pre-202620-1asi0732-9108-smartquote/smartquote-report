@@ -101,6 +101,9 @@ Proyecto
       - [Segmento 2: Área de Producción y Sanidad — Médicos veterinarios, nutricionistas y jefes de granja](#segmento-2-área-de-producción-y-sanidad--médicos-veterinarios-nutricionistas-y-jefes-de-granja-1)
       - [Pregunta de cierre](#pregunta-de-cierre)
     - [2.2.2. Registro de entrevistas](#222-registro-de-entrevistas)
+      - [Ficha de registro — Entrevista \[N.º1\]](#ficha-de-registro--entrevista-nº1)
+      - [Ficha de registro — Entrevista \[N.º2\]](#ficha-de-registro--entrevista-nº2)
+      - [Ficha de registro — Entrevista \[N.º3\]](#ficha-de-registro--entrevista-nº3)
     - [2.2.3. Análisis de entrevistas](#223-análisis-de-entrevistas)
   - [2.3. Needfinding](#23-needfinding)
     - [2.3.1. User Personas](#231-user-personas)
@@ -632,7 +635,47 @@ Para finalizar, ¿existe algún problema, necesidad o experiencia relacionada co
 
 ### 2.2.2. Registro de entrevistas
 
-Pendiente
+#### Ficha de registro — Entrevista [N.º1]
+
+| Elemento del registro | Información de la entrevista |
+|---|---|
+| **Nombres y apellidos** | `[Completar]` |
+| **Edad** | `[Completar]` |
+| **Distrito de residencia** | `[Completar]` |
+| **Segmento objetivo** | `[Área de Adquisiciones / Área de Producción y Sanidad]` |
+| **Fecha de realización** | `[dd/mm/aaaa]` |
+| **Captura de pantalla (screenshot)** | `[Insertar la imagen representativa del cuadro de video: assets/interviews/interview-XX.png]` |
+| **Enlace (URL)** | `[Pegar el enlace directo al video publicado en Microsoft Stream o Clipchamp]` |
+| **Minutaje (timing)** | **Inicio:** `[hh:mm:ss]`<br>**Duración:** `[mm:ss]` |
+| **Resumen descriptivo y recolección de datos** | |
+
+#### Ficha de registro — Entrevista [N.º2]
+
+| Elemento del registro | Información de la entrevista |
+|---|---|
+| **Nombres y apellidos** | Andy Nuñez |
+| **Edad** | 27 |
+| **Distrito de residencia** | San Borja |
+| **Segmento objetivo** | Área de Adquisiciones |
+| **Fecha de realización** | 14/09/26 |
+| **Captura de pantalla (screenshot)** | ![Entrevista 2](assets/research/interviews/entrevista-2-andy-nunez.png) |
+| **Enlace (URL)** | |
+| **Minutaje (timing)** | **Inicio:** `[hh:mm:ss]`<br>**Duración:** 9:04 |
+| **Resumen descriptivo y recolección de datos** | Andy Núñez, del área de adquisiciones, gestiona el proceso de compras utilizando principalmente correo y Excel, invirtiendo varias horas en trasladar datos manualmente para elaborar cuadros comparativos de precios, disponibilidad y especificaciones técnicas. Su mayor reto y causa de retrasos es lidiar con cotizaciones incompletas o ambiguas, por lo que considera que una plataforma web con inteligencia artificial como "Smart Quote" sería sumamente útil para automatizar la extracción de datos, ahorrar tiempo y reducir errores. Para confiar en esta herramienta y garantizar su éxito, el sistema deberá proteger estrictamente la confidencialidad de la información comercial y mostrar de forma transparente el origen de cada dato extraído, permitiéndole mantener la supervisión final sobre las especificaciones técnicas y la elección del proveedor. |
+
+#### Ficha de registro — Entrevista [N.º3]
+
+| Elemento del registro | Información de la entrevista |
+|---|---|
+| **Nombres y apellidos** | `[Completar]` |
+| **Edad** | `[Completar]` |
+| **Distrito de residencia** | `[Completar]` |
+| **Segmento objetivo** | `[Área de Adquisiciones / Área de Producción y Sanidad]` |
+| **Fecha de realización** | `[dd/mm/aaaa]` |
+| **Captura de pantalla (screenshot)** | `[Insertar la imagen representativa del cuadro de video: assets/interviews/interview-XX.png]` |
+| **Enlace (URL)** | `[Pegar el enlace directo al video publicado en Microsoft Stream o Clipchamp]` |
+| **Minutaje (timing)** | **Inicio:** `[hh:mm:ss]`<br>**Duración:** `[mm:ss]` |
+| **Resumen descriptivo y recolección de datos** | |
 
 ### 2.2.3. Análisis de entrevistas
 
