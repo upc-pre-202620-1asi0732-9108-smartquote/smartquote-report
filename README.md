@@ -234,6 +234,7 @@ Proyecto
       - [4.9.1.2. Quotation Intake Context](#4912-quotation-intake-context)
       - [4.9.1.3. Evaluation \& Simulation Context — Core Domain](#4913-evaluation--simulation-context--core-domain)
       - [4.9.1.4. Purchase Ordering Context](#4914-purchase-ordering-context)
+      - [4.9.1.5. Identity \& Access Management Context](#4915-identity--access-management-context)
     - [4.9.2. Class Dictionary](#492-class-dictionary)
       - [Shared (tipos genéricos)](#shared-tipos-genéricos)
         - [`AggregateRoot<TId>`](#aggregateroottid)
@@ -351,6 +352,27 @@ Proyecto
         - [`PurchaseOrderIssued`](#purchaseorderissued)
         - [`PostgreSqlPurchaseOrderRepository`](#postgresqlpurchaseorderrepository)
         - [`SequentialOrderNumberGenerator`](#sequentialordernumbergenerator)
+      - [4.9.2.5. Identity \& Access Management Context](#4925-identity--access-management-context)
+        - [`AccountStatus`](#accountstatus)
+        - [`SmartQuoteRole`](#smartquoterole)
+        - [`UserAccount`](#useraccount)
+        - [`UserRole`](#userrole)
+        - [`RefreshSession`](#refreshsession)
+        - [`AuthenticationService`](#authenticationservice)
+        - [`IUserAccountRepository`](#iuseraccountrepository)
+        - [`IRefreshSessionRepository`](#irefreshsessionrepository)
+        - [`IPasswordHasher`](#ipasswordhasher)
+        - [`IAccessTokenIssuer`](#iaccesstokenissuer)
+        - [`IRefreshTokenGenerator`](#irefreshtokengenerator)
+        - [`IIdentityAccessUnitOfWork`](#iidentityaccessunitofwork)
+        - [`IdentityAccessDbContext`](#identityaccessdbcontext)
+        - [`UserAccountRepository`](#useraccountrepository)
+        - [`RefreshSessionRepository`](#refreshsessionrepository)
+        - [`AspNetPasswordHasher`](#aspnetpasswordhasher)
+        - [`JwtAccessTokenIssuer`](#jwtaccesstokenissuer)
+        - [`RefreshTokenGenerator`](#refreshtokengenerator)
+        - [`IdentityAccessUnitOfWork`](#identityaccessunitofwork)
+        - [`AuthController`](#authcontroller)
   - [4.10. Database Design](#410-database-design)
     - [4.10.1. Relational/Non-Relational Database Diagram](#4101-relationalnon-relational-database-diagram)
       - [4.10.1.1. Supply Requests Context](#41011-supply-requests-context)
@@ -2090,11 +2112,19 @@ El agregado raíz `PurchaseOrder` representa la orden emitida a partir de una de
 
 ![Diagrama de clases del Purchase Ordering Context](assets/architecture/SmartQuoteClassDiagramPurchaseContext.png)
 
+#### 4.9.1.5. Identity & Access Management Context
+
+El contexto **Identity & Access Management (IAM)** concentra la autenticación y la identidad transversal de SmartQuote. `UserAccount` es el agregado raíz y conserva el correo normalizado, el nombre, el hash de contraseña, el estado de la cuenta y las relaciones con `UserRole` y `RefreshSession`. `AuthenticationService` coordina el inicio de sesión, la renovación y revocación de sesiones y la consulta del usuario autenticado mediante puertos de aplicación, sin acoplar el dominio a ASP.NET Core, JWT, Entity Framework Core o PostgreSQL.
+
+`AuthController` expone los endpoints REST de login, refresh, logout y consulta del usuario actual. Los adaptadores `AspNetPasswordHasher`, `JwtAccessTokenIssuer` y `RefreshTokenGenerator` implementan las políticas técnicas detrás de sus interfaces. Las demás áreas del sistema reciben la identidad mediante los claims del usuario actual y no acceden directamente a la persistencia de IAM.
+
+![Diagrama de clases del Identity & Access Management Context](assets/architecture/SmartQuoteClassDiagramIAMContext.png)
+
 ### 4.9.2. Class Dictionary
 
 El diccionario de clases especifica las clases, interfaces, objetos de valor, enumeraciones y eventos que aparecen en los diagramas de clases del backend. La nomenclatura conserva el idioma inglés definido para el código C# y cada ficha identifica el *bounded context*, la responsabilidad, los atributos y las operaciones visibles en el diagrama. Los tipos `UUID` representados en PlantUML se implementan como `Guid` en .NET; las colecciones `IReadOnlyList` representan listas de solo lectura cuyo tipo de elemento está definido por el contrato correspondiente.
 
-Las clases genéricas de **Shared** se reutilizan en los cuatro contextos y se documentan una sola vez. Las demás clases se agrupan por *bounded context*.
+Las clases genéricas de **Shared** se reutilizan en los cinco contextos y se documentan una sola vez. Las demás clases se agrupan por *bounded context*.
 
 #### Shared (tipos genéricos)
 
@@ -4104,6 +4134,363 @@ Las clases genéricas de **Shared** se reutilizan en los cuatro contextos y se d
 | Visibilidad | Operación | Retorno | Descripción |
 |---|---|---|---|
 | `+` | `NextAsync()` | `OrderNumber` | Genera el siguiente número disponible. |
+
+#### 4.9.2.5. Identity & Access Management Context
+
+##### `AccountStatus`
+
+- **Bounded Context:** Identity & Access Management — Domain.
+- **Descripción / propósito:** Enumeración que indica si una cuenta puede autenticarse y utilizar los servicios protegidos.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `Active` | La cuenta puede iniciar sesión y emitir sesiones. |
+| `Disabled` | La cuenta no puede autenticarse; sus sesiones activas se revocan. |
+
+**Operaciones:** No aplica.
+
+##### `SmartQuoteRole`
+
+- **Bounded Context:** Identity & Access Management — Domain.
+- **Descripción / propósito:** Enumeración de los roles que determinan las capacidades de cada usuario en los productos de SmartQuote.
+
+**Valores**
+
+| Valor | Descripción |
+|---|---|
+| `ProductionSpecialist` | Especialista de producción o sanidad que registra y consulta solicitudes desde la aplicación móvil. |
+| `PurchaseAnalyst` | Analista que carga, procesa y verifica cotizaciones. |
+| `PurchaseManager` | Responsable de aprobar la alternativa y generar la orden de compra. |
+
+**Operaciones:** No aplica.
+
+##### `UserAccount`
+
+- **Bounded Context:** Identity & Access Management — Domain (agregado raíz).
+- **Descripción / propósito:** Representa la cuenta autenticable de una persona del sistema y mantiene sus roles y sesiones de renovación. La contraseña se persiste únicamente como hash.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Id` | `UserId` | Identificador único del usuario. |
+| `+` | `Email` | `string` | Correo electrónico original de la cuenta. |
+| `+` | `NormalizedEmail` | `string` | Correo normalizado utilizado para búsquedas sin diferencias de mayúsculas. |
+| `+` | `DisplayName` | `string` | Nombre que se muestra en las aplicaciones. |
+| `+` | `PasswordHash` | `string` | Hash de la contraseña; nunca contiene la contraseña en texto plano. |
+| `+` | `Status` | `AccountStatus` | Estado actual de la cuenta. |
+| `+` | `CreatedAt` | `DateTimeOffset` | Fecha y hora de creación. |
+| `+` | `UpdatedAt` | `DateTimeOffset` | Fecha y hora del último cambio. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `ChangePassword(passwordHash, changedAt)` | `void` | Reemplaza el hash y actualiza la fecha de modificación. |
+| `+` | `Disable(changedAt)` | `void` | Deshabilita la cuenta y revoca sus sesiones de renovación. |
+
+##### `UserRole`
+
+- **Bounded Context:** Identity & Access Management — Domain (entidad).
+- **Descripción / propósito:** Entidad hija que asocia un rol autorizado con una cuenta de usuario.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Id` | `Guid` | Identificador de la asignación. |
+| `+` | `Role` | `SmartQuoteRole` | Rol concedido al usuario. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `RefreshSession`
+
+- **Bounded Context:** Identity & Access Management — Domain (entidad).
+- **Descripción / propósito:** Registra una sesión de renovación asociada a una cuenta. Solo se persiste el hash SHA-256 del token; el token original se entrega mediante una cookie HttpOnly.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| `+` | `Id` | `Guid` | Identificador de la sesión. |
+| `+` | `TokenHash` | `string` | Hash del refresh token persistido. |
+| `+` | `ExpiresAt` | `DateTimeOffset` | Fecha y hora de expiración. |
+| `+` | `CreatedAt` | `DateTimeOffset` | Fecha y hora de creación. |
+| `+` | `RevokedAt` | `DateTimeOffset?` | Fecha de revocación, si la sesión fue invalidada. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `IsActive(now)` | `bool` | Comprueba que la sesión no esté revocada y no haya expirado. |
+| `+` | `Revoke(revokedAt)` | `void` | Revoca la sesión de forma idempotente. |
+
+##### `AuthenticationService`
+
+- **Bounded Context:** Identity & Access Management — Application.
+- **Descripción / propósito:** Orquesta los casos de uso de autenticación, emisión de tokens, renovación, cierre de sesión y consulta de la identidad autenticada mediante puertos.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Las dependencias se reciben mediante el constructor y no se muestran como atributos del diagrama. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `LoginAsync(command)` | `AuthenticatedSession` | Valida las credenciales de una cuenta activa y emite una sesión. |
+| `+` | `RefreshAsync(rawToken)` | `AuthenticatedSession` | Valida, revoca y reemplaza una sesión de renovación. |
+| `+` | `LogoutAsync(rawToken)` | `void` | Revoca la sesión asociada al token recibido. |
+| `+` | `GetCurrentUserAsync(userId)` | `CurrentUserView` | Obtiene la identidad y roles del usuario autenticado. |
+
+##### `IUserAccountRepository`
+
+- **Bounded Context:** Identity & Access Management — Application (puerto).
+- **Descripción / propósito:** Abstracción para consultar y persistir cuentas sin acoplar la aplicación a Entity Framework Core.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `FindByNormalizedEmailAsync(email)` | `UserAccount?` | Busca una cuenta por correo normalizado. |
+| `+` | `GetByIdAsync(userId)` | `UserAccount?` | Recupera una cuenta por identificador. |
+| `+` | `AddAsync(account)` | `void` | Registra una nueva cuenta. |
+
+##### `IRefreshSessionRepository`
+
+- **Bounded Context:** Identity & Access Management — Application (puerto).
+- **Descripción / propósito:** Abstracción para localizar sesiones mediante el hash del refresh token.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetByTokenHashAsync(tokenHash)` | `(UserAccount, RefreshSession)?` | Obtiene la cuenta y la sesión asociada al hash. |
+
+##### `IPasswordHasher`
+
+- **Bounded Context:** Identity & Access Management — Application (puerto).
+- **Descripción / propósito:** Contrato para generar y verificar hashes de contraseñas sin exponer una biblioteca concreta al dominio.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Hash(password)` | `string` | Genera el hash de una contraseña. |
+| `+` | `Verify(passwordHash, password)` | `bool` | Comprueba una contraseña contra su hash. |
+
+##### `IAccessTokenIssuer`
+
+- **Bounded Context:** Identity & Access Management — Application (puerto).
+- **Descripción / propósito:** Contrato para emitir el token de acceso con los claims del usuario y su fecha de expiración.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Issue(user)` | `(string Token, DateTimeOffset ExpiresAt)` | Emite un access token para la cuenta. |
+
+##### `IRefreshTokenGenerator`
+
+- **Bounded Context:** Identity & Access Management — Application (puerto).
+- **Descripción / propósito:** Contrato para generar tokens de renovación aleatorios y obtener su hash persistible.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Generate()` | `string` | Genera el token de renovación de un solo uso. |
+| `+` | `Hash(rawToken)` | `string` | Calcula el hash que se almacena en la base de datos. |
+
+##### `IIdentityAccessUnitOfWork`
+
+- **Bounded Context:** Identity & Access Management — Application (puerto).
+- **Descripción / propósito:** Abstracción transaccional para confirmar los cambios de cuentas y sesiones.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Una interfaz de puerto no declara atributos. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `CompleteAsync()` | `void` | Confirma los cambios pendientes de la unidad de trabajo. |
+
+##### `IdentityAccessDbContext`
+
+- **Bounded Context:** Identity & Access Management — Infrastructure.
+- **Descripción / propósito:** `DbContext` de Entity Framework Core que configura la persistencia relacional de cuentas, roles y sesiones de renovación.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | El diagrama no declara atributos propios. |
+
+**Operaciones:** No se muestran operaciones propias.
+
+##### `UserAccountRepository`
+
+- **Bounded Context:** Identity & Access Management — Infrastructure.
+- **Descripción / propósito:** Adaptador PostgreSQL/Entity Framework Core que implementa `IUserAccountRepository` e incluye los roles al recuperar una cuenta.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | La dependencia del contexto se recibe mediante el constructor. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `FindByNormalizedEmailAsync(email)` | `UserAccount?` | Busca una cuenta por su correo normalizado. |
+| `+` | `GetByIdAsync(userId)` | `UserAccount?` | Recupera una cuenta por su identificador. |
+| `+` | `AddAsync(account)` | `void` | Agrega una cuenta al contexto de persistencia. |
+
+##### `RefreshSessionRepository`
+
+- **Bounded Context:** Identity & Access Management — Infrastructure.
+- **Descripción / propósito:** Adaptador que localiza una sesión activa por el hash del token e incluye la cuenta y sus roles.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | La dependencia del contexto se recibe mediante el constructor. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `GetByTokenHashAsync(tokenHash)` | `(UserAccount, RefreshSession)?` | Recupera una sesión asociada al hash recibido. |
+
+##### `AspNetPasswordHasher`
+
+- **Bounded Context:** Identity & Access Management — Infrastructure.
+- **Descripción / propósito:** Adaptador basado en ASP.NET Core Identity que implementa el hash y la verificación de contraseñas.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | El hasher concreto se encapsula en la implementación. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Hash(password)` | `string` | Genera un hash compatible con ASP.NET Core Identity. |
+| `+` | `Verify(passwordHash, password)` | `bool` | Verifica la contraseña y admite una revalidación necesaria. |
+
+##### `JwtAccessTokenIssuer`
+
+- **Bounded Context:** Identity & Access Management — Infrastructure.
+- **Descripción / propósito:** Adaptador que emite JWT firmados con el issuer, audience, claims de usuario y roles configurados.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | Las opciones JWT se reciben mediante el constructor. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Issue(user, now)` | `(string Token, DateTimeOffset ExpiresAt)` | Genera el JWT de acceso firmado. |
+
+##### `RefreshTokenGenerator`
+
+- **Bounded Context:** Identity & Access Management — Infrastructure.
+- **Descripción / propósito:** Adaptador criptográfico que genera tokens aleatorios y calcula el hash SHA-256 persistido.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | No se muestran atributos propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `Generate()` | `string` | Genera un token aleatorio de renovación. |
+| `+` | `Hash(rawToken)` | `string` | Calcula el hash SHA-256 del token. |
+
+##### `IdentityAccessUnitOfWork`
+
+- **Bounded Context:** Identity & Access Management — Infrastructure.
+- **Descripción / propósito:** Implementación de `IIdentityAccessUnitOfWork` que confirma los cambios del `IdentityAccessDbContext`.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | La dependencia del contexto se recibe mediante el constructor. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `CompleteAsync()` | `void` | Persiste los cambios pendientes. |
+
+##### `AuthController`
+
+- **Bounded Context:** Identity & Access Management — Interfaces.
+- **Descripción / propósito:** Controlador REST que expone el ciclo de autenticación y entrega el access token junto con una cookie HttpOnly de renovación.
+
+**Atributos**
+
+| Visibilidad | Atributo | Tipo | Descripción |
+|---|---|---|---|
+| — | — | — | El controlador no declara atributos de dominio propios. |
+
+**Operaciones**
+
+| Visibilidad | Operación | Retorno | Descripción |
+|---|---|---|---|
+| `+` | `POST /api/v1/iam/auth/login` | `AuthenticatedSessionResource` | Autentica las credenciales y crea una sesión. |
+| `+` | `POST /api/v1/iam/auth/refresh` | `AuthenticatedSessionResource` | Renueva el access token usando la cookie HttpOnly. |
+| `+` | `POST /api/v1/iam/auth/logout` | `void` | Revoca la sesión y elimina la cookie de renovación. |
+| `+` | `GET /api/v1/iam/auth/me` | `CurrentUserResource` | Devuelve la identidad y roles del usuario autenticado. |
 
 ## 4.10. Database Design
 
