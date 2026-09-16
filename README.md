@@ -116,6 +116,7 @@ Proyecto
     - [2.2.3. Análisis de entrevistas](#223-análisis-de-entrevistas)
       - [Segmento 1: Área de Adquisiciones (n = 2)](#segmento-1-área-de-adquisiciones-n--2)
       - [Segmento 2: Área de Producción y Sanidad (n = 1)](#segmento-2-área-de-producción-y-sanidad-n--1)
+      - [Síntesis comparativa de los segmentos](#síntesis-comparativa-de-los-segmentos)
   - [2.3. Needfinding](#23-needfinding)
     - [2.3.1. User Personas](#231-user-personas)
       - [User Persona — Analista de adquisiciones](#user-persona--analista-de-adquisiciones)
@@ -840,7 +841,7 @@ Para finalizar, ¿existe algún problema, necesidad o experiencia relacionada co
 
 ### 2.2.3. Análisis de entrevistas
 
-El análisis disponible se limita a los resúmenes de las entrevistas N.º 1 (Diego De la Cruz) y N.º 2 (Andy Núñez), ambos del segmento **adquisiciones**. Los porcentajes indican cuántos de estos dos registros mencionan cada característica; no son estimaciones representativas de todos los profesionales del sector. No se dispone aquí de transcripciones para verificar matices que los resúmenes hayan omitido.
+El análisis integra las entrevistas N.º 1 (Diego De la Cruz) y N.º 2 (Andy Núñez), del segmento **adquisiciones**, y la entrevista N.º 3 (Joel Martínez), del segmento **producción y sanidad**. Los porcentajes se calculan dentro de cada segmento —n = 2 para adquisiciones y n = 1 para producción y sanidad—; no son estimaciones representativas del mercado. En las entrevistas 1 y 2 se analizan los resúmenes registrados, mientras que la entrevista 3 cuenta además con la transcripción audiovisual proporcionada.
 
 #### Segmento 1: Área de Adquisiciones (n = 2)
 
@@ -875,9 +876,21 @@ La entrevista N.º 3 corresponde a Joel Martínez, colaborador del área de alma
 
 **Hallazgo exploratorio del segmento.** El registro refuerza la necesidad de centralizar solicitudes, conservar su historial y utilizar un lenguaje común para que las áreas puedan validar información de manera consistente. La evidencia también respalda la trazabilidad de estados y la supervisión humana antes de aprobar una compra. Al existir un solo registro, estos resultados deben validarse con entrevistas adicionales a veterinarios, nutricionistas, jefes de granja u otros responsables técnicos del segmento.
 
+#### Síntesis comparativa de los segmentos
+
+| Dimensión | Adquisiciones (N.º 1 y N.º 2) | Producción y sanidad / almacén (N.º 3) | Implicación para SmartQuote |
+|---|---|---|---|
+| Problema principal | Transcripción manual y comparación de cotizaciones incompletas o ambiguas. | Comunicación jerárquica, solicitudes físicas que se traspapelan y diferencias de lenguaje entre áreas. | Centralizar el flujo y mantener un historial digital trazable desde la solicitud hasta la orden. |
+| Información crítica | Precio, disponibilidad y especificaciones técnicas de las ofertas. | Cantidad, peso, marca, calidad, destinatario y volumen solicitado. | Estandarizar campos técnicos y comerciales para que ambos segmentos trabajen con información consistente. |
+| Decisión y control | El comprador necesita revisar el origen de los datos y conservar la decisión humana. | La cotización atraviesa filtros de supervisión y evaluación antes de la decisión final de gerencia. | Mantener evidencia de origen, correcciones, criterios y aprobaciones; la IA recomienda, pero no reemplaza la autorización. |
+| Impacto esperado | Reducir horas de trabajo manual, errores y retrasos. | Evitar pérdidas económicas y retrasos en ventas causados por compras tardías o incorrectas. | Priorizar tiempos de atención, alertas de estado y trazabilidad de responsabilidades. |
+| Mejora solicitada | Automatización de extracción y comparación con confidencialidad. | Digitalización y un modelo/vocabulario común entre áreas. | Integrar extracción asistida por IA con formularios normalizados y un lenguaje ubicuo compartido. |
+
+**Conclusión del análisis.** Las tres entrevistas convergen en que la información incompleta, la falta de un lenguaje común y la ausencia de trazabilidad prolongan el proceso de adquisición. El segmento de adquisiciones concentra la fricción en la recepción y comparación de ofertas; el registro del segmento de producción y sanidad añade la necesidad de formalizar desde el origen la cantidad, calidad, destinatario y responsables de cada solicitud. Estos hallazgos respaldan el alcance actual de SmartQuote: solicitud estructurada, extracción verificable de cotizaciones, simulación ponderada y aprobación humana con historial. La muestra sigue siendo pequeña (dos casos de adquisiciones y un subperfil de almacén), por lo que se requieren entrevistas adicionales con responsables técnicos de granja para validar y ampliar estas conclusiones.
+
 ## 2.3. Needfinding
 
-Los artefactos siguientes organizan los hallazgos documentados en las entrevistas de adquisiciones. Para producción y sanidad se indica «Pendiente» donde aún no existen registros. Los cuadros de este README presentan la síntesis textual; las capturas de las fichas y mapas elaborados en las herramientas indicadas por la guía deben incorporarse como evidencia visual.
+Los artefactos siguientes organizan los hallazgos documentados en las entrevistas de adquisiciones y el primer registro del segmento de producción y sanidad. Para este último, los artefactos específicos permanecen pendientes de ampliar la muestra y validar los hallazgos. Los cuadros de este README presentan la síntesis textual; las capturas de las fichas y mapas elaborados en las herramientas indicadas por la guía deben incorporarse como evidencia visual.
 
 ### 2.3.1. User Personas
 
@@ -893,7 +906,7 @@ Los dos participantes tienen 24 y 27 años y residen en Santiago de Surco y San 
 
 ### 2.3.2. User Task Matrix
 
-La matriz compara al **analista de adquisiciones** y al **especialista de producción y sanidad** mediante tareas del proceso de trabajo actual, realizables aun si SmartQuote no existiera. Las columnas de frecuencia indican el momento en que ocurriría cada tarea dentro de un ciclo de compra (*por necesidad*, *por solicitud*, *por cotización* o *por decisión*), **no** una cantidad semanal o mensual medida. En adquisiciones, la importancia se infiere de las entrevistas N.º 1 y N.º 2; en producción y sanidad es una propuesta del flujo de negocio, porque todavía no hay entrevistas de ese segmento. «No corresponde» significa que la tarea pertenece a otro rol.
+La matriz compara al **analista de adquisiciones** y al **especialista de producción y sanidad** mediante tareas del proceso de trabajo actual, realizables aun si SmartQuote no existiera. Las columnas de frecuencia indican el momento en que ocurriría cada tarea dentro de un ciclo de compra (*por necesidad*, *por solicitud*, *por cotización* o *por decisión*), **no** una cantidad semanal o mensual medida. En adquisiciones, la importancia se infiere de las entrevistas N.º 1 y N.º 2; en producción y sanidad se incorpora como evidencia inicial la entrevista N.º 3 y se mantienen como propuestas las frecuencias o importancias que no fueron medidas. «No corresponde» significa que la tarea pertenece a otro rol.
 
 | Tarea del proceso actual, sin SmartQuote | Adquisiciones: frecuencia | Adquisiciones: importancia | Producción y sanidad: frecuencia | Producción y sanidad: importancia |
 |---|---|---|---|---|
@@ -922,7 +935,7 @@ El recorrido *As-Is* describe cómo un analista pasa del requerimiento a la deci
 | Consolidación | Traslada manualmente precio, disponibilidad y especificaciones a Excel. | La tarea consume varias horas y las ofertas incompletas generan retrasos. | N.º 1 y N.º 2. |
 | Comparación y decisión | Contrasta las alternativas y mantiene la selección bajo supervisión humana; en un caso la orden se formaliza en el ERP. | Justificar la elección y resguardar los datos comerciales. | N.º 1 y N.º 2; formalización en ERP en N.º 1. |
 
-**Pendiente:** validar secuencia, canales y emociones mediante nuevas entrevistas; elaborar y adjuntar la captura del User Journey Map en la herramienta indicada. **Journey As-Is de Producción y Sanidad:** Pendiente por falta de entrevistas.
+**Pendiente:** validar secuencia, canales y emociones mediante nuevas entrevistas; elaborar y adjuntar la captura del User Journey Map en la herramienta indicada. **Journey As-Is de Producción y Sanidad:** primer flujo sustentado por N.º 3, pendiente de validación y ampliación con más entrevistas.
 
 ### 2.3.4. Empathy Mapping
 
@@ -938,7 +951,7 @@ Este mapa de empatía se refiere al arquetipo de adquisiciones. Se consigna lo q
 | Pains | Horas de transcripción, ofertas incompletas o ambiguas y preocupación por confidencialidad; N.º 1 y N.º 2. |
 | Gains esperados | Menos trabajo manual y errores, con datos verificables y supervisión final; son expectativas expresadas por N.º 1 y N.º 2, no resultados de uso. |
 
-**Pendiente:** capturar el mapa elaborado en la herramienta indicada. **Empathy Map de Producción y Sanidad:** Pendiente por falta de entrevistas.
+**Pendiente:** capturar el mapa elaborado en la herramienta indicada. **Empathy Map de Producción y Sanidad:** pendiente de elaborar y validar con la entrevista N.º 3 y registros adicionales.
 
 ### 2.3.5. As-is Scenario Mapping
 
@@ -951,7 +964,7 @@ El escenario *As-Is* se plantea desde el arquetipo de adquisiciones. Las columna
 | **Thinking** | Pendiente: no se documenta el razonamiento en esta fase. | Se necesita información completa para comparar; inferencia a partir de N.º 1 y N.º 2. | Se necesita conocer el origen de cada dato; N.º 1 y N.º 2. | Se requiere justificar y controlar la selección; N.º 1 y N.º 2. |
 | **Feeling** | Pendiente: no se documenta. | Frustración ante ofertas ambiguas; inferida del problema descrito por ambos. | Frustración por horas de trabajo manual; inferida del problema descrito por ambos. | Pendiente: no se documenta una emoción final. |
 
-**Áreas negativas:** cotizaciones incompletas y transcripción prolongada (N.º 1 y N.º 2). **Área potencialmente positiva:** el registro de requerimiento y orden en el ERP ya existe en un caso, aunque queda separado de la comparación (N.º 1). **Blank areas:** frecuencia de cada fase, validación técnica, coordinación con otras áreas y emociones no documentadas. **Pendiente:** revisar el escenario con entrevistados y adjuntar la captura del mapa en la herramienta indicada. **As-Is Scenario Map de Producción y Sanidad:** Pendiente por falta de entrevistas.
+**Áreas negativas:** cotizaciones incompletas y transcripción prolongada (N.º 1 y N.º 2); comunicación jerárquica, solicitudes físicas extraviadas y falta de lenguaje común (N.º 3). **Área potencialmente positiva:** el registro de requerimiento y orden en el ERP ya existe en un caso, aunque queda separado de la comparación (N.º 1). **Blank areas:** frecuencia de cada fase, validación técnica detallada, coordinación con otras áreas y emociones no documentadas. **Pendiente:** revisar el escenario con entrevistados y adjuntar la captura del mapa en la herramienta indicada. **As-Is Scenario Map de Producción y Sanidad:** primer insumo basado en N.º 3, pendiente de completar con más entrevistas.
 
 ## 2.4. Ubiquitous Language
 
