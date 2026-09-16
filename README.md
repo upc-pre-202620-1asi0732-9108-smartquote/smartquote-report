@@ -1651,8 +1651,7 @@ Documento final generado tras la aprobación del Purchase Manager, con los datos
 Solicitud Completada (Ordered)
 Estado final del ciclo de vida de la solicitud, confirmando que el proceso de principio a fin —desde la solicitud del Production Specialist hasta la orden de compra del Purchase Manager— se completó exitosamente.
 
-<img src="assets/design/WebApp/Mockups/ordered.png" width="900px" alt="ordered">
-
+<img src="assets/design/WebApp/Mockups/Ordered.png" width="900px" alt="ordered">
 
 ### 4.6.4. Web Applications User Flow Diagrams
 
