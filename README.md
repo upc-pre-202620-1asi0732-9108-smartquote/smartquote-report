@@ -449,11 +449,19 @@ SmartQuote propone centralizar este flujo mediante una plataforma que permita re
 
 #### 1.2.2.1. Lean UX Problem Statements
 
+Pendiente
+
 #### 1.2.2.2. Lean UX Assumptions
+
+Pendiente
 
 #### 1.2.2.3. Lean UX Hypothesis Statements
 
+Pendiente
+
 #### 1.2.2.4. Lean UX Canvas
+
+Pendiente
 
 ## 1.3. Segmentos objetivo
 
@@ -699,13 +707,23 @@ Pendiente
 
 ### 2.3.1. User Personas
 
+Pendiente
+
 ### 2.3.2. User Task Matrix
+
+Pendiente
 
 ### 2.3.3. User Journey Mapping
 
+Pendiente
+
 ### 2.3.4. Empathy Mapping
 
+Pendiente
+
 ### 2.3.5. As-is Scenario Mapping
+
+Pendiente
 
 ## 2.4. Ubiquitous Language
 
