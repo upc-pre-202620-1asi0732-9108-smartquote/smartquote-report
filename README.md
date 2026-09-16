@@ -68,6 +68,15 @@ Proyecto
 
 ## Project Report Collaboration Insights
 
+**AV1:**
+
+| Entregable | Repositorio GitHub | Evidencia de colaboración |
+|---|---|---|
+| Landing Page | [smartquote-landing-page](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page) | `assets/collaboration/landing-page-github-insights.png` |
+| Frontend Web Application | [smartquote-frontend-web](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web) | `assets/collaboration/frontend-web-github-insights.png` |
+| Native Mobile Application | [smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile) | `assets/collaboration/native-mobile-github-insights.png` |
+| Web Services | [smartquote-web-services](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services) | `assets/collaboration/web-services-github-insights.png` |
+
 ## Contenido
 
 - [Student Outcome](#student-outcome)
@@ -101,9 +110,9 @@ Proyecto
       - [Segmento 2: Área de Producción y Sanidad — Médicos veterinarios, nutricionistas y jefes de granja](#segmento-2-área-de-producción-y-sanidad--médicos-veterinarios-nutricionistas-y-jefes-de-granja-1)
       - [Pregunta de cierre](#pregunta-de-cierre)
     - [2.2.2. Registro de entrevistas](#222-registro-de-entrevistas)
-      - [Ficha de registro — Entrevista \[N.º1\]](#ficha-de-registro--entrevista-nº1)
-      - [Ficha de registro — Entrevista \[N.º2\]](#ficha-de-registro--entrevista-nº2)
-      - [Ficha de registro — Entrevista \[N.º3\]](#ficha-de-registro--entrevista-nº3)
+      - [Ficha de registro — Entrevista 1](#ficha-de-registro--entrevista-1)
+      - [Ficha de registro — Entrevista 2](#ficha-de-registro--entrevista-2)
+      - [Ficha de registro — Entrevista 3](#ficha-de-registro--entrevista-3)
     - [2.2.3. Análisis de entrevistas](#223-análisis-de-entrevistas)
   - [2.3. Needfinding](#23-needfinding)
     - [2.3.1. User Personas](#231-user-personas)
@@ -154,9 +163,54 @@ Proyecto
     - [4.5.2. iOS Mobile Applications Prototyping](#452-ios-mobile-applications-prototyping)
   - [4.6. Web Applications UX/UI Design](#46-web-applications-uxui-design)
     - [4.6.1. Web Applications Wireframes](#461-web-applications-wireframes)
+      - [Acceso y Configuración (Universal)](#acceso-y-configuración-universal)
+        - [Autenticación y Acceso](#autenticación-y-acceso)
+      - [Production Specialist](#production-specialist)
+        - [Gestión de Solicitudes de Compra](#gestión-de-solicitudes-de-compra)
+      - [Purchase Analyst / Purchase Manager (Purchasing Staff)](#purchase-analyst--purchase-manager-purchasing-staff)
+        - [Revisión y Avance de Estado](#revisión-y-avance-de-estado)
+        - [Gestión de Cotizaciones](#gestión-de-cotizaciones)
+        - [Evaluación Comparativa](#evaluación-comparativa)
+      - [Purchase Manager (Exclusivo)](#purchase-manager-exclusivo)
+        - [Aprobación y Orden de Compra](#aprobación-y-orden-de-compra)
     - [4.6.2. Web Applications Wireflow Diagrams](#462-web-applications-wireflow-diagrams)
+      - [Task Flow 1: Registro y Seguimiento de Solicitudes de Compra](#task-flow-1-registro-y-seguimiento-de-solicitudes-de-compra)
+      - [Pasos del Task Flow:](#pasos-del-task-flow)
+        - [User Goal 1 (US02): Como Production Specialist, quiero registrar una solicitud de insumos desde la operación.](#user-goal-1-us02-como-production-specialist-quiero-registrar-una-solicitud-de-insumos-desde-la-operación)
+        - [User Goal 2 (US03): Como Production Specialist, quiero conocer el avance de una solicitud de compra.](#user-goal-2-us03-como-production-specialist-quiero-conocer-el-avance-de-una-solicitud-de-compra)
+      - [Segmento: Purchasing Staff (Analyst / Manager)](#segmento-purchasing-staff-analyst--manager)
+      - [Task Flow 2: Incorporación y Verificación de Cotizaciones](#task-flow-2-incorporación-y-verificación-de-cotizaciones)
+      - [Pasos del Task Flow:](#pasos-del-task-flow-1)
+        - [User Goal 3 (US04): Como Purchasing Staff, quiero incorporar cotizaciones de proveedores.](#user-goal-3-us04-como-purchasing-staff-quiero-incorporar-cotizaciones-de-proveedores)
+        - [User Goal 4 (US05): Como Purchasing Staff, quiero verificar la información extraída de una cotización.](#user-goal-4-us05-como-purchasing-staff-quiero-verificar-la-información-extraída-de-una-cotización)
+      - [Task Flow 3: Evaluación Comparativa de Proveedores](#task-flow-3-evaluación-comparativa-de-proveedores)
+      - [Pasos del Task Flow:](#pasos-del-task-flow-2)
+        - [User Goal 5 (US06): Como Purchasing Staff, quiero definir los criterios de evaluación de cotizaciones.](#user-goal-5-us06-como-purchasing-staff-quiero-definir-los-criterios-de-evaluación-de-cotizaciones)
+        - [User Goal 6 (US07): Como Purchasing Staff, quiero simular y comparar las cotizaciones elegibles.](#user-goal-6-us07-como-purchasing-staff-quiero-simular-y-comparar-las-cotizaciones-elegibles)
+      - [Segmento: Purchase Manager](#segmento-purchase-manager)
+      - [Task Flow 4: Aprobación y Cierre de Compra](#task-flow-4-aprobación-y-cierre-de-compra)
+      - [Pasos del Task Flow:](#pasos-del-task-flow-3)
+        - [User Goal 7 (US08): Como Purchase Manager, quiero aprobar la alternativa seleccionada y generar la orden de compra.](#user-goal-7-us08-como-purchase-manager-quiero-aprobar-la-alternativa-seleccionada-y-generar-la-orden-de-compra)
     - [4.6.3. Web Applications Mock-ups](#463-web-applications-mock-ups)
+      - [Acceso y Configuración (Universal)](#acceso-y-configuración-universal-1)
+        - [Autenticación y Acceso](#autenticación-y-acceso-1)
+      - [Production Specialist](#production-specialist-1)
+        - [Gestión de Solicitudes de Compra](#gestión-de-solicitudes-de-compra-1)
+      - [Purchase Analyst / Purchase Manager (Purchasing Staff)](#purchase-analyst--purchase-manager-purchasing-staff-1)
+        - [Revisión y Avance de Estado](#revisión-y-avance-de-estado-1)
+        - [Gestión de Cotizaciones](#gestión-de-cotizaciones-1)
+        - [Evaluación Comparativa](#evaluación-comparativa-1)
+      - [Purchase Manager (Exclusivo)](#purchase-manager-exclusivo-1)
+        - [Aprobación y Orden de Compra](#aprobación-y-orden-de-compra-1)
     - [4.6.4. Web Applications User Flow Diagrams](#464-web-applications-user-flow-diagrams)
+    - [User Flows](#user-flows)
+      - [User Flow 1:](#user-flow-1)
+      - [User Flow 2:](#user-flow-2)
+      - [User Flow 3:](#user-flow-3)
+      - [User Flow 4:](#user-flow-4)
+      - [User Flow 5:](#user-flow-5)
+      - [User Flow 6:](#user-flow-6)
+      - [User Flow 7:](#user-flow-7)
   - [4.7. Web Applications Prototyping](#47-web-applications-prototyping)
   - [4.8. Domain-Driven Software Architecture](#48-domain-driven-software-architecture)
     - [Architecture Overview Diagram](#architecture-overview-diagram)
@@ -340,6 +394,10 @@ Proyecto
       - [Rutas operativas y de documentación](#rutas-operativas-y-de-documentación)
       - [Principales esquemas de respuesta](#principales-esquemas-de-respuesta)
     - [5.2.7. Team Collaboration Insights](#527-team-collaboration-insights)
+      - [Landing Page](#landing-page)
+      - [Frontend Web Application](#frontend-web-application)
+      - [Native Mobile Application](#native-mobile-application)
+      - [Web Services](#web-services)
   - [5.3. Video About-the-Product](#53-video-about-the-product)
     - [Enlaces de publicación](#enlaces-de-publicación)
 - [Conclusiones](#conclusiones)
@@ -657,7 +715,7 @@ Para finalizar, ¿existe algún problema, necesidad o experiencia relacionada co
 
 ### 2.2.2. Registro de entrevistas
 
-#### Ficha de registro — Entrevista [N.º1]
+#### Ficha de registro — Entrevista 1
 
 | Elemento del registro | Información de la entrevista |
 |---|---|
@@ -671,7 +729,7 @@ Para finalizar, ¿existe algún problema, necesidad o experiencia relacionada co
 | **Minutaje (timing)** | **Inicio:** `[hh:mm:ss]`<br>**Duración:** 07:29 |
 | **Resumen descriptivo y recolección de datos** | Diego De la Cruz, analista de compras, realiza cotizaciones y gestiona el proceso de compras y ventas apoyándose en el ERP SAP HANA, donde se registran los requerimientos y se formalizan las órdenes. Sin embargo, el tramo intermedio —comparar las ofertas que llegan de distintos proveedores— lo resuelve fuera del sistema, trasladando manualmente precios, disponibilidad y especificaciones técnicas a hojas de cálculo, lo que le consume varias horas por cada requerimiento. Su mayor reto y causa de retrasos es lidiar con cotizaciones incompletas o ambiguas, por lo que considera que una plataforma web con inteligencia artificial como "SmartQuote" sería sumamente útil para automatizar la extracción de datos, ahorrar tiempo y reducir errores. Precisa que la herramienta no debería reemplazar al ERP, sino integrarse con él para recibir el requerimiento y devolver la decisión ya sustentada. Para confiar en esta herramienta y garantizar su éxito, el sistema deberá proteger estrictamente la confidencialidad de la información comercial y mostrar de forma transparente el origen de cada dato extraído, permitiéndole mantener la supervisión final sobre las especificaciones técnicas y la elección del proveedor. |
 
-#### Ficha de registro — Entrevista [N.º2]
+#### Ficha de registro — Entrevista 2
 
 | Elemento del registro | Información de la entrevista |
 |---|---|
@@ -685,7 +743,7 @@ Para finalizar, ¿existe algún problema, necesidad o experiencia relacionada co
 | **Minutaje (timing)** | **Inicio:** `[hh:mm:ss]`<br>**Duración:** 9:04 |
 | **Resumen descriptivo y recolección de datos** | Andy Núñez, del área de adquisiciones, gestiona el proceso de compras utilizando principalmente correo y Excel, invirtiendo varias horas en trasladar datos manualmente para elaborar cuadros comparativos de precios, disponibilidad y especificaciones técnicas. Su mayor reto y causa de retrasos es lidiar con cotizaciones incompletas o ambiguas, por lo que considera que una plataforma web con inteligencia artificial como "Smart Quote" sería sumamente útil para automatizar la extracción de datos, ahorrar tiempo y reducir errores. Para confiar en esta herramienta y garantizar su éxito, el sistema deberá proteger estrictamente la confidencialidad de la información comercial y mostrar de forma transparente el origen de cada dato extraído, permitiéndole mantener la supervisión final sobre las especificaciones técnicas y la elección del proveedor. |
 
-#### Ficha de registro — Entrevista [N.º3]
+#### Ficha de registro — Entrevista 3
 
 | Elemento del registro | Información de la entrevista |
 |---|---|
@@ -4407,6 +4465,36 @@ Los códigos comunes son `400` (solicitud o parámetros inválidos), `401` (JWT 
 Los nombres y tipos completos de estos esquemas se mantienen en los recursos C# del backend y son publicados automáticamente en el documento OpenAPI, por lo que cualquier cambio de contrato debe reflejarse en esta tabla y en las capturas de Swagger.
 
 ### 5.2.7. Team Collaboration Insights
+
+Esta sección documenta la colaboración técnica de cada entregable mediante sus repositorios públicos de GitHub.
+
+#### Landing Page
+
+**Entregable:** Landing Page estática en HTML5, CSS3 y JavaScript.  
+**Repositorio:** [smartquote-landing-page](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page)
+
+![GitHub Insights — smartquote-landing-page](assets/collaboration/landing-page-github-insights.png)
+
+#### Frontend Web Application
+
+**Entregable:** Aplicación web en Vue.js, PrimeVue y Material Design.  
+**Repositorio:** [smartquote-frontend-web](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web)
+
+![GitHub Insights — smartquote-frontend-web](assets/collaboration/frontend-web-github-insights.png)
+
+#### Native Mobile Application
+
+**Entregable:** Aplicación móvil nativa multiplataforma desarrollada con Flutter y Dart.  
+**Repositorio:** [smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile)
+
+![GitHub Insights — smartquote-native-mobile](assets/collaboration/native-mobile-github-insights.png)
+
+#### Web Services
+
+**Entregable:** Web Services RESTful en ASP.NET Core y C#.  
+**Repositorio:** [smartquote-web-services](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services)
+
+![GitHub Insights — smartquote-web-services](assets/collaboration/web-services-github-insights.png)
 
 ## 5.3. Video About-the-Product
 
