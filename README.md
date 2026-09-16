@@ -498,7 +498,7 @@ La técnica 5W2H permite ordenar el problema inicial y explicitar los aspectos q
 | **Where — ¿Dónde ocurre?** | En la interacción entre el área corporativa de adquisiciones y las áreas operativas de producción y sanidad de las empresas avícolas. |
 | **When — ¿Cuándo ocurre?** | Cuando se generan solicitudes de insumos esenciales y se reciben cotizaciones de diversos proveedores que requieren validación técnica y comercial antes de emitir una orden de compra. |
 | **Why — ¿Por qué ocurre?** | Porque la información de las cotizaciones suele estar distribuida en documentos con estructuras diferentes y la evaluación exige combinar conocimiento comercial con criterios técnicos propios de la operación avícola. |
-| **How — ¿Cómo se atiende actualmente?** | De forma preliminar, se identifica un proceso basado en la revisión manual de documentos, el uso de hojas de cálculo y la coordinación mediante canales de comunicación entre adquisiciones y especialistas técnicos. Esta práctica deberá confirmarse mediante entrevistas. |
+| **How — ¿Cómo se atiende actualmente?** | Los dos entrevistados de adquisiciones describen la revisión manual de cotizaciones y su comparación en hojas de cálculo. La coordinación con especialistas técnicos se describirá a partir de entrevistas de producción y sanidad. |
 | **How Much — ¿Cuál es el impacto?** | Las demoras o una evaluación insuficiente pueden afectar la planificación de abastecimiento y generar costos operativos. La magnitud económica, los tiempos actuales y los insumos más críticos deberán medirse con información de las empresas entrevistadas. |
 
 SmartQuote propone centralizar este flujo mediante una plataforma que permita registrar solicitudes con criterios técnicos, cargar cotizaciones digitales, estructurar la información relevante mediante un Agente de IA y comparar las alternativas conforme a criterios configurables. El resultado esperado es una recomendación de compra que sirva como base para la revisión, aprobación y generación de la orden de compra. La validación con usuarios permitirá precisar el alcance funcional, los criterios de evaluación prioritarios y los indicadores de mejora del proceso.
@@ -507,29 +507,71 @@ SmartQuote propone centralizar este flujo mediante una plataforma que permita re
 
 #### 1.2.2.1. Lean UX Problem Statements
 
-Pendiente
+El dominio de SmartQuote es la adquisición de insumos para empresas avícolas. La evaluación de ofertas exige relacionar las necesidades de producción y sanidad con las condiciones comerciales ofrecidas por los proveedores. Los dos registros disponibles de entrevistas corresponden a adquisiciones y sustentan el problema descrito para ese segmento. El problema del segmento técnico se formula como hipótesis hasta contar con sus entrevistas.
+
+El modelo de negocio propuesto es B2B SaaS por membresía periódica. SmartQuote no busca reemplazar el ERP de la empresa: se enfoca en el tramo de recepción, estructuración y comparación de cotizaciones, y en conservar la relación entre solicitud, criterios de evaluación, decisión y orden de compra. El segmento inicial de aprendizaje es adquisiciones porque allí se concentran los dos registros de entrevista disponibles.
+
+| Componente | Definición inicial |
+|---|---|
+| Dominio | Solicitud, cotización, comparación y decisión de compra de insumos avícolas. |
+| Segmentos de clientes y usuarios | Analistas y jefes de adquisiciones; especialistas de producción y sanidad. El segmento inicial de validación es adquisiciones. |
+| Pain points observados | Dos entrevistados de adquisiciones describen traslado manual de datos a Excel, varias horas dedicadas a comparar ofertas y retrasos por cotizaciones incompletas o ambiguas (entrevistas N.º 1 y 2). |
+| Brecha | El flujo actual descrito separa el registro formal de la compra de la comparación de ofertas: un entrevistado usa SAP HANA para requerimientos y órdenes, pero compara fuera del ERP; el otro combina correo y Excel. |
+| Visión | Apoyar una decisión de compra verificable que reúna información técnica y comercial sin eliminar la revisión profesional. |
+| Estrategia inicial | Empezar por estructurar cotizaciones, mostrar el origen de cada dato y facilitar la comparación; probar la integración con el ERP existente antes de plantear reemplazarlo. |
+
+**Problem statement — adquisiciones:** los analistas de compras necesitan comparar cotizaciones de proveedores con rapidez y evidencia verificable, porque hoy trasladan manualmente precios, disponibilidad y especificaciones a hojas de cálculo, incluso cuando el requerimiento y la orden ya están en otro sistema. La información incompleta o ambigua produce demoras; la solución debe resguardar la confidencialidad y dejar la elección final en manos del responsable de compras.
+
+**Problem statement — producción y sanidad (hipótesis):** los especialistas técnicos podrían necesitar comunicar requisitos de insumos y conocer el avance de las solicitudes sin perder la posibilidad de validar su cumplimiento. Este enunciado se contrastará con entrevistas del segmento; los dos registros actuales no permiten afirmarlo como hallazgo.
 
 #### 1.2.2.2. Lean UX Assumptions
 
-Pendiente
+Las siguientes suposiciones separan lo que aparece en los dos resúmenes de entrevistas de lo que aún requiere validación. Que un entrevistado considere útil SmartQuote no demuestra que el producto ya reduzca tiempos ni errores.
+
+| ID | Suposición | Base disponible | Validación pendiente |
+|---|---|---|---|
+| A1 | Estructurar automáticamente datos de cotizaciones puede reducir el trabajo de transcripción. | Ambos entrevistados trasladan datos manualmente a Excel. | Medir tiempo y correcciones antes y después de una prueba con cotizaciones autorizadas. |
+| A2 | La herramienta debe señalar los datos incompletos y conservar el documento de origen. | Ambos resúmenes mencionan cotizaciones ambiguas y necesidad de ver el origen de cada dato. | Observar si los usuarios detectan y corrigen campos dudosos en un prototipo. |
+| A3 | La revisión humana y la protección de información comercial son condiciones de confianza. | Ambos resúmenes destacan supervisión final y confidencialidad. | Validar permisos, trazabilidad y criterios de aceptación con responsables de compras. |
+| A4 | Complementar el ERP existente es más útil que sustituirlo. | Diego menciona explícitamente la integración con SAP HANA. | Contrastar con más empresas y estudiar una integración o exportación mínima. |
+| A5 | Producción y sanidad necesitan registrar y seguir solicitudes desde un canal móvil. | Propuesta del producto descrita en la sección 1.3; no hay entrevistas de este segmento. | Entrevistar a especialistas, observar su contexto de trabajo y comprobar si el canal móvil responde a sus tareas reales. |
+| A6 | Un agente de IA puede extraer datos con suficiente precisión para una comparación confiable. | Capacidad propuesta, no comprobada por las entrevistas. | Probar cotizaciones reales autorizadas y medir precisión por campo y necesidad de corrección. |
 
 #### 1.2.2.3. Lean UX Hypothesis Statements
 
-Pendiente
+Las hipótesis se formulan como resultados por comprobar, no como beneficios ya alcanzados. La línea base y los umbrales definitivos deberán acordarse con los participantes del piloto.
+
+| ID | Hipótesis comprobable | Experimento e indicador |
+|---|---|---|
+| H1 | Creemos que, si un analista puede extraer y revisar precio, disponibilidad y especificaciones desde cotizaciones heterogéneas, disminuirá el tiempo de elaboración del cuadro comparativo. | Comparar el tiempo del proceso manual con el de un prototipo usando las mismas cotizaciones; registrar correcciones por oferta. |
+| H2 | Creemos que, si cada dato muestra su fuente y los campos inciertos exigen confirmación, el analista podrá justificar la comparación sin ceder el control de la decisión. | Prueba de tareas: localizar la fuente de datos, corregir errores y explicar la selección; registrar éxito, errores y confianza reportada. |
+| H3 | Creemos que, si SmartQuote intercambia requerimientos y resultados con el ERP existente, el analista evitará duplicar parte del registro. | Probar primero una exportación/importación controlada y contar pasos manuales; validar el flujo con usuarios de ERP. |
+| H4 | Creemos que, si los especialistas de producción y sanidad pueden expresar requisitos y seguir solicitudes, disminuirán las aclaraciones y la incertidumbre sobre el abastecimiento. | Primero, entrevistar a ese segmento para establecer el proceso actual. Después, probar el registro y seguimiento con un prototipo; contar aclaraciones y evaluar si los usuarios pueden identificar el estado y responsable de cada solicitud. |
 
 #### 1.2.2.4. Lean UX Canvas
 
-Pendiente
+El siguiente Lean UX Canvas reúne las decisiones iniciales del equipo y las preguntas que deben someterse a prueba. Las referencias a problemas de adquisiciones proceden de las entrevistas N.º 1 y 2; lo relativo a producción y sanidad sigue siendo una propuesta sin validación directa.
+
+| Bloque del canvas | Contenido de SmartQuote |
+|---|---|
+| 1. Problema de negocio | La comparación manual de cotizaciones retrasa la evaluación y dificulta mantener una decisión trazable entre requerimiento y orden de compra. |
+| 2. Resultados de negocio esperados | Menor tiempo de comparación y menos correcciones; conservación de evidencia de criterios, fuentes y aprobaciones. Son metas por medir, no resultados alcanzados. |
+| 3. Usuarios | Analistas y jefes de adquisiciones (segmento inicial); especialistas de producción y sanidad (segmento aún sin entrevistas registradas). |
+| 4. Resultados para los usuarios | Adquisiciones: comparar ofertas y justificar la selección con menos transcripción. Producción y sanidad: como resultado propuesto, comunicar requisitos técnicos y conocer el avance de las solicitudes; debe validarse con usuarios del segmento. |
+| 5. Ideas de solución | Carga de cotizaciones, extracción asistida, revisión de campos y fuentes, matriz de comparación, validación humana e intercambio gradual con el ERP. |
+| 6. Hipótesis | H1: ahorro de tiempo; H2: confianza mediante evidencia y control humano; H3: menos duplicación con ERP; H4: coordinación con el segmento técnico, aún por validar. |
+| 7. Lo más importante por aprender | Si la extracción es suficientemente precisa, si realmente ahorra tiempo y si la trazabilidad y confidencialidad resultan aceptables para los usuarios. También falta conocer el proceso real de producción y sanidad. |
+| 8. Experimento mínimo | Prototipo de comparación con cotizaciones autorizadas, medición manual frente a prototipo y entrevistas/pruebas de comprensión; después, entrevistas del segmento técnico. |
 
 ## 1.3. Segmentos objetivo
 
-SmartQuote se dirige inicialmente a dos segmentos que participan de forma directa en el ciclo de adquisición de insumos para la producción avícola. Las siguientes caracterizaciones constituyen perfiles preliminares; deberán contrastarse y ajustarse con las entrevistas y los artefactos de *needfinding* del proyecto.
+SmartQuote se dirige a dos segmentos que participan de forma directa en el ciclo de adquisición de insumos para la producción avícola. Las siguientes caracterizaciones delimitan sus funciones en la propuesta; los rasgos derivados de usuarios se distinguen en el análisis de entrevistas y los artefactos de *needfinding*.
 
 ### Segmento 1: Área de Adquisiciones — Analistas y jefes de compras
 
 Este segmento reúne a los usuarios administrativos que gestionan las compras corporativas y que, en determinados casos, también influyen o deciden sobre la selección final del proveedor. Por su intervención directa en la evaluación de cotizaciones, constituye un segmento *Buyer/User Persona*.
 
-| Aspecto | Caracterización preliminar |
+| Aspecto | Caracterización del segmento |
 |---|---|
 | Perfil profesional | Profesionales de administración, ingeniería industrial, comercio exterior o carreras afines, generalmente entre 25 y 50 años, que trabajan en las oficinas administrativas de empresas avícolas medianas. |
 | Objetivos | Reducir el tiempo de atención de las solicitudes, comparar propuestas con criterios consistentes, sustentar la elección de un proveedor y disminuir el trabajo manual de consolidación de datos. |
@@ -540,7 +582,7 @@ Este segmento reúne a los usuarios administrativos que gestionan las compras co
 
 Este segmento representa a los usuarios internos que definen o validan las condiciones técnicas de los insumos necesarios para la operación productiva. Constituye un segmento *User Persona*, pues su interacción con la plataforma está centrada en formular y monitorear solicitudes, más que en la negociación comercial con los proveedores.
 
-| Aspecto | Caracterización preliminar |
+| Aspecto | Caracterización del segmento |
 |---|---|
 | Perfil profesional | Médicos veterinarios, zootecnistas, ingenieros agrónomos, nutricionistas o jefes de granja, generalmente entre 28 y 60 años, vinculados a la operación de granjas y centros de producción avícola. |
 | Objetivos | Mantener la disponibilidad de insumos adecuados, asegurar que las compras cumplan las especificaciones técnicas y conocer el estado de las solicitudes que respaldan la producción y la sanidad de las aves. |
@@ -638,7 +680,7 @@ La estrategia competitiva de SmartQuote no consiste solamente en utilizar inteli
 
 ## 2.2. Entrevistas
 
-Esta sección presenta el diseño de las entrevistas que se aplicarán a representantes de los dos segmentos objetivo de SmartQuote. La información recolectada permitirá validar el problema, conocer el proceso actual de adquisición e identificar características objetivas y subjetivas necesarias para construir los arquetipos de usuario.
+Esta sección presenta el diseño de entrevistas para los dos segmentos objetivo y los registros disponibles del área de adquisiciones. Sus resúmenes sustentan el análisis de ese segmento. Los resultados de producción y sanidad se incorporarán cuando se registren sus entrevistas.
 
 ### 2.2.1. Diseño de entrevistas
 
@@ -759,29 +801,127 @@ Para finalizar, ¿existe algún problema, necesidad o experiencia relacionada co
 
 ### 2.2.3. Análisis de entrevistas
 
-Pendiente
+El análisis disponible se limita a los resúmenes de las entrevistas N.º 1 (Diego De la Cruz) y N.º 2 (Andy Núñez), ambos del segmento **adquisiciones**. Los porcentajes indican cuántos de estos dos registros mencionan cada característica; no son estimaciones representativas de todos los profesionales del sector. No se dispone aquí de transcripciones para verificar matices que los resúmenes hayan omitido.
+
+#### Segmento 1: Área de Adquisiciones (n = 2)
+
+| Característica | Resultado en los registros | Evidencia trazable |
+|---|---|---|
+| Rol y edad | 2/2 (100 %) pertenecen a adquisiciones; tienen 24 y 27 años. No corresponde inferir una edad típica del segmento con solo dos casos. | N.º 1 y N.º 2: datos de perfil. |
+| Distrito | 1/2 (50 %) reside en Santiago de Surco y 1/2 (50 %) en San Borja; no hay un distrito predominante. | N.º 1 y N.º 2: datos de perfil. |
+| Comparación manual en hojas de cálculo | 2/2 (100 %) trasladan datos de ofertas a Excel para elaborar comparaciones. | N.º 1: comparación fuera de SAP HANA; N.º 2: correo y Excel. |
+| Tiempo y fricción del proceso | 2/2 (100 %) describen varias horas de traslado y comparación; 2/2 (100 %) señalan cotizaciones incompletas o ambiguas como causa de retrasos. No se registró una duración exacta comparable. | N.º 1 y N.º 2: resúmenes descriptivos. |
+| Datos considerados | 2/2 (100 %) mencionan precio, disponibilidad y especificaciones técnicas. | N.º 1 y N.º 2: resúmenes descriptivos. |
+| Percepción de la IA | 2/2 (100 %) consideran útil automatizar la extracción para ahorrar tiempo y reducir errores. Es una expectativa, no una mejora demostrada. | N.º 1 y N.º 2: resúmenes descriptivos. |
+| Condiciones de confianza | 2/2 (100 %) mencionan confidencialidad, origen visible de los datos y supervisión humana de especificaciones y proveedor. | N.º 1 y N.º 2: resúmenes descriptivos. |
+| Integración con ERP | 1/2 (50 %) pide explícitamente complementar el ERP; el otro resumen no aborda esa preferencia. | N.º 1: referencia a SAP HANA e integración. |
+
+**Hallazgos del segmento entrevistado.** Los puntos más consistentes en estos registros son el esfuerzo de transcribir y comparar ofertas, los retrasos por información ambigua y la necesidad de confiar en un resultado que pueda revisarse. Por ello, la primera prueba del producto debe centrarse en extracción verificable, corrección de errores, comparación y decisión humana. El porcentaje del 100 % significa únicamente que ambos resúmenes coinciden, no que la necesidad esté validada para todo el mercado.
+
+**Datos aún no recogidos en los resúmenes:** género, estado civil y familia, trayectoria profesional, personalidad, influencias o marcas, dispositivo y navegador preferidos, volumen de compras, frecuencia de las tareas y consecuencias cuantificadas de los retrasos. **Pendiente:** completar la muestra de 3 a 5 entrevistas requerida por la guía para este segmento, los enlaces al video, el inicio de cada entrevista y las características faltantes, siempre con consentimiento para registrar datos personales.
+
+#### Segmento 2: Área de Producción y Sanidad
+
+Pendiente. No hay entrevistas registradas de este segmento; no es posible calcular porcentajes ni afirmar que las características descritas en la sección 1.3 sean hallazgos de investigación. La guía requiere entre 3 y 5 entrevistas por segmento.
 
 ## 2.3. Needfinding
 
+Los artefactos siguientes organizan los hallazgos documentados en las entrevistas de adquisiciones. Para producción y sanidad se indica «Pendiente» donde aún no existen registros. Los cuadros de este README presentan la síntesis textual; las capturas de las fichas y mapas elaborados en las herramientas indicadas por la guía deben incorporarse como evidencia visual.
+
 ### 2.3.1. User Personas
 
-Pendiente
+Se presentan dos fichas con distinto nivel de evidencia. La de **adquisiciones** sintetiza las entrevistas N.º 1 y N.º 2 y se relaciona con el análisis competitivo: frente a suites amplias como SAP Ariba, Oracle y Coupa, la oportunidad de SmartQuote es resolver la comparación especializada sin perder el control del comprador. La de **producción y sanidad** es una *proto-persona* construida con la definición del segmento de la sección 1.3 y las historias US02–US03; todavía no representa hallazgos de entrevistas. La competencia aporta contexto de mercado, no rasgos personales de los usuarios.
+
+#### User Persona 1 — Analista de adquisiciones
+
+| Campo de la ficha | Caracterización | Sustento |
+|---|---|---|
+| Tipo de arquetipo | Buyer/User Persona: participa en la evaluación comercial y puede influir en la elección del proveedor. | Sección 1.3 y entrevistas N.º 1 y N.º 2. |
+| Perfil observado | Dos participantes del área de adquisiciones, de 24 y 27 años, residentes en Santiago de Surco y San Borja. Estas edades y ubicaciones describen únicamente a los entrevistados, no a todo el segmento. | Fichas de entrevistas N.º 1 y N.º 2. |
+| Objetivo principal | Comparar ofertas y sustentar una selección que considere precio, disponibilidad y especificaciones técnicas. | Coincidencia en los dos resúmenes. |
+| Actividades actuales | Recibir cotizaciones, revisar la información disponible, trasladar datos a Excel y elaborar un cuadro comparativo. Uno de los entrevistados registra requerimientos y órdenes en SAP HANA; el otro utiliza correo en el proceso. | Entrevistas N.º 1 y N.º 2; uso de SAP HANA en N.º 1 y de correo en N.º 2. |
+| Frustraciones | Cotizaciones incompletas o ambiguas y varias horas de transcripción y comparación manual por requerimiento. | Coincidencia en los dos resúmenes; no se registró una duración exacta comparable. |
+| Necesidades y expectativas | Reducir la transcripción y los errores, ver la fuente de cada dato, proteger la información comercial y conservar la supervisión humana de la elección. | Coincidencia en los dos resúmenes. |
+| Relación esperada con SmartQuote | Revisar los datos extraídos, corregirlos cuando corresponda, configurar criterios y comparar ofertas antes de aprobar una decisión. La integración con un ERP es una necesidad explícita de un entrevistado, no de ambos. | Entrevistas N.º 1 y N.º 2; historias US04–US08. |
+| Datos personales y tecnológicos no documentados | No se atribuyen personalidad, estado civil, familia, trayectoria, marcas, influencias, dispositivo o navegador preferido porque los resúmenes no contienen esa información. | Límite de las entrevistas registradas. |
+
+Esta ficha no utiliza un nombre ficticio ni una cita textual inventada: representa un patrón de trabajo documentado en una muestra pequeña. Sus rasgos deberán contrastarse con más participantes antes de considerarla un arquetipo estable del mercado.
+
+#### Proto-persona 2 — Especialista de producción y sanidad
+
+| Campo de la ficha | Caracterización propuesta | Base y límite |
+|---|---|---|
+| Tipo de arquetipo | User Persona interna: solicita insumos y define o revisa sus condiciones técnicas; no dirige la negociación comercial. | Definición del segmento en la sección 1.3. |
+| Rol y contexto | Médico veterinario, nutricionista, zootecnista o responsable de granja vinculado con la operación avícola. Se trata de roles objetivo, no de profesiones observadas en entrevistas. | Sección 1.3. |
+| Objetivo propuesto | Disponer oportunamente de insumos adecuados y comunicar con precisión requisitos de producción o sanidad. | Sección 1.3 e historia US02. |
+| Tareas previstas sin SmartQuote | Identificar una necesidad, especificar el insumo y sus condiciones técnicas, comunicar el requerimiento a adquisiciones y consultar su avance. | Flujo de negocio propuesto en las secciones 1.3 y 3.2; secuencia por validar. |
+| Dificultades por investigar | Posibles aclaraciones de requisitos, falta de visibilidad del estado y riesgo de recibir una alternativa que no cumpla las condiciones técnicas. No se presentan como frustraciones observadas. | Hipótesis de problema de la sección 1.2.2.1. |
+| Relación propuesta con SmartQuote | Registrar solicitudes con cantidad, fecha y especificaciones; adjuntar sustento cuando corresponda; consultar estado e historial desde la aplicación móvil. | Historias US02 y US03; canal móvil aún por validar. |
+| Atributos no determinados | Edad, ubicación, experiencia, personalidad, herramientas actuales, dispositivos y frecuencia real de tareas no pueden derivarse de las entrevistas disponibles. | No hay registros de entrevistas de este segmento. |
+
+La guía solicita una ficha por segmento elaborada en UXPressia y sustentada en entrevistas. Estas tablas aportan el contenido textual para ambas fichas, pero la segunda conserva explícitamente su carácter de *proto-persona*. Las capturas de UXPressia y los atributos empíricos de producción y sanidad se incorporarán cuando existan entrevistas y artefactos verificables.
 
 ### 2.3.2. User Task Matrix
 
-Pendiente
+La matriz compara al **analista de adquisiciones** y al **especialista de producción y sanidad** mediante tareas del proceso de trabajo actual, realizables aun si SmartQuote no existiera. Las columnas de frecuencia indican el momento en que ocurriría cada tarea dentro de un ciclo de compra (*por necesidad*, *por solicitud*, *por cotización* o *por decisión*), **no** una cantidad semanal o mensual medida. En adquisiciones, la importancia se infiere de las entrevistas N.º 1 y N.º 2; en producción y sanidad es una propuesta del flujo de negocio, porque todavía no hay entrevistas de ese segmento. «No corresponde» significa que la tarea pertenece a otro rol.
+
+| Tarea del proceso actual, sin SmartQuote | Adquisiciones: frecuencia | Adquisiciones: importancia | Producción y sanidad: frecuencia | Producción y sanidad: importancia |
+|---|---|---|---|---|
+| Identificar un insumo necesario para la operación. | No corresponde | No corresponde | Por necesidad (propuesta) | Alta (propuesta) |
+| Definir cantidad, fecha requerida y especificaciones técnicas del insumo. | No corresponde | No corresponde | Por necesidad (propuesta) | Alta (propuesta) |
+| Comunicar el requerimiento al área de adquisiciones. | No corresponde | No corresponde | Por solicitud (propuesta) | Alta (propuesta) |
+| Revisar el requerimiento recibido y preparar la búsqueda de ofertas. | Por solicitud; frecuencia real no medida | Alta (inferida; N.º 1 registra requerimientos) | No corresponde | No corresponde |
+| Recibir cotizaciones de proveedores. | Por cotización; frecuencia real no medida | Alta (inferida; N.º 1 y N.º 2) | No corresponde | No corresponde |
+| Comprobar si las ofertas contienen los datos necesarios y solicitar aclaraciones. | Por cotización; frecuencia real no medida | Alta (inferida; N.º 1 y N.º 2 reportan información ambigua) | No corresponde | No corresponde |
+| Trasladar precio, disponibilidad y especificaciones al cuadro comparativo. | Por cotización; frecuencia real no medida | Alta (inferida; N.º 1 y N.º 2 describen varias horas de trabajo) | No corresponde | No corresponde |
+| Comparar alternativas técnicas y comerciales y sustentar una selección. | Por evaluación; frecuencia real no medida | Alta (inferida; N.º 1 y N.º 2) | No corresponde | No corresponde |
+| Verificar que una alternativa cumpla los requisitos técnicos comunicados. | No documentada en adquisiciones | Por determinar | Por evaluación (propuesta) | Alta (propuesta) |
+| Consultar el avance del requerimiento y coordinar la continuidad operativa. | No corresponde | No corresponde | Durante la atención de la solicitud (propuesta) | Alta (propuesta) |
+| Formalizar la orden de compra autorizada. | Por decisión aprobada; frecuencia real no medida | Por determinar (solo N.º 1 menciona la orden en ERP) | No corresponde | No corresponde |
+
+**Coincidencia:** ambos roles dependen de que el requerimiento y la oferta contengan información técnica comprensible. **Diferencia:** producción y sanidad definen la necesidad y sus condiciones; adquisiciones obtiene ofertas, las compara y formaliza la decisión comercial. En las dos entrevistas, las tareas con fricción más clara son completar información ambigua y consolidar el cuadro comparativo. La frecuencia por periodo, la importancia declarada por los participantes y todas las tareas atribuidas al segmento técnico deberán contrastarse en las entrevistas restantes antes de asignar valores empíricos.
 
 ### 2.3.3. User Journey Mapping
 
-Pendiente
+El recorrido *As-Is* describe cómo un analista pasa del requerimiento a la decisión de compra **sin SmartQuote**. Vincula sus pasos con el arquetipo de adquisiciones y no presupone que ambos entrevistados usen el mismo ERP.
+
+| Fase del recorrido | Acción actual observada | Fricción o necesidad | Registro de origen |
+|---|---|---|---|
+| Requerimiento | Recibe la necesidad; en un caso se registra en SAP HANA. | Conservar continuidad entre la solicitud y la comparación posterior. | N.º 1. |
+| Recepción de ofertas | Recibe cotizaciones de proveedores; un participante utiliza correo. | Verificar que cada oferta incluya los datos necesarios. | N.º 1 y N.º 2; uso de correo en N.º 2. |
+| Consolidación | Traslada manualmente precio, disponibilidad y especificaciones a Excel. | La tarea consume varias horas y las ofertas incompletas generan retrasos. | N.º 1 y N.º 2. |
+| Comparación y decisión | Contrasta las alternativas y mantiene la selección bajo supervisión humana; en un caso la orden se formaliza en el ERP. | Justificar la elección y resguardar los datos comerciales. | N.º 1 y N.º 2; formalización en ERP en N.º 1. |
+
+**Pendiente:** validar secuencia, canales y emociones mediante nuevas entrevistas; elaborar y adjuntar la captura del User Journey Map en la herramienta indicada. **Journey As-Is de Producción y Sanidad:** Pendiente por falta de entrevistas.
 
 ### 2.3.4. Empathy Mapping
 
-Pendiente
+Este mapa de empatía se refiere al arquetipo de adquisiciones. Se consigna lo que puede deducirse de los dos resúmenes; las demás casillas no se completan con supuestas citas o rasgos personales.
+
+| Pregunta del mapa | Síntesis y procedencia |
+|---|---|
+| ¿Con quién empatizamos y qué necesita hacer? | Con el analista de adquisiciones que compara ofertas y sustenta una selección; N.º 1 y N.º 2. |
+| ¿Qué ve y hace? | Revisa cotizaciones y traslada sus datos a Excel; uno también usa SAP HANA y el otro correo; N.º 1 y N.º 2. |
+| ¿Qué dice? | Considera útil la extracción automática, siempre que se pueda ver el origen del dato y mantener la decisión humana; N.º 1 y N.º 2, según sus resúmenes, no como cita textual. |
+| ¿Qué piensa y siente? | Los resúmenes identifican la ambigüedad de cotizaciones como su principal reto; **Pendiente** profundizar en sentimientos y motivaciones con preguntas abiertas. |
+| ¿Qué escucha? | Pendiente; no está documentado en los resúmenes. |
+| Pains | Horas de transcripción, ofertas incompletas o ambiguas y preocupación por confidencialidad; N.º 1 y N.º 2. |
+| Gains esperados | Menos trabajo manual y errores, con datos verificables y supervisión final; son expectativas expresadas por N.º 1 y N.º 2, no resultados de uso. |
+
+**Pendiente:** capturar el mapa elaborado en la herramienta indicada. **Empathy Map de Producción y Sanidad:** Pendiente por falta de entrevistas.
 
 ### 2.3.5. As-is Scenario Mapping
 
-Pendiente
+El escenario *As-Is* se plantea desde el arquetipo de adquisiciones. Las columnas son fases del proceso actual y las filas siguen el modelo solicitado por la guía. Cuando los resúmenes no permiten atribuir un pensamiento o emoción específica se indica **Pendiente**.
+
+| Fila / fase | 1. Requerimiento | 2. Cotizaciones | 3. Consolidación y comparación | 4. Decisión y orden |
+|---|---|---|---|---|
+| **Phases** | Se recibe la necesidad de compra. | Llegan ofertas de proveedores. | Se prepara y revisa el cuadro comparativo. | Se selecciona la alternativa y se formaliza la compra. |
+| **Doing** | En un caso se registra el requerimiento en SAP HANA (N.º 1). | Se revisan ofertas; el correo figura en N.º 2. | Ambos trasladan datos a Excel y comparan precio, disponibilidad y especificaciones. | Ambos conservan la elección humana; N.º 1 menciona la orden en ERP. |
+| **Thinking** | Pendiente: no se documenta el razonamiento en esta fase. | Se necesita información completa para comparar; inferencia a partir de N.º 1 y N.º 2. | Se necesita conocer el origen de cada dato; N.º 1 y N.º 2. | Se requiere justificar y controlar la selección; N.º 1 y N.º 2. |
+| **Feeling** | Pendiente: no se documenta. | Frustración ante ofertas ambiguas; inferida del problema descrito por ambos. | Frustración por horas de trabajo manual; inferida del problema descrito por ambos. | Pendiente: no se documenta una emoción final. |
+
+**Áreas negativas:** cotizaciones incompletas y transcripción prolongada (N.º 1 y N.º 2). **Área potencialmente positiva:** el registro de requerimiento y orden en el ERP ya existe en un caso, aunque queda separado de la comparación (N.º 1). **Blank areas:** frecuencia de cada fase, validación técnica, coordinación con otras áreas y emociones no documentadas. **Pendiente:** revisar el escenario con entrevistados y adjuntar la captura del mapa en la herramienta indicada. **As-Is Scenario Map de Producción y Sanidad:** Pendiente por falta de entrevistas.
 
 ## 2.4. Ubiquitous Language
 
