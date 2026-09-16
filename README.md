@@ -341,6 +341,7 @@ Proyecto
       - [Principales esquemas de respuesta](#principales-esquemas-de-respuesta)
     - [5.2.7. Team Collaboration Insights](#527-team-collaboration-insights)
   - [5.3. Video About-the-Product](#53-video-about-the-product)
+    - [Enlaces de publicación](#enlaces-de-publicación)
 - [Conclusiones](#conclusiones)
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
 - [Bibliografía](#bibliografía)
@@ -4391,6 +4392,19 @@ Los nombres y tipos completos de estos esquemas se mantienen en los recursos C# 
 ### 5.2.7. Team Collaboration Insights
 
 ## 5.3. Video About-the-Product
+
+El video *About-the-Product* presenta de forma promocional la propuesta de valor de SmartQuote y el flujo principal de la solución para el sector avícola. En una demostración breve se expone la problemática de revisar manualmente cotizaciones heterogéneas y validar requisitos técnicos sin suficiente expertise especializado; luego se muestra cómo SmartQuote integra las solicitudes de insumos, la carga de cotizaciones, la extracción asistida por inteligencia artificial, la simulación comparativa y la generación de órdenes de compra. El recorrido contempla las experiencias del especialista de producción o sanidad y del analista de adquisiciones, destacando la reducción del tiempo de atención, la trazabilidad y la toma de decisiones basada en criterios configurables.
+
+![Captura representativa del video About-the-Product](assets/videos/about-the-product-screenshot.png)
+
+### Enlaces de publicación
+
+| Publicación | Enlace |
+|---|---|
+| YouTube | [Ver video en YouTube](https://youtu.be/LdcyPcPV8VY) |
+| Microsoft Stream / OneDrive | [Ver video en Microsoft Stream](https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQC_UgK0aEsxQoJU6a_AlO-cATwIHkuO41EIbBiz3SsICLc) |
+
+Duración: **00:02:45**
 
 # Conclusiones
 
