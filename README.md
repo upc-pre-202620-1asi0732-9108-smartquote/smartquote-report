@@ -4975,6 +4975,15 @@ La API exige un JWT Bearer válido para los endpoints funcionales. Los roles se 
 
 ![Anexo 5.2.5.6 — Generación idempotente de la orden de compra](assets/backend/5.2.5-06-postman-purchase-order-201.png)
 
+#### Despliegue en la nube (Azure)
+
+Además de la ejecución local, el backend está desplegado en producción sobre **Azure App Service**...
+
+[https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net](https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net)
+
+![Anexo 5.2.5.7 — App Service del backend desplegado en Azure, en estado Running y Healthy](assets/backend/5.2.5-07-azure-app-service-overview.png)
+
+
 #### Comprobación local observada
 
 Durante la documentación, el entorno Docker respondió correctamente en las siguientes rutas:
