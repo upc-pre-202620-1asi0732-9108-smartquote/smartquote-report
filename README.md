@@ -1213,9 +1213,9 @@ La estrategia responsiva es intencionalmente mixta. La Landing Page se diseña m
 
 En cuanto a la interactividad, la plataforma utiliza una lógica de componentes claramente identificables, apoyada en la librería PrimeVue para el producto y en componentes propios equivalentes para la Landing. Los botones de acción emplean el azul institucional como único color de acción, con estados visuales de hover, focus, disabled y loading que ofrecen retroalimentación inmediata y enseñan al usuario dónde puede pulsar. La navegación se apoya en un marco persistente —barra lateral, barra superior con búsqueda global y selector de idioma, y migas de pan en cada vista de detalle— que mantiene siempre disponibles las herramientas principales, incluido el sistema de internacionalización con inglés como idioma predeterminado y español de Latinoamérica como alterno. Las transiciones son breves y siempre responden a una acción del usuario, nunca al desplazamiento de la página, y se anulan cuando el sistema declara preferencia de movimiento reducido.
 
-![Mockup Landing Page](assets/)
-![Mockup Comparción](assets/)
-![Mockup footer](assets/)
+![Mockup Landing Page](assets/design/landing-page/Mockup/desktop/p1.png)
+![Mockup Comparción](assets/design/landing-page/Mockup/desktop/p2.png)
+![Mockup footer](assets/design/landing-page/Mockup/desktop/p8.png)
 
 ### 4.1.3. Mobile Style Guidelines
 
