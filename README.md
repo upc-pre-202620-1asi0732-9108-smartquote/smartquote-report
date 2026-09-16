@@ -1652,6 +1652,7 @@ Estado final del ciclo de vida de la solicitud, confirmando que el proceso de pr
 
 <img src="assets/design/WebApp/Mockups/ordered.png" width="900px" alt="ordered">
 
+
 ### 4.6.4. Web Applications User Flow Diagrams
 
 ### User Flows
