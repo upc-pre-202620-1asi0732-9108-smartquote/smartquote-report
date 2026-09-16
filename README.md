@@ -72,10 +72,10 @@ Proyecto
 
 | Entregable | Repositorio GitHub | Evidencia de colaboración |
 |---|---|---|
-| Landing Page | [smartquote-landing-page](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page) | `assets/collaboration/landing-page-github-insights.png` |
-| Frontend Web Application | [smartquote-frontend-web](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web) | `assets/collaboration/frontend-web-github-insights.png` |
-| Native Mobile Application | [smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile) | `assets/collaboration/native-mobile-github-insights.png` |
-| Web Services | [smartquote-web-services](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services) | `assets/collaboration/web-services-github-insights.png` |
+| Landing Page | [smartquote-landing-page](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page) | ![GitHub Insights — smartquote-web-services](assets/collaboration/landing-page-github-insights.png) |
+| Frontend Web Application | [smartquote-frontend-web](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web) | ![GitHub Insights — smartquote-web-services](assets/collaboration/frontend-web-github-insights.png) |
+| Native Mobile Application | [smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile) | ![GitHub Insights — smartquote-web-services](assets/collaboration/native-mobile-github-insights.png) |
+| Web Services | [smartquote-web-services](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services) | ![GitHub Insights — smartquote-web-services](assets/collaboration/web-services-github-insights.png) |
 
 ## Contenido
 
@@ -378,6 +378,11 @@ Proyecto
     - [5.2.2. Implemented Landing Page Evidence](#522-implemented-landing-page-evidence)
     - [5.2.3. Implemented Frontend-Web Application Evidence](#523-implemented-frontend-web-application-evidence)
     - [5.2.4. Implemented Native-Mobile Application Evidence](#524-implemented-native-mobile-application-evidence)
+      - [Repositorio de código fuente](#repositorio-de-código-fuente)
+      - [Evidencias principales de la aplicación](#evidencias-principales-de-la-aplicación)
+      - [Tabla de commits de implementación](#tabla-de-commits-de-implementación)
+      - [Conexión con los servicios web](#conexión-con-los-servicios-web)
+      - [Video de demostración](#video-de-demostración)
     - [5.2.5. Implemented RESTful API and/or Serverless Backend Evidence](#525-implemented-restful-api-andor-serverless-backend-evidence)
       - [Estructura implementada](#estructura-implementada)
       - [Ejecución local y persistencia](#ejecución-local-y-persistencia)
@@ -4411,6 +4416,56 @@ URL del Trello: [https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c7
 ### 5.2.3. Implemented Frontend-Web Application Evidence
 
 ### 5.2.4. Implemented Native-Mobile Application Evidence
+
+La aplicación móvil nativa de SmartQuote se implementó con Flutter y Dart para el segmento de especialistas de producción y sanidad que opera desde la granja. El alcance de esta iteración cubre el registro móvil de solicitudes de insumos (`US02`) y el seguimiento del avance de una solicitud (`US03`). La solución permite iniciar sesión con una cuenta autorizada, registrar la fecha requerida, prioridad, ítems y requisitos técnicos biológicos, adjuntar un sustento opcional y consultar el estado, el área responsable, el historial cronológico y las notificaciones asociadas.
+
+La interfaz sigue los lineamientos móviles del proyecto: Material 3, tipografía Roboto, tarjetas de lectura rápida, colores semánticos para estados y una acción principal visible para crear una nueva solicitud. El cliente valida los datos antes del envío y consume los recursos RESTful del contexto `SupplyRequests` y de notificaciones del backend.
+
+#### Repositorio de código fuente
+
+El código fuente independiente de la aplicación móvil se encuentra en el repositorio público:
+
+[smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile)
+
+El proyecto se ejecuta desde `SmartQuote_app/smart_quote`, conserva la sesión mediante almacenamiento seguro del dispositivo y recibe la URL de la API mediante `API_BASE_URL`, por lo que no se incluyen contraseñas, tokens ni claves en el repositorio.
+
+#### Evidencias principales de la aplicación
+
+Las siguientes capturas deben reemplazarse con imágenes tomadas durante la ejecución de la aplicación. Se incluyen únicamente las evidencias principales del flujo móvil:
+
+![Anexo 5.2.4.1 — Inicio de sesión y validación del rol Production Specialist](assets/mobile/5.2.4-01-login-mobile.png)
+
+![Anexo 5.2.4.2 — Registro de una nueva solicitud con requisitos técnicos](assets/mobile/5.2.4-02-new-request-mobile.png)
+
+![Anexo 5.2.4.3 — Detalle, estado, historial y notificaciones de una solicitud](assets/mobile/5.2.4-03-request-tracking-mobile.png)
+
+#### Tabla de commits de implementación
+
+La tabla resume los commits disponibles en el repositorio móvil y conserva la trazabilidad de la implementación bajo GitFlow y Conventional Commits. El cuerpo se muestra como `—` cuando el commit no contiene una descripción adicional.
+
+| Repository | Commit Id | Commit Message | Commit Message Body | Committed on (Date) |
+| --- | --- | --- | --- | --- |
+| `smartquote-native-mobile` | `0f02343` | `feat: added views for app` | — | 2026-09-16 |
+| `smartquote-native-mobile` | `b0cbb97` | `add: login view mobile smartquote` | Esqueleto funcional mobile | 2026-09-15 |
+| `smartquote-native-mobile` | `576b509` | `Initial commit` | — | 2026-09-06 |
+
+Los cambios locales posteriores utilizados para completar la integración RESTful deben registrarse en el repositorio mediante nuevos commits `feat`, `fix`, `test` o `docs` antes de publicar una versión evaluable. Esta tabla debe actualizarse con esos identificadores reales una vez que el equipo sincronice la implementación.
+
+#### Conexión con los servicios web
+
+La aplicación móvil consume los servicios RESTful publicados en Azure App Service mediante HTTPS. La URL se configura sin modificar el código fuente:
+
+```bash
+flutter run -d chrome --web-port 5173 --dart-define=API_BASE_URL=https://<azure-app-service>/
+```
+
+#### Video de demostración
+
+El siguiente video muestra el flujo principal de la aplicación móvil: autenticación del especialista de producción, registro de una solicitud de insumos y consulta de su seguimiento.
+
+[Video de demostración de la aplicación móvil — OneDrive / Microsoft Stream](https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQB9HilKlndFSLYzkIT6mKY0AW6sMWsIdmg3he0IIRiUt2s?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=6gBegE)
+
+**Duración:** `00:02:07`
 
 ### 5.2.5. Implemented RESTful API and/or Serverless Backend Evidence
 
