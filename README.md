@@ -1427,11 +1427,157 @@ Estos esquemas validan la ergonomía de la interfaz, asegurando que las secuenci
 
 ### 4.6.1. Web Applications Wireframes
 
+#### Acceso y Configuración (Universal)
+
+##### Autenticación y Acceso
+
+Inicio de Sesión (Login)
+Boceto de baja fidelidad de la pantalla de acceso: panel izquierdo de presentación y formulario de email/contraseña a la derecha.
+
+<img src="assets/design/WebApp/Wireframes/login.png" width="900px" alt="login-wireframe">
+
+#### Production Specialist
+
+##### Gestión de Solicitudes de Compra
+
+Listado de Solicitudes
+Estructura base de navegación lateral, buscador, tabla de solicitudes y acción principal "New request".
+
+<img src="assets/design/WebApp/Wireframes/purchase-requests-list.png" width="900px" alt="purchase-requests-list-wireframe">
+
+Creación de Solicitud
+Distribución del formulario: fecha/prioridad, datos del ítem y bloque de requisito técnico obligatorio.
+
+<img src="assets/design/WebApp/Wireframes/new-request.png" width="900px" alt="new-request-wireframe">
+
+#### Purchase Analyst / Purchase Manager (Purchasing Staff)
+
+##### Revisión y Avance de Estado
+
+Cambio de Estado de Solicitud
+Boceto del modal de transición de estado con selector de siguiente estado y campo de razón obligatorio.
+
+<img src="assets/design/WebApp/Wireframes/change-status.png" width="900px" alt="change-status-wireframe">
+
+##### Gestión de Cotizaciones
+
+Carga de Cotización
+Boceto del modal de carga: datos del proveedor y selector de archivos PDF.
+
+<img src="assets/design/WebApp/Wireframes/upload-quotation.png" width="900px" alt="upload-quotation-wireframe">
+
+Extracción y Verificación de Cotización
+Distribución de la tabla de cotizaciones junto con la grilla de campos extraídos por IA y el botón de verificación.
+
+<img src="assets/design/WebApp/Wireframes/verify-quotation.png" width="900px" alt="verify-quotation-wireframe">
+
+##### Evaluación Comparativa
+
+Comparación de Cotizaciones
+Boceto de la configuración de criterios ponderados, el banner de proveedor recomendado y la tabla de resultados.
+
+<img src="assets/design/WebApp/Wireframes/evaluation-comparison.png" width="900px" alt="evaluation-comparison-wireframe">
+
+Caso Límite: Ninguna Cotización Califica
+Mismo layout de comparación, mostrando el estado "Excluded" cuando ningún proveedor satisface un requisito obligatorio.
+
+<img src="assets/design/WebApp/Wireframes/evaluation-both-excluded.png" width="900px" alt="evaluation-both-excluded-wireframe">
+
+#### Purchase Manager (Exclusivo)
+
+##### Aprobación y Orden de Compra
+
+Orden de Compra Generada
+Boceto del documento final: encabezado, proveedor/destino, tabla de ítems y total.
+
+<img src="assets/design/WebApp/Wireframes/purchase-order.png" width="900px" alt="purchase-order-wireframe">
+
+Solicitud Completada (Ordered)
+Boceto del stepper de 6 estados con el último paso resaltado, junto a los paneles de ítems e información general.
+
+<img src="assets/design/WebApp/Wireframes/ordered.png" width="900px" alt="ordered-wireframe">
+
 ### 4.6.2. Web Applications Wireflow Diagrams
+
+
 
 ### 4.6.3. Web Applications Mock-ups
 
+#### Acceso y Configuración (Universal)
+
+##### Autenticación y Acceso
+
+Inicio de Sesión (Login)
+Pantalla unificada de acceso donde el usuario ingresa su email y contraseña. El sistema valida las credenciales contra el backend (JWT) y determina el rol (Production Specialist, Purchase Analyst o Purchase Manager) que define qué acciones puede realizar en el resto de la aplicación.
+
+<img src="assets/design/WebApp/Mockups/login.png" width="900px" alt="login">
+
+#### Production Specialist
+
+##### Gestión de Solicitudes de Compra
+
+Listado de Solicitudes
+Vista principal del workspace donde el Production Specialist consulta todas las solicitudes de compra creadas, su estado actual dentro del flujo (Submitted, Under Review, Collecting Quotations, Evaluation, Approved, Ordered) y prioridad.
+
+<img src="assets/design/WebApp/Mockups/purchase-requests-list.png" width="900px" alt="purchase-requests-list">
+
+Creación de Solicitud
+Formulario donde se especifican los ítems requeridos (descripción, cantidad, unidad) y al menos un requisito técnico obligatorio por ítem, garantizando que ninguna solicitud avance sin especificaciones claras para los proveedores.
+
+<img src="assets/design/WebApp/Mockups/new-request.png" width="900px" alt="new-request">
+
+#### Purchase Analyst / Purchase Manager (Purchasing Staff)
+
+Ambos roles comparten exactamente los mismos permisos y pantallas en esta sección del flujo (revisión, cotizaciones y evaluación) — la única diferencia entre ellos aparece más adelante, en la aprobación final de la orden de compra, exclusiva del Purchase Manager.
+
+##### Revisión y Avance de Estado
+
+Cambio de Estado de Solicitud
+Modal que permite avanzar la solicitud a través del flujo de aprobación (Submitted → Under Review → Collecting Quotations → Evaluation), registrando una razón obligatoria por cada transición para mantener trazabilidad completa en el historial.
+
+<img src="assets/design/WebApp/Mockups/change-status.png" width="900px" alt="change-status">
+
+##### Gestión de Cotizaciones
+
+Carga de Cotización
+Interfaz para subir el documento PDF de la cotización de un proveedor, junto con sus datos de identificación (razón social, RUC). El backend valida que el archivo sea un PDF legible antes de aceptarlo.
+
+<img src="assets/design/WebApp/Mockups/upload-quotation.png" width="900px" alt="upload-quotation">
+
+Extracción y Verificación de Cotización
+Vista de revisión donde un agente de IA (OpenAI vía Semantic Kernel) muestra los campos extraídos del PDF (proveedor, moneda, vigencia, precios, especificaciones técnicas), cada uno con su nivel de confianza y evidencia de origen (página y porcentaje). El Purchasing Staff corrige valores si hace falta, mapea las líneas a los ítems solicitados y confirma con "Verify quotation".
+
+<img src="assets/design/WebApp/Mockups/verify-quotation.png" width="900px" alt="verify-quotation">
+
+##### Evaluación Comparativa
+
+Comparación de Cotizaciones
+Resultado de la simulación que define criterios ponderados (ej. Precio 60%, Tiempo de entrega 40%), normaliza cada cotización verificada y calcula un puntaje final (0-100) con la recomendación de proveedor ganador.
+
+<img src="assets/design/WebApp/Mockups/evaluation-comparison.png" width="900px" alt="evaluation-comparison">
+
+Caso Límite: Ninguna Cotización Califica
+Cuando ninguna cotización satisface un requisito técnico obligatorio de la solicitud, el sistema excluye automáticamente a todos los candidatos (puntaje 0/100) en lugar de forzar una recomendación inválida — evidenciando el control de calidad del motor de evaluación.
+
+<img src="assets/design/WebApp/Mockups/evaluation-both-excluded.png" width="900px" alt="evaluation-both-excluded">
+
+#### Purchase Manager (Exclusivo)
+
+##### Aprobación y Orden de Compra
+
+Orden de Compra Generada
+Documento final generado tras la aprobación del Purchase Manager, con los datos consolidados de la negociación: proveedor ganador, ítems, precios, condiciones de entrega y destino.
+
+<img src="assets/design/WebApp/Mockups/purchase-order.png" width="900px" alt="purchase-order">
+
+Solicitud Completada (Ordered)
+Estado final del ciclo de vida de la solicitud, confirmando que el proceso de principio a fin —desde la solicitud del Production Specialist hasta la orden de compra del Purchase Manager— se completó exitosamente.
+
+<img src="assets/design/WebApp/Mockups/ordered.png" width="900px" alt="ordered">
+
 ### 4.6.4. Web Applications User Flow Diagrams
+
+
 
 ## 4.7. Web Applications Prototyping
 
