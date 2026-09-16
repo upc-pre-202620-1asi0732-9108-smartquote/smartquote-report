@@ -842,36 +842,15 @@ Los artefactos siguientes organizan los hallazgos documentados en las entrevista
 
 ### 2.3.1. User Personas
 
-Se presentan dos fichas con distinto nivel de evidencia. La de **adquisiciones** sintetiza las entrevistas N.º 1 y N.º 2 y se relaciona con el análisis competitivo: frente a suites amplias como SAP Ariba, Oracle y Coupa, la oportunidad de SmartQuote es resolver la comparación especializada sin perder el control del comprador. La de **producción y sanidad** es una *proto-persona* construida con la definición del segmento de la sección 1.3 y las historias US02–US03; todavía no representa hallazgos de entrevistas. La competencia aporta contexto de mercado, no rasgos personales de los usuarios.
+La ficha del segmento de **adquisiciones** sintetiza las entrevistas N.º 1 y N.º 2 y se relaciona con el análisis competitivo: frente a suites amplias como SAP Ariba, Oracle y Coupa, la oportunidad de SmartQuote es resolver la comparación especializada sin perder el control del comprador. La competencia aporta contexto de mercado, no rasgos personales de los usuarios.
 
-#### User Persona 1 — Analista de adquisiciones
+#### User Persona — Analista de adquisiciones
 
-| Campo de la ficha | Caracterización | Sustento |
-|---|---|---|
-| Tipo de arquetipo | Buyer/User Persona: participa en la evaluación comercial y puede influir en la elección del proveedor. | Sección 1.3 y entrevistas N.º 1 y N.º 2. |
-| Perfil observado | Dos participantes del área de adquisiciones, de 24 y 27 años, residentes en Santiago de Surco y San Borja. Estas edades y ubicaciones describen únicamente a los entrevistados, no a todo el segmento. | Fichas de entrevistas N.º 1 y N.º 2. |
-| Objetivo principal | Comparar ofertas y sustentar una selección que considere precio, disponibilidad y especificaciones técnicas. | Coincidencia en los dos resúmenes. |
-| Actividades actuales | Recibir cotizaciones, revisar la información disponible, trasladar datos a Excel y elaborar un cuadro comparativo. Uno de los entrevistados registra requerimientos y órdenes en SAP HANA; el otro utiliza correo en el proceso. | Entrevistas N.º 1 y N.º 2; uso de SAP HANA en N.º 1 y de correo en N.º 2. |
-| Frustraciones | Cotizaciones incompletas o ambiguas y varias horas de transcripción y comparación manual por requerimiento. | Coincidencia en los dos resúmenes; no se registró una duración exacta comparable. |
-| Necesidades y expectativas | Reducir la transcripción y los errores, ver la fuente de cada dato, proteger la información comercial y conservar la supervisión humana de la elección. | Coincidencia en los dos resúmenes. |
-| Relación esperada con SmartQuote | Revisar los datos extraídos, corregirlos cuando corresponda, configurar criterios y comparar ofertas antes de aprobar una decisión. La integración con un ERP es una necesidad explícita de un entrevistado, no de ambos. | Entrevistas N.º 1 y N.º 2; historias US04–US08. |
-| Datos personales y tecnológicos no documentados | No se atribuyen personalidad, estado civil, familia, trayectoria, marcas, influencias, dispositivo o navegador preferido porque los resúmenes no contienen esa información. | Límite de las entrevistas registradas. |
+Esta ficha de UXPressia sintetiza las entrevistas N.º 1 y N.º 2 del área de adquisiciones. Ambos participantes describen la comparación manual de cotizaciones en Excel, las demoras causadas por información incompleta o ambigua y la necesidad de conservar la revisión humana. La integración con un ERP fue mencionada por uno de ellos. La fotografía generada es ilustrativa del arquetipo y no corresponde a ninguno de los entrevistados.
 
-Esta ficha no utiliza un nombre ficticio ni una cita textual inventada: representa un patrón de trabajo documentado en una muestra pequeña. Sus rasgos deberán contrastarse con más participantes antes de considerarla un arquetipo estable del mercado.
+![User Persona del segmento de adquisiciones elaborada en UXPressia](assets/research/personas/user-persona-adquisiciones.png)
 
-#### Proto-persona 2 — Especialista de producción y sanidad
-
-| Campo de la ficha | Caracterización propuesta | Base y límite |
-|---|---|---|
-| Tipo de arquetipo | User Persona interna: solicita insumos y define o revisa sus condiciones técnicas; no dirige la negociación comercial. | Definición del segmento en la sección 1.3. |
-| Rol y contexto | Médico veterinario, nutricionista, zootecnista o responsable de granja vinculado con la operación avícola. Se trata de roles objetivo, no de profesiones observadas en entrevistas. | Sección 1.3. |
-| Objetivo propuesto | Disponer oportunamente de insumos adecuados y comunicar con precisión requisitos de producción o sanidad. | Sección 1.3 e historia US02. |
-| Tareas previstas sin SmartQuote | Identificar una necesidad, especificar el insumo y sus condiciones técnicas, comunicar el requerimiento a adquisiciones y consultar su avance. | Flujo de negocio propuesto en las secciones 1.3 y 3.2; secuencia por validar. |
-| Dificultades por investigar | Posibles aclaraciones de requisitos, falta de visibilidad del estado y riesgo de recibir una alternativa que no cumpla las condiciones técnicas. No se presentan como frustraciones observadas. | Hipótesis de problema de la sección 1.2.2.1. |
-| Relación propuesta con SmartQuote | Registrar solicitudes con cantidad, fecha y especificaciones; adjuntar sustento cuando corresponda; consultar estado e historial desde la aplicación móvil. | Historias US02 y US03; canal móvil aún por validar. |
-| Atributos no determinados | Edad, ubicación, experiencia, personalidad, herramientas actuales, dispositivos y frecuencia real de tareas no pueden derivarse de las entrevistas disponibles. | No hay registros de entrevistas de este segmento. |
-
-La guía solicita una ficha por segmento elaborada en UXPressia y sustentada en entrevistas. Estas tablas aportan el contenido textual para ambas fichas, pero la segunda conserva explícitamente su carácter de *proto-persona*. Las capturas de UXPressia y los atributos empíricos de producción y sanidad se incorporarán cuando existan entrevistas y artefactos verificables.
+Los dos participantes tienen 24 y 27 años y residen en Santiago de Surco y San Borja, respectivamente. Estos datos describen la muestra disponible, no una edad o ubicación típica del segmento. La ficha no atribuye una cita textual, personalidad, ingresos ni tecnología preferida que los resúmenes no documenten; sus rasgos se contrastarán con más entrevistas.
 
 ### 2.3.2. User Task Matrix
 
