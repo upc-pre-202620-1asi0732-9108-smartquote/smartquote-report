@@ -1427,11 +1427,297 @@ Estos esquemas validan la ergonomía de la interfaz, asegurando que las secuenci
 
 ### 4.6.1. Web Applications Wireframes
 
+#### Acceso y Configuración (Universal)
+
+##### Autenticación y Acceso
+
+Inicio de Sesión (Login)
+Boceto de baja fidelidad de la pantalla de acceso: panel izquierdo de presentación y formulario de email/contraseña a la derecha.
+
+<img src="assets/design/WebApp/Wireframes/login.png" width="900px" alt="login-wireframe">
+
+#### Production Specialist
+
+##### Gestión de Solicitudes de Compra
+
+Listado de Solicitudes
+Estructura base de navegación lateral, buscador, tabla de solicitudes y acción principal "New request".
+
+<img src="assets/design/WebApp/Wireframes/purchase-requests-list.png" width="900px" alt="purchase-requests-list-wireframe">
+
+Creación de Solicitud
+Distribución del formulario: fecha/prioridad, datos del ítem y bloque de requisito técnico obligatorio.
+
+<img src="assets/design/WebApp/Wireframes/new-request.png" width="900px" alt="new-request-wireframe">
+
+#### Purchase Analyst / Purchase Manager (Purchasing Staff)
+
+##### Revisión y Avance de Estado
+
+Cambio de Estado de Solicitud
+Boceto del modal de transición de estado con selector de siguiente estado y campo de razón obligatorio.
+
+<img src="assets/design/WebApp/Wireframes/change-status.png" width="900px" alt="change-status-wireframe">
+
+##### Gestión de Cotizaciones
+
+Carga de Cotización
+Boceto del modal de carga: datos del proveedor y selector de archivos PDF.
+
+<img src="assets/design/WebApp/Wireframes/upload-quotation.png" width="900px" alt="upload-quotation-wireframe">
+
+Extracción y Verificación de Cotización
+Distribución de la tabla de cotizaciones junto con la grilla de campos extraídos por IA y el botón de verificación.
+
+<img src="assets/design/WebApp/Wireframes/verify-quotation.png" width="900px" alt="verify-quotation-wireframe">
+
+##### Evaluación Comparativa
+
+Comparación de Cotizaciones
+Boceto de la configuración de criterios ponderados, el banner de proveedor recomendado y la tabla de resultados.
+
+<img src="assets/design/WebApp/Wireframes/evaluation-comparison.png" width="900px" alt="evaluation-comparison-wireframe">
+
+Caso Límite: Ninguna Cotización Califica
+Mismo layout de comparación, mostrando el estado "Excluded" cuando ningún proveedor satisface un requisito obligatorio.
+
+<img src="assets/design/WebApp/Wireframes/evaluation-both-excluded.png" width="900px" alt="evaluation-both-excluded-wireframe">
+
+#### Purchase Manager (Exclusivo)
+
+##### Aprobación y Orden de Compra
+
+Orden de Compra Generada
+Boceto del documento final: encabezado, proveedor/destino, tabla de ítems y total.
+
+<img src="assets/design/WebApp/Wireframes/purchase-order.png" width="900px" alt="purchase-order-wireframe">
+
+Solicitud Completada (Ordered)
+Boceto del stepper de 6 estados con el último paso resaltado, junto a los paneles de ítems e información general.
+
+<img src="assets/design/WebApp/Wireframes/ordered.png" width="900px" alt="ordered-wireframe">
+
 ### 4.6.2. Web Applications Wireflow Diagrams
+
+#### Task Flow 1: Registro y Seguimiento de Solicitudes de Compra
+
+Objetivo del usuario: Registrar una necesidad de insumos desde la operación y dar seguimiento a su avance a través del flujo de aprobación.
+
+#### Pasos del Task Flow:
+
+1. Iniciar sesión en la sección "Ingresar con usuario".
+2. Acceder a "Purchase requests" para ver el listado de solicitudes existentes.
+3. Seleccionar "+ New request" y completar los ítems junto con al menos un requisito técnico obligatorio.
+4. Enviar la solicitud ("Submit request"), quedando en estado Submitted.
+5. Consultar el detalle de la solicitud para conocer su avance a través del stepper de 6 estados.
+
+##### User Goal 1 (US02): Como Production Specialist, quiero registrar una solicitud de insumos desde la operación.
+
+<img src="assets/design/WebApp/WireflowDiagrams/UserGoals/UserGoal-US02.png" width="1200px" alt="ug-us02">
+
+##### User Goal 2 (US03): Como Production Specialist, quiero conocer el avance de una solicitud de compra.
+
+<img src="assets/design/WebApp/WireflowDiagrams/UserGoals/UserGoal-US03.png" width="900px" alt="ug-us03">
+
+#### Segmento: Purchasing Staff (Analyst / Manager)
+
+#### Task Flow 2: Incorporación y Verificación de Cotizaciones
+
+Objetivo: Recopilar cotizaciones reales de proveedores y validar la información extraída automáticamente antes de evaluarlas.
+
+#### Pasos del Task Flow:
+
+1. Cambiar el estado de la solicitud a "Collecting quotations" desde "Change status".
+2. Subir el documento PDF de la cotización junto con los datos del proveedor en "Upload quotation".
+3. El sistema procesa el PDF con IA (OpenAI vía Semantic Kernel) y extrae los campos estructurados.
+4. Revisar cada campo extraído junto a su nivel de confianza y evidencia de origen.
+5. Corregir manualmente cualquier valor incorrecto y confirmar con "Verify quotation".
+
+##### User Goal 3 (US04): Como Purchasing Staff, quiero incorporar cotizaciones de proveedores.
+
+<img src="assets/design/WebApp/WireflowDiagrams/UserGoals/UserGoal-US04.png" width="900px" alt="ug-us04">
+
+##### User Goal 4 (US05): Como Purchasing Staff, quiero verificar la información extraída de una cotización.
+
+<img src="assets/design/WebApp/WireflowDiagrams/UserGoals/UserGoal-US05.png" width="900px" alt="ug-us05">
+
+#### Task Flow 3: Evaluación Comparativa de Proveedores
+
+Objetivo: Definir criterios de decisión y obtener una recomendación objetiva del proveedor más conveniente.
+
+#### Pasos del Task Flow:
+
+1. Definir los criterios ponderados (ej. Precio 60%, Tiempo de entrega 40%) y los requisitos técnicos obligatorios.
+2. Ejecutar "Run comparison" para simular el puntaje de cada cotización verificada.
+3. El sistema excluye automáticamente cualquier cotización que no cumpla un requisito obligatorio.
+4. Revisar el resultado: proveedor recomendado y ranking, o el detalle de exclusión si ninguna calificó.
+
+##### User Goal 5 (US06): Como Purchasing Staff, quiero definir los criterios de evaluación de cotizaciones.
+
+<img src="assets/design/WebApp/WireflowDiagrams/UserGoals/UserGoal-US06.png" width="900px" alt="ug-us06">
+
+##### User Goal 6 (US07): Como Purchasing Staff, quiero simular y comparar las cotizaciones elegibles.
+
+<img src="assets/design/WebApp/WireflowDiagrams/UserGoals/UserGoal-US07.png" width="1100px" alt="ug-us07">
+
+#### Segmento: Purchase Manager
+
+#### Task Flow 4: Aprobación y Cierre de Compra
+
+Objetivo: Formalizar la decisión de compra generando la orden correspondiente y cerrando el ciclo de vida de la solicitud.
+
+#### Pasos del Task Flow:
+
+1. Revisar la cotización recomendada por el motor de evaluación.
+2. Completar las condiciones de entrega y el destino en "Approve and generate order".
+3. El sistema genera la orden de compra (PO) con los datos consolidados.
+4. Marcar la solicitud como "Ordered", cerrando el ciclo de vida completo.
+
+##### User Goal 7 (US08): Como Purchase Manager, quiero aprobar la alternativa seleccionada y generar la orden de compra.
+
+<img src="assets/design/WebApp/WireflowDiagrams/UserGoals/UserGoal-US08.png" width="1200px" alt="ug-us08">
+
 
 ### 4.6.3. Web Applications Mock-ups
 
+#### Acceso y Configuración (Universal)
+
+##### Autenticación y Acceso
+
+Inicio de Sesión (Login)
+Pantalla unificada de acceso donde el usuario ingresa su email y contraseña. El sistema valida las credenciales contra el backend (JWT) y determina el rol (Production Specialist, Purchase Analyst o Purchase Manager) que define qué acciones puede realizar en el resto de la aplicación.
+
+<img src="assets/design/WebApp/Mockups/login.png" width="900px" alt="login">
+
+#### Production Specialist
+
+##### Gestión de Solicitudes de Compra
+
+Listado de Solicitudes
+Vista principal del workspace donde el Production Specialist consulta todas las solicitudes de compra creadas, su estado actual dentro del flujo (Submitted, Under Review, Collecting Quotations, Evaluation, Approved, Ordered) y prioridad.
+
+<img src="assets/design/WebApp/Mockups/purchase-requests-list.png" width="900px" alt="purchase-requests-list">
+
+Creación de Solicitud
+Formulario donde se especifican los ítems requeridos (descripción, cantidad, unidad) y al menos un requisito técnico obligatorio por ítem, garantizando que ninguna solicitud avance sin especificaciones claras para los proveedores.
+
+<img src="assets/design/WebApp/Mockups/new-request.png" width="900px" alt="new-request">
+
+#### Purchase Analyst / Purchase Manager (Purchasing Staff)
+
+Ambos roles comparten exactamente los mismos permisos y pantallas en esta sección del flujo (revisión, cotizaciones y evaluación) — la única diferencia entre ellos aparece más adelante, en la aprobación final de la orden de compra, exclusiva del Purchase Manager.
+
+##### Revisión y Avance de Estado
+
+Cambio de Estado de Solicitud
+Modal que permite avanzar la solicitud a través del flujo de aprobación (Submitted → Under Review → Collecting Quotations → Evaluation), registrando una razón obligatoria por cada transición para mantener trazabilidad completa en el historial.
+
+<img src="assets/design/WebApp/Mockups/change-status.png" width="900px" alt="change-status">
+
+##### Gestión de Cotizaciones
+
+Carga de Cotización
+Interfaz para subir el documento PDF de la cotización de un proveedor, junto con sus datos de identificación (razón social, RUC). El backend valida que el archivo sea un PDF legible antes de aceptarlo.
+
+<img src="assets/design/WebApp/Mockups/upload-quotation.png" width="900px" alt="upload-quotation">
+
+Extracción y Verificación de Cotización
+Vista de revisión donde un agente de IA (OpenAI vía Semantic Kernel) muestra los campos extraídos del PDF (proveedor, moneda, vigencia, precios, especificaciones técnicas), cada uno con su nivel de confianza y evidencia de origen (página y porcentaje). El Purchasing Staff corrige valores si hace falta, mapea las líneas a los ítems solicitados y confirma con "Verify quotation".
+
+<img src="assets/design/WebApp/Mockups/verify-quotation.png" width="900px" alt="verify-quotation">
+
+##### Evaluación Comparativa
+
+Comparación de Cotizaciones
+Resultado de la simulación que define criterios ponderados (ej. Precio 60%, Tiempo de entrega 40%), normaliza cada cotización verificada y calcula un puntaje final (0-100) con la recomendación de proveedor ganador.
+
+<img src="assets/design/WebApp/Mockups/evaluation-comparison.png" width="900px" alt="evaluation-comparison">
+
+Caso Límite: Ninguna Cotización Califica
+Cuando ninguna cotización satisface un requisito técnico obligatorio de la solicitud, el sistema excluye automáticamente a todos los candidatos (puntaje 0/100) en lugar de forzar una recomendación inválida — evidenciando el control de calidad del motor de evaluación.
+
+<img src="assets/design/WebApp/Mockups/evaluation-both-excluded.png" width="900px" alt="evaluation-both-excluded">
+
+#### Purchase Manager (Exclusivo)
+
+##### Aprobación y Orden de Compra
+
+Orden de Compra Generada
+Documento final generado tras la aprobación del Purchase Manager, con los datos consolidados de la negociación: proveedor ganador, ítems, precios, condiciones de entrega y destino.
+
+<img src="assets/design/WebApp/Mockups/purchase-order.png" width="900px" alt="purchase-order">
+
+Solicitud Completada (Ordered)
+Estado final del ciclo de vida de la solicitud, confirmando que el proceso de principio a fin —desde la solicitud del Production Specialist hasta la orden de compra del Purchase Manager— se completó exitosamente.
+
+<img src="assets/design/WebApp/Mockups/ordered.png" width="900px" alt="ordered">
+
 ### 4.6.4. Web Applications User Flow Diagrams
+
+### User Flows
+
+#### User Flow 1:
+
+Relacionado con User Goal 1 (US02):
+Como Production Specialist, quiero registrar una solicitud de insumos desde la operación.
+
+El usuario inicia sesión y accede al listado de "Purchase requests". Selecciona "+ New request" y completa los datos del ítem (descripción, cantidad, unidad) junto con al menos un requisito técnico marcado como obligatorio. Al enviar la solicitud, el sistema la registra en estado "Submitted" y la refleja en el listado principal.
+
+<img src="assets/design/WebApp/UserFlowDiagrams/UserGoals/UserGoal-US02.png" width="1200px" alt="uf-us02">
+
+#### User Flow 2:
+
+Relacionado con User Goal 2 (US03):
+Como Production Specialist, quiero conocer el avance de una solicitud de compra.
+
+Desde el listado de solicitudes, el usuario abre el detalle de una solicitud específica. El sistema muestra un stepper de seis estados (Submitted, Under review, Collecting quotations, Evaluation, Approved, Ordered) que le permite identificar en qué etapa exacta del proceso de compra se encuentra, sin necesidad de contactar al equipo de compras.
+
+<img src="assets/design/WebApp/UserFlowDiagrams/UserGoals/UserGoal-US03.png" width="900px" alt="uf-us03">
+
+#### User Flow 3:
+
+Relacionado con User Goal 3 (US04):
+Como Purchasing Staff, quiero incorporar cotizaciones de proveedores.
+
+El Purchasing Staff cambia el estado de la solicitud a "Collecting quotations" y accede al formulario de carga de cotización, donde ingresa los datos del proveedor (razón social, RUC) y selecciona el archivo PDF correspondiente. El sistema valida que el documento sea un PDF legible antes de aceptarlo y lo asocia a la solicitud.
+
+<img src="assets/design/WebApp/UserFlowDiagrams/UserGoals/UserGoal-US04.png" width="900px" alt="uf-us04">
+
+#### User Flow 4:
+
+Relacionado con User Goal 4 (US05):
+Como Purchasing Staff, quiero verificar la información extraída de una cotización.
+
+Tras la carga, un agente de IA procesa el PDF y extrae automáticamente los campos estructurados (proveedor, moneda, vigencia, precios, especificaciones técnicas), cada uno con su nivel de confianza y evidencia de origen. El Purchasing Staff revisa estos valores, corrige cualquier campo incorrecto y confirma la cotización como verificada para que quede disponible en la evaluación comparativa.
+
+<img src="assets/design/WebApp/UserFlowDiagrams/UserGoals/UserGoal-US05.png" width="900px" alt="uf-us05">
+
+#### User Flow 5:
+
+Relacionado con User Goal 5 (US06):
+Como Purchasing Staff, quiero definir los criterios de evaluación de cotizaciones.
+
+El usuario accede a la pestaña de comparación y define los criterios ponderados que se usarán para evaluar a los proveedores (por ejemplo, Precio 60% y Tiempo de entrega 40%), además de los requisitos técnicos obligatorios heredados de la solicitud original.
+
+<img src="assets/design/WebApp/UserFlowDiagrams/UserGoals/UserGoal-US06.png" width="900px" alt="uf-us06">
+
+#### User Flow 6:
+
+Relacionado con User Goal 6 (US07):
+Como Purchasing Staff, quiero simular y comparar las cotizaciones elegibles.
+
+Al ejecutar "Run comparison", el sistema normaliza cada criterio ponderado entre las cotizaciones verificadas y calcula un puntaje final de 0 a 100. Si alguna cotización no satisface un requisito técnico obligatorio, queda excluida automáticamente con puntaje 0, evitando que el sistema recomiende una alternativa inválida.
+
+<img src="assets/design/WebApp/UserFlowDiagrams/UserGoals/UserGoal-US07.png" width="1100px" alt="uf-us07">
+
+#### User Flow 7:
+
+Relacionado con User Goal 7 (US08):
+Como Purchase Manager, quiero aprobar la alternativa seleccionada y generar la orden de compra.
+
+El Purchase Manager revisa la cotización recomendada por el motor de evaluación y completa las condiciones de entrega y el destino final. Al confirmar, el sistema genera la orden de compra (PO) con los datos consolidados de la negociación y permite marcar la solicitud como "Ordered", cerrando su ciclo de vida completo.
+
+<img src="assets/design/WebApp/UserFlowDiagrams/UserGoals/UserGoal-US08.png" width="1200px" alt="uf-us08">
 
 ## 4.7. Web Applications Prototyping
 
