@@ -4800,7 +4800,80 @@ URL del Trello: [https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c7
 
 ### 5.2.2. Implemented Landing Page Evidence
 
+La Landing Page de SmartQuote se implementó como un sitio estático en HTML5, CSS3 y JavaScript vainilla, sin frameworks ni dependencias de build, orientado a comunicar la propuesta de valor a los segmentos de Adquisiciones y de Producción y Sanidad. Incluye soporte bilingüe (español e inglés) mediante `i18n.js`, un simulador interactivo que recalcula en tiempo real el ranking de tres cotizaciones de ejemplo según criterios ponderados por el usuario (precio, plazo de entrega, etc.), y un formulario de contacto con validación de campos en el cliente (nombre, correo corporativo y empresa).
+
+#### Repositorio de código fuente
+
+El código fuente de la Landing Page se encuentra en el repositorio público:
+
+[smartquote-landing-page](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page)
+
+Al ser un sitio completamente estático, no realiza llamadas a servicios externos ni requiere claves o variables de entorno.
+
+#### Despliegue
+
+El sitio se publica automáticamente mediante **GitHub Pages**, a partir del flujo integrado `pages build and deployment` de GitHub Actions, que se dispara con cada cambio en la rama del sitio. La versión publicada está disponible en:
+
+[https://upc-pre-202620-1asi0732-9108-smartquote.github.io/smartquote-landing-page/](https://upc-pre-202620-1asi0732-9108-smartquote.github.io/smartquote-landing-page/)
+
+#### Evidencias principales
+
+![Anexo 5.2.2.1 — Ejecuciones exitosas del workflow de GitHub Pages](assets/landing/5.2.2-01-github-actions-pages-deployment.png)
+
+![Anexo 5.2.2.2 — Landing Page publicada y accesible desde GitHub Pages](assets/landing/5.2.2-02-landing-page-live.png)
+
+#### Tabla de commits de implementación
+
+| Repository | Branch | Commit Id | Commit Message | Committed on (Date) |
+| --- | --- | --- | --- | --- |
+| `smartquote-landing-page` | `feature/LandingPage` | `a0143d6` | `docs: update landing page readme` | 2026-09-10 |
+| `smartquote-landing-page` | `feature/LandingPage` | `17132fd` | `docs: add landing page readme` | 2026-09-10 |
+| `smartquote-landing-page` | `feature/LandingPage` | `ec287f2` | `feat: add language switch, simulator and form validation` | 2026-09-10 |
+| `smartquote-landing-page` | `feature/LandingPage` | `328f0f0` | `feat: add language switch, simulator and form validation` | 2026-09-10 |
+| `smartquote-landing-page` | `feature/LandingPage` | `4bdcc3f` | `feat: add English and Spanish language resources` | 2026-09-10 |
+| `smartquote-landing-page` | `feature/LandingPage` | `e71e2de` | `feat: add landing page styles` | 2026-09-10 |
+| `smartquote-landing-page` | `feature/LandingPage` | `d737a5e` | `feat: add landing page structure` | 2026-09-10 |
+| `main` / `develop` | — | `55a1e71` | `Initial commit` | 2026-09-06 |
+
 ### 5.2.3. Implemented Frontend-Web Application Evidence
+
+La aplicación web de SmartQuote se implementó con Vue 3, Vue Router y PrimeVue, siguiendo una arquitectura orientada a dominio alineada con los *bounded contexts* del backend (identidad y acceso, solicitudes de compra, cotizaciones, evaluación y órdenes de compra). Cubre el flujo completo del área de Adquisiciones: inicio de sesión con cuenta autorizada, listado y seguimiento de solicitudes de compra, comparación de cotizaciones y emisión de órdenes de compra aprobadas, todo consumiendo en tiempo real los servicios RESTful publicados en Azure.
+
+#### Repositorio de código fuente
+
+El código fuente de la aplicación web se encuentra en el repositorio público:
+
+[smartquote-frontend-web](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web)
+
+La URL base de la API se inyecta en tiempo de build mediante la variable `VITE_API_BASE_URL`, por lo que no se incluyen contraseñas, tokens ni claves en el repositorio.
+
+#### Despliegue
+
+El frontend se publica mediante **Azure Static Web Apps**, con integración continua desde GitHub Actions (`azure-static-web-apps-agreeable-bush-0f1889d10.yml`), que compila y despliega automáticamente con cada cambio en la rama `develop`, apuntando al backend desplegado en Azure App Service. La versión publicada está disponible en:
+
+[https://agreeable-bush-0f1889d10.5.azurestaticapps.net](https://agreeable-bush-0f1889d10.5.azurestaticapps.net)
+
+#### Evidencias principales
+
+![Anexo 5.2.3.1 — Aplicación web desplegada en Azure Static Web Apps, pantalla de inicio de sesión](assets/frontendweb/5.2.3-01-azure-static-web-app-live.png)
+
+![Anexo 5.2.3.2 — Listado de solicitudes de compra autenticado, consumiendo el backend real en producción](assets/frontendweb/5.2.3-02-purchase-requests-authenticated.png)
+
+![Anexo 5.2.3.3 — Orden de compra emitida y aprobada, con historial de estados](assets/frontendweb/5.2.3-03-purchase-order-issued.png)
+
+#### Tabla de commits de implementación
+
+| Repository | Branch | Commit Id | Commit Message | Committed on (Date) |
+| --- | --- | --- | --- | --- |
+| `smartquote-frontend-web` | `develop` | `6c5a49f` | `Update azure-static-web-apps-agreeable-bush-0f1889d10.yml` | 2026-09-15 |
+| `smartquote-frontend-web` | `develop` | `e9e2df8` | `Update azure-static-web-apps-agreeable-bush-0f1889d10.yml` | 2026-09-15 |
+| `smartquote-frontend-web` | `develop` | `da64faf` | `ci: add Azure Static Web Apps workflow file` | 2026-09-15 |
+| `smartquote-frontend-web` | `feature/styles` | `d251840` | `fix: fixed frontend styles` | 2026-09-15 |
+| `smartquote-frontend-web` | `feature/iam` | `f00bbb0` | `feat: added identity and access context` | 2026-09-15 |
+| `smartquote-frontend-web` | `main` | `f7d18cc` | `chore: clean up unused configuration and build artifacts` | 2026-09-14 |
+| `smartquote-frontend-web` | `main` | `919aaa2` | `feat(web): migrate to Vue and domain-driven architecture` | 2026-09-14 |
+| `smartquote-frontend-web` | `main` | `bbfdbda` | `Build SmartQuote web frontend integrated with backend API` | 2026-09-14 |
+| `smartquote-frontend-web` | `main` | `dc72f19` | `Initial commit` | 2026-09-06 |
 
 ### 5.2.4. Implemented Native-Mobile Application Evidence
 
