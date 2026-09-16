@@ -112,9 +112,13 @@ Proyecto
     - [2.2.2. Registro de entrevistas](#222-registro-de-entrevistas)
       - [Ficha de registro — Entrevista 1](#ficha-de-registro--entrevista-1)
       - [Ficha de registro — Entrevista 2](#ficha-de-registro--entrevista-2)
+      - [Ficha de registro — Entrevista 3](#ficha-de-registro--entrevista-3)
     - [2.2.3. Análisis de entrevistas](#223-análisis-de-entrevistas)
+      - [Segmento 1: Área de Adquisiciones (n = 2)](#segmento-1-área-de-adquisiciones-n--2)
+      - [Segmento 2: Área de Producción y Sanidad (n = 1)](#segmento-2-área-de-producción-y-sanidad-n--1)
   - [2.3. Needfinding](#23-needfinding)
     - [2.3.1. User Personas](#231-user-personas)
+      - [User Persona — Analista de adquisiciones](#user-persona--analista-de-adquisiciones)
     - [2.3.2. User Task Matrix](#232-user-task-matrix)
     - [2.3.3. User Journey Mapping](#233-user-journey-mapping)
     - [2.3.4. Empathy Mapping](#234-empathy-mapping)
@@ -397,16 +401,25 @@ Proyecto
         - [Aspect Leaders and Collaborators](#aspect-leaders-and-collaborators)
         - [Sprint Backlog 1](#sprint-backlog-1)
     - [5.2.2. Implemented Landing Page Evidence](#522-implemented-landing-page-evidence)
-    - [5.2.3. Implemented Frontend-Web Application Evidence](#523-implemented-frontend-web-application-evidence)
-    - [5.2.4. Implemented Native-Mobile Application Evidence](#524-implemented-native-mobile-application-evidence)
       - [Repositorio de código fuente](#repositorio-de-código-fuente)
-      - [Evidencias principales de la aplicación](#evidencias-principales-de-la-aplicación)
+      - [Despliegue](#despliegue)
+      - [Evidencias principales](#evidencias-principales)
       - [Tabla de commits de implementación](#tabla-de-commits-de-implementación)
+    - [5.2.3. Implemented Frontend-Web Application Evidence](#523-implemented-frontend-web-application-evidence)
+      - [Repositorio de código fuente](#repositorio-de-código-fuente-1)
+      - [Despliegue](#despliegue-1)
+      - [Evidencias principales](#evidencias-principales-1)
+      - [Tabla de commits de implementación](#tabla-de-commits-de-implementación-1)
+    - [5.2.4. Implemented Native-Mobile Application Evidence](#524-implemented-native-mobile-application-evidence)
+      - [Repositorio de código fuente](#repositorio-de-código-fuente-2)
+      - [Evidencias principales de la aplicación](#evidencias-principales-de-la-aplicación)
+      - [Tabla de commits de implementación](#tabla-de-commits-de-implementación-2)
       - [Conexión con los servicios web](#conexión-con-los-servicios-web)
       - [Video de demostración](#video-de-demostración)
     - [5.2.5. Implemented RESTful API and/or Serverless Backend Evidence](#525-implemented-restful-api-andor-serverless-backend-evidence)
       - [Estructura implementada](#estructura-implementada)
       - [Ejecución local y persistencia](#ejecución-local-y-persistencia)
+      - [Despliegue en la nube (Azure)](#despliegue-en-la-nube-azure)
       - [Comprobación local observada](#comprobación-local-observada)
       - [Registro de modificaciones del backend](#registro-de-modificaciones-del-backend)
     - [5.2.6. RESTful API documentation](#526-restful-api-documentation)
@@ -793,7 +806,7 @@ Para finalizar, ¿existe algún problema, necesidad o experiencia relacionada co
 | **Segmento objetivo** | Analista de Compras |
 | **Fecha de realización** | 14/09/26 |
 | **Captura de pantalla (screenshot)** |![Entrevista 2](assets/research/interviews/entrevista-1-diego-delacruz.png) |
-| **Enlace (URL)** | [Ver entrevista completa en Microsoft Stream](<https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQA2z-3SLWyJR6ZupwUwaz5kAXIFqnzAxXq8Ku0bPnKwre4?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=wznBGw>) |
+| **Enlace (URL)** | [Ver entrevista completa en Microsoft Stream](<https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQAiY-EXwg1tQoKo-0XOzT0QASvKovIdOAC29CvAAs7HmdY?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=dJ3lPz>) |
 | **Minutaje (timing)** | **Inicio:** 00:00:10<br>**Fin:** 00:07:44<br>**Duración:** 00:07:34 |
 | **Resumen descriptivo y recolección de datos** | Diego De la Cruz, analista de compras, realiza cotizaciones y gestiona el proceso de compras y ventas apoyándose en el ERP SAP HANA, donde se registran los requerimientos y se formalizan las órdenes. Sin embargo, el tramo intermedio —comparar las ofertas que llegan de distintos proveedores— lo resuelve fuera del sistema, trasladando manualmente precios, disponibilidad y especificaciones técnicas a hojas de cálculo, lo que le consume varias horas por cada requerimiento. Su mayor reto y causa de retrasos es lidiar con cotizaciones incompletas o ambiguas, por lo que considera que una plataforma web con inteligencia artificial como "SmartQuote" sería sumamente útil para automatizar la extracción de datos, ahorrar tiempo y reducir errores. Precisa que la herramienta no debería reemplazar al ERP, sino integrarse con él para recibir el requerimiento y devolver la decisión ya sustentada. Para confiar en esta herramienta y garantizar su éxito, el sistema deberá proteger estrictamente la confidencialidad de la información comercial y mostrar de forma transparente el origen de cada dato extraído, permitiéndole mantener la supervisión final sobre las especificaciones técnicas y la elección del proveedor. |
 
@@ -807,9 +820,23 @@ Para finalizar, ¿existe algún problema, necesidad o experiencia relacionada co
 | **Segmento objetivo** | Área de Adquisiciones |
 | **Fecha de realización** | 14/09/26 |
 | **Captura de pantalla (screenshot)** | ![Entrevista 2](assets/research/interviews/entrevista-2-andy-nunez.png) |
-| **Enlace (URL)** | [Ver entrevista completa en Microsoft Stream](<https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQA2z-3SLWyJR6ZupwUwaz5kAXIFqnzAxXq8Ku0bPnKwre4?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=wznBGw>) |
+| **Enlace (URL)** | [Ver entrevista completa en Microsoft Stream](<https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQAiY-EXwg1tQoKo-0XOzT0QASvKovIdOAC29CvAAs7HmdY?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=dJ3lPz>) |
 | **Minutaje (timing)** | **Inicio:** 00:07:45<br>**Fin:** 00:16:50<br>**Duración:** 00:09:05 |
 | **Resumen descriptivo y recolección de datos** | Andy Núñez, del área de adquisiciones, gestiona el proceso de compras utilizando principalmente correo y Excel, invirtiendo varias horas en trasladar datos manualmente para elaborar cuadros comparativos de precios, disponibilidad y especificaciones técnicas. Su mayor reto y causa de retrasos es lidiar con cotizaciones incompletas o ambiguas, por lo que considera que una plataforma web con inteligencia artificial como "Smart Quote" sería sumamente útil para automatizar la extracción de datos, ahorrar tiempo y reducir errores. Para confiar en esta herramienta y garantizar su éxito, el sistema deberá proteger estrictamente la confidencialidad de la información comercial y mostrar de forma transparente el origen de cada dato extraído, permitiéndole mantener la supervisión final sobre las especificaciones técnicas y la elección del proveedor. |
+
+#### Ficha de registro — Entrevista 3
+
+| Elemento del registro | Información de la entrevista |
+|---|---|
+| **Nombres y apellidos** | Joel Martínez |
+| **Edad** | 25 |
+| **Distrito de residencia** | Chorrillos |
+| **Segmento objetivo** | Área de Producción y Sanidad |
+| **Fecha de realización** | 16/09/26 |
+| **Captura de pantalla (screenshot)** | ![Entrevista 3 — Joel Martínez](assets/research/interviews/entrevista-3-joel-martinez.png) |
+| **Enlace (URL)** | [Ver entrevista completa en Microsoft Stream](<https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQAiY-EXwg1tQoKo-0XOzT0QASvKovIdOAC29CvAAs7HmdY?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=dJ3lPz>) |
+| **Minutaje (timing)** | **Inicio:** 00:16:55<br>**Fin:** 00:21:12<br>**Duración:** 00:04:17 |
+| **Resumen descriptivo y recolección de datos** | Joel Martínez trabaja en el área de almacén y participa en la evaluación de la calidad de los productos antes de su distribución. Explica que las necesidades de su área se comunican mediante un informe al jefe, quien luego las deriva a las demás áreas, por lo que no existe una comunicación directa y ágil. Considera indispensable que las solicitudes especifiquen claramente la cantidad, el peso, la marca, la calidad requerida, el destinatario y el volumen solicitado. Señala que las aclaraciones son frecuentes porque las áreas utilizan modelos y lenguajes distintos, y que el seguimiento se dificulta cuando las solicitudes físicas se traspapelan. La validación de una cotización pasa por filtros de supervisión y por la recomendación del jefe del área antes de regresar a gerencia para la decisión final. Advierte que una compra tardía o incorrecta puede generar pérdidas económicas importantes y retrasar las ventas. Como mejora, propone digitalizar el flujo y estandarizar los modelos y el vocabulario entre áreas para que todos trabajen con información objetiva, consistente y puntual. |
 
 ### 2.2.3. Análisis de entrevistas
 
@@ -832,9 +859,21 @@ El análisis disponible se limita a los resúmenes de las entrevistas N.º 1 (Di
 
 **Datos aún no recogidos en los resúmenes:** género, estado civil y familia, trayectoria profesional, personalidad, influencias o marcas, dispositivo y navegador preferidos, volumen de compras, frecuencia de las tareas y consecuencias cuantificadas de los retrasos. **Pendiente:** completar la muestra de 3 a 5 entrevistas requerida por la guía para este segmento, los enlaces al video, el inicio de cada entrevista y las características faltantes, siempre con consentimiento para registrar datos personales.
 
-#### Segmento 2: Área de Producción y Sanidad
+#### Segmento 2: Área de Producción y Sanidad (n = 1)
 
-Pendiente. No hay entrevistas registradas de este segmento; no es posible calcular porcentajes ni afirmar que las características descritas en la sección 1.3 sean hallazgos de investigación. La guía requiere entre 3 y 5 entrevistas por segmento.
+La entrevista N.º 3 corresponde a Joel Martínez, colaborador del área de almacén y control de calidad, considerado un subperfil operativo relacionado con el segmento de producción y sanidad. Los resultados son exploratorios y no representan a todo el segmento; todavía se requieren más entrevistas para cumplir la muestra recomendada de la guía.
+
+| Característica | Resultado en el registro | Evidencia trazable |
+|---|---|---|
+| Coordinación entre áreas | 1/1 utiliza un informe dirigido al jefe, quien comunica la necesidad a las demás áreas. | N.º 3: respuesta sobre la comunicación de necesidades. |
+| Datos necesarios | 1/1 menciona cantidad, peso, marca, calidad, destinatario y volumen solicitado. | N.º 3: respuesta sobre datos técnicos y solicitudes de alto grado. |
+| Aclaraciones y lenguaje común | 1/1 indica que las aclaraciones son frecuentes porque las áreas manejan modelos y lenguajes distintos. | N.º 3: respuesta sobre diferencias entre almacén y otras áreas. |
+| Seguimiento | 1/1 reporta pérdida de trazabilidad cuando las solicitudes físicas se traspapelan. | N.º 3: respuesta sobre seguimiento de solicitudes. |
+| Validación y aprobación | 1/1 describe filtros de supervisión, evaluación del área y decisión final de gerencia. | N.º 3: respuestas sobre validación de cotizaciones y autorizaciones. |
+| Impacto del retraso | 1/1 relaciona las compras tardías o incorrectas con pérdidas económicas y retrasos en ventas. | N.º 3: respuesta sobre consecuencias. |
+| Necesidad de digitalización | 1/1 propone digitalizar el flujo y estandarizar modelos y vocabulario entre áreas. | N.º 3: respuesta sobre mejoras y función indispensable. |
+
+**Hallazgo exploratorio del segmento.** El registro refuerza la necesidad de centralizar solicitudes, conservar su historial y utilizar un lenguaje común para que las áreas puedan validar información de manera consistente. La evidencia también respalda la trazabilidad de estados y la supervisión humana antes de aprobar una compra. Al existir un solo registro, estos resultados deben validarse con entrevistas adicionales a veterinarios, nutricionistas, jefes de granja u otros responsables técnicos del segmento.
 
 ## 2.3. Needfinding
 
