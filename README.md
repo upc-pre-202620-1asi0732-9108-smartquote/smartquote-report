@@ -1681,7 +1681,15 @@ Estos esquemas validan la ergonomía de la interfaz, asegurando que las secuenci
 
 ### 4.5.1. Android Mobile Applications Prototyping
 
+Prototipo móvil para Android que permite gestionar solicitudes, consultar cotizaciones y evaluar alternativas de compra.
+
+![Prototipo móvil Android de SmartQuote: inicio, cotizaciones, criterios de evaluación y resultado](assets/design/mobile/android-mobile-prototyping.png)
+
 ### 4.5.2. iOS Mobile Applications Prototyping
+
+Prototipo móvil para iOS que mantiene las funcionalidades principales de SmartQuote, adaptadas a dispositivos Apple.
+
+![Prototipo móvil iOS de SmartQuote: inicio, cotizaciones, criterios de evaluación y resultado](assets/design/mobile/ios-mobile-prototyping.png)
 
 ## 4.6. Web Applications UX/UI Design
 
