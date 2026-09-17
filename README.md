@@ -1989,6 +1989,16 @@ El Purchase Manager revisa la cotización recomendada por el motor de evaluació
 
 ## 4.7. Web Applications Prototyping
 
+Las decisiones de interacción se basaron en principios fundamentales de diseño como el contraste para resaltar elementos críticos como el estado "Excluida" de una cotización y el botón "Ejecutar simulación", la repetición para garantizar consistencia visual entre las vistas del Analista de Adquisiciones y del Jefe de Adquisiciones (Purchase Manager), la alineación para lograr una navegación clara entre los módulos Solicitudes, Cotizaciones, Evaluación y Órdenes de compra, y la proximidad para mejorar la agrupación lógica de contenidos relacionados, como los ítems de una solicitud junto con sus requisitos técnicos, o cada cotización junto con sus campos extraídos y su nivel de confianza. Estos principios se aplicaron de forma integral en toda la aplicación web, priorizando una experiencia funcional y consistente que respalde una decisión de compra verificable.
+
+Desde el punto de vista de arquitectura de información, la aplicación web de SmartQuote utiliza una navegación jerárquica en su dashboard, combinada con un organizador secuencial en el flujo de evaluación (Solicitud → Cotizaciones → Criterios → Simulación → Orden), que impide avanzar a una simulación mientras existan cotizaciones sin verificar. Además, se establecieron sistemas de etiquetado derivados del Ubiquitous Language del proyecto, categorización del contenido por bounded context (Solicitudes, Cotizaciones, Evaluación, Órdenes), y filtros por estado del proceso que permiten una interacción eficiente y dirigida a la tarea del analista.
+
+En cada caso, se han implementado interacciones responsivas (hover, focus, estados deshabilitados), validaciones visuales en formularios, retroalimentaciones de acción (confirmaciones y mensajes de error), y patrones de navegación adaptados al perfil de usuario autenticado (Analista de Adquisiciones o Jefe de Adquisiciones), de modo que solo este último puede aprobar una alternativa y generar la orden de compra. Esto garantiza que tanto el acceso a la información como la ejecución de tareas sea coherente, accesible y orientada a sustentar cada decisión de compra con evidencia trazable. A continuación, se incluye un screenshot extraído de un video de la aplicación web, en donde se demuestran y explican los principales flujos de interacción que cubre el prototipo desarrollado.
+
+[WebApp Prototype](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202424059_upc_edu_pe/IQAcC97wx3i_QpIJfEWrR3D7AfYPYAkXvNQRmb0vAu84Y_o?e=k0UWGe)
+
+<img src="assets\web-applications-prototyping.png" width="1200px" alt="uf-us08">
+
 ## 4.8. Domain-Driven Software Architecture
 
 ### Architecture Overview Diagram
