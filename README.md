@@ -951,6 +951,10 @@ La matriz compara al **analista de adquisiciones** y al **especialista de produc
 
 El recorrido *As-Is* describe cómo un analista pasa del requerimiento a la decisión de compra **sin SmartQuote**. Vincula sus pasos con el arquetipo de adquisiciones y no presupone que ambos entrevistados usen el mismo ERP.
 
+El siguiente User Journey Map As-Is se elaboró en UXPressia a partir de las entrevistas N.º 1 y 2 y está vinculado a la User Persona de adquisiciones. Sus objetivos se infieren de los resúmenes; no son citas textuales de los entrevistados.
+
+![User Journey Map As-Is del analista de adquisiciones elaborado en UXPressia](assets/research/journeys/user-journey-as-is-adquisiciones.png)
+
 | Fase del recorrido | Acción actual observada | Fricción o necesidad | Registro de origen |
 |---|---|---|---|
 | Requerimiento | Recibe la necesidad; en un caso se registra en SAP HANA. | Conservar continuidad entre la solicitud y la comparación posterior. | N.º 1. |
@@ -958,7 +962,7 @@ El recorrido *As-Is* describe cómo un analista pasa del requerimiento a la deci
 | Consolidación | Traslada manualmente precio, disponibilidad y especificaciones a Excel. | La tarea consume varias horas y las ofertas incompletas generan retrasos. | N.º 1 y N.º 2. |
 | Comparación y decisión | Contrasta las alternativas y mantiene la selección bajo supervisión humana; en un caso la orden se formaliza en el ERP. | Justificar la elección y resguardar los datos comerciales. | N.º 1 y N.º 2; formalización en ERP en N.º 1. |
 
-**Pendiente:** validar secuencia, canales y emociones mediante nuevas entrevistas; elaborar y adjuntar la captura del User Journey Map en la herramienta indicada. **Journey As-Is de Producción y Sanidad:** primer flujo sustentado por N.º 3, pendiente de validación y ampliación con más entrevistas.
+**Pendiente:** validar secuencia, canales y emociones mediante nuevas entrevistas. **Journey As-Is de Producción y Sanidad:** primer flujo sustentado por N.º 3, pendiente de validación y ampliación con más entrevistas.
 
 ### 2.3.4. Empathy Mapping
 
