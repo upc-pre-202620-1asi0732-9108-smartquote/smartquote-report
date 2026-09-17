@@ -124,6 +124,7 @@ Proyecto
   - [2.3. Needfinding](#23-needfinding)
     - [2.3.1. User Personas](#231-user-personas)
       - [User Persona — Analista de adquisiciones](#user-persona--analista-de-adquisiciones)
+      - [User Persona — Almacén y control de calidad](#user-persona--almacén-y-control-de-calidad)
     - [2.3.2. User Task Matrix](#232-user-task-matrix)
     - [2.3.3. User Journey Mapping](#233-user-journey-mapping)
     - [2.3.4. Empathy Mapping](#234-empathy-mapping)
@@ -926,6 +927,14 @@ Esta ficha de UXPressia sintetiza las entrevistas N.º 1 y N.º 2 del área de a
 ![User Persona del segmento de adquisiciones elaborada en UXPressia](assets/research/personas/user-persona-adquisiciones.png)
 
 Los dos participantes tienen 24 y 27 años y residen en Santiago de Surco y San Borja, respectivamente. Estos datos describen la muestra disponible, no una edad o ubicación típica del segmento. La ficha no atribuye una cita textual, personalidad, ingresos ni tecnología preferida que los resúmenes no documenten; sus rasgos se contrastarán con más entrevistas.
+
+#### User Persona — Almacén y control de calidad
+
+Esta ficha de UXPressia presenta un arquetipo exploratorio del subperfil operativo de almacén y control de calidad, basado únicamente en la entrevista N.º 3. Recoge la comunicación de necesidades mediante un informe al jefe, las aclaraciones causadas por formatos y términos distintos entre áreas, y la dificultad de seguir solicitudes físicas que se traspapelan. Las necesidades de información —cantidad, peso, marca, calidad, destinatario y volumen— provienen de ese registro. La fotografía se utiliza como recurso ilustrativo, no como evidencia sobre la identidad o las características del entrevistado.
+
+![User Persona exploratoria de almacén y control de calidad elaborada en UXPressia](assets/research/personas/user-persona-almacen-control-calidad.png)
+
+Esta persona no representa todavía a todo el segmento de producción y sanidad, especialmente a médicos veterinarios, nutricionistas o jefes de granja. Sus hallazgos requieren validación con entrevistas adicionales a esos perfiles.
 
 ### 2.3.2. User Task Matrix
 
