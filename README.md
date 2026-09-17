@@ -1050,6 +1050,18 @@ Para evitar ambigüedades, una **Purchase Request** representa la necesidad inte
 
 ## 3.1. To-Be Scenario Mapping
 
+Al igual que el As-Is, el escenario *To-Be* se presenta por segmento: uno para Adquisiciones y otro para Producción y Sanidad. Las filas siguen el mismo modelo (Phases, Doing, Thinking, Feeling) para permitir la comparación directa con el escenario actual.
+
+### To-Be Scenario Map — Adquisiciones (Analista o jefe de compras)
+
+<img src="assets\To-Be Scenario Map - Adquisiciones.png" alt=" " width="1000px" />
+
+### To-Be Scenario Map — Producción y Sanidad (Especialista)
+
+<img src="assets\To-Be Scenario Map - Produccion-y-Sanidad.png" alt=" " width="1000px" />
+
+[To-Be Scenaries](https://lucid.app/lucidchart/63eeb3ac-dccc-418e-b44e-39a3f170b394/edit?viewport_loc=158%2C-2009%2C7125%2C4056%2C0_0&invitationId=inv_9dda55b5-fe7d-4339-b4b2-62507b26eb4a)
+
 ## 3.2. User Stories
 
 | **Story ID** | **User** | **Priority** | **Epic** |
@@ -1144,8 +1156,13 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 
 URL del Trello: [https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c79c2f57a6cfd64878a51236a769346419FD/smartquote](https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c79c2f57a6cfd64878a51236a769346419FD/smartquote)
 
-
 ## 3.4. Impact Mapping
+
+El Impact Map conecta el objetivo de negocio definido en el Lean UX Canvas con los actores del dominio, el cambio de comportamiento que se espera provocar en cada uno (impactos) y las historias del Product Backlog que se comprometen para lograrlo. Los impactos se formulan como comportamientos deseados, no como resultados ya medidos: su validación depende de las hipótesis H1–H4 (sección 1.2.2.3), todavía pendientes de comprobación con usuarios reales.
+
+<img src="assets\3.4-impact-map.png" alt=" " width="1000px" />
+
+[Impact Mapping](https://lucid.app/lucidchart/13a6f9fc-7c96-45e5-b767-2f3b6f50c81d/edit?viewport_loc=-3448%2C-421%2C8163%2C6048%2C0_0&invitationId=inv_3fc3599f-7fd4-49c3-9fa8-518b6b6af74b)
 
 # Capítulo IV: Product Design
 
