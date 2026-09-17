@@ -91,6 +91,10 @@ Proyecto
     - [1.2.2. Lean UX Process](#122-lean-ux-process)
       - [1.2.2.1. Lean UX Problem Statements](#1221-lean-ux-problem-statements)
       - [1.2.2.2. Lean UX Assumptions](#1222-lean-ux-assumptions)
+        - [Business assumptions](#business-assumptions)
+        - [User assumptions](#user-assumptions)
+        - [Feature assumptions](#feature-assumptions)
+        - [Outcome assumptions](#outcome-assumptions)
       - [1.2.2.3. Lean UX Hypothesis Statements](#1223-lean-ux-hypothesis-statements)
       - [1.2.2.4. Lean UX Canvas](#1224-lean-ux-canvas)
   - [1.3. Segmentos objetivo](#13-segmentos-objetivo)
@@ -547,61 +551,80 @@ SmartQuote propone centralizar este flujo mediante una plataforma que permita re
 
 #### 1.2.2.1. Lean UX Problem Statements
 
-El dominio de SmartQuote es la adquisición de insumos para empresas avícolas. La evaluación de ofertas exige relacionar las necesidades de producción y sanidad con las condiciones comerciales ofrecidas por los proveedores. Los dos registros disponibles de entrevistas corresponden a adquisiciones y sustentan el problema descrito para ese segmento. El problema del segmento técnico se formula como hipótesis hasta contar con sus entrevistas.
+El Lean UX Problem Statement expresa las creencias iniciales del equipo sobre el dominio, los usuarios, sus dificultades y la oportunidad de producto. Estas definiciones orientan el aprendizaje y deberán validarse durante las siguientes iteraciones.
 
-El modelo de negocio propuesto es B2B SaaS por membresía periódica. SmartQuote no busca reemplazar el ERP de la empresa: se enfoca en el tramo de recepción, estructuración y comparación de cotizaciones, y en conservar la relación entre solicitud, criterios de evaluación, decisión y orden de compra. El segmento inicial de aprendizaje es adquisiciones porque allí se concentran los dos registros de entrevista disponibles.
-
-| Componente | Definición inicial |
+| Aspecto obligatorio | Definición para SmartQuote |
 |---|---|
-| Dominio | Solicitud, cotización, comparación y decisión de compra de insumos avícolas. |
-| Segmentos de clientes y usuarios | Analistas y jefes de adquisiciones; especialistas de producción y sanidad. El segmento inicial de validación es adquisiciones. |
-| Pain points observados | Dos entrevistados de adquisiciones describen traslado manual de datos a Excel, varias horas dedicadas a comparar ofertas y retrasos por cotizaciones incompletas o ambiguas (entrevistas N.º 1 y 2). |
-| Brecha | El flujo actual descrito separa el registro formal de la compra de la comparación de ofertas: un entrevistado usa SAP HANA para requerimientos y órdenes, pero compara fuera del ERP; el otro combina correo y Excel. |
-| Visión | Apoyar una decisión de compra verificable que reúna información técnica y comercial sin eliminar la revisión profesional. |
-| Estrategia inicial | Empezar por estructurar cotizaciones, mostrar el origen de cada dato y facilitar la comparación; probar la integración con el ERP existente antes de plantear reemplazarlo. |
+| **Domain** | Gestión de solicitudes, cotizaciones, evaluación y decisión de compra de insumos para empresas avícolas. |
+| **Customer segments** | Analistas y jefes de adquisiciones, y especialistas de producción y sanidad, incluidos veterinarios, nutricionistas, jefes de granja y personal operativo que solicita o valida insumos. |
+| **Pain points** | Adquisiciones: traslado manual de datos, cotizaciones incompletas o ambiguas, alto esfuerzo de comparación y preocupación por la confidencialidad. Producción/sanidad: comunicación fragmentada, solicitudes difíciles de rastrear, aclaraciones por modelos o lenguajes distintos y necesidad de datos claros de cantidad, peso, marca y calidad. |
+| **Gap** | No existe un flujo digital único que conecte la necesidad técnica con la cotización, la comparación y la orden. Los canales actuales —ERP, correo, hojas de cálculo, informes y documentos físicos— dejan información fragmentada y dificultan el seguimiento y la justificación de la decisión. |
+| **Vision / strategy** | Complementar los sistemas existentes con SmartQuote, una plataforma B2B SaaS que estructura solicitudes, extrae datos de cotizaciones con IA, conserva evidencia y correcciones, simula escenarios ponderados y facilita una aprobación humana trazable. |
+| **Initial segment** | Empresas avícolas medianas y grandes, comenzando por sus analistas y jefes de adquisiciones, porque concentran la necesidad de comparar ofertas y conectar la información técnica con la decisión comercial. |
 
-**Problem statement — adquisiciones:** los analistas de compras necesitan comparar cotizaciones de proveedores con rapidez y evidencia verificable, porque hoy trasladan manualmente precios, disponibilidad y especificaciones a hojas de cálculo, incluso cuando el requerimiento y la orden ya están en otro sistema. La información incompleta o ambigua produce demoras; la solución debe resguardar la confidencialidad y dejar la elección final en manos del responsable de compras.
+**Problem statement — adquisiciones:** Consideramos que los analistas y jefes de compras de empresas avícolas necesitan comparar ofertas técnicas y comerciales con rapidez, evidencia y control humano. Suponemos que hoy deben transcribir datos de cotizaciones heterogéneas a hojas de cálculo y afrontar información incompleta o ambigua, mientras el requisito y la orden pueden permanecer en sistemas separados. Esta brecha puede aumentar el tiempo de atención y dificultar la justificación de la selección; SmartQuote debe estructurar la información sin reemplazar el ERP ni la responsabilidad profesional.
 
-**Problem statement — producción y sanidad (hipótesis):** los especialistas técnicos podrían necesitar comunicar requisitos de insumos y conocer el avance de las solicitudes sin perder la posibilidad de validar su cumplimiento. Este enunciado se contrastará con entrevistas del segmento; los dos registros actuales no permiten afirmarlo como hallazgo.
+**Problem statement — producción y sanidad:** Consideramos que los responsables operativos que solicitan o controlan insumos necesitan comunicar cantidad, calidad, destinatario y demás especificaciones en un lenguaje común, además de seguir el avance de la solicitud. Suponemos que los canales jerárquicos y los documentos físicos pueden perderse y que la validación puede pasar por varios filtros antes de la aprobación final. Esta creencia debe validarse con usuarios representativos de producción, sanidad y operación.
 
 #### 1.2.2.2. Lean UX Assumptions
 
-Las siguientes suposiciones separan lo que aparece en los dos resúmenes de entrevistas de lo que aún requiere validación. Que un entrevistado considere útil SmartQuote no demuestra que el producto ya reduzca tiempos ni errores.
+Las suposiciones son premisas de trabajo, no hechos demostrados. Se clasifican por el tipo de decisión que afectan y se vinculan con una validación concreta para reducir la incertidumbre del producto.
 
-| ID | Suposición | Base disponible | Validación pendiente |
-|---|---|---|---|
-| A1 | Estructurar automáticamente datos de cotizaciones puede reducir el trabajo de transcripción. | Ambos entrevistados trasladan datos manualmente a Excel. | Medir tiempo y correcciones antes y después de una prueba con cotizaciones autorizadas. |
-| A2 | La herramienta debe señalar los datos incompletos y conservar el documento de origen. | Ambos resúmenes mencionan cotizaciones ambiguas y necesidad de ver el origen de cada dato. | Observar si los usuarios detectan y corrigen campos dudosos en un prototipo. |
-| A3 | La revisión humana y la protección de información comercial son condiciones de confianza. | Ambos resúmenes destacan supervisión final y confidencialidad. | Validar permisos, trazabilidad y criterios de aceptación con responsables de compras. |
-| A4 | Complementar el ERP existente es más útil que sustituirlo. | Diego menciona explícitamente la integración con SAP HANA. | Contrastar con más empresas y estudiar una integración o exportación mínima. |
-| A5 | Producción y sanidad necesitan registrar y seguir solicitudes desde un canal móvil. | Propuesta del producto descrita en la sección 1.3; no hay entrevistas de este segmento. | Entrevistar a especialistas, observar su contexto de trabajo y comprobar si el canal móvil responde a sus tareas reales. |
-| A6 | Un agente de IA puede extraer datos con suficiente precisión para una comparación confiable. | Capacidad propuesta, no comprobada por las entrevistas. | Probar cotizaciones reales autorizadas y medir precisión por campo y necesidad de corrección. |
+##### Business assumptions
+
+- **BA1 — Modelo de negocio:** Creemos que empresas avícolas estarán dispuestas a contratar una membresía B2B SaaS si SmartQuote reduce el esfuerzo y el tiempo de su proceso de adquisiciones. **Validación:** sesiones de validación con decisores y prueba piloto con intención de uso o compra; todavía no es un resultado demostrado.
+- **BA2 — Complemento del ecosistema:** Creemos que complementar el ERP, el correo y los procesos existentes será más viable que reemplazarlos, porque las empresas ya disponen de sistemas operativos que deben continuar funcionando. **Validación:** mapear integraciones y pasos de exportación/importación con organizaciones del segmento.
+- **BA3 — Costo del problema:** Creemos que las demoras, los errores y la pérdida de trazabilidad tienen un costo operativo suficiente para justificar una solución especializada. **Validación:** medir tiempos, retrabajo, incidencias y costos con datos reales autorizados.
+
+##### User assumptions
+
+- **UA1 — Analistas de adquisiciones:** Creemos que necesitan estructurar y comparar ofertas sin dominar todas las especificaciones técnicas. **Validación:** observar tareas y medir errores, consultas y tiempo de procesamiento durante un piloto.
+- **UA2 — Producción, sanidad y operación:** Creemos que necesitan registrar requisitos claros y consultar el avance sin depender de documentos físicos o comunicaciones indirectas. **Validación:** evaluar el flujo con usuarios representativos en su contexto de trabajo.
+- **UA3 — Responsables de aprobación:** Creemos que requieren una recomendación explicable, evidencia de origen y control humano antes de autorizar una orden. **Validación:** revisar escenarios de aprobación con responsables reales y verificar que puedan justificar su decisión.
+
+##### Feature assumptions
+
+- **FA1 — Extracción asistida:** Creemos que un agente de IA puede convertir cotizaciones PDF heterogéneas en datos estructurados sin inventar valores ausentes. **Validación:** comparar la salida con una referencia verificada, campo por campo, incluyendo documentos ambiguos.
+- **FA2 — Revisión y trazabilidad:** Creemos que mostrar fuente, confianza, valor original y correcciones permitirá al analista resolver excepciones antes de verificar una cotización. **Validación:** prueba de tareas y revisión de auditoría con usuarios.
+- **FA3 — Simulación ponderada:** Creemos que criterios obligatorios y pesos configurables permitirán simular prioridades financieras o de emergencia sin ocultar las ofertas no elegibles. **Validación:** ejecutar escenarios con al menos dos cotizaciones verificadas y revisar la explicación del ranking.
+- **FA4 — Solicitud móvil:** Creemos que un formulario móvil con requisitos técnicos, adjuntos, historial y notificaciones facilitará la coordinación desde la operación. **Validación:** prueba contextual con personal de campo o almacén.
+- **FA5 — Aprobación segura:** Creemos que roles, control de versiones e idempotencia permitirán aprobar una decisión vigente sin duplicar órdenes. **Validación:** pruebas de permisos, concurrencia y repetición de la misma aprobación.
+
+##### Outcome assumptions
+
+- **OA1 — Eficiencia:** Creemos que estructurar y comparar cotizaciones reducirá el tiempo de elaboración del cuadro comparativo frente al proceso manual. **Indicador:** tiempo mediano y número de correcciones antes/después.
+- **OA2 — Calidad de la información:** Creemos que los campos normalizados y requisitos claros reducirán aclaraciones y datos incompletos. **Indicador:** aclaraciones por solicitud y campos obligatorios pendientes.
+- **OA3 — Confianza y control:** Creemos que evidencia, historial y aprobación humana aumentarán la confianza para utilizar la recomendación. **Indicador:** éxito de tareas y confianza reportada por los participantes.
+- **OA4 — Continuidad operativa:** Creemos que el seguimiento digital reducirá el riesgo de perder solicitudes y permitirá anticipar retrasos de abastecimiento. **Indicador:** solicitudes localizables, estados consultados y tiempos de respuesta.
 
 #### 1.2.2.3. Lean UX Hypothesis Statements
 
-Las hipótesis se formulan como resultados por comprobar, no como beneficios ya alcanzados. La línea base y los umbrales definitivos deberán acordarse con los participantes del piloto.
+Las hipótesis conectan una funcionalidad con un segmento y un resultado observable. Los umbrales propuestos son metas de validación, no métricas ya alcanzadas; la línea base debe medirse con participantes y documentos autorizados.
 
-| ID | Hipótesis comprobable | Experimento e indicador |
-|---|---|---|
-| H1 | Creemos que, si un analista puede extraer y revisar precio, disponibilidad y especificaciones desde cotizaciones heterogéneas, disminuirá el tiempo de elaboración del cuadro comparativo. | Comparar el tiempo del proceso manual con el de un prototipo usando las mismas cotizaciones; registrar correcciones por oferta. |
-| H2 | Creemos que, si cada dato muestra su fuente y los campos inciertos exigen confirmación, el analista podrá justificar la comparación sin ceder el control de la decisión. | Prueba de tareas: localizar la fuente de datos, corregir errores y explicar la selección; registrar éxito, errores y confianza reportada. |
-| H3 | Creemos que, si SmartQuote intercambia requerimientos y resultados con el ERP existente, el analista evitará duplicar parte del registro. | Probar primero una exportación/importación controlada y contar pasos manuales; validar el flujo con usuarios de ERP. |
-| H4 | Creemos que, si los especialistas de producción y sanidad pueden expresar requisitos y seguir solicitudes, disminuirán las aclaraciones y la incertidumbre sobre el abastecimiento. | Primero, entrevistar a ese segmento para establecer el proceso actual. Después, probar el registro y seguimiento con un prototipo; contar aclaraciones y evaluar si los usuarios pueden identificar el estado y responsable de cada solicitud. |
+* **H1 — Extracción de cotizaciones:** **Creemos que** al ofrecer extracción asistida por IA de precios, cantidades, plazos y especificaciones desde PDF heterogéneos **para** analistas de adquisiciones, **lograremos** reducir la transcripción manual sin introducir valores no presentes en el documento. **Sabremos que hemos tenido éxito cuando** el tiempo mediano de estructuración sea menor que la línea base manual y al menos el 90 % de los campos obligatorios de la muestra coincida con la referencia verificada; ambos valores deben medirse en el piloto.
+
+* **H2 — Verificación explicable:** **Creemos que** al mostrar confianza, evidencia de origen, valor original y correcciones **para** analistas y responsables de compras, **lograremos** que puedan detectar excepciones y justificar la selección manteniendo la supervisión humana. **Sabremos que hemos tenido éxito cuando** los participantes localicen la fuente, corrijan un campo ambiguo y expliquen la decisión en una prueba de tareas, registrando tasa de éxito, errores y confianza reportada.
+
+* **H3 — Simulación por escenarios:** **Creemos que** al permitir criterios obligatorios y pesos configurables de precio y plazo **para** el personal de adquisiciones, **lograremos** comparar ofertas con prioridades distintas y una recomendación explicable. **Sabremos que hemos tenido éxito cuando** dos escenarios con pesos diferentes produzcan rankings coherentes con sus reglas, excluyan incumplimientos obligatorios y repitan el mismo resultado cuando las entradas no cambian.
+
+* **H4 — Solicitud y seguimiento operativo:** **Creemos que** al ofrecer un formulario móvil con requisitos técnicos, adjuntos, historial y estados **para** especialistas de producción, sanidad y personal de almacén, **lograremos** reducir aclaraciones y pérdida de solicitudes durante la coordinación con adquisiciones. **Sabremos que hemos tenido éxito cuando** los participantes registren una solicitud completa, identifiquen su responsable y estado, y el piloto muestre menos aclaraciones o solicitudes no localizadas que la línea base.
+
+* **H5 — Aprobación trazable:** **Creemos que** al exigir una simulación vigente, roles autorizados y generación idempotente **para** jefes de compras, **lograremos** emitir una única orden de compra consistente y auditable. **Sabremos que hemos tenido éxito cuando** una aprobación válida genere la orden con sus referencias de origen y repetir la misma solicitud devuelva la orden existente sin crear un duplicado.
 
 #### 1.2.2.4. Lean UX Canvas
 
-El siguiente Lean UX Canvas reúne las decisiones iniciales del equipo y las preguntas que deben someterse a prueba. Las referencias a problemas de adquisiciones proceden de las entrevistas N.º 1 y 2; lo relativo a producción y sanidad sigue siendo una propuesta sin validación directa.
+El Lean UX Canvas sintetiza las creencias iniciales sobre el problema, los usuarios, los resultados esperados, las soluciones y el aprendizaje prioritario. Ningún resultado de negocio se presenta como logrado: todos deben validarse con experimentos y un piloto.
 
-| Bloque del canvas | Contenido de SmartQuote |
+| Bloque del Lean UX Canvas | Contenido de SmartQuote |
 |---|---|
-| 1. Problema de negocio | La comparación manual de cotizaciones retrasa la evaluación y dificulta mantener una decisión trazable entre requerimiento y orden de compra. |
-| 2. Resultados de negocio esperados | Menor tiempo de comparación y menos correcciones; conservación de evidencia de criterios, fuentes y aprobaciones. Son metas por medir, no resultados alcanzados. |
-| 3. Usuarios | Analistas y jefes de adquisiciones (segmento inicial); especialistas de producción y sanidad (segmento aún sin entrevistas registradas). |
-| 4. Resultados para los usuarios | Adquisiciones: comparar ofertas y justificar la selección con menos transcripción. Producción y sanidad: como resultado propuesto, comunicar requisitos técnicos y conocer el avance de las solicitudes; debe validarse con usuarios del segmento. |
-| 5. Ideas de solución | Carga de cotizaciones, extracción asistida, revisión de campos y fuentes, matriz de comparación, validación humana e intercambio gradual con el ERP. |
-| 6. Hipótesis | H1: ahorro de tiempo; H2: confianza mediante evidencia y control humano; H3: menos duplicación con ERP; H4: coordinación con el segmento técnico, aún por validar. |
-| 7. Lo más importante por aprender | Si la extracción es suficientemente precisa, si realmente ahorra tiempo y si la trazabilidad y confidencialidad resultan aceptables para los usuarios. También falta conocer el proceso real de producción y sanidad. |
-| 8. Experimento mínimo | Prototipo de comparación con cotizaciones autorizadas, medición manual frente a prototipo y entrevistas/pruebas de comprensión; después, entrevistas del segmento técnico. |
+| **1. Business Problem — Problema de negocio** | La compra de insumos avícolas se fragmenta entre informes, correo, ERP, hojas de cálculo y documentos físicos. La transcripción manual, los formatos heterogéneos, la falta de un lenguaje común y la pérdida de solicitudes retrasan la comparación y dificultan justificar la orden de compra. |
+| **2. Business Outcomes — Resultados de negocio** | Reducir el tiempo de atención y el retrabajo; disminuir errores, aclaraciones y solicitudes no localizadas; conservar evidencia de criterios, fuentes y aprobaciones; favorecer la adopción de una membresía B2B SaaS. Son objetivos por medir, no resultados alcanzados. |
+| **3. Users — Usuarios y clientes** | Cliente: empresas avícolas. Segmento inicial de aprendizaje: analistas y jefes de adquisiciones. Segmento operativo: especialistas de producción y sanidad, incluidos veterinarios, nutricionistas, jefes de granja y personal de almacén. Participan además los jefes de compras como aprobadores. |
+| **4. User Outcomes / Benefits — Beneficios para usuarios** | Adquisiciones obtiene cotizaciones estructuradas, comparaciones explicables y una decisión trazable con menos transcripción. Producción, sanidad y almacén registra requisitos claros, consulta responsables y estados y reduce la dependencia de documentos físicos. Los beneficios requieren validación contextual. |
+| **5. Solutions — Ideas de solución** | Formulario móvil de solicitudes y requisitos; carga de PDF; extracción asistida por IA con confianza y evidencia; corrección auditable; criterios obligatorios y ponderados para simular escenarios; aprobación humana y orden idempotente; integración gradual con el ERP. |
+| **6. Hypotheses — Hipótesis** | H1: extracción verificable reduce la transcripción; H2: evidencia y correcciones permiten justificar la decisión; H3: escenarios ponderados producen rankings coherentes; H4: solicitud y seguimiento digital reducen aclaraciones y pérdidas; H5: aprobación vigente e idempotente evita órdenes duplicadas. Se detallan en la sección 1.2.2.3. |
+| **7. What is the most important thing we need to learn first? — Aprendizaje prioritario** | Determinar si SmartQuote extrae con precisión suficiente los campos obligatorios de cotizaciones heterogéneas y si analistas y usuarios operativos confían en la evidencia, el lenguaje común y el flujo de aprobación. También se debe comprender el proceso real de veterinarios, nutricionistas, jefes de granja y personal de almacén. |
+| **8. What's the least amount of work we need to do to learn it? — Experimento mínimo** | Ejecutar un piloto pequeño con cotizaciones anonimizadas y autorizadas: comparar tiempo manual frente a extracción asistida, revisar campos y fuentes, configurar dos escenarios de ponderación, registrar una solicitud móvil y observar el seguimiento. Medir precisión, correcciones, aclaraciones, éxito de tareas y repetibilidad antes de ampliar el alcance. |
 
 ## 1.3. Segmentos objetivo
 
