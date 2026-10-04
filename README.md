@@ -408,6 +408,7 @@ Proyecto
         - [Sprint Planning 1](#sprint-planning-1)
         - [Aspect Leaders and Collaborators](#aspect-leaders-and-collaborators)
         - [Sprint Backlog 1](#sprint-backlog-1)
+      - [5.2.1.2. Sprint 2](#5212-sprint-2)
     - [5.2.2. Implemented Landing Page Evidence](#522-implemented-landing-page-evidence)
       - [Repositorio de código fuente](#repositorio-de-código-fuente)
       - [Despliegue](#despliegue)
@@ -447,6 +448,12 @@ Proyecto
       - [Web Services](#web-services)
   - [5.3. Video About-the-Product](#53-video-about-the-product)
     - [Enlaces de publicación](#enlaces-de-publicación)
+- [Capítulo VI: Product Verification & Validation](#capítulo-vi-product-verification--validation)
+  - [6.1. Testing Suites & Validation](#61-testing-suites--validation)
+    - [6.1.1. Core Entities Unit Tests](#611-core-entities-unit-tests)
+    - [6.1.2. Core Integration Tests](#612-core-integration-tests)
+    - [6.1.3. Core Behavior-Driven Development](#613-core-behavior-driven-development)
+    - [6.1.4. Core System Tests](#614-core-system-tests)
   - [Capítulo VII: DevOps Practices](#capítulo-vii-devops-practices)
     - [7.1. Continuous Integration](#71-continuous-integration)
       - [7.1.1. Tools and Practices](#711-tools-and-practices)
@@ -1228,6 +1235,8 @@ Las nuevas historias mantienen los identificadores existentes de las épicas EP0
 | **Description** | Como jefe de adquisiciones, deseo visualizar indicadores clave sobre el tiempo de atención de solicitudes y el ahorro generado para evaluar la eficiencia del proceso de compras. |  |  |
 | **Acceptance Criteria** | **Escenario 1: Consulta de indicadores**<br>**Dado que** existen solicitudes y órdenes con fechas y montos registrados<br>**Cuando** el jefe de adquisiciones abre el panel de métricas<br>**Entonces** el sistema presenta el tiempo promedio de atención y el ahorro calculado para el período, junto con la definición de cada indicador.<br><br>**Escenario 2: Filtros y detalle**<br>**Dado que** el panel contiene información de más de un período o estado<br>**Cuando** el usuario selecciona filtros disponibles<br>**Entonces** los indicadores se recalculan con los datos que cumplen esos filtros y permiten consultar el período y volumen de registros considerados.<br><br>**Escenario 3: Datos insuficientes**<br>**Dado que** el período seleccionado no contiene información suficiente para calcular un indicador<br>**Cuando** el sistema actualiza el panel<br>**Entonces** identifica el indicador como no disponible y no presenta un valor de ahorro o tiempo sin respaldo en los registros. |  |  |
 
+**Definición operativa de US16.** El período se selecciona por la fecha de emisión de órdenes en UTC y solo considera órdenes con estado `Issued`. El tiempo promedio de atención se expresa en horas desde la creación de la solicitud asociada hasta la creación de la orden; se calcula únicamente cuando ambas fechas existen y tienen orden cronológico válido. El ahorro comparativo estimado se expresa en PEN y suma, por cada orden, `máximo(0, precio de la alternativa elegible más barata − precio de la cotización elegida)`. Se comparan cotizaciones de la misma simulación, usando el tipo de cambio conservado en esa simulación cuando corresponde. Este indicador no representa un ahorro financiero realizado. Si faltan al menos dos cotizaciones elegibles comparables o los datos de una métrica son insuficientes, el valor se presenta como no disponible. La respuesta incluye el período y la cantidad de órdenes y muestras usadas para cada indicador.
+
 ## 3.3. Product Backlog
 
 El Product Backlog se ordena según el valor para el negocio, la entrega de la presencia digital durante el primer sprint, la reducción temprana de incertidumbre técnica y la secuencia del proceso de adquisición avícola. Los Story Points representan esfuerzo relativo y utilizan únicamente la escala 1, 2, 3, 5 y 8.
@@ -1244,10 +1253,24 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 | 8 | US07 | Simular y comparar las cotizaciones elegibles | Como analista de adquisiciones, deseo simular la evaluación de las cotizaciones elegibles para identificar la alternativa con mejor ajuste técnico y comercial. | 8 |
 | 9 | US08 | Aprobar la alternativa seleccionada y generar la orden de compra | Como analista o jefe de adquisiciones autorizado, deseo aprobar una alternativa evaluada y generar su orden de compra para continuar el proceso con información consistente y trazable. | 8 |
 | 10 | US03 | Conocer el avance de una solicitud de compra | Como especialista de producción y sanidad, deseo conocer el estado y el historial de mis solicitudes para anticipar riesgos de abastecimiento y coordinar las actividades operativas. | 5 |
+| 11 | US10 | Incorporar cotizaciones mediante carga masiva de archivos PDF | Como analista de adquisiciones, deseo subir múltiples archivos PDF de cotizaciones simultáneamente en un solo lote para agilizar el procesamiento de ofertas recibidas de diversos proveedores avícolas. | 8 |
+| 12 | US13 | Exportar la orden de compra aprobada en formato PDF corporativo | Como jefe de adquisiciones, deseo exportar la orden de compra aprobada en un documento PDF con formato corporativo estandarizado para su envío formal e inmediato al proveedor seleccionado. | 5 |
+| 13 | US14 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | Como gerente de operaciones, deseo consultar la trazabilidad inmutable de cambios realizados en solicitudes y órdenes de compra para garantizar la transparencia y la responsabilidad en el proceso de adquisición. | 8 |
+| 14 | SP02 | Evaluar la viabilidad del procesamiento asíncrono de lotes de documentos PDF | Como Developer, deseo investigar y realizar una prueba de concepto sobre colas de procesamiento asíncrono y trabajadores en segundo plano para determinar el rendimiento y los límites de consumo de recursos al procesar lotes grandes de PDF sin congelar la aplicación. | 5 |
+| 15 | US09 | Registrarse e iniciar sesión de forma segura en la plataforma | Como usuario del sistema de adquisiciones avícolas, deseo registrarme e iniciar sesión con credenciales seguras para acceder a los módulos de compras asignados a mi rol. | 5 |
+| 16 | TS02 | Implementar autenticación y control de acceso basado en roles mediante JWT | Como Developer, deseo implementar un servicio de autenticación mediante tokens JWT y control de acceso basado en roles (RBAC) para asegurar que cada endpoint de la API RESTful valide la identidad y los permisos de la solicitud. | 5 |
+| 17 | US16 | Consultar métricas de tiempo y ahorro del proceso de compras | Como jefe de adquisiciones, deseo visualizar indicadores clave sobre el tiempo de atención de solicitudes y el ahorro generado para evaluar la eficiencia del proceso de compras. | 8 |
+| 18 | TS04 | Exponer un endpoint RESTful para integrar órdenes de compra con sistemas externos | Como Developer, deseo exponer un endpoint RESTful que entregue el detalle de las órdenes de compra en JSON normalizado para permitir su sincronización con los sistemas de inventario o contabilidad de la empresa. | 3 |
+| 19 | TS03 | Integrar una fuente de tipo de cambio para la conversión de cotizaciones | Como Developer, deseo consumir un servicio web oficial de tipo de cambio, como los publicados por SUNAT o SBS, para convertir automáticamente las cotizaciones en dólares estadounidenses (USD) a soles peruanos (PEN) durante la simulación de precios. | 5 |
+| 20 | US15 | Registrar y consultar el desempeño histórico de los proveedores | Como analista de adquisiciones, deseo registrar una calificación de cumplimiento del plazo y la calidad del proveedor después de una entrega para considerar su desempeño histórico en futuras evaluaciones. | 8 |
 
 ![Trello Product Backlog](assets/requirements/product-backlog-smartquote.png)
 
 URL del Trello: [https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c79c2f57a6cfd64878a51236a769346419FD/smartquote](https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c79c2f57a6cfd64878a51236a769346419FD/smartquote)
+
+**Estado de la evidencia:** la captura anterior muestra las diez tarjetas iniciales. La captura del tablero con los ítems 11–20 se incorporará cuando estén registrados en Trello.
+
+> **CAPTURA PENDIENTE — Product Backlog actualizado.** Insertar aquí la captura de Trello con los ítems 1–20. Guardar el archivo como `assets/requirements/product-backlog-actualizado-smartquote.png` y verificar que la URL del tablero en 3.3 sea pública.
 
 ## 3.4. Impact Mapping
 
@@ -4969,6 +4992,81 @@ La distribución de horas mantiene una carga inicial equivalente entre los integ
 
 URL del Trello: [https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c79c2f57a6cfd64878a51236a769346419FD/smartquote](https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c79c2f57a6cfd64878a51236a769346419FD/smartquote)
 
+#### 5.2.1.2. Sprint 2
+
+Este Sprint se centra en hacer que las órdenes de compra existentes sean exportables, auditables, consultables por sistemas externos y medibles. Para TS04 se partirá del endpoint JSON de consulta por identificador que ya existe en el backend, verificando los criterios de aceptación que aún deban completarse.
+
+##### Sprint Planning 2
+
+| Campo del modelo de la guía | Plan de Sprint 2 |
+| --- | --- |
+| Sprint # | Sprint 2 |
+| Sprint Planning Background | Ampliar la trazabilidad y el aprovechamiento de las órdenes de compra generadas en el flujo existente. |
+| Date | 2026-10-01. |
+| Time | 01:00 PM (GMT-5). |
+| Location | Reunión virtual mediante Google Meet. |
+| Prepared By | Bardales Tejada, Luis Alexis. |
+| Attendees (to planning meeting) | Bardales Tejada, Luis Alexis / De La Cruz De Los Santos, Mathias Marcelo / Guerrero Vasquez, Jhon Danny / Vallejo Trujillo, Fabio Cesar. |
+| Sprint 1 Review Summary | El equipo revisó las evidencias disponibles del flujo de solicitudes, cotizaciones, evaluación y orden, las 32 pruebas unitarias backend aprobadas y el recorrido web de extremo a extremo aprobado. Se acordó revisar los criterios restantes y completar la evidencia móvil antes de cerrar el incremento. |
+| Sprint 1 Retrospective Summary | El equipo acordó conservar la integración entre módulos y mejorar el registro de estados del Board, la ejecución de pruebas en CI y la evidencia Android. |
+| Sprint Goal & User Stories | US13, US14, TS04 y US16. |
+| Sprint 2 Goal | **Nuestro enfoque está en** permitir que el jefe de adquisiciones exporte y consulte una orden trazable y examine indicadores respaldados por datos. **Creemos que esto aporta** mayor capacidad de seguimiento e integración al proceso de compras. **Se confirmará cuando** una orden aprobada pueda exportarse en PDF, sus cambios relevantes puedan consultarse, un consumidor autorizado obtenga su detalle mediante el contrato RESTful y el panel muestre tiempo de atención y ahorro solo cuando existan datos suficientes. |
+| Sprint 2 Velocity | Capacidad planificada: 24 Story Points. Se ajustará si la revisión de Sprint 1 aporta una velocidad observada diferente. |
+| Sum of Story Points | 24 Story Points: US13 (5), US14 (8), TS04 (3) y US16 (8). |
+
+##### Aspect Leaders and Collaborators
+
+La matriz LACX organiza la colaboración para exportación de órdenes, auditoría, integración y analítica. Luis lidera TS04 y US16 según la hoja de distribución de tareas; la asignación de los cuatro aspectos se acordó en la planificación.
+
+| Integrante | GitHub | Exportación de órdenes (US13) | Auditoría (US14) | Integración (TS04) | Analítica (US16) |
+| --- | --- | :---: | :---: | :---: | :---: |
+| Bardales Tejada, Luis Alexis | AlexisBardales | C | C | L | L |
+| De La Cruz De Los Santos, Mathias Marcelo | Dela050406 | C | C | C | C |
+| Guerrero Vasquez, Jhon Danny | Feli386 | C | C | C | C |
+| Vallejo Trujillo, Fabio Cesar | fabiovallejo | L | L | C | C |
+
+##### Sprint Backlog 2
+
+El Sprint Backlog descompone las cuatro historias seleccionadas en tareas verificables. Las horas son estimaciones operativas y no una conversión de los Story Points. Los estados `To-do` representan la línea base planificada para el inicio del Sprint y deberán sincronizarse con el Board.
+
+**Duración:** 4 semanas.
+
+| Story ID | Story Title | Task ID | Task Title | Description | Estimation (Hours) | Assigned To | Status |
+| --- | --- | --- | --- | --- | ---: | --- | --- |
+| US13 | Exportar la orden de compra aprobada en formato PDF corporativo | TK44 | Diseñar el formato corporativo | Definir campos, jerarquía visual y versión aprobada que se representará en el PDF. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US13 | Exportar la orden de compra aprobada en formato PDF corporativo | TK45 | Generar el PDF desde la orden | Implementar la exportación utilizando los datos aprobados y conservar la referencia a la orden de origen. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US13 | Exportar la orden de compra aprobada en formato PDF corporativo | TK46 | Integrar la descarga web | Permitir la descarga de una orden aprobada desde la aplicación web. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US13 | Exportar la orden de compra aprobada en formato PDF corporativo | TK47 | Verificar la consistencia del PDF | Comprobar que el documento coincide con la orden aprobada y rechaza exportaciones no autorizadas. | 3 | Jhon Danny Guerrero Vasquez | To-do |
+| US14 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK48 | Definir eventos auditables | Precisar acciones, datos mínimos y permisos de consulta para solicitudes y órdenes. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US14 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK49 | Persistir eventos protegidos | Registrar los cambios sin permitir edición o eliminación desde las operaciones de la aplicación. | 8 | Fabio Cesar Vallejo Trujillo | To-do |
+| US14 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK50 | Exponer historial autorizado | Consultar eventos en orden cronológico con usuario, fecha, acción y motivo disponible. | 4 | Luis Alexis Bardales Tejada | To-do |
+| US14 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK51 | Probar protección e historial | Verificar permisos, orden cronológico y rechazo de alteraciones de la bitácora. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| TS04 | Exponer un endpoint RESTful para integrar órdenes de compra con sistemas externos | TK52 | Revisar el contrato existente | Comparar el endpoint JSON actual con los campos y respuestas exigidos por TS04. | 2 | Luis Alexis Bardales Tejada | To-do |
+| TS04 | Exponer un endpoint RESTful para integrar órdenes de compra con sistemas externos | TK53 | Completar contrato y OpenAPI | Ajustar permisos o errores solo donde el análisis detecte diferencias y documentar la respuesta. | 4 | Luis Alexis Bardales Tejada | To-do |
+| TS04 | Exponer un endpoint RESTful para integrar órdenes de compra con sistemas externos | TK54 | Probar integración de la orden | Comprobar consulta válida, token ausente, permisos insuficientes e identificador inexistente. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK55 | Definir indicadores | Especificar fechas, filtros y referencia monetaria verificable para el ahorro; indicar cuándo un valor no está disponible. | 3 | Luis Alexis Bardales Tejada | To-do |
+| US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK56 | Implementar cálculo en la API | Calcular tiempo y ahorro con datos persistidos, período y volumen de registros, sin generar valores sin respaldo. | 8 | Luis Alexis Bardales Tejada | To-do |
+| US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK57 | Construir el panel web | Mostrar indicadores, filtros, definiciones y estado de datos insuficientes. | 6 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK58 | Probar filtros y datos insuficientes | Verificar el recálculo y que el panel no exhiba tiempo o ahorro cuando faltan datos. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+
+**Avance verificado de TS04 y US16 (3 y 4 de octubre de 2026).** En `Back`, el contrato de consulta de órdenes de TS04 quedó documentado y probado, y US16 incorporó `GET /api/v1/purchasing-metrics?from=YYYY-MM-DD&to=YYYY-MM-DD`, restringido a `PurchaseManager`. El cálculo usa órdenes y simulaciones persistidas y devuelve valores nulos cuando faltan datos suficientes. Las siete pruebas locales específicas de US16 aprobaron ([TRX](assets/testing/us16-local.trx)); la suite completa de integración aprobó 19 de 19 ([TRX](assets/testing/backend-integration-local.trx)). Los cambios están en `Back/develop`, commit `596e1db`. En `Front/develop`, commit `3651074`, el panel permite filtrar fechas y muestra definiciones, cantidad de registros y «No disponible» para valores nulos. Aprobaron compilación, lint y 15 de 15 pruebas unitarias ([registro](assets/testing/web-unit-tests-15.log)). Una prueba Playwright con respuestas simuladas aprobó el cambio de período y el estado sin datos; otra prueba Playwright aprobó la consulta de métricas contra la API y PostgreSQL locales con datos ficticios ([JUnit XML](assets/testing/us16-front-api-e2e.xml), 1 de 1). En esta última, el ingreso usa un token de prueba; la consulta de métricas sí llega a la API real local. No se ha verificado una ejecución de CI ni el funcionamiento en producción. Los estados del Sprint Backlog son la planificación inicial hasta que el equipo los sincronice con Trello.
+
+| Integrante | Horas estimadas | Porcentaje de la capacidad del equipo |
+| --- | ---: | ---: |
+| Luis Alexis Bardales Tejada | 21 | 31 % |
+| Mathias Marcelo De La Cruz De Los Santos | 14 | 21 % |
+| Jhon Danny Guerrero Vasquez | 15 | 22 % |
+| Fabio Cesar Vallejo Trujillo | 18 | 26 % |
+| **Total** | **68** | **100 %** |
+
+> **CAPTURA PENDIENTE — Sprint Backlog 2.** Insertar aquí la captura del tablero de Trello con las tarjetas TK44–TK58 y sus estados. Guardar el archivo como `assets/requirements/sprint-backlog-2-smartquote.png`.
+
+**URL pública del Board de Sprint 2:** pendiente de incorporar por el integrante que administra Trello.
+
+##### Evidencias para Sprint Review
+
+Durante el Sprint se registrarán, según el modelo de la guía: tabla de commits de desarrollo, tabla de commits y resultados de pruebas, capturas y video de ejecución, endpoints OpenAPI del alcance, evidencias de despliegue y analíticas de colaboración. Esta sección se completará con los artefactos generados por la ejecución.
+
 ### 5.2.2. Implemented Landing Page Evidence
 
 La Landing Page de SmartQuote se implementó como un sitio estático en HTML5, CSS3 y JavaScript vainilla, sin frameworks ni dependencias de build, orientado a comunicar la propuesta de valor a los segmentos de Adquisiciones y de Producción y Sanidad. Incluye soporte bilingüe (español e inglés) mediante `i18n.js`, un simulador interactivo que recalcula en tiempo real el ranking de tres cotizaciones de ejemplo según criterios ponderados por el usuario (precio, plazo de entrega, etc.), y un formulario de contacto con validación de campos en el cliente (nombre, correo corporativo y empresa).
@@ -5346,6 +5444,66 @@ El video *About-the-Product* presenta de forma promocional la propuesta de valor
 
 Duración: **00:02:45**
 
+# Capítulo VI: Product Verification & Validation
+
+## 6.1. Testing Suites & Validation
+
+Las pruebas de esta sección se ejecutaron el **3 de octubre de 2026** con datos ficticios, PostgreSQL 16.15 local y el proveedor de extracción `Stub`. Las primeras ejecuciones se hicieron sobre copias locales de `smartquote-web-services` (base `develop`, commit `9af0fed`) y `smartquote-frontend-web` (base `develop`, commit `421558f`). Después, las pruebas nuevas del backend se incorporaron a `Back/develop` en los commits `3af19f8` y `596e1db`; el panel US16 y su prueba unitaria se incorporaron a `Front/develop` en `3651074`. Los resultados describen solo las ejecuciones locales documentadas: no prueban uso real, extracción con el proveedor de IA externo, producción ni Android. No se ha verificado la ejecución de CI.
+
+| Nivel | Herramienta y alcance | Resultado local | Evidencia |
+|---|---|---|---|
+| Unitaria backend | xUnit: dominio e identidad/acceso | 32 aprobadas; 0 fallidas | [Resultados Domain](assets/testing/domain.trx) y [IdentityAccess](assets/testing/identity.trx) |
+| Unitaria frontend | Node Test Runner: reglas y adaptadores web, incluido US16 | 15 aprobadas; 0 fallidas | [Registro actualizado](assets/testing/web-unit-tests-15.log) |
+| Integración API y persistencia | `WebApplicationFactory`, xUnit y PostgreSQL | 3 aprobadas; 0 fallidas | [Resultado TRX](assets/testing/integration-waf.trx) |
+| Comprobación adicional API | Script HTTP sobre API y PostgreSQL locales | 20 comprobaciones aprobadas | [Salida](assets/testing/api-persistence.log) |
+| BDD | Reqnroll, Gherkin, xUnit, API y PostgreSQL | 3 escenarios aprobados; 0 fallidos | [Resultado TRX](assets/testing/bdd.trx) |
+| Sistema web | Playwright con Chrome, frontend, API y PostgreSQL | 2 recorridos aprobados en ejecuciones separadas | [Flujo de compra](assets/testing/web-e2e-full.log) y [acceso adaptable](assets/testing/web-e2e-responsive.log) |
+| Sistema web US16 | Playwright con Edge, frontend, API local y PostgreSQL; autenticación de prueba | 1 aprobada; 0 fallidas | [JUnit XML](assets/testing/us16-front-api-e2e.xml) |
+| Sistema Android nativo | Dispositivo o emulador Android | Pendiente de ejecución | Aún no hay evidencia de ejecución nativa |
+
+### 6.1.1. Core Entities Unit Tests
+
+Se ejecutaron los proyectos xUnit de `smartquote-web-services` en configuración `Release`. `SmartQuote.Domain.Tests` aprobó **15 de 15** pruebas: 9 preexistentes y 6 nuevas para creación de solicitudes, transiciones permitidas y prohibidas, historial y cierre. `SmartQuote.Modules.IdentityAccess.Tests` aprobó **17 de 17** pruebas: 16 preexistentes y 1 nueva que verifica los límites exactos de longitud de la contraseña. Los resultados se guardaron en [domain.trx](assets/testing/domain.trx) e [identity.trx](assets/testing/identity.trx). Las 7 pruebas nuevas forman parte de `Back/develop` mediante los commits `3af19f8` y `596e1db`.
+
+Como comprobación complementaria de reglas de la aplicación web, `npm test` aprobó **15 de 15** pruebas el 4 de octubre de 2026. Entre los casos ejecutados están la validación de cantidades y requisitos de solicitudes, las transiciones de estado, las restricciones para aprobar simulaciones y el tratamiento explícito de respuestas HTTP `401`, `403` y `409`. Su [salida de consola actualizada](assets/testing/web-unit-tests-15.log) conserva los nombres de los casos y el resultado, incluida la prueba de US16 sobre período, consulta HTTP y valores no disponibles. Estas pruebas web no sustituyen las pruebas de entidades del backend.
+
+### 6.1.2. Core Integration Tests
+
+Se agregaron tres pruebas xUnit con `WebApplicationFactory<Program>` que inician la API ASP.NET Core en memoria, aplican las migraciones y consultan directamente una base PostgreSQL de prueba. Las tres aprobaron:
+
+1. Una solicitud creada por el rol de producción devuelve `201`, puede recuperarse por API y tiene estado `Submitted` en la tabla `supply_requests.purchase_requests`.
+2. Un lote con un PDF de prueba y un archivo `.txt` no admitido devuelve `207`; la cotización válida queda en `quotation_intake.poultry_quotes` y el archivo inválido devuelve `unsupported_media_type`.
+3. Dos archivos PDF idénticos en un lote hacen referencia a la misma cotización y dejan una sola fila persistida.
+
+El [archivo TRX de integración](assets/testing/integration-waf.trx) registra **3 aprobadas y 0 fallidas**. Además, una comprobación HTTP independiente contra la API local aprobó **20 verificaciones** de registro e inicio de sesión, autorización por rol, creación y lectura de solicitud, dos transiciones de estado y carga parcial. Su [registro](assets/testing/api-persistence.log) y [resumen JSON](assets/testing/api-persistence-result.json) muestran los códigos de respuesta y los identificadores generados.
+
+Los PDF empleados son archivos sintéticos mínimos; estos resultados verifican la aceptación, persistencia y manejo de errores del lote con el proveedor `Stub`, pero no la calidad de extracción de cotizaciones reales. Las pruebas de integración están incluidas en `Back/develop` (`596e1db`). Su proyecto se ejecuta por separado: no forma parte de `SmartQuote.sln`. No se ha verificado una ejecución de CI.
+
+### 6.1.3. Core Behavior-Driven Development
+
+Se implementaron tres escenarios ejecutables en Gherkin con Reqnroll y xUnit, conectados a una API local con PostgreSQL. El [resultado TRX](assets/testing/bdd.trx) registra **3 escenarios aprobados y 0 fallidos**:
+
+| Escenario | Resultado observado |
+|---|---|
+| Producción registra una solicitud completa | La API devuelve `201` y la solicitud se lee con estado `Submitted`. |
+| Un analista intenta registrar una solicitud de producción | La API devuelve `403` por la restricción de rol. |
+| Se carga un PDF junto con un archivo no admitido | La API devuelve `207`; se conserva la cotización válida y se informa el error del otro archivo. |
+
+Estos escenarios cubren el registro de solicitudes y la incorporación de cotizaciones correspondientes a **US02** y **US04**. Se ejecutaron localmente con datos ficticios y están incluidos en `Back/develop` (`596e1db`); no se ha verificado un resultado de estos escenarios en GitHub Actions.
+
+### 6.1.4. Core System Tests
+
+Se ejecutaron dos pruebas Playwright de la aplicación **web** en Chrome. La primera comprobó el acceso en inglés y español y una pantalla adaptable; aprobó **1 de 1**. La segunda recorrió la creación de una solicitud desde producción y el flujo de adquisiciones desde la interfaz hasta la orden de compra, con la API y PostgreSQL locales; aprobó **1 de 1**. Quedaron los registros del [acceso adaptable](assets/testing/web-e2e-responsive.log) y del [flujo de compra](assets/testing/web-e2e-full.log).
+
+Además, una prueba Playwright de US16 aprobó la consulta del panel contra la API y PostgreSQL locales con datos ficticios. El ingreso se simuló con un token de prueba; el endpoint de métricas respondió desde la API local. El [resultado JUnit XML](assets/testing/us16-front-api-e2e.xml) registra 1 aprobada y 0 fallidas. Esta comprobación corresponde al panel web, no a Android.
+
+La ejecución del flujo produjo una [captura de comparación en escritorio](assets/testing/vue-comparison-desktop.png) y una [captura de la orden en una ventana web estrecha](assets/testing/vue-order-narrow-web.png). Ambas utilizan datos ficticios. La segunda imagen corresponde al navegador web con ancho reducido: **no es evidencia de la aplicación Android nativa**.
+
+![Comparación de cotizaciones en la aplicación web durante la prueba](assets/testing/vue-comparison-desktop.png)
+
+![Orden de compra en la aplicación web con ventana estrecha](assets/testing/vue-order-narrow-web.png)
+
+**Pendiente para cerrar 6.1.4:** ejecutar el flujo principal en un dispositivo o emulador Android, registrar versión de la aplicación, dispositivo, fecha, pasos y resultado, y adjuntar capturas o video de esa ejecución. Hasta contar con esa evidencia, el recorrido de extremo a extremo queda verificado únicamente para la aplicación web en el entorno local descrito.
 ## Capítulo VII: DevOps Practices
 
 Este capítulo describe la automatización de compilación, pruebas y publicación configurada en los repositorios de frontend web y servicios backend de SmartQuote. Los pipelines utilizan GitHub Actions y se dividen en integración continua (CI) y flujos de publicación por entorno (CD). Las capturas de ejecución se incorporarán cuando las ejecuciones de cada rama hayan concluido correctamente.

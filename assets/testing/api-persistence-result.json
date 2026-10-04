@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-03T18:17:38.669Z",
+  "backendCommit": "9af0fed13cee6412d7d769867984c64e96245fcf",
+  "database": "fresh local PostgreSQL 16.15 on port 55432",
+  "passed": [
+    "registration status",
+    "initial manager registration",
+    "login manager",
+    "production registration",
+    "production approval",
+    "login production",
+    "analyst registration",
+    "analyst approval",
+    "login analyst",
+    "manager cannot create production request",
+    "production request created",
+    "request persisted and readable",
+    "transition to UnderReview",
+    "persisted status UnderReview",
+    "transition to QuotationCollection",
+    "persisted status QuotationCollection",
+    "mixed batch returns multi-status",
+    "valid PDF persisted while invalid text file rejected",
+    "quotations read after mixed batch",
+    "partial error did not roll back valid upload"
+  ],
+  "requestId": "b351a352-5e1a-4107-83dc-e4d284c3a29a",
+  "quotationId": "bc452213-f0b3-4f70-966a-0e2d2ad152f4",
+  "batch": [
+    {
+      "fileName": "valid-704502cb.pdf",
+      "quotationId": "bc452213-f0b3-4f70-966a-0e2d2ad152f4",
+      "wasCreated": true,
+      "errorCode": null
+    },
+    {
+      "fileName": "invalid-704502cb.txt",
+      "quotationId": null,
+      "wasCreated": false,
+      "errorCode": "unsupported_media_type"
+    }
+  ]
+}

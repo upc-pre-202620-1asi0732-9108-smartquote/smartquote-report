@@ -1,0 +1,6 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="6.600086">
+<testsuite name="metrics.spec.js" timestamp="2026-10-04T01:32:39.291Z" hostname="" tests="1" failures="0" skipped="0" time="3.044" errors="0">
+<testcase name="manager sees persisted metrics from a local API" classname="metrics.spec.js" time="3.044">
+</testcase>
+</testsuite>
+</testsuites>

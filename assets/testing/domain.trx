@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="0b6b94d6-b2d1-4a94-bd18-6ab146e6b788" name="51924@MSI 2026-10-03 16:48:32" runUser="MSI\51924" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-03T16:48:32.2327136-05:00" queuing="2026-10-03T16:48:32.2327140-05:00" start="2026-10-03T16:48:30.0748972-05:00" finish="2026-10-03T16:48:32.4203631-05:00" />
+  <TestSettings name="default" id="d477974a-b9b8-4620-8a4a-3c6cd2b74189">
+    <Deployment runDeploymentRoot="51924_MSI_2026-10-03_16_48_32" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="32f424d1-8205-433d-955f-42abd10d279d" testId="bb0ad983-8d24-c6e2-3b3a-0f86fb8fbeb2" testName="SmartQuote.Domain.Tests.ExchangeRateTests.SnapshotConvertsUsdAndPreservesPen" computerName="MSI" duration="00:00:00.0022374" startTime="2026-10-03T16:48:32.1931467-05:00" endTime="2026-10-03T16:48:32.1932394-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="32f424d1-8205-433d-955f-42abd10d279d" />
+    <UnitTestResult executionId="dffe743c-d758-40e1-a2be-c30cea9dd249" testId="f25d398d-9c0a-e154-16e1-5e7efe8ad2a1" testName="SmartQuote.Domain.Tests.PurchaseRequestTests.StatusChangeRequiresReasonAndDifferentNextStatus" computerName="MSI" duration="00:00:00.0005275" startTime="2026-10-03T16:48:32.1220246-05:00" endTime="2026-10-03T16:48:32.1220794-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dffe743c-d758-40e1-a2be-c30cea9dd249" />
+    <UnitTestResult executionId="26ad86f2-0c21-496e-9730-1dcc9af9f145" testId="521ad060-e90c-9cac-3ce6-6848ae41191d" testName="SmartQuote.Domain.Tests.PurchaseRequestTests.CreateStartsSubmittedWithInitialHistoryAndVersion" computerName="MSI" duration="00:00:00.0011446" startTime="2026-10-03T16:48:32.1210529-05:00" endTime="2026-10-03T16:48:32.1211456-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="26ad86f2-0c21-496e-9730-1dcc9af9f145" />
+    <UnitTestResult executionId="58478b74-37ff-4be1-92d0-34457591ae8d" testId="e3e467bd-ba1f-482f-415d-2cfc3a79f479" testName="SmartQuote.Domain.Tests.FastFlowTests.StatusOnlyRequestVersionChangeDoesNotInvalidateDecisionInput" computerName="MSI" duration="00:00:00.3292561" startTime="2026-10-03T16:48:31.8159275-05:00" endTime="2026-10-03T16:48:32.1482574-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="58478b74-37ff-4be1-92d0-34457591ae8d" />
+    <UnitTestResult executionId="77abf33e-c689-4f47-891d-494f17e1498f" testId="4c77d6cf-5b17-18b0-447d-6010719e9bc1" testName="SmartQuote.Domain.Tests.FastFlowTests.SimulationMatchesDocumentedCrudeProteinToMinimumProteinRequirement" computerName="MSI" duration="00:00:00.0168970" startTime="2026-10-03T16:48:32.2081212-05:00" endTime="2026-10-03T16:48:32.2178937-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="77abf33e-c689-4f47-891d-494f17e1498f" />
+    <UnitTestResult executionId="f036a4f3-e196-484d-adc4-cd7a4988ba83" testId="7b1c260f-300d-3730-65ed-3853466726f5" testName="SmartQuote.Domain.Tests.FastFlowTests.TechnicalComparisonAcceptsDecimalCommaAndRejectsIncompatibleUnits" computerName="MSI" duration="00:00:00.0013205" startTime="2026-10-03T16:48:32.1998161-05:00" endTime="2026-10-03T16:48:32.2008691-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f036a4f3-e196-484d-adc4-cd7a4988ba83" />
+    <UnitTestResult executionId="916644a6-550c-42de-87b3-28167eb61fd7" testId="28396677-fe69-c6b3-076b-5fcc34f75543" testName="SmartQuote.Domain.Tests.PurchaseRequestTests.CancelledRequestCannotReopen" computerName="MSI" duration="00:00:00.0053286" startTime="2026-10-03T16:48:32.1218167-05:00" endTime="2026-10-03T16:48:32.1218733-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="916644a6-550c-42de-87b3-28167eb61fd7" />
+    <UnitTestResult executionId="922d42c2-0970-4e7a-8d24-a6f3dccf702c" testId="36cfed30-3eee-d855-2dd9-12fbba71b76e" testName="SmartQuote.Domain.Tests.PurchaseRequestTests.AllowedTransitionsAdvanceVersionAndKeepHistory" computerName="MSI" duration="00:00:00.2788331" startTime="2026-10-03T16:48:31.8158226-05:00" endTime="2026-10-03T16:48:32.1028765-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="922d42c2-0970-4e7a-8d24-a6f3dccf702c" />
+    <UnitTestResult executionId="063b2be2-c820-41cf-ac57-a92ad203799f" testId="84b432f9-5ec0-270c-7bde-1fadc3840ceb" testName="SmartQuote.Domain.Tests.FastFlowTests.SimulationComparesPenAndUsdUsingRecordedOfficialRate" computerName="MSI" duration="00:00:00.0512388" startTime="2026-10-03T16:48:32.1924326-05:00" endTime="2026-10-03T16:48:32.1994726-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="063b2be2-c820-41cf-ac57-a92ad203799f" />
+    <UnitTestResult executionId="6126acbf-dd80-4c32-b2cf-3f992895fada" testId="a5424b6a-b705-5cf4-2d50-67d9557c3707" testName="SmartQuote.Domain.Tests.ExchangeRateTests.SunatProviderReportsNetworkFailureWithoutFallback" computerName="MSI" duration="00:00:00.3146689" startTime="2026-10-03T16:48:31.8133206-05:00" endTime="2026-10-03T16:48:32.1333899-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6126acbf-dd80-4c32-b2cf-3f992895fada" />
+    <UnitTestResult executionId="96f0cc2d-7979-42e9-b5bd-c29b8538ea5d" testId="69a2b7ea-d0bd-23b9-004d-7fb390857e78" testName="SmartQuote.Domain.Tests.PurchaseRequestTests.CreateRequiresAtLeastOneItemWithAMandatoryRequirement" computerName="MSI" duration="00:00:00.0009481" startTime="2026-10-03T16:48:32.1222821-05:00" endTime="2026-10-03T16:48:32.1223738-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="96f0cc2d-7979-42e9-b5bd-c29b8538ea5d" />
+    <UnitTestResult executionId="34f9e048-beea-430c-910e-61640ce2ec64" testId="87a1a2aa-c26e-c628-40f2-ee8b4aad3201" testName="SmartQuote.Domain.Tests.PurchaseRequestTests.InvalidTransitionCannotSkipReview" computerName="MSI" duration="00:00:00.0004181" startTime="2026-10-03T16:48:32.1226126-05:00" endTime="2026-10-03T16:48:32.1227052-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="34f9e048-beea-430c-910e-61640ce2ec64" />
+    <UnitTestResult executionId="a356a21d-7ce9-4153-b4d4-a137b68436e9" testId="a0529bdd-0a5f-5a67-2de9-d521b61d8ef6" testName="SmartQuote.Domain.Tests.FastFlowTests.SupplierCanBeExtractedAndCorrectedBeforeVerification" computerName="MSI" duration="00:00:00.0995707" startTime="2026-10-03T16:48:32.2181618-05:00" endTime="2026-10-03T16:48:32.3176940-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a356a21d-7ce9-4153-b4d4-a137b68436e9" />
+    <UnitTestResult executionId="8730a4c4-5b7b-412f-8f2b-481213aff5a5" testId="647b5194-8da9-dcb4-bd10-4f47f1efdb4d" testName="SmartQuote.Domain.Tests.ExchangeRateTests.SunatProviderUsesExactSaleRateAndBrowserIdentificationHeaders" computerName="MSI" duration="00:00:00.0083229" startTime="2026-10-03T16:48:32.1934957-05:00" endTime="2026-10-03T16:48:32.1936308-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8730a4c4-5b7b-412f-8f2b-481213aff5a5" />
+    <UnitTestResult executionId="23ac785a-4e25-4046-b1ec-e4fa76ac0603" testId="bd82e024-d964-671c-b0c5-f3fd105dd0c0" testName="SmartQuote.Domain.Tests.ExchangeRateTests.SunatProviderDoesNotSubstitutePreviousRate" computerName="MSI" duration="00:00:00.0198150" startTime="2026-10-03T16:48:32.1337706-05:00" endTime="2026-10-03T16:48:32.1925573-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="23ac785a-4e25-4046-b1ec-e4fa76ac0603" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="SmartQuote.Domain.Tests.PurchaseRequestTests.InvalidTransitionCannotSkipReview" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="87a1a2aa-c26e-c628-40f2-ee8b4aad3201">
+      <Execution id="34f9e048-beea-430c-910e-61640ce2ec64" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.PurchaseRequestTests" name="InvalidTransitionCannotSkipReview" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.FastFlowTests.SimulationMatchesDocumentedCrudeProteinToMinimumProteinRequirement" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="4c77d6cf-5b17-18b0-447d-6010719e9bc1">
+      <Execution id="77abf33e-c689-4f47-891d-494f17e1498f" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.FastFlowTests" name="SimulationMatchesDocumentedCrudeProteinToMinimumProteinRequirement" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.ExchangeRateTests.SunatProviderReportsNetworkFailureWithoutFallback" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="a5424b6a-b705-5cf4-2d50-67d9557c3707">
+      <Execution id="6126acbf-dd80-4c32-b2cf-3f992895fada" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.ExchangeRateTests" name="SunatProviderReportsNetworkFailureWithoutFallback" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.PurchaseRequestTests.CancelledRequestCannotReopen" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="28396677-fe69-c6b3-076b-5fcc34f75543">
+      <Execution id="916644a6-550c-42de-87b3-28167eb61fd7" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.PurchaseRequestTests" name="CancelledRequestCannotReopen" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.PurchaseRequestTests.CreateStartsSubmittedWithInitialHistoryAndVersion" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="521ad060-e90c-9cac-3ce6-6848ae41191d">
+      <Execution id="26ad86f2-0c21-496e-9730-1dcc9af9f145" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.PurchaseRequestTests" name="CreateStartsSubmittedWithInitialHistoryAndVersion" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.PurchaseRequestTests.CreateRequiresAtLeastOneItemWithAMandatoryRequirement" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="69a2b7ea-d0bd-23b9-004d-7fb390857e78">
+      <Execution id="96f0cc2d-7979-42e9-b5bd-c29b8538ea5d" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.PurchaseRequestTests" name="CreateRequiresAtLeastOneItemWithAMandatoryRequirement" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.FastFlowTests.SupplierCanBeExtractedAndCorrectedBeforeVerification" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="a0529bdd-0a5f-5a67-2de9-d521b61d8ef6">
+      <Execution id="a356a21d-7ce9-4153-b4d4-a137b68436e9" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.FastFlowTests" name="SupplierCanBeExtractedAndCorrectedBeforeVerification" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.ExchangeRateTests.SunatProviderDoesNotSubstitutePreviousRate" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="bd82e024-d964-671c-b0c5-f3fd105dd0c0">
+      <Execution id="23ac785a-4e25-4046-b1ec-e4fa76ac0603" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.ExchangeRateTests" name="SunatProviderDoesNotSubstitutePreviousRate" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.ExchangeRateTests.SunatProviderUsesExactSaleRateAndBrowserIdentificationHeaders" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="647b5194-8da9-dcb4-bd10-4f47f1efdb4d">
+      <Execution id="8730a4c4-5b7b-412f-8f2b-481213aff5a5" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.ExchangeRateTests" name="SunatProviderUsesExactSaleRateAndBrowserIdentificationHeaders" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.PurchaseRequestTests.AllowedTransitionsAdvanceVersionAndKeepHistory" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="36cfed30-3eee-d855-2dd9-12fbba71b76e">
+      <Execution id="922d42c2-0970-4e7a-8d24-a6f3dccf702c" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.PurchaseRequestTests" name="AllowedTransitionsAdvanceVersionAndKeepHistory" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.FastFlowTests.SimulationComparesPenAndUsdUsingRecordedOfficialRate" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="84b432f9-5ec0-270c-7bde-1fadc3840ceb">
+      <Execution id="063b2be2-c820-41cf-ac57-a92ad203799f" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.FastFlowTests" name="SimulationComparesPenAndUsdUsingRecordedOfficialRate" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.FastFlowTests.TechnicalComparisonAcceptsDecimalCommaAndRejectsIncompatibleUnits" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="7b1c260f-300d-3730-65ed-3853466726f5">
+      <Execution id="f036a4f3-e196-484d-adc4-cd7a4988ba83" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.FastFlowTests" name="TechnicalComparisonAcceptsDecimalCommaAndRejectsIncompatibleUnits" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.FastFlowTests.StatusOnlyRequestVersionChangeDoesNotInvalidateDecisionInput" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="e3e467bd-ba1f-482f-415d-2cfc3a79f479">
+      <Execution id="58478b74-37ff-4be1-92d0-34457591ae8d" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.FastFlowTests" name="StatusOnlyRequestVersionChangeDoesNotInvalidateDecisionInput" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.PurchaseRequestTests.StatusChangeRequiresReasonAndDifferentNextStatus" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="f25d398d-9c0a-e154-16e1-5e7efe8ad2a1">
+      <Execution id="dffe743c-d758-40e1-a2be-c30cea9dd249" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.PurchaseRequestTests" name="StatusChangeRequiresReasonAndDifferentNextStatus" />
+    </UnitTest>
+    <UnitTest name="SmartQuote.Domain.Tests.ExchangeRateTests.SnapshotConvertsUsdAndPreservesPen" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.domain.tests\bin\release\net10.0\smartquote.domain.tests.dll" id="bb0ad983-8d24-c6e2-3b3a-0f86fb8fbeb2">
+      <Execution id="32f424d1-8205-433d-955f-42abd10d279d" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Domain.Tests\bin\Release\net10.0\SmartQuote.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Domain.Tests.ExchangeRateTests" name="SnapshotConvertsUsdAndPreservesPen" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="bb0ad983-8d24-c6e2-3b3a-0f86fb8fbeb2" executionId="32f424d1-8205-433d-955f-42abd10d279d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f25d398d-9c0a-e154-16e1-5e7efe8ad2a1" executionId="dffe743c-d758-40e1-a2be-c30cea9dd249" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="521ad060-e90c-9cac-3ce6-6848ae41191d" executionId="26ad86f2-0c21-496e-9730-1dcc9af9f145" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e3e467bd-ba1f-482f-415d-2cfc3a79f479" executionId="58478b74-37ff-4be1-92d0-34457591ae8d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4c77d6cf-5b17-18b0-447d-6010719e9bc1" executionId="77abf33e-c689-4f47-891d-494f17e1498f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7b1c260f-300d-3730-65ed-3853466726f5" executionId="f036a4f3-e196-484d-adc4-cd7a4988ba83" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="28396677-fe69-c6b3-076b-5fcc34f75543" executionId="916644a6-550c-42de-87b3-28167eb61fd7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="36cfed30-3eee-d855-2dd9-12fbba71b76e" executionId="922d42c2-0970-4e7a-8d24-a6f3dccf702c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="84b432f9-5ec0-270c-7bde-1fadc3840ceb" executionId="063b2be2-c820-41cf-ac57-a92ad203799f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a5424b6a-b705-5cf4-2d50-67d9557c3707" executionId="6126acbf-dd80-4c32-b2cf-3f992895fada" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="69a2b7ea-d0bd-23b9-004d-7fb390857e78" executionId="96f0cc2d-7979-42e9-b5bd-c29b8538ea5d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="87a1a2aa-c26e-c628-40f2-ee8b4aad3201" executionId="34f9e048-beea-430c-910e-61640ce2ec64" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a0529bdd-0a5f-5a67-2de9-d521b61d8ef6" executionId="a356a21d-7ce9-4153-b4d4-a137b68436e9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="647b5194-8da9-dcb4-bd10-4f47f1efdb4d" executionId="8730a4c4-5b7b-412f-8f2b-481213aff5a5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bd82e024-d964-671c-b0c5-f3fd105dd0c0" executionId="23ac785a-4e25-4046-b1ec-e4fa76ac0603" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Resultados sin formato de lista" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Todos los resultados cargados" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="15" executed="15" passed="15" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.9)&#xD;
+[xUnit.net 00:00:00.56]   Discovering: SmartQuote.Domain.Tests&#xD;
+[xUnit.net 00:00:00.64]   Discovered:  SmartQuote.Domain.Tests&#xD;
+[xUnit.net 00:00:00.68]   Starting:    SmartQuote.Domain.Tests&#xD;
+[xUnit.net 00:00:01.23]   Finished:    SmartQuote.Domain.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

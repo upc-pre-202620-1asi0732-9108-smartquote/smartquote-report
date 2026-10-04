@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="da28050d-0bb4-4b2a-8dfc-d4af44f7062a" name="51924@MSI 2026-10-03 13:24:59" runUser="MSI\CodexSandboxOffline" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-03T13:24:59.9810017-05:00" queuing="2026-10-03T13:24:59.9810021-05:00" start="2026-10-03T13:24:58.5246636-05:00" finish="2026-10-03T13:24:59.9884497-05:00" />
+  <TestSettings name="default" id="cdf7f09d-2583-48e3-ae24-49541a58a441">
+    <Deployment runDeploymentRoot="51924_MSI_2026-10-03_13_24_59" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="b74a1a65-15ad-4bd4-a360-1863ca81309c" testId="42cc6ed2-2370-519c-ee40-5550a629bd15" testName="Production registers a complete purchase request" computerName="MSI" duration="00:00:00.0199082" startTime="2026-10-03T13:24:59.7745124-05:00" endTime="2026-10-03T13:24:59.7943129-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b74a1a65-15ad-4bd4-a360-1863ca81309c">
+      <Output>
+        <StdOut>Given the SmartQuote API and PostgreSQL are available&#xD;
+-&gt; done: PurchaseFlowSteps.GivenApiAndDatabaseAreAvailable() (0.0s)&#xD;
+And I have the ProductionSpecialist role&#xD;
+-&gt; done: PurchaseFlowSteps.GivenIHaveRole("ProductionSpecialist") (0.0s)&#xD;
+When I register a complete purchase request&#xD;
+-&gt; done: PurchaseFlowSteps.WhenIRegisterACompleteRequest() (0.0s)&#xD;
+Then the API responds with 201&#xD;
+-&gt; done: PurchaseFlowSteps.ThenApiRespondsWith(201) (0.0s)&#xD;
+And the request can be read back with Submitted status&#xD;
+-&gt; done: PurchaseFlowSteps.ThenRequestCanBeReadBack() (0.0s)</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7d4da679-aa25-418d-9448-f0721b5b89c3" testId="8313e0a8-b92c-91d0-69cd-9088a86cd327" testName="A batch preserves a valid quotation when another file is unsupported" computerName="MSI" duration="00:00:00.0971941" startTime="2026-10-03T13:24:59.6789334-05:00" endTime="2026-10-03T13:24:59.7738115-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7d4da679-aa25-418d-9448-f0721b5b89c3">
+      <Output>
+        <StdOut>Given the SmartQuote API and PostgreSQL are available&#xD;
+-&gt; done: PurchaseFlowSteps.GivenApiAndDatabaseAreAvailable() (0.0s)&#xD;
+And a request has reached QuotationCollection status&#xD;
+-&gt; done: PurchaseFlowSteps.GivenRequestAcceptsQuotations() (0.0s)&#xD;
+When an analyst uploads one PDF and one unsupported file in a batch&#xD;
+-&gt; done: PurchaseFlowSteps.WhenAnalystUploadsMixedBatch() (0.0s)&#xD;
+Then the API responds with 207&#xD;
+-&gt; done: PurchaseFlowSteps.ThenApiRespondsWith(207) (0.0s)&#xD;
+And the PDF is persisted while the unsupported file is rejected&#xD;
+-&gt; done: PurchaseFlowSteps.ThenOnlyThePdfPersists() (0.0s)</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="108cbbc2-f6e5-4fbb-b413-a7aebfa9a2c4" testId="042c6d9b-5513-f74b-7c9d-e021cf8e0b01" testName="Purchasing cannot register a production request" computerName="MSI" duration="00:00:00.1615721" startTime="2026-10-03T13:24:59.4839031-05:00" endTime="2026-10-03T13:24:59.6663968-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="108cbbc2-f6e5-4fbb-b413-a7aebfa9a2c4">
+      <Output>
+        <StdOut>Given the SmartQuote API and PostgreSQL are available&#xD;
+-&gt; done: PurchaseFlowSteps.GivenApiAndDatabaseAreAvailable() (0.0s)&#xD;
+And I have the PurchaseAnalyst role&#xD;
+-&gt; done: PurchaseFlowSteps.GivenIHaveRole("PurchaseAnalyst") (0.0s)&#xD;
+When I register a complete purchase request&#xD;
+-&gt; done: PurchaseFlowSteps.WhenIRegisterACompleteRequest() (0.1s)&#xD;
+Then the API responds with 403&#xD;
+-&gt; done: PurchaseFlowSteps.ThenApiRespondsWith(403) (0.0s)</StdOut>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Purchasing cannot register a production request" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.bdd.tests\bin\release\net10.0\smartquote.bdd.tests.dll" id="042c6d9b-5513-f74b-7c9d-e021cf8e0b01">
+      <Execution id="108cbbc2-f6e5-4fbb-b413-a7aebfa9a2c4" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Bdd.Tests\bin\Release\net10.0\SmartQuote.Bdd.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Bdd.Tests.Features.PurchaseRequestAndQuotationIntakeFeature" name="PurchasingCannotRegisterAProductionRequest" />
+    </UnitTest>
+    <UnitTest name="Production registers a complete purchase request" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.bdd.tests\bin\release\net10.0\smartquote.bdd.tests.dll" id="42cc6ed2-2370-519c-ee40-5550a629bd15">
+      <Execution id="b74a1a65-15ad-4bd4-a360-1863ca81309c" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Bdd.Tests\bin\Release\net10.0\SmartQuote.Bdd.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Bdd.Tests.Features.PurchaseRequestAndQuotationIntakeFeature" name="ProductionRegistersACompletePurchaseRequest" />
+    </UnitTest>
+    <UnitTest name="A batch preserves a valid quotation when another file is unsupported" storage="c:\users\51924\documents\chatgpt\diseno exp\tmp\smartquote-backend-develop\tests\smartquote.bdd.tests\bin\release\net10.0\smartquote.bdd.tests.dll" id="8313e0a8-b92c-91d0-69cd-9088a86cd327">
+      <Execution id="7d4da679-aa25-418d-9448-f0721b5b89c3" />
+      <TestMethod codeBase="C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Bdd.Tests\bin\Release\net10.0\SmartQuote.Bdd.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SmartQuote.Bdd.Tests.Features.PurchaseRequestAndQuotationIntakeFeature" name="ABatchPreservesAValidQuotationWhenAnotherFileIsUnsupported" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="42cc6ed2-2370-519c-ee40-5550a629bd15" executionId="b74a1a65-15ad-4bd4-a360-1863ca81309c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8313e0a8-b92c-91d0-69cd-9088a86cd327" executionId="7d4da679-aa25-418d-9448-f0721b5b89c3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="042c6d9b-5513-f74b-7c9d-e021cf8e0b01" executionId="108cbbc2-f6e5-4fbb-b413-a7aebfa9a2c4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Resultados sin formato de lista" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Todos los resultados cargados" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="3" executed="3" passed="3" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.9)&#xD;
+[xUnit.net 00:00:00.12]   Discovering: SmartQuote.Bdd.Tests&#xD;
+[xUnit.net 00:00:00.20]   Discovered:  SmartQuote.Bdd.Tests&#xD;
+[xUnit.net 00:00:00.24]   Starting:    SmartQuote.Bdd.Tests&#xD;
+-&gt; Loading plugin C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Bdd.Tests\bin\Release\net10.0\Reqnroll.xUnit.ReqnrollPlugin.dll&#xD;
+-&gt; Loading plugin C:\Users\51924\Documents\ChatGPT\Diseno exp\tmp\smartquote-backend-develop\tests\SmartQuote.Bdd.Tests\bin\Release\net10.0\SmartQuote.Bdd.Tests.dll&#xD;
+-&gt; Using default config&#xD;
+[xUnit.net 00:00:00.74]   Finished:    SmartQuote.Bdd.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

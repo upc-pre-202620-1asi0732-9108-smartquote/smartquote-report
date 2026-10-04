@@ -1,0 +1,21 @@
+PASS registration status (HTTP 200)
+PASS initial manager registration (HTTP 201)
+PASS login manager (HTTP 200)
+PASS production registration (HTTP 201)
+PASS production approval (HTTP 200)
+PASS login production (HTTP 200)
+PASS analyst registration (HTTP 201)
+PASS analyst approval (HTTP 200)
+PASS login analyst (HTTP 200)
+PASS manager cannot create production request (HTTP 403)
+PASS production request created (HTTP 201)
+PASS request persisted and readable (HTTP 200)
+PASS transition to UnderReview (HTTP 204)
+PASS persisted status UnderReview (HTTP 200)
+PASS transition to QuotationCollection (HTTP 204)
+PASS persisted status QuotationCollection (HTTP 200)
+PASS mixed batch returns multi-status (HTTP 207)
+PASS valid PDF persisted while invalid text file rejected
+PASS quotations read after mixed batch (HTTP 200)
+PASS partial error did not roll back valid upload
+20 checks passed; result.json saved
