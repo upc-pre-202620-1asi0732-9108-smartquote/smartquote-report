@@ -132,6 +132,8 @@ Proyecto
   - [2.4. Ubiquitous Language](#24-ubiquitous-language)
 - [Capítulo III: Requirements Specification](#capítulo-iii-requirements-specification)
   - [3.1. To-Be Scenario Mapping](#31-to-be-scenario-mapping)
+    - [To-Be Scenario Map — Adquisiciones (Analista o jefe de compras)](#to-be-scenario-map--adquisiciones-analista-o-jefe-de-compras)
+    - [To-Be Scenario Map — Producción y Sanidad (Especialista)](#to-be-scenario-map--producción-y-sanidad-especialista)
   - [3.2. User Stories](#32-user-stories)
   - [3.3. Product Backlog](#33-product-backlog)
   - [3.4. Impact Mapping](#34-impact-mapping)
@@ -445,6 +447,16 @@ Proyecto
       - [Web Services](#web-services)
   - [5.3. Video About-the-Product](#53-video-about-the-product)
     - [Enlaces de publicación](#enlaces-de-publicación)
+  - [Capítulo VII: DevOps Practices](#capítulo-vii-devops-practices)
+    - [7.1. Continuous Integration](#71-continuous-integration)
+      - [7.1.1. Tools and Practices](#711-tools-and-practices)
+      - [7.1.2. Build \& Test Suite Pipeline Components](#712-build--test-suite-pipeline-components)
+    - [7.2. Continuous Delivery](#72-continuous-delivery)
+      - [7.2.1. Tools and Practices](#721-tools-and-practices)
+      - [7.2.2. Stages Deployment Pipeline Components](#722-stages-deployment-pipeline-components)
+    - [7.3. Continuous Deployment](#73-continuous-deployment)
+      - [7.3.1. Tools and Practices](#731-tools-and-practices)
+      - [7.3.2. Production Deployment Pipeline Components](#732-production-deployment-pipeline-components)
 - [Conclusiones](#conclusiones)
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
 - [Bibliografía](#bibliografía)
@@ -5333,6 +5345,352 @@ El video *About-the-Product* presenta de forma promocional la propuesta de valor
 | Microsoft Stream / OneDrive | [Ver video en Microsoft Stream](https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQC_UgK0aEsxQoJU6a_AlO-cATwIHkuO41EIbBiz3SsICLc) |
 
 Duración: **00:02:45**
+
+## Capítulo VII: DevOps Practices
+
+Este capítulo describe la automatización de compilación, pruebas y publicación configurada en los repositorios de frontend web y servicios backend de SmartQuote. Los pipelines utilizan GitHub Actions y se dividen en integración continua (CI) y flujos de publicación por entorno (CD). Las capturas de ejecución se incorporarán cuando las ejecuciones de cada rama hayan concluido correctamente.
+
+### 7.1. Continuous Integration
+
+#### 7.1.1. Tools and Practices
+
+La integración continua verifica los cambios antes de publicarlos. Los workflows se ejecutan en agentes hospedados por GitHub Actions. Una ejecución satisfactoria demuestra que se completaron los pasos definidos en el archivo; la obligación de exigir un check antes de fusionar también depende de las reglas de protección configuradas para cada rama.
+
+| Área | Herramienta | Uso en SmartQuote |
+|---|---|---|
+| Orquestación CI/CD | GitHub Actions | Ejecuta workflows ante `push`, `pull_request` o una llamada reutilizable desde los pipelines de despliegue. |
+| Backend | .NET CLI y SDK indicado por `global.json` | Restaura dependencias con `dotnet restore`, compila en Release con `dotnet build` y ejecuta pruebas con `dotnet test`. |
+| Frontend | Node.js 24 y npm | Instala dependencias bloqueadas con `npm ci`; ejecuta ESLint, pruebas unitarias de Node.js, compilación Vite y pruebas de navegador Playwright. |
+| Evidencia de pruebas backend | `actions/upload-artifact@v4` | Conserva los archivos de resultados de pruebas `.trx` asociados a la ejecución. |
+| Artefacto web validado | `actions/upload-artifact@v4` y `actions/download-artifact@v4` | Transfiere `dist/` desde CI al job de publicación de Azure Static Web Apps sin compilarlo nuevamente. |
+
+Los pipelines se activan ante `pull_request` dirigido a `develop` o `main`. Los cambios en ramas de trabajo ejecutan CI en cada `push`; los `push` a `develop` y `main` se validan mediante los workflows de despliegue que invocan `ci.yml`. El backend publica artefactos `.trx`; el frontend publica el directorio compilado `dist/`, no un informe de cobertura.
+
+Un error en restauración, análisis de código, compilación o una prueba produce un resultado fallido. En los pipelines de despliegue, el job de publicación depende de la validación (`needs: validate`), por lo que no se ejecuta si CI falla. El bloqueo efectivo de una fusión en GitHub requiere configurar adicionalmente las reglas de protección para exigir los checks correspondientes; no se afirma aquí que dichas reglas estén habilitadas.
+
+El conjunto de pruebas del backend invoca `dotnet test`. El frontend ejecuta 14 pruebas unitarias, además de la suite Playwright; en la configuración predeterminada, los casos de navegador que requieren credenciales y servicios locales se omiten. Por ello, la aprobación del workflow no equivale a ejecutar las pruebas de integración contra la API desplegada.
+
+#### 7.1.2. Build & Test Suite Pipeline Components
+
+Cada repositorio contiene un workflow reutilizable llamado `.github/workflows/ci.yml`. El backend usa .NET SDK 10.0.300 según `global.json`; el frontend usa Node.js 24 y la versión de dependencias registrada en `package-lock.json`.
+
+**Workflow CI del backend — `smartquote-web-services/.github/workflows/ci.yml`:**
+
+```yaml
+name: ci.yml
+on:
+  push:
+    branches-ignore: [ "develop", "main" ]
+  pull_request:
+    branches: [ "develop", "main" ]
+  workflow_call:
+
+jobs:
+  test:
+    name: Build & Run Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Restore
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --configuration Release --no-build --logger
+          "trx;LogFileName=test_results.trx"
+      - name: Upload Test Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-test-results
+          path: '**/*.trx'
+```
+
+**Workflow CI del frontend — `smartquote-frontend-web/.github/workflows/ci.yml`:**
+
+```yaml
+name: CI - Frontend
+on:
+  push:
+    branches-ignore: [develop, main]
+  pull_request:
+    branches: [develop, main]
+  workflow_call:
+    inputs:
+      api_base_url:
+        description: Public backend URL embedded in the validated build
+        type: string
+        default: http://localhost:8080
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Lint, tests and build
+    runs-on: ubuntu-latest
+    env:
+      VITE_API_BASE_URL: ${{ inputs.api_base_url || 'http://localhost:8080' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Check code style
+        run: npm run lint
+      - name: Run unit tests
+        run: npm test
+      - name: Build application
+        run: npm run build
+      - name: Install Chromium for browser tests
+        run: npx playwright install --with-deps chromium
+      - name: Run browser tests
+        run: npm run test:e2e
+      - name: Upload validated application
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+```
+
+En el backend, `checkout` obtiene el código; `setup-dotnet` instala el SDK declarado; `restore` descarga paquetes; `build` compila en Release; `test` ejecuta las pruebas sin volver a compilar y produce archivos TRX; `upload-artifact` permite descargar esos resultados incluso si falla un paso anterior. En el frontend, `setup-node` configura Node.js y la caché de npm; `npm ci` instala las dependencias bloqueadas; ESLint y las pruebas unitarias verifican el código; Vite produce `dist/`; Playwright ejecuta la suite de navegador con Chromium; finalmente, el artefacto `frontend-dist` queda disponible para el job de publicación.
+
+![Ejecución satisfactoria de CI del backend en GitHub Actions](assets/devops/7.1.2-01-backend-ci-success.png)
+
+![Artefacto de resultados TRX del backend](assets/devops/7.1.2-02-backend-test-artifact.png)
+
+![Artefacto frontend-dist de la compilación validada](assets/devops/7.1.2-04-frontend-build-artifact.png)
+
+### 7.2. Continuous Delivery
+
+#### 7.2.1. Tools and Practices
+
+La entrega continua automatiza la preparación de una versión candidata para revisión. En SmartQuote, `develop` activa la publicación de la imagen de backend en Azure Container Registry (ACR) con la etiqueta `staging`, y el frontend se publica en el entorno de vista previa `staging` de Azure Static Web Apps. Los dos workflows ejecutan CI antes de publicar.
+
+| Herramienta | Uso en la etapa de entrega |
+|---|---|
+| GitHub Actions Environment `staging` | Identifica el entorno lógico usado por los jobs de publicación. El workflow no demuestra que haya reglas de aprobación manual configuradas. |
+| Azure Container Registry (`smartquoteacr`) | Almacena la imagen `smartquote-api:staging` producida desde `develop`. |
+| Azure Static Web Apps | Aloja la versión de frontend publicada desde `develop` en el entorno nombrado `staging`. |
+| GitHub Secrets | Proporciona las credenciales de ACR al backend y el token de despliegue de Static Web Apps al frontend. Los valores permanecen fuera del YAML y del código fuente. |
+
+El workflow del backend solo construye y sube `smartquote-api:staging` a ACR: no contiene un paso que despliegue esa etiqueta a un App Service independiente de staging. Por tanto, la imagen queda publicada en el registro, pero este archivo por sí solo no acredita una API de staging en ejecución. La captura de Azure disponible muestra el App Service de producción configurado con `latest`, no una instancia de staging. En el frontend sí se solicita un entorno nombrado `staging` dentro de Static Web Apps.
+
+Las credenciales `ACR_USERNAME` y `ACR_PASSWORD` son secretos del entorno o repositorio `staging` utilizados por el backend. El frontend consume `AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_BUSH_0F1889D10`. No se incluyen valores secretos en este informe. La variable opcional `STAGING_API_BASE_URL` define la dirección pública de API compilada en la vista previa; cuando no se configura, se usa la URL actual de producción. La URL del entorno frontend debe añadirse a los orígenes permitidos de CORS del backend para que el navegador pueda consumirlo.
+
+Aunque los jobs declaran `environment: staging`, no se afirma una aprobación manual porque no se ha verificado una regla de protección del Environment en GitHub. Una aprobación previa solo existe si se configura en **Settings → Environments → staging → Required reviewers**.
+
+#### 7.2.2. Stages Deployment Pipeline Components
+
+**Workflow de entrega del backend — `.github/workflows/cd-staging.yml`:** al recibir un `push` a `develop`, invoca primero `ci.yml`. Si la validación concluye satisfactoriamente, inicia un job en el Environment `staging`, inicia sesión en ACR con los secretos configurados y construye la imagen a partir de `src/SmartQuote.API/Dockerfile`. Finalmente, la publica como `smartquoteacr.azurecr.io/smartquote-api:staging`.
+
+```yaml
+name: cd-staging.yml
+
+on:
+  push:
+    branches: [ "develop" ]
+
+jobs:
+  validate:
+    name: Validate commit
+    uses: ./.github/workflows/ci.yml
+
+  deploy-staging:
+    name: Build & Push Docker to ACR (Staging)
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to ACR
+        uses: docker/login-action@v3
+        with:
+          registry: smartquoteacr.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: src/SmartQuote.API/Dockerfile
+          push: true
+          tags: smartquoteacr.azurecr.io/smartquote-api:staging
+```
+
+**Workflow de entrega del frontend — `.github/workflows/cd-staging.yml`:** valida y compila el frontend con la URL definida por `STAGING_API_BASE_URL` o, si no existe, con la dirección actual del backend. Descarga `frontend-dist` y lo publica en el entorno nombrado `staging` de Azure Static Web Apps. La aplicación ya compilada se sube sin repetir el build.
+
+```yaml
+name: CD - Staging
+
+on:
+  push:
+    branches: [develop]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-staging
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate frontend
+    uses: ./.github/workflows/ci.yml
+    with:
+      api_base_url: ${{ vars.STAGING_API_BASE_URL || 'https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net' }}
+
+  deploy:
+    name: Deploy validated build to staging
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist
+      - name: Publish staging environment
+        uses: Azure/static-web-apps-deploy@4d27395796ac319302594769cfe812bd207490b1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_BUSH_0F1889D10 }}
+          action: upload
+          app_location: dist
+          api_location: ''
+          output_location: ''
+          skip_app_build: true
+          skip_api_build: true
+          production_branch: main
+          deployment_environment: staging
+```
+
+En el backend, la evidencia de esta etapa debe mostrar la ejecución verde del workflow y la etiqueta `staging` en ACR. No se incluye una URL de API de staging porque el workflow no publica a un App Service de pruebas. En el frontend, se debe capturar la ejecución verde y el entorno `staging` visible en Azure Static Web Apps.
+
+![Anexo 7.2.2.1 — Workflow de publicación de la imagen staging del backend](assets/devops/7.2.2-01-backend-staging-workflow.png)
+
+![Anexo 7.2.2.2 — Etiqueta staging de smartquote-api en Azure Container Registry](assets/devops/7.2.2-02-backend-acr-staging-tag.jpeg)
+
+![Anexo 7.2.2.3 — Workflow y vista previa staging del frontend en Azure Static Web Apps](assets/devops/7.2.2-03-frontend-staging-environment.jpeg)
+
+### 7.3. Continuous Deployment
+
+#### 7.3.1. Tools and Practices
+
+El despliegue continuo publica automáticamente los cambios aprobados por CI en los destinos productivos declarados. En la API, GitHub Actions sube la imagen `latest` a ACR desde `main` o desde una etiqueta Git de versión semántica `v*.*.*`; el App Service de Azure está configurado para consumir `latest` y tiene activado el despliegue continuo del contenedor. En el frontend, cada `push` a `main` publica el artefacto web en el entorno Production de Azure Static Web Apps.
+
+| Herramienta | Función en producción |
+|---|---|
+| GitHub Actions Environment `production` | Separa el contexto lógico y los secretos del job de publicación. No se ha confirmado una regla de aprobación manual. |
+| GitHub Secrets | Entrega credenciales de ACR al workflow backend y el token de Static Web Apps al workflow frontend. |
+| Azure Container Registry | Guarda `smartquote-api:latest` y notifica el push mediante el webhook configurado para la aplicación. |
+| Azure App Service | Ejecuta el contenedor Linux de la API en el puerto 8080 y extrae la imagen `latest` desde ACR mediante una identidad administrada con rol `AcrPull`. |
+| Azure Static Web Apps | Aloja la aplicación web de producción desde el artefacto compilado por CI en un push a `main`. |
+
+En el backend se utiliza Semantic Versioning como criterio para disparar el workflow cuando se crea una etiqueta compatible con `v*.*.*`; sin embargo, el pipeline actual no publica esa etiqueta como versión Docker: en todos los casos sobrescribe `latest`. Asimismo, cualquier push a `main` también dispara la publicación. Por ello, no debe describirse como un despliegue exclusivo por tags.
+
+No se afirma despliegue sin interrupción, verificación automática de `/health` ni rollback automatizado: los workflows actuales no incluyen un paso `curl`, un intercambio de slots o una tarea de reversión. La API expone `/health` para comprobación manual. Si una versión presenta problemas, una recuperación requiere seleccionar o volver a publicar una imagen anterior desde ACR y comprobar el App Service; alternativamente, se puede corregir el código con `git revert` y ejecutar de nuevo el pipeline. La imagen anterior solo puede recuperarse si sigue disponible en ACR.
+
+#### 7.3.2. Production Deployment Pipeline Components
+
+**Workflow de producción del backend — `.github/workflows/cd-production.yml`:** se activa ante un `push` a `main` o una etiqueta que coincida con `v*.*.*`. Primero llama a CI; luego inicia sesión en ACR, construye el contenedor usando el Dockerfile de la API y publica la etiqueta `latest`. El webhook de ACR notifica la nueva imagen al App Service configurado. La extracción y el arranque de la imagen deben comprobarse en Azure; no los ejecuta un paso adicional de GitHub Actions.
+
+```yaml
+name: cd-production.yml
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+    branches:
+      - 'main'
+
+jobs:
+  validate:
+    name: Validate commit
+    uses: ./.github/workflows/ci.yml
+
+  deploy-production:
+    name: Build &amp; Push Docker to ACR (Production)
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to ACR
+        uses: docker/login-action@v3
+        with:
+          registry: smartquoteacr.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: src/SmartQuote.API/Dockerfile
+          push: true
+          tags: smartquoteacr.azurecr.io/smartquote-api:latest
+```
+
+**Workflow de producción del frontend — `.github/workflows/cd-production.yml`:** se ejecuta con un `push` a `main`, valida y compila con la URL definida por `PRODUCTION_API_BASE_URL` o la URL actual de la API. Luego descarga el artefacto `frontend-dist` aprobado por CI y lo publica en Production de Azure Static Web Apps mediante el token guardado en GitHub Secrets.
+
+```yaml
+name: CD - Production
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-production
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate frontend
+    uses: ./.github/workflows/ci.yml
+    with:
+      api_base_url: ${{ vars.PRODUCTION_API_BASE_URL || 'https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net' }}
+
+  deploy:
+    name: Deploy validated build to production
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist
+      - name: Publish production environment
+        uses: Azure/static-web-apps-deploy@4d27395796ac319302594769cfe812bd207490b1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_BUSH_0F1889D10 }}
+          action: upload
+          app_location: dist
+          api_location: ''
+          output_location: ''
+          skip_app_build: true
+          skip_api_build: true
+          production_branch: main
+```
+
+La comprobación de salud de producción se realiza de forma manual abriendo [`https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net/health`](https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net/health); la respuesta saludable esperada es HTTP 200. La URL del frontend publicada es [`https://agreeable-bush-0f1889d10.5.azurestaticapps.net`](https://agreeable-bush-0f1889d10.5.azurestaticapps.net). Para verificar un despliegue, se recomienda conservar evidencia de la ejecución verde, la imagen `latest` en ACR, la revisión del contenedor en App Service, la etiqueta de versión si el disparador fue un tag y la aplicación accesible con HTTPS.
+
+![Anexo 7.3.2.5 — Sitio SmartQuote de producción accesible mediante HTTPS](assets/devops/7.3.2-05-frontend-production-https.png)
 
 # Conclusiones
 
