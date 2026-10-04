@@ -454,6 +454,9 @@ Proyecto
     - [7.2. Continuous Delivery](#72-continuous-delivery)
       - [7.2.1. Tools and Practices](#721-tools-and-practices)
       - [7.2.2. Stages Deployment Pipeline Components](#722-stages-deployment-pipeline-components)
+    - [7.3. Continuous Deployment](#73-continuous-deployment)
+      - [7.3.1. Tools and Practices](#731-tools-and-practices)
+      - [7.3.2. Production Deployment Pipeline Components](#732-production-deployment-pipeline-components)
 - [Conclusiones](#conclusiones)
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
 - [Bibliografía](#bibliografía)
@@ -5576,10 +5579,118 @@ En el backend, la evidencia de esta etapa debe mostrar la ejecución verde del w
 
 ![Anexo 7.2.2.1 — Workflow de publicación de la imagen staging del backend](assets/devops/7.2.2-01-backend-staging-workflow.png)
 
-![Anexo 7.2.2.2 — Etiqueta staging de smartquote-api en Azure Container Registry](assets/devops/7.2.2-02-backend-acr-staging-tag.png)
+![Anexo 7.2.2.2 — Etiqueta staging de smartquote-api en Azure Container Registry](assets/devops/7.2.2-02-backend-acr-staging-tag.jpeg)
 
-![Anexo 7.2.2.3 — Workflow y vista previa staging del frontend en Azure Static Web Apps](assets/devops/7.2.2-03-frontend-staging-environment.png)
+![Anexo 7.2.2.3 — Workflow y vista previa staging del frontend en Azure Static Web Apps](assets/devops/7.2.2-03-frontend-staging-environment.jpeg)
 
+### 7.3. Continuous Deployment
+
+#### 7.3.1. Tools and Practices
+
+El despliegue continuo publica automáticamente los cambios aprobados por CI en los destinos productivos declarados. En la API, GitHub Actions sube la imagen `latest` a ACR desde `main` o desde una etiqueta Git de versión semántica `v*.*.*`; el App Service de Azure está configurado para consumir `latest` y tiene activado el despliegue continuo del contenedor. En el frontend, cada `push` a `main` publica el artefacto web en el entorno Production de Azure Static Web Apps.
+
+| Herramienta | Función en producción |
+|---|---|
+| GitHub Actions Environment `production` | Separa el contexto lógico y los secretos del job de publicación. No se ha confirmado una regla de aprobación manual. |
+| GitHub Secrets | Entrega credenciales de ACR al workflow backend y el token de Static Web Apps al workflow frontend. |
+| Azure Container Registry | Guarda `smartquote-api:latest` y notifica el push mediante el webhook configurado para la aplicación. |
+| Azure App Service | Ejecuta el contenedor Linux de la API en el puerto 8080 y extrae la imagen `latest` desde ACR mediante una identidad administrada con rol `AcrPull`. |
+| Azure Static Web Apps | Aloja la aplicación web de producción desde el artefacto compilado por CI en un push a `main`. |
+
+En el backend se utiliza Semantic Versioning como criterio para disparar el workflow cuando se crea una etiqueta compatible con `v*.*.*`; sin embargo, el pipeline actual no publica esa etiqueta como versión Docker: en todos los casos sobrescribe `latest`. Asimismo, cualquier push a `main` también dispara la publicación. Por ello, no debe describirse como un despliegue exclusivo por tags.
+
+No se afirma despliegue sin interrupción, verificación automática de `/health` ni rollback automatizado: los workflows actuales no incluyen un paso `curl`, un intercambio de slots o una tarea de reversión. La API expone `/health` para comprobación manual. Si una versión presenta problemas, una recuperación requiere seleccionar o volver a publicar una imagen anterior desde ACR y comprobar el App Service; alternativamente, se puede corregir el código con `git revert` y ejecutar de nuevo el pipeline. La imagen anterior solo puede recuperarse si sigue disponible en ACR.
+
+#### 7.3.2. Production Deployment Pipeline Components
+
+**Workflow de producción del backend — `.github/workflows/cd-production.yml`:** se activa ante un `push` a `main` o una etiqueta que coincida con `v*.*.*`. Primero llama a CI; luego inicia sesión en ACR, construye el contenedor usando el Dockerfile de la API y publica la etiqueta `latest`. El webhook de ACR notifica la nueva imagen al App Service configurado. La extracción y el arranque de la imagen deben comprobarse en Azure; no los ejecuta un paso adicional de GitHub Actions.
+
+```yaml
+name: cd-production.yml
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+    branches:
+      - 'main'
+
+jobs:
+  validate:
+    name: Validate commit
+    uses: ./.github/workflows/ci.yml
+
+  deploy-production:
+    name: Build &amp; Push Docker to ACR (Production)
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to ACR
+        uses: docker/login-action@v3
+        with:
+          registry: smartquoteacr.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: src/SmartQuote.API/Dockerfile
+          push: true
+          tags: smartquoteacr.azurecr.io/smartquote-api:latest
+```
+
+**Workflow de producción del frontend — `.github/workflows/cd-production.yml`:** se ejecuta con un `push` a `main`, valida y compila con la URL definida por `PRODUCTION_API_BASE_URL` o la URL actual de la API. Luego descarga el artefacto `frontend-dist` aprobado por CI y lo publica en Production de Azure Static Web Apps mediante el token guardado en GitHub Secrets.
+
+```yaml
+name: CD - Production
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-production
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate frontend
+    uses: ./.github/workflows/ci.yml
+    with:
+      api_base_url: ${{ vars.PRODUCTION_API_BASE_URL || 'https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net' }}
+
+  deploy:
+    name: Deploy validated build to production
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist
+      - name: Publish production environment
+        uses: Azure/static-web-apps-deploy@4d27395796ac319302594769cfe812bd207490b1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_BUSH_0F1889D10 }}
+          action: upload
+          app_location: dist
+          api_location: ''
+          output_location: ''
+          skip_app_build: true
+          skip_api_build: true
+          production_branch: main
+```
+
+La comprobación de salud de producción se realiza de forma manual abriendo [`https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net/health`](https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net/health); la respuesta saludable esperada es HTTP 200. La URL del frontend publicada es [`https://agreeable-bush-0f1889d10.5.azurestaticapps.net`](https://agreeable-bush-0f1889d10.5.azurestaticapps.net). Para verificar un despliegue, se recomienda conservar evidencia de la ejecución verde, la imagen `latest` en ACR, la revisión del contenedor en App Service, la etiqueta de versión si el disparador fue un tag y la aplicación accesible con HTTPS.
+
+![Anexo 7.3.2.5 — Sitio SmartQuote de producción accesible mediante HTTPS](assets/devops/7.3.2-05-frontend-production-https.png)
 
 # Conclusiones
 
