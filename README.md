@@ -451,6 +451,9 @@ Proyecto
     - [7.1. Continuous Integration](#71-continuous-integration)
       - [7.1.1. Tools and Practices](#711-tools-and-practices)
       - [7.1.2. Build \& Test Suite Pipeline Components](#712-build--test-suite-pipeline-components)
+    - [7.2. Continuous Delivery](#72-continuous-delivery)
+      - [7.2.1. Tools and Practices](#721-tools-and-practices)
+      - [7.2.2. Stages Deployment Pipeline Components](#722-stages-deployment-pipeline-components)
 - [Conclusiones](#conclusiones)
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
 - [Bibliografía](#bibliografía)
@@ -5464,6 +5467,119 @@ En el backend, `checkout` obtiene el código; `setup-dotnet` instala el SDK decl
 ![Artefacto de resultados TRX del backend](assets/devops/7.1.2-02-backend-test-artifact.png)
 
 ![Artefacto frontend-dist de la compilación validada](assets/devops/7.1.2-04-frontend-build-artifact.png)
+
+### 7.2. Continuous Delivery
+
+#### 7.2.1. Tools and Practices
+
+La entrega continua automatiza la preparación de una versión candidata para revisión. En SmartQuote, `develop` activa la publicación de la imagen de backend en Azure Container Registry (ACR) con la etiqueta `staging`, y el frontend se publica en el entorno de vista previa `staging` de Azure Static Web Apps. Los dos workflows ejecutan CI antes de publicar.
+
+| Herramienta | Uso en la etapa de entrega |
+|---|---|
+| GitHub Actions Environment `staging` | Identifica el entorno lógico usado por los jobs de publicación. El workflow no demuestra que haya reglas de aprobación manual configuradas. |
+| Azure Container Registry (`smartquoteacr`) | Almacena la imagen `smartquote-api:staging` producida desde `develop`. |
+| Azure Static Web Apps | Aloja la versión de frontend publicada desde `develop` en el entorno nombrado `staging`. |
+| GitHub Secrets | Proporciona las credenciales de ACR al backend y el token de despliegue de Static Web Apps al frontend. Los valores permanecen fuera del YAML y del código fuente. |
+
+El workflow del backend solo construye y sube `smartquote-api:staging` a ACR: no contiene un paso que despliegue esa etiqueta a un App Service independiente de staging. Por tanto, la imagen queda publicada en el registro, pero este archivo por sí solo no acredita una API de staging en ejecución. La captura de Azure disponible muestra el App Service de producción configurado con `latest`, no una instancia de staging. En el frontend sí se solicita un entorno nombrado `staging` dentro de Static Web Apps.
+
+Las credenciales `ACR_USERNAME` y `ACR_PASSWORD` son secretos del entorno o repositorio `staging` utilizados por el backend. El frontend consume `AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_BUSH_0F1889D10`. No se incluyen valores secretos en este informe. La variable opcional `STAGING_API_BASE_URL` define la dirección pública de API compilada en la vista previa; cuando no se configura, se usa la URL actual de producción. La URL del entorno frontend debe añadirse a los orígenes permitidos de CORS del backend para que el navegador pueda consumirlo.
+
+Aunque los jobs declaran `environment: staging`, no se afirma una aprobación manual porque no se ha verificado una regla de protección del Environment en GitHub. Una aprobación previa solo existe si se configura en **Settings → Environments → staging → Required reviewers**.
+
+#### 7.2.2. Stages Deployment Pipeline Components
+
+**Workflow de entrega del backend — `.github/workflows/cd-staging.yml`:** al recibir un `push` a `develop`, invoca primero `ci.yml`. Si la validación concluye satisfactoriamente, inicia un job en el Environment `staging`, inicia sesión en ACR con los secretos configurados y construye la imagen a partir de `src/SmartQuote.API/Dockerfile`. Finalmente, la publica como `smartquoteacr.azurecr.io/smartquote-api:staging`.
+
+```yaml
+name: cd-staging.yml
+
+on:
+  push:
+    branches: [ "develop" ]
+
+jobs:
+  validate:
+    name: Validate commit
+    uses: ./.github/workflows/ci.yml
+
+  deploy-staging:
+    name: Build & Push Docker to ACR (Staging)
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to ACR
+        uses: docker/login-action@v3
+        with:
+          registry: smartquoteacr.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: src/SmartQuote.API/Dockerfile
+          push: true
+          tags: smartquoteacr.azurecr.io/smartquote-api:staging
+```
+
+**Workflow de entrega del frontend — `.github/workflows/cd-staging.yml`:** valida y compila el frontend con la URL definida por `STAGING_API_BASE_URL` o, si no existe, con la dirección actual del backend. Descarga `frontend-dist` y lo publica en el entorno nombrado `staging` de Azure Static Web Apps. La aplicación ya compilada se sube sin repetir el build.
+
+```yaml
+name: CD - Staging
+
+on:
+  push:
+    branches: [develop]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-staging
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate frontend
+    uses: ./.github/workflows/ci.yml
+    with:
+      api_base_url: ${{ vars.STAGING_API_BASE_URL || 'https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net' }}
+
+  deploy:
+    name: Deploy validated build to staging
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist
+      - name: Publish staging environment
+        uses: Azure/static-web-apps-deploy@4d27395796ac319302594769cfe812bd207490b1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_BUSH_0F1889D10 }}
+          action: upload
+          app_location: dist
+          api_location: ''
+          output_location: ''
+          skip_app_build: true
+          skip_api_build: true
+          production_branch: main
+          deployment_environment: staging
+```
+
+En el backend, la evidencia de esta etapa debe mostrar la ejecución verde del workflow y la etiqueta `staging` en ACR. No se incluye una URL de API de staging porque el workflow no publica a un App Service de pruebas. En el frontend, se debe capturar la ejecución verde y el entorno `staging` visible en Azure Static Web Apps.
+
+![Anexo 7.2.2.1 — Workflow de publicación de la imagen staging del backend](assets/devops/7.2.2-01-backend-staging-workflow.png)
+
+![Anexo 7.2.2.2 — Etiqueta staging de smartquote-api en Azure Container Registry](assets/devops/7.2.2-02-backend-acr-staging-tag.png)
+
+![Anexo 7.2.2.3 — Workflow y vista previa staging del frontend en Azure Static Web Apps](assets/devops/7.2.2-03-frontend-staging-environment.png)
+
 
 # Conclusiones
 
