@@ -132,6 +132,8 @@ Proyecto
   - [2.4. Ubiquitous Language](#24-ubiquitous-language)
 - [Capítulo III: Requirements Specification](#capítulo-iii-requirements-specification)
   - [3.1. To-Be Scenario Mapping](#31-to-be-scenario-mapping)
+    - [To-Be Scenario Map — Adquisiciones (Analista o jefe de compras)](#to-be-scenario-map--adquisiciones-analista-o-jefe-de-compras)
+    - [To-Be Scenario Map — Producción y Sanidad (Especialista)](#to-be-scenario-map--producción-y-sanidad-especialista)
   - [3.2. User Stories](#32-user-stories)
   - [3.3. Product Backlog](#33-product-backlog)
   - [3.4. Impact Mapping](#34-impact-mapping)
@@ -445,6 +447,10 @@ Proyecto
       - [Web Services](#web-services)
   - [5.3. Video About-the-Product](#53-video-about-the-product)
     - [Enlaces de publicación](#enlaces-de-publicación)
+  - [Capítulo VII: DevOps Practices](#capítulo-vii-devops-practices)
+    - [7.1. Continuous Integration](#71-continuous-integration)
+      - [7.1.1. Tools and Practices](#711-tools-and-practices)
+      - [7.1.2. Build \& Test Suite Pipeline Components](#712-build--test-suite-pipeline-components)
 - [Conclusiones](#conclusiones)
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
 - [Bibliografía](#bibliografía)
@@ -5333,6 +5339,131 @@ El video *About-the-Product* presenta de forma promocional la propuesta de valor
 | Microsoft Stream / OneDrive | [Ver video en Microsoft Stream](https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQC_UgK0aEsxQoJU6a_AlO-cATwIHkuO41EIbBiz3SsICLc) |
 
 Duración: **00:02:45**
+
+## Capítulo VII: DevOps Practices
+
+Este capítulo describe la automatización de compilación, pruebas y publicación configurada en los repositorios de frontend web y servicios backend de SmartQuote. Los pipelines utilizan GitHub Actions y se dividen en integración continua (CI) y flujos de publicación por entorno (CD). Las capturas de ejecución se incorporarán cuando las ejecuciones de cada rama hayan concluido correctamente.
+
+### 7.1. Continuous Integration
+
+#### 7.1.1. Tools and Practices
+
+La integración continua verifica los cambios antes de publicarlos. Los workflows se ejecutan en agentes hospedados por GitHub Actions. Una ejecución satisfactoria demuestra que se completaron los pasos definidos en el archivo; la obligación de exigir un check antes de fusionar también depende de las reglas de protección configuradas para cada rama.
+
+| Área | Herramienta | Uso en SmartQuote |
+|---|---|---|
+| Orquestación CI/CD | GitHub Actions | Ejecuta workflows ante `push`, `pull_request` o una llamada reutilizable desde los pipelines de despliegue. |
+| Backend | .NET CLI y SDK indicado por `global.json` | Restaura dependencias con `dotnet restore`, compila en Release con `dotnet build` y ejecuta pruebas con `dotnet test`. |
+| Frontend | Node.js 24 y npm | Instala dependencias bloqueadas con `npm ci`; ejecuta ESLint, pruebas unitarias de Node.js, compilación Vite y pruebas de navegador Playwright. |
+| Evidencia de pruebas backend | `actions/upload-artifact@v4` | Conserva los archivos de resultados de pruebas `.trx` asociados a la ejecución. |
+| Artefacto web validado | `actions/upload-artifact@v4` y `actions/download-artifact@v4` | Transfiere `dist/` desde CI al job de publicación de Azure Static Web Apps sin compilarlo nuevamente. |
+
+Los pipelines se activan ante `pull_request` dirigido a `develop` o `main`. Los cambios en ramas de trabajo ejecutan CI en cada `push`; los `push` a `develop` y `main` se validan mediante los workflows de despliegue que invocan `ci.yml`. El backend publica artefactos `.trx`; el frontend publica el directorio compilado `dist/`, no un informe de cobertura.
+
+Un error en restauración, análisis de código, compilación o una prueba produce un resultado fallido. En los pipelines de despliegue, el job de publicación depende de la validación (`needs: validate`), por lo que no se ejecuta si CI falla. El bloqueo efectivo de una fusión en GitHub requiere configurar adicionalmente las reglas de protección para exigir los checks correspondientes; no se afirma aquí que dichas reglas estén habilitadas.
+
+El conjunto de pruebas del backend invoca `dotnet test`. El frontend ejecuta 14 pruebas unitarias, además de la suite Playwright; en la configuración predeterminada, los casos de navegador que requieren credenciales y servicios locales se omiten. Por ello, la aprobación del workflow no equivale a ejecutar las pruebas de integración contra la API desplegada.
+
+#### 7.1.2. Build & Test Suite Pipeline Components
+
+Cada repositorio contiene un workflow reutilizable llamado `.github/workflows/ci.yml`. El backend usa .NET SDK 10.0.300 según `global.json`; el frontend usa Node.js 24 y la versión de dependencias registrada en `package-lock.json`.
+
+**Workflow CI del backend — `smartquote-web-services/.github/workflows/ci.yml`:**
+
+```yaml
+name: ci.yml
+on:
+  push:
+    branches-ignore: [ "develop", "main" ]
+  pull_request:
+    branches: [ "develop", "main" ]
+  workflow_call:
+
+jobs:
+  test:
+    name: Build & Run Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Restore
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --configuration Release --no-build --logger
+          "trx;LogFileName=test_results.trx"
+      - name: Upload Test Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-test-results
+          path: '**/*.trx'
+```
+
+**Workflow CI del frontend — `smartquote-frontend-web/.github/workflows/ci.yml`:**
+
+```yaml
+name: CI - Frontend
+on:
+  push:
+    branches-ignore: [develop, main]
+  pull_request:
+    branches: [develop, main]
+  workflow_call:
+    inputs:
+      api_base_url:
+        description: Public backend URL embedded in the validated build
+        type: string
+        default: http://localhost:8080
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Lint, tests and build
+    runs-on: ubuntu-latest
+    env:
+      VITE_API_BASE_URL: ${{ inputs.api_base_url || 'http://localhost:8080' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Check code style
+        run: npm run lint
+      - name: Run unit tests
+        run: npm test
+      - name: Build application
+        run: npm run build
+      - name: Install Chromium for browser tests
+        run: npx playwright install --with-deps chromium
+      - name: Run browser tests
+        run: npm run test:e2e
+      - name: Upload validated application
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+```
+
+En el backend, `checkout` obtiene el código; `setup-dotnet` instala el SDK declarado; `restore` descarga paquetes; `build` compila en Release; `test` ejecuta las pruebas sin volver a compilar y produce archivos TRX; `upload-artifact` permite descargar esos resultados incluso si falla un paso anterior. En el frontend, `setup-node` configura Node.js y la caché de npm; `npm ci` instala las dependencias bloqueadas; ESLint y las pruebas unitarias verifican el código; Vite produce `dist/`; Playwright ejecuta la suite de navegador con Chromium; finalmente, el artefacto `frontend-dist` queda disponible para el job de publicación.
+
+![Ejecución satisfactoria de CI del backend en GitHub Actions](assets/devops/7.1.2-01-backend-ci-success.png)
+
+![Artefacto de resultados TRX del backend](assets/devops/7.1.2-02-backend-test-artifact.png)
+
+![Artefacto frontend-dist de la compilación validada](assets/devops/7.1.2-04-frontend-build-artifact.png)
 
 # Conclusiones
 
