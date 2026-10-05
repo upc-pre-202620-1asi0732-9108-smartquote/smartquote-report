@@ -419,19 +419,20 @@ Proyecto
       - [Despliegue](#despliegue-1)
       - [Evidencias principales](#evidencias-principales-1)
       - [Tabla de commits de implementación](#tabla-de-commits-de-implementación-1)
-    - [5.2.4. Implemented Native-Mobile Application Evidence](#524-implemented-native-mobile-application-evidence)
+    - [5.2.4. Acuerdo de Servicio - SaaS](#524-acuerdo-de-servicio---saas)
+    - [5.2.5. Implemented Native-Mobile Application Evidence](#525-implemented-native-mobile-application-evidence)
       - [Repositorio de código fuente](#repositorio-de-código-fuente-2)
       - [Evidencias principales de la aplicación](#evidencias-principales-de-la-aplicación)
       - [Tabla de commits de implementación](#tabla-de-commits-de-implementación-2)
       - [Conexión con los servicios web](#conexión-con-los-servicios-web)
       - [Video de demostración](#video-de-demostración)
-    - [5.2.5. Implemented RESTful API and/or Serverless Backend Evidence](#525-implemented-restful-api-andor-serverless-backend-evidence)
+    - [5.2.6. Implemented RESTful API and/or Serverless Backend Evidence](#526-implemented-restful-api-andor-serverless-backend-evidence)
       - [Estructura implementada](#estructura-implementada)
       - [Ejecución local y persistencia](#ejecución-local-y-persistencia)
       - [Despliegue en la nube (Azure)](#despliegue-en-la-nube-azure)
       - [Comprobación local observada](#comprobación-local-observada)
       - [Registro de modificaciones del backend](#registro-de-modificaciones-del-backend)
-    - [5.2.6. RESTful API documentation](#526-restful-api-documentation)
+    - [5.2.7. RESTful API documentation](#527-restful-api-documentation)
       - [Acceso y autenticación](#acceso-y-autenticación)
       - [Evidencias de Swagger y OpenAPI](#evidencias-de-swagger-y-openapi)
       - [Convención de respuestas y errores](#convención-de-respuestas-y-errores)
@@ -441,7 +442,7 @@ Proyecto
       - [Endpoints — Purchase Ordering Context](#endpoints--purchase-ordering-context)
       - [Rutas operativas y de documentación](#rutas-operativas-y-de-documentación)
       - [Principales esquemas de respuesta](#principales-esquemas-de-respuesta)
-    - [5.2.7. Team Collaboration Insights](#527-team-collaboration-insights)
+    - [5.2.8. Team Collaboration Insights](#528-team-collaboration-insights)
       - [Landing Page](#landing-page)
       - [Frontend Web Application](#frontend-web-application)
       - [Native Mobile Application](#native-mobile-application)
@@ -5144,7 +5145,46 @@ El frontend se publica mediante **Azure Static Web Apps**, con integración cont
 | `smartquote-frontend-web` | `main` | `bbfdbda` | `Build SmartQuote web frontend integrated with backend API` | 2026-09-14 |
 | `smartquote-frontend-web` | `main` | `dc72f19` | `Initial commit` | 2026-09-06 |
 
-### 5.2.4. Implemented Native-Mobile Application Evidence
+### 5.2.4. Acuerdo de Servicio - SaaS
+Esta sección establece los derechos, obligaciones y restricciones aplicables a los usuarios de la plataforma, garantizando transparencia en el uso del servicio SaaS. Debe integrarse públicamente en la sección "Terms and Conditions" del website, cumpliendo con los criterios de claridad, accesibilidad y cumplimiento normativo.
+
+**Última actualización:** [05/10/2026]
+
+**1. Objeto.** Este acuerdo regula el acceso y uso de SmartQuote, una plataforma SaaS de gestión de compras B2B para la adquisición de insumos avícolas. Al crear una cuenta o usar la plataforma, el usuario acepta estas condiciones en nombre propio o de la organización que representa.
+
+**2. Definiciones.**
+
+- *Plataforma:* la aplicación web y móvil de SmartQuote y sus servicios asociados.
+- *Organización cliente:* la empresa que contrata el acceso y administra a sus usuarios.
+- *Usuario:* la persona autorizada por la organización cliente para acceder a la plataforma.
+- *Datos del cliente:* solicitudes, cotizaciones, órdenes y demás información cargada o generada por el cliente.
+
+**3. Cuentas y acceso.** El usuario es responsable de la confidencialidad de sus credenciales y de toda actividad realizada con su cuenta. Debe notificar de inmediato cualquier uso no autorizado. Las cuentas son personales e intransferibles. El acceso puede ser aprobado o revocado por la organización cliente.
+
+**4. Uso aceptable.** El usuario se compromete a:
+
+- Usar la plataforma solo para fines de compra internos y con documentos que esté autorizado a consultar.
+- No intentar vulnerar la seguridad, acceder a datos de otras organizaciones ni alterar el funcionamiento del servicio.
+- No cargar contenido ilícito, malicioso o que infrinja derechos de terceros.
+
+**5. Datos y privacidad.** La organización cliente conserva la titularidad de sus datos. SmartQuote los trata únicamente para prestar el servicio, conforme a la política de privacidad. Los registros de auditoría de las solicitudes y órdenes son inmutables y se conservan 5 años.
+
+**6. Disponibilidad y soporte.** SmartQuote busca una disponibilidad mensual objetivo de 99 %, medida fuera del horario de mantenimiento. El soporte se brinda por correo electrónico a supportRouteguard@gmail.com, en días hábiles de 9:00 a 18:00 (hora de Lima).
+
+**7. Propiedad intelectual.** La plataforma, su código, diseño y marca son propiedad de SmartQuote. El cliente recibe una licencia de uso no exclusiva, intransferible y limitada a la vigencia del acuerdo.
+
+**8. Limitación de responsabilidad.** En la medida permitida por la ley, SmartQuote no responde por decisiones de compra tomadas a partir de la información de la plataforma, incluidos los datos extraídos de cotizaciones, ni por pérdidas indirectas. La responsabilidad total queda limitada a cero, al tratarse de un servicio sin costo..
+
+**9. Suspensión y terminación.** SmartQuote puede suspender cuentas que incumplan este acuerdo o representen un riesgo de seguridad. Cualquiera de las partes puede terminar el servicio con 30 días de aviso. Tras la terminación, el cliente podrá exportar sus datos durante 30 días.
+
+**10. Modificaciones.** SmartQuote puede actualizar este acuerdo. Los cambios sustanciales se notificarán con 15 días de anticipación y su uso continuado implica aceptación.
+
+**11. Ley aplicable.** Este acuerdo se rige por las leyes de Perú. Las controversias se someten a [tribunales o mecanismo de resolución].
+
+**12. Contacto.** supportRouteguard@gmail.com · Proyecto Académico, [UPC].
+
+
+### 5.2.5. Implemented Native-Mobile Application Evidence
 
 La aplicación móvil nativa de SmartQuote se implementó con Flutter y Dart para el segmento de especialistas de producción y sanidad que opera desde la granja. El alcance de esta iteración cubre el registro móvil de solicitudes de insumos (`US02`) y el seguimiento del avance de una solicitud (`US03`). La solución permite iniciar sesión con una cuenta autorizada, registrar la fecha requerida, prioridad, ítems y requisitos técnicos biológicos, adjuntar un sustento opcional y consultar el estado, el área responsable, el historial cronológico y las notificaciones asociadas.
 
@@ -5162,11 +5202,11 @@ El proyecto se ejecuta desde `SmartQuote_app/smart_quote`, conserva la sesión m
 
 Las siguientes capturas deben reemplazarse con imágenes tomadas durante la ejecución de la aplicación. Se incluyen únicamente las evidencias principales del flujo móvil:
 
-![Anexo 5.2.4.1 — Inicio de sesión y validación del rol Production Specialist](assets/mobile/5.2.4-01-login-mobile.png)
+![Anexo 5.2.5.1 — Inicio de sesión y validación del rol Production Specialist](assets/mobile/5.2.4-01-login-mobile.png)
 
-![Anexo 5.2.4.2 — Registro de una nueva solicitud con requisitos técnicos](assets/mobile/5.2.4-02-new-request-mobile.png)
+![Anexo 5.2.5.2 — Registro de una nueva solicitud con requisitos técnicos](assets/mobile/5.2.4-02-new-request-mobile.png)
 
-![Anexo 5.2.4.3 — Detalle, estado, historial y notificaciones de una solicitud](assets/mobile/5.2.4-03-request-tracking-mobile.png)
+![Anexo 5.2.5.3 — Detalle, estado, historial y notificaciones de una solicitud](assets/mobile/5.2.4-03-request-tracking-mobile.png)
 
 #### Tabla de commits de implementación
 
@@ -5196,7 +5236,7 @@ El siguiente video muestra el flujo principal de la aplicación móvil: autentic
 
 **Duración:** `00:02:07`
 
-### 5.2.5. Implemented RESTful API and/or Serverless Backend Evidence
+### 5.2.6. Implemented RESTful API and/or Serverless Backend Evidence
 
 Está construido como un monolito modular en ASP.NET Core con C#, Clean Architecture y Domain-Driven Design. Cada *bounded context* conserva sus capas `Domain`, `Application`, `Infrastructure` e `Interfaces`, mientras que `SmartQuote.Shared` concentra las abstracciones genéricas y `SmartQuote.API` actúa como composición y punto de ejecución.
 
@@ -5232,17 +5272,17 @@ Las direcciones locales de la demostración son `http://localhost:8080` para la 
 
 La API exige un JWT Bearer válido para los endpoints funcionales. Los roles se asignan según el flujo: `ProductionSpecialist` registra solicitudes y consulta notificaciones, `PurchasingStaff` procesa cotizaciones, configura simulaciones y consulta información, y `PurchaseManager` autoriza la generación de órdenes. Las rutas de salud son operativas y no sustituyen la autenticación funcional.
 
-![Anexo 5.2.5.1 — Estructura de la solución en JetBrains Rider](assets/backend/5.2.5-01-solution-structure-rider.png)
+![Anexo 5.2.6.1 — Estructura de la solución en JetBrains Rider](assets/backend/5.2.5-01-solution-structure-rider.png)
 
-![Anexo 5.2.5.2 — API y PostgreSQL ejecutándose en Docker Desktop](assets/backend/5.2.5-02-docker-services.png)
+![Anexo 5.2.6.2 — API y PostgreSQL ejecutándose en Docker Desktop](assets/backend/5.2.5-02-docker-services.png)
 
-![Anexo 5.2.5.3 — Petición de registro de solicitud en Postman con respuesta 201 Created](assets/backend/5.2.5-03-postman-purchase-request-201.png)
+![Anexo 5.2.6.3 — Petición de registro de solicitud en Postman con respuesta 201 Created](assets/backend/5.2.5-03-postman-purchase-request-201.png)
 
-![Anexo 5.2.5.4 — Carga o procesamiento de cotización con respuesta exitosa](assets/backend/5.2.5-04-postman-quotation-success.png)
+![Anexo 5.2.6.4 — Carga o procesamiento de cotización con respuesta exitosa](assets/backend/5.2.5-04-postman-quotation-success.png)
 
-![Anexo 5.2.5.5 — Ejecución de simulación y respuesta del motor](assets/backend/5.2.5-05-postman-simulation-success.png)
+![Anexo 5.2.6.5 — Ejecución de simulación y respuesta del motor](assets/backend/5.2.5-05-postman-simulation-success.png)
 
-![Anexo 5.2.5.6 — Generación idempotente de la orden de compra](assets/backend/5.2.5-06-postman-purchase-order-201.png)
+![Anexo 5.2.6.6 — Generación idempotente de la orden de compra](assets/backend/5.2.5-06-postman-purchase-order-201.png)
 
 #### Despliegue en la nube (Azure)
 
@@ -5250,7 +5290,7 @@ Además de la ejecución local, el backend está desplegado en producción sobre
 
 [https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net](https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net)
 
-![Anexo 5.2.5.7 — App Service del backend desplegado en Azure, en estado Running y Healthy](assets/backend/5.2.5-07-azure-app-service-overview.png)
+![Anexo 5.2.6.7 — App Service del backend desplegado en Azure, en estado Running y Healthy](assets/backend/5.2.5-07-azure-app-service-overview.png)
 
 
 #### Comprobación local observada
@@ -5293,7 +5333,7 @@ La siguiente tabla resume los registros de modificación relevantes observados e
 | `feature/Supply-Requests` | `bf276dd` | `feat(Supply-Requests): add persistence and repositories` | 2026-09-12 |
 | `main` | `60ca718` | `chore: initial structure` | 2026-09-12 |
 
-### 5.2.6. RESTful API documentation
+### 5.2.7. RESTful API documentation
 
 La API RESTful está documentada mediante OpenAPI 3 y se genera a partir de los controladores ASP.NET Core. En Docker, la documentación interactiva se encuentra en [Swagger UI local](http://localhost:8080/swagger/index.html) y el contrato JSON en [swagger/v1/swagger.json](http://localhost:8080/swagger/v1/swagger.json). Desde Rider, se utiliza el mismo sufijo `/swagger` sobre el puerto configurado por el perfil (`5023` para HTTP o `7177` para HTTPS).
 
@@ -5309,7 +5349,7 @@ Swagger incorpora el esquema `Bearer` como autenticación HTTP. Para probar las 
 
 #### Evidencias de Swagger y OpenAPI
 
-![Anexo 5.2.6.1 — Swagger UI local con los cuatro bounded contexts](assets/backend/5.2.6-01-swagger-ui.png)
+![Anexo 5.2.7.1 — Swagger UI local con los cuatro bounded contexts](assets/backend/5.2.6-01-swagger-ui.png)
 
 #### Convención de respuestas y errores
 
@@ -5397,7 +5437,7 @@ Los códigos comunes son `400` (solicitud o parámetros inválidos), `401` (JWT 
 
 Los nombres y tipos completos de estos esquemas se mantienen en los recursos C# del backend y son publicados automáticamente en el documento OpenAPI, por lo que cualquier cambio de contrato debe reflejarse en esta tabla y en las capturas de Swagger.
 
-### 5.2.7. Team Collaboration Insights
+### 5.2.8. Team Collaboration Insights
 
 Esta sección documenta la colaboración técnica de cada entregable mediante sus repositorios públicos de GitHub.
 
