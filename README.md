@@ -5179,7 +5179,7 @@ Esta sección establece los derechos, obligaciones y restricciones aplicables a 
 
 **10. Modificaciones.** SmartQuote puede actualizar este acuerdo. Los cambios sustanciales se notificarán con 15 días de anticipación y su uso continuado implica aceptación.
 
-**11. Ley aplicable.** Este acuerdo se rige por las leyes de Perú. Las controversias se someten a [tribunales o mecanismo de resolución].
+**11. Ley aplicable.** Este acuerdo se rige por las leyes de Perú. Las controversias se someten a tribunales o mecanismo de resolución.
 
 **12. Contacto.** supportRouteguard@gmail.com · Proyecto Académico, [UPC].
 
