@@ -5148,7 +5148,7 @@ El frontend se publica mediante **Azure Static Web Apps**, con integración cont
 ### 5.2.4. Acuerdo de Servicio - SaaS
 Esta sección establece los derechos, obligaciones y restricciones aplicables a los usuarios de la plataforma, garantizando transparencia en el uso del servicio SaaS. Debe integrarse públicamente en la sección "Terms and Conditions" del website, cumpliendo con los criterios de claridad, accesibilidad y cumplimiento normativo.
 
-**Última actualización:** [05/10/2026]
+**Última actualización:** 05/10/2026
 
 **1. Objeto.** Este acuerdo regula el acceso y uso de SmartQuote, una plataforma SaaS de gestión de compras B2B para la adquisición de insumos avícolas. Al crear una cuenta o usar la plataforma, el usuario acepta estas condiciones en nombre propio o de la organización que representa.
 
@@ -5173,7 +5173,7 @@ Esta sección establece los derechos, obligaciones y restricciones aplicables a 
 
 **7. Propiedad intelectual.** La plataforma, su código, diseño y marca son propiedad de SmartQuote. El cliente recibe una licencia de uso no exclusiva, intransferible y limitada a la vigencia del acuerdo.
 
-**8. Limitación de responsabilidad.** En la medida permitida por la ley, SmartQuote no responde por decisiones de compra tomadas a partir de la información de la plataforma, incluidos los datos extraídos de cotizaciones, ni por pérdidas indirectas. La responsabilidad total queda limitada a cero, al tratarse de un servicio sin costo..
+**8. Limitación de responsabilidad.** En la medida permitida por la ley, SmartQuote no responde por decisiones de compra tomadas a partir de la información de la plataforma, incluidos los datos extraídos de cotizaciones, ni por pérdidas indirectas. La responsabilidad total queda limitada a cero, al tratarse de un servicio sin costo.
 
 **9. Suspensión y terminación.** SmartQuote puede suspender cuentas que incumplan este acuerdo o representen un riesgo de seguridad. Cualquiera de las partes puede terminar el servicio con 30 días de aviso. Tras la terminación, el cliente podrá exportar sus datos durante 30 días.
 
@@ -5181,7 +5181,7 @@ Esta sección establece los derechos, obligaciones y restricciones aplicables a 
 
 **11. Ley aplicable.** Este acuerdo se rige por las leyes de Perú. Las controversias se someten a tribunales o mecanismo de resolución.
 
-**12. Contacto.** supportRouteguard@gmail.com · Proyecto Académico, [UPC].
+**12. Contacto.** supportRouteguard@gmail.com · Proyecto Académico, UPC.
 
 
 ### 5.2.5. Implemented Native-Mobile Application Evidence
