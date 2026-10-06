@@ -5499,28 +5499,53 @@ Esta sección documenta la colaboración técnica de cada entregable mediante su
 **Entregable:** Landing Page estática en HTML5, CSS3 y JavaScript.  
 **Repositorio:** [smartquote-landing-page](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page)
 
+#### **AV1**
+
 ![GitHub Insights — smartquote-landing-page](assets/collaboration/landing-page-github-insights.png)
+
+#### **TB1**
+
+![GitHub Insights — smartquote-landing-page](assets/collaboration/landing-page-github-insightsTP.png)
+
 
 #### Frontend Web Application
 
 **Entregable:** Aplicación web en Vue.js, PrimeVue y Material Design.  
 **Repositorio:** [smartquote-frontend-web](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web)
 
+#### **AV1**
+
 ![GitHub Insights — smartquote-frontend-web](assets/collaboration/frontend-web-github-insights.png)
+
+#### **TB1**
+
+![GitHub Insights — smartquote-frontend-web](assets/collaboration/frontend-web-github-insightsTP.png)
 
 #### Native Mobile Application
 
 **Entregable:** Aplicación móvil nativa multiplataforma desarrollada con Flutter y Dart.  
 **Repositorio:** [smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile)
 
+#### **AV1**
+
 ![GitHub Insights — smartquote-native-mobile](assets/collaboration/native-mobile-github-insights.png)
+
+#### **TB1**
+
+![GitHub Insights — smartquote-native-mobile](assets/collaboration/native-mobile-github-insightsTP.png)
 
 #### Web Services
 
 **Entregable:** Web Services RESTful en ASP.NET Core y C#.  
 **Repositorio:** [smartquote-web-services](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services)
 
+#### **AV1**
+
 ![GitHub Insights — smartquote-web-services](assets/collaboration/web-services-github-insights.png)
+
+#### **TB1**
+
+![GitHub Insights — smartquote-web-services](assets/collaboration/web-services-github-insightsTP.png)
 
 ## 5.3. Video About-the-Product
 
