@@ -1269,7 +1269,7 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 
 URL del Trello: [https://trello.com/b/8zqlWB0a](https://trello.com/b/8zqlWB0a)
 
-**Estado de la evidencia:** la captura anterior conserva el estado inicial de la columna Product Backlog, cuyo contador muestra 10 tarjetas. En el tablero actualizado hay 20 tarjetas distribuidas entre `Sprint Backlog (To-Do)` (5), `In-Process` (4), `To-Review` (2), `Done` (3) y `Product Backlog` (6). La vista general siguiente muestra las columnas del tablero y las tarjetas US13, US14, TS04 y US16 del Sprint 2. Los dos recortes posteriores permiten leer las seis tarjetas que permanecen en Product Backlog. La sección 5.2.1.2 documenta estas cuatro historias.
+**Estado de la evidencia:** la primera captura conserva el estado inicial de la columna Product Backlog, cuyo contador muestra 10 tarjetas. Las tres capturas siguientes corresponden al estado del 5 de octubre: había 20 tarjetas en el tablero y seis seguían en Product Backlog. Los dos recortes permiten leer esas seis tarjetas. El 6 de octubre, las seis se incorporaron a la planificación de Sprint 2 y se movieron a `Sprint Backlog (To-Do)`; por eso las capturas son evidencia histórica y no del estado actual. La sección 5.2.1.2 documenta la ampliación y el enlace al tablero vigente.
 
 ![Tablero actualizado de SmartQuote: US10, SP02 y US09 visibles en Product Backlog](assets/requirements/product-backlog-actualizado-smartquote.png)
 
@@ -4999,29 +4999,30 @@ URL del Trello: [https://trello.com/b/8zqlWB0a](https://trello.com/b/8zqlWB0a)
 
 #### 5.2.1.2. Sprint 2
 
-Este Sprint se centra en hacer que las órdenes de compra existentes sean exportables, auditables, consultables por sistemas externos y medibles. Para TS04 se partirá del endpoint JSON de consulta por identificador que ya existe en el backend, verificando los criterios de aceptación que aún deban completarse.
+La planificación inicial del 1 de octubre de 2026 seleccionó US13, US14, TS04 y US16. El 6 de octubre se amplió el alcance documentado para incluir los otros seis ítems del Product Backlog que no estaban en Sprint 1: US10, SP02, US09, TS02, TS03 y US15. La ampliación es una decisión de planificación; la inclusión de una historia no demuestra que esté implementada ni aceptada. Luis Alexis Bardales Tejada confirmó el 6 de octubre la distribución de horas y responsables de TK59–TK76 para este reporte. Las horas son estimaciones de planificación, no tiempo ejecutado.
 
 ##### Sprint Planning 2
 
 | Campo del modelo de la guía | Plan de Sprint 2 |
 | --- | --- |
 | Sprint # | Sprint 2 |
-| Sprint Planning Background | Ampliar la trazabilidad y el aprovechamiento de las órdenes de compra generadas en el flujo existente. |
-| Date | 2026-10-01. |
+| Sprint Planning Background | Fortalecer la seguridad, la gestión de cotizaciones y la trazabilidad del proceso de compras, incorporando los ítems restantes del Product Backlog. |
+| Date | 2026-10-01 (planificación inicial). |
 | Time | 01:00 PM (GMT-5). |
 | Location | Reunión virtual mediante Google Meet. |
 | Prepared By | Bardales Tejada, Luis Alexis. |
 | Attendees (to planning meeting) | Bardales Tejada, Luis Alexis / De La Cruz De Los Santos, Mathias Marcelo / Guerrero Vasquez, Jhon Danny / Vallejo Trujillo, Fabio Cesar. |
+| Actualización del alcance | 2026-10-06: se añadieron US10, SP02, US09, TS02, TS03 y US15 al plan inicial. Esta actualización se registra después de la reunión indicada arriba. |
 | Sprint 1 Review Summary | El equipo revisó las evidencias disponibles del flujo de solicitudes, cotizaciones, evaluación y orden, las 32 pruebas unitarias backend aprobadas y el recorrido web de extremo a extremo aprobado. Se acordó revisar los criterios restantes y completar la evidencia móvil antes de cerrar el incremento. |
 | Sprint 1 Retrospective Summary | El equipo acordó conservar la integración entre módulos y mejorar el registro de estados del Board, la ejecución de pruebas en CI y la evidencia Android. |
-| Sprint Goal & User Stories | US13, US14, TS04 y US16. |
-| Sprint 2 Goal | **Nuestro enfoque está en** permitir que el jefe de adquisiciones exporte y consulte una orden trazable y examine indicadores respaldados por datos. **Creemos que esto aporta** mayor capacidad de seguimiento e integración al proceso de compras. **Se confirmará cuando** una orden aprobada pueda exportarse en PDF, sus cambios relevantes puedan consultarse, un consumidor autorizado obtenga su detalle mediante el contrato RESTful y el panel muestre tiempo de atención y ahorro solo cuando existan datos suficientes. |
-| Sprint 2 Velocity | Capacidad planificada: 24 Story Points. Se ajustará si la revisión de Sprint 1 aporta una velocidad observada diferente. |
-| Sum of Story Points | 24 Story Points: US13 (5), US14 (8), TS04 (3) y US16 (8). |
+| Sprint Goal & User Stories | US10, US13, US14, SP02, US09, TS02, US16, TS04, TS03 y US15. |
+| Sprint 2 Goal | **Nuestro enfoque está en** completar capacidades de acceso seguro, incorporación y conversión de cotizaciones, seguimiento de órdenes y evaluación de proveedores. **Creemos que esto aporta** un proceso de compras más confiable y trazable para adquisiciones. **Se confirmará cuando** los criterios de aceptación de las diez historias se verifiquen con datos y usuarios de prueba, y el spike SP02 entregue una recomendación sustentada. |
+| Sprint 2 Velocity | Velocidad establecida para la planificación: 60 Story Points. La velocidad observada del Sprint 1 y la disponibilidad efectiva todavía deben contrastarse con este valor. |
+| Sum of Story Points | 60 Story Points: US10 (8), US13 (5), US14 (8), SP02 (5), US09 (5), TS02 (5), US16 (8), TS04 (3), TS03 (5) y US15 (8). |
 
 ##### Aspect Leaders and Collaborators
 
-La matriz LACX organiza la colaboración para exportación de órdenes, auditoría, integración y analítica. Luis lidera TS04 y US16 según la hoja de distribución de tareas; la asignación de los cuatro aspectos se acordó en la planificación.
+La primera matriz LACX recoge los cuatro aspectos de la planificación inicial. La segunda incorpora los tres aspectos añadidos el 6 de octubre. Luis Alexis Bardales Tejada confirmó sus líderes para este plan; los colaboradores se identifican según las tareas TK59–TK76 asignadas en el Sprint Backlog. `L` indica líder, `C` colaborador y `—` que no hay tarea asignada en ese aspecto.
 
 | Integrante | GitHub | Exportación de órdenes (US13) | Auditoría (US14) | Integración (TS04) | Analítica (US16) |
 | --- | --- | :---: | :---: | :---: | :---: |
@@ -5030,9 +5031,30 @@ La matriz LACX organiza la colaboración para exportación de órdenes, auditor�
 | Guerrero Vasquez, Jhon Danny | Feli386 | C | C | C | C |
 | Vallejo Trujillo, Fabio Cesar | fabiovallejo | L | L | C | C |
 
+| Integrante | GitHub | Carga masiva y procesamiento asíncrono (US10, SP02) | Registro, autenticación y permisos (US09, TS02) | Conversión y desempeño de proveedores (TS03, US15) |
+| --- | --- | :---: | :---: | :---: |
+| Bardales Tejada, Luis Alexis | AlexisBardales | C | — | L |
+| De La Cruz De Los Santos, Mathias Marcelo | Dela050406 | L | C | C |
+| Guerrero Vasquez, Jhon Danny | Feli386 | C | C | C |
+| Vallejo Trujillo, Fabio Cesar | fabiovallejo | C | L | C |
+
 ##### Sprint Backlog 2
 
-El Sprint Backlog descompone las cuatro historias seleccionadas en tareas verificables. Las horas son estimaciones operativas y no una conversión de los Story Points. Los estados `To-do` de la tabla representan la línea base planificada para el inicio del Sprint. El estado actual de las historias se muestra en el tablero de Trello.
+El Sprint Backlog reúne diez ítems: las cuatro historias de la planificación inicial y seis incorporadas el 6 de octubre. TK44–TK58 conservan las estimaciones y responsables del plan inicial. TK59–TK76 descomponen los criterios de aceptación de 3.2. Luis Alexis Bardales Tejada confirmó sus horas estimadas y responsables para el plan del reporte el 6 de octubre; esto no registra ejecución de las tareas. `To-do` indica que estas tareas añadidas no están verificadas como terminadas. El estado actual de las tarjetas se consulta en Trello.
+
+![Estado previo del tablero de Sprint 2 con las cuatro historias iniciales](assets/requirements/sprint-backlog-2-smartquote.png)
+
+La captura anterior documenta el estado previo a la ampliación. El 6 de octubre se movieron US10, SP02, US09, TS02, TS03 y US15 desde `Product Backlog` a `Sprint Backlog (To-Do)`. Las diez tarjetas seleccionadas están ahora distribuidas entre `Sprint Backlog (To-Do)` (ocho) e `In-Process` (dos). Las listas también contienen tarjetas de Sprint 1, por lo que sus contadores no equivalen al número de historias de Sprint 2.
+
+![Vista actual de Sprint 2: TS02, TS03 y US15 en Sprint Backlog, y TS04 en In-Process](assets/requirements/sprint-backlog-2-ampliado-inferior-smartquote.png)
+
+![Vista actual complementaria de Sprint 2: US10, SP02 y US09 en Sprint Backlog, y TS04 y US16 en In-Process](assets/requirements/sprint-backlog-2-ampliado-superior-smartquote.png)
+
+Las dos capturas actuales muestran US10, SP02, US09, TS02, TS03 y US15 en `Sprint Backlog (To-Do)`, y TS04 y US16 en `In-Process`. US13 y US14 aparecen en la primera captura histórica y permanecen en el Sprint Backlog del tablero enlazado.
+
+La primera captura (histórica) muestra US13 y US14 en `Sprint Backlog (To-Do)`, y TS04 y US16 en `In-Process`. Los desgloses TK44–TK58 figuran en la tabla siguiente y en las listas de verificación de estas cuatro tarjetas del [tablero de Trello](https://trello.com/b/8zqlWB0a); no son visibles en esta vista general. Las tareas TK59–TK76 todavía no cuentan con listas de verificación en Trello.
+
+**URL del tablero de Trello (Sprint 2):** [https://trello.com/b/8zqlWB0a](https://trello.com/b/8zqlWB0a). El acceso requiere iniciar sesión en Trello.
 
 **Duración:** 4 semanas.
 
@@ -5053,8 +5075,28 @@ El Sprint Backlog descompone las cuatro historias seleccionadas en tareas verifi
 | US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK56 | Implementar cálculo en la API | Calcular tiempo y ahorro con datos persistidos, período y volumen de registros, sin generar valores sin respaldo. | 8 | Luis Alexis Bardales Tejada | To-do |
 | US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK57 | Construir el panel web | Mostrar indicadores, filtros, definiciones y estado de datos insuficientes. | 6 | Mathias Marcelo De La Cruz De Los Santos | To-do |
 | US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK58 | Probar filtros y datos insuficientes | Verificar el recálculo y que el panel no exhiba tiempo o ahorro cuando faltan datos. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| US10 | Incorporar cotizaciones mediante carga masiva de archivos PDF | TK59 | Revisar contrato de lote y estado por archivo | Verificar asociación con solicitud y proveedor, resultado y estado individual de cada PDF. | 4 | Luis Alexis Bardales Tejada | To-do |
+| US10 | Incorporar cotizaciones mediante carga masiva de archivos PDF | TK60 | Integrar carga y consulta de resultados | Permitir seleccionar varios PDF y consultar por archivo el estado, resultado y acción requerida. | 6 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US10 | Incorporar cotizaciones mediante carga masiva de archivos PDF | TK61 | Probar errores parciales y duplicados | Verificar lote mixto, archivos dañados o no admitidos, duplicados y persistencia de los válidos. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| SP02 | Evaluar la viabilidad del procesamiento asíncrono de lotes de documentos PDF | TK62 | Definir muestra y medidas del spike | Preparar PDF anonimizados y métricas de respuesta, duración, recursos, concurrencia y fallos. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| SP02 | Evaluar la viabilidad del procesamiento asíncrono de lotes de documentos PDF | TK63 | Ejecutar comparación y fallos | Comparar procesamiento síncrono y asíncrono; probar interrupciones, reintentos e idempotencia. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| SP02 | Evaluar la viabilidad del procesamiento asíncrono de lotes de documentos PDF | TK64 | Documentar conclusión del spike | Registrar resultados, límites, costos, monitoreo y recomendación de adopción o descarte. | 3 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US09 | Registrarse e iniciar sesión de forma segura en la plataforma | TK65 | Verificar registro y política de contraseña | Comprobar alta válida, protección de contraseña, rechazo de datos inseguros y correo duplicado. | 5 | Fabio Cesar Vallejo Trujillo | To-do |
+| US09 | Registrarse e iniciar sesión de forma segura en la plataforma | TK66 | Revisar acceso desde los clientes | Comprobar registro e inicio de sesión de los perfiles previstos y mensajes claros sin filtrar credenciales. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US09 | Registrarse e iniciar sesión de forma segura en la plataforma | TK67 | Probar credenciales válidas e inválidas | Verificar acceso por rol, rechazo y ausencia de creación duplicada. | 3 | Jhon Danny Guerrero Vasquez | To-do |
+| TS02 | Implementar autenticación y control de acceso basado en roles mediante JWT | TK68 | Revisar emisión de JWT | Verificar firma, identidad, rol, vigencia y ausencia de contraseñas o secretos en el token. | 5 | Fabio Cesar Vallejo Trujillo | To-do |
+| TS02 | Implementar autenticación y control de acceso basado en roles mediante JWT | TK69 | Revisar protección de endpoints | Comprobar roles requeridos y respuestas 401 y 403 sin ejecutar operaciones no autorizadas. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| TS02 | Implementar autenticación y control de acceso basado en roles mediante JWT | TK70 | Probar acceso y permisos | Cubrir token ausente, inválido y vencido, más rol insuficiente y persistencia sin cambios. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| TS03 | Integrar una fuente de tipo de cambio para la conversión de cotizaciones | TK71 | Seleccionar fuente oficial y datos de tasa | Definir fuente, fecha, hora, moneda, vigencia y conservación de la tasa aplicada. | 3 | Luis Alexis Bardales Tejada | To-do |
+| TS03 | Integrar una fuente de tipo de cambio para la conversión de cotizaciones | TK72 | Integrar conversión en la simulación | Convertir USD a PEN conservando importe y moneda originales y trazabilidad del cálculo. | 6 | Luis Alexis Bardales Tejada | To-do |
+| TS03 | Integrar una fuente de tipo de cambio para la conversión de cotizaciones | TK73 | Probar trazabilidad y falta de tasa | Verificar fuente y fecha mostradas, reproducibilidad y rechazo de conversión sin tasa vigente. | 3 | Jhon Danny Guerrero Vasquez | To-do |
+| US15 | Registrar y consultar el desempeño histórico de los proveedores | TK74 | Registrar evaluación posterior a entrega | Vincular calificación y observaciones con entrega, orden, autor y fecha; validar escala. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US15 | Registrar y consultar el desempeño histórico de los proveedores | TK75 | Consultar historial y promedio | Mostrar evaluaciones previas, período y cantidad utilizada para el promedio. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US15 | Registrar y consultar el desempeño histórico de los proveedores | TK76 | Probar reglas de evaluación | Rechazar evaluación antes de entrega o fuera de escala y verificar promedio e historial. | 4 | Jhon Danny Guerrero Vasquez | To-do |
 
-**Avance verificado de TS04 y US16 (3 y 4 de octubre de 2026).** En `Back`, el contrato de consulta de órdenes de TS04 quedó documentado y probado, y US16 incorporó `GET /api/v1/purchasing-metrics?from=YYYY-MM-DD&to=YYYY-MM-DD`, restringido a `PurchaseManager`. El cálculo usa órdenes y simulaciones persistidas y devuelve valores nulos cuando faltan datos suficientes. Las siete pruebas locales específicas de US16 aprobaron ([TRX](assets/testing/us16-local.trx)); la suite completa de integración aprobó 19 de 19 ([TRX](assets/testing/backend-integration-local.trx)). Los cambios están en `Back/develop`, commit `596e1db`. En `Front/develop`, commit `3651074`, el panel permite filtrar fechas y muestra definiciones, cantidad de registros y «No disponible» para valores nulos. Aprobaron compilación, lint y 15 de 15 pruebas unitarias ([registro](assets/testing/web-unit-tests-15.log)). Una prueba Playwright con respuestas simuladas aprobó el cambio de período y el estado sin datos; otra prueba Playwright aprobó la consulta de métricas contra la API y PostgreSQL locales con datos ficticios ([JUnit XML](assets/testing/us16-front-api-e2e.xml), 1 de 1). En esta última, el ingreso usa un token de prueba; la consulta de métricas sí llega a la API real local. No se ha verificado una ejecución de CI ni el funcionamiento en producción. Los estados de la tabla del Sprint Backlog conservan la planificación inicial; Trello muestra el estado actual de las historias.
+**Avance verificado de TS04 y US16 (3 y 4 de octubre de 2026).** En `Back`, el contrato de consulta de órdenes de TS04 quedó documentado y probado, y US16 incorporó `GET /api/v1/purchasing-metrics?from=YYYY-MM-DD&to=YYYY-MM-DD`, restringido a `PurchaseManager`. El cálculo usa órdenes y simulaciones persistidas y devuelve valores nulos cuando faltan datos suficientes. Las siete pruebas locales específicas de US16 aprobaron ([TRX](assets/testing/us16-local.trx)); la suite completa de integración aprobó 19 de 19 ([TRX](assets/testing/backend-integration-local.trx)). Los cambios están en `Back/develop`, commit `596e1db`. En `Front/develop`, commit `3651074`, el panel permite filtrar fechas y muestra definiciones, cantidad de registros y «No disponible» para valores nulos. Aprobaron compilación, lint y 15 de 15 pruebas unitarias ([registro](assets/testing/web-unit-tests-15.log)). Una prueba Playwright con respuestas simuladas aprobó el cambio de período y el estado sin datos; otra prueba Playwright aprobó la consulta de métricas contra la API y PostgreSQL locales con datos ficticios ([JUnit XML](assets/testing/us16-front-api-e2e.xml), 1 de 1). En esta última, el ingreso usa un token de prueba; la consulta de métricas sí llega a la API real local. No se ha verificado una ejecución de CI ni el funcionamiento en producción. Las filas TK44–TK58 conservan los estados de la planificación inicial; TK59–TK76 tienen horas y responsables confirmados para el plan del reporte, sin ejecución verificada. Trello muestra el estado actual de las tarjetas.
+
+La siguiente distribución de 68 horas corresponde a TK44–TK58, antes de la ampliación. Para TK59–TK76 se estiman otras 78 horas. El total planificado de Sprint 2 es 146 horas. Estas cifras no representan horas ejecutadas.
 
 | Integrante | Horas estimadas | Porcentaje de la capacidad del equipo |
 | --- | ---: | ---: |
@@ -5062,13 +5104,18 @@ El Sprint Backlog descompone las cuatro historias seleccionadas en tareas verifi
 | Mathias Marcelo De La Cruz De Los Santos | 14 | 21 % |
 | Jhon Danny Guerrero Vasquez | 15 | 22 % |
 | Fabio Cesar Vallejo Trujillo | 18 | 26 % |
-| **Total** | **68** | **100 %** |
+| **Subtotal TK44–TK58** | **68** | **100 %** |
 
-![Tablero de Trello del Sprint 2 con US13 y US14 en Sprint Backlog (To-Do), y TS04 y US16 en In-Process](assets/requirements/sprint-backlog-2-smartquote.png)
+**Distribución planificada de Sprint 2 (TK44–TK76; confirmada por Luis Alexis Bardales Tejada el 6 de octubre):**
 
-La captura muestra las cuatro historias seleccionadas: US13 y US14 en `Sprint Backlog (To-Do)`, y TS04 y US16 en `In-Process`. Los desgloses TK44–TK58 figuran en la tabla anterior y en las listas de verificación de cada tarjeta del [tablero de Trello](https://trello.com/b/8zqlWB0a); no son visibles en esta vista general.
+| Integrante | Horas TK44–TK58 | Horas estimadas TK59–TK76 | Total estimado | Porcentaje estimado |
+| --- | ---: | ---: | ---: | ---: |
+| Luis Alexis Bardales Tejada | 21 | 13 | 34 | 23 % |
+| Mathias Marcelo De La Cruz De Los Santos | 14 | 21 | 35 | 24 % |
+| Jhon Danny Guerrero Vasquez | 15 | 18 | 33 | 23 % |
+| Fabio Cesar Vallejo Trujillo | 18 | 26 | 44 | 30 % |
+| **Total** | **68** | **78** | **146** | **100 %** |
 
-**URL del tablero de Trello (Sprint 2):** [https://trello.com/b/8zqlWB0a](https://trello.com/b/8zqlWB0a). El acceso requiere iniciar sesión en Trello.
 
 ##### Evidencias para Sprint Review
 
