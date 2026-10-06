@@ -1269,9 +1269,13 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 
 URL del Trello: [https://trello.com/b/8zqlWB0a](https://trello.com/b/8zqlWB0a)
 
-**Estado de la evidencia:** la captura anterior muestra las diez tarjetas iniciales. La captura del tablero con los ítems 11–20 se incorporará cuando estén registrados en Trello.
+**Estado de la evidencia:** la captura anterior conserva el estado inicial de la columna Product Backlog, cuyo contador muestra 10 tarjetas. En el tablero actualizado hay 20 tarjetas distribuidas entre `Sprint Backlog (To-Do)` (5), `In-Process` (4), `To-Review` (2), `Done` (3) y `Product Backlog` (6). La vista general siguiente muestra las columnas del tablero y las tarjetas US13, US14, TS04 y US16 del Sprint 2. Los dos recortes posteriores permiten leer las seis tarjetas que permanecen en Product Backlog. La sección 5.2.1.2 documenta estas cuatro historias.
 
-> **CAPTURA PENDIENTE — Product Backlog actualizado.** Insertar aquí la captura de Trello con los ítems 1–20. Guardar el archivo como `assets/requirements/product-backlog-actualizado-smartquote.png` y comprobar que el equipo tenga acceso al tablero con su cuenta de Trello.
+![Tablero actualizado de SmartQuote: US10, SP02 y US09 visibles en Product Backlog](assets/requirements/product-backlog-actualizado-smartquote.png)
+
+![Detalle superior de Product Backlog: US10, SP02 y US09](assets/requirements/product-backlog-actualizado-detalle-superior-smartquote.png)
+
+![Detalle de Product Backlog: TS02, TS03 y US15](assets/requirements/product-backlog-actualizado-detalle-smartquote.png)
 
 ## 3.4. Impact Mapping
 
