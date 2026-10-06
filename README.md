@@ -1267,11 +1267,11 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 
 ![Trello Product Backlog](assets/requirements/product-backlog-smartquote.png)
 
-URL del Trello: [https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c79c2f57a6cfd64878a51236a769346419FD/smartquote](https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c79c2f57a6cfd64878a51236a769346419FD/smartquote)
+URL del Trello: [https://trello.com/b/8zqlWB0a](https://trello.com/b/8zqlWB0a)
 
 **Estado de la evidencia:** la captura anterior muestra las diez tarjetas iniciales. La captura del tablero con los ítems 11–20 se incorporará cuando estén registrados en Trello.
 
-> **CAPTURA PENDIENTE — Product Backlog actualizado.** Insertar aquí la captura de Trello con los ítems 1–20. Guardar el archivo como `assets/requirements/product-backlog-actualizado-smartquote.png` y verificar que la URL del tablero en 3.3 sea pública.
+> **CAPTURA PENDIENTE — Product Backlog actualizado.** Insertar aquí la captura de Trello con los ítems 1–20. Guardar el archivo como `assets/requirements/product-backlog-actualizado-smartquote.png` y comprobar que el equipo tenga acceso al tablero con su cuenta de Trello.
 
 ## 3.4. Impact Mapping
 
@@ -4991,7 +4991,7 @@ La distribución de horas mantiene una carga inicial equivalente entre los integ
 
 ![Trello Sprint Backlog 1](assets/requirements/sprint-backlog-1-smartquote.png)
 
-URL del Trello: [https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c79c2f57a6cfd64878a51236a769346419FD/smartquote](https://trello.com/invite/b/6aa85b3facd61f254c956e26/ATTI1ef2c79c2f57a6cfd64878a51236a769346419FD/smartquote)
+URL del Trello: [https://trello.com/b/8zqlWB0a](https://trello.com/b/8zqlWB0a)
 
 #### 5.2.1.2. Sprint 2
 
@@ -5028,7 +5028,7 @@ La matriz LACX organiza la colaboración para exportación de órdenes, auditor�
 
 ##### Sprint Backlog 2
 
-El Sprint Backlog descompone las cuatro historias seleccionadas en tareas verificables. Las horas son estimaciones operativas y no una conversión de los Story Points. Los estados `To-do` representan la línea base planificada para el inicio del Sprint y deberán sincronizarse con el Board.
+El Sprint Backlog descompone las cuatro historias seleccionadas en tareas verificables. Las horas son estimaciones operativas y no una conversión de los Story Points. Los estados `To-do` de la tabla representan la línea base planificada para el inicio del Sprint. El estado actual de las historias se muestra en el tablero de Trello.
 
 **Duración:** 4 semanas.
 
@@ -5050,7 +5050,7 @@ El Sprint Backlog descompone las cuatro historias seleccionadas en tareas verifi
 | US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK57 | Construir el panel web | Mostrar indicadores, filtros, definiciones y estado de datos insuficientes. | 6 | Mathias Marcelo De La Cruz De Los Santos | To-do |
 | US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK58 | Probar filtros y datos insuficientes | Verificar el recálculo y que el panel no exhiba tiempo o ahorro cuando faltan datos. | 4 | Jhon Danny Guerrero Vasquez | To-do |
 
-**Avance verificado de TS04 y US16 (3 y 4 de octubre de 2026).** En `Back`, el contrato de consulta de órdenes de TS04 quedó documentado y probado, y US16 incorporó `GET /api/v1/purchasing-metrics?from=YYYY-MM-DD&to=YYYY-MM-DD`, restringido a `PurchaseManager`. El cálculo usa órdenes y simulaciones persistidas y devuelve valores nulos cuando faltan datos suficientes. Las siete pruebas locales específicas de US16 aprobaron ([TRX](assets/testing/us16-local.trx)); la suite completa de integración aprobó 19 de 19 ([TRX](assets/testing/backend-integration-local.trx)). Los cambios están en `Back/develop`, commit `596e1db`. En `Front/develop`, commit `3651074`, el panel permite filtrar fechas y muestra definiciones, cantidad de registros y «No disponible» para valores nulos. Aprobaron compilación, lint y 15 de 15 pruebas unitarias ([registro](assets/testing/web-unit-tests-15.log)). Una prueba Playwright con respuestas simuladas aprobó el cambio de período y el estado sin datos; otra prueba Playwright aprobó la consulta de métricas contra la API y PostgreSQL locales con datos ficticios ([JUnit XML](assets/testing/us16-front-api-e2e.xml), 1 de 1). En esta última, el ingreso usa un token de prueba; la consulta de métricas sí llega a la API real local. No se ha verificado una ejecución de CI ni el funcionamiento en producción. Los estados del Sprint Backlog son la planificación inicial hasta que el equipo los sincronice con Trello.
+**Avance verificado de TS04 y US16 (3 y 4 de octubre de 2026).** En `Back`, el contrato de consulta de órdenes de TS04 quedó documentado y probado, y US16 incorporó `GET /api/v1/purchasing-metrics?from=YYYY-MM-DD&to=YYYY-MM-DD`, restringido a `PurchaseManager`. El cálculo usa órdenes y simulaciones persistidas y devuelve valores nulos cuando faltan datos suficientes. Las siete pruebas locales específicas de US16 aprobaron ([TRX](assets/testing/us16-local.trx)); la suite completa de integración aprobó 19 de 19 ([TRX](assets/testing/backend-integration-local.trx)). Los cambios están en `Back/develop`, commit `596e1db`. En `Front/develop`, commit `3651074`, el panel permite filtrar fechas y muestra definiciones, cantidad de registros y «No disponible» para valores nulos. Aprobaron compilación, lint y 15 de 15 pruebas unitarias ([registro](assets/testing/web-unit-tests-15.log)). Una prueba Playwright con respuestas simuladas aprobó el cambio de período y el estado sin datos; otra prueba Playwright aprobó la consulta de métricas contra la API y PostgreSQL locales con datos ficticios ([JUnit XML](assets/testing/us16-front-api-e2e.xml), 1 de 1). En esta última, el ingreso usa un token de prueba; la consulta de métricas sí llega a la API real local. No se ha verificado una ejecución de CI ni el funcionamiento en producción. Los estados de la tabla del Sprint Backlog conservan la planificación inicial; Trello muestra el estado actual de las historias.
 
 | Integrante | Horas estimadas | Porcentaje de la capacidad del equipo |
 | --- | ---: | ---: |
@@ -5060,9 +5060,11 @@ El Sprint Backlog descompone las cuatro historias seleccionadas en tareas verifi
 | Fabio Cesar Vallejo Trujillo | 18 | 26 % |
 | **Total** | **68** | **100 %** |
 
-> **CAPTURA PENDIENTE — Sprint Backlog 2.** Insertar aquí la captura del tablero de Trello con las tarjetas TK44–TK58 y sus estados. Guardar el archivo como `assets/requirements/sprint-backlog-2-smartquote.png`.
+![Tablero de Trello del Sprint 2 con US13 y US14 en Sprint Backlog (To-Do), y TS04 y US16 en In-Process](assets/requirements/sprint-backlog-2-smartquote.png)
 
-**URL pública del Board de Sprint 2:** pendiente de incorporar por el integrante que administra Trello.
+La captura muestra las cuatro historias seleccionadas: US13 y US14 en `Sprint Backlog (To-Do)`, y TS04 y US16 en `In-Process`. Los desgloses TK44–TK58 figuran en la tabla anterior y en las listas de verificación de cada tarjeta del [tablero de Trello](https://trello.com/b/8zqlWB0a); no son visibles en esta vista general.
+
+**URL del tablero de Trello (Sprint 2):** [https://trello.com/b/8zqlWB0a](https://trello.com/b/8zqlWB0a). El acceso requiere iniciar sesión en Trello.
 
 ##### Evidencias para Sprint Review
 
