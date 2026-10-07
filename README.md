@@ -465,9 +465,17 @@ Proyecto
       - [Principales esquemas de respuesta](#principales-esquemas-de-respuesta)
     - [5.2.8. Team Collaboration Insights](#528-team-collaboration-insights)
       - [Landing Page](#landing-page)
+      - [**AV1**](#av1)
+      - [**TB1**](#tb1)
       - [Frontend Web Application](#frontend-web-application)
+      - [**AV1**](#av1-1)
+      - [**TB1**](#tb1-1)
       - [Native Mobile Application](#native-mobile-application)
+      - [**AV1**](#av1-2)
+      - [**TB1**](#tb1-2)
       - [Web Services](#web-services)
+      - [**AV1**](#av1-3)
+      - [**TB1**](#tb1-3)
   - [5.3. Video About-the-Product](#53-video-about-the-product)
     - [Enlaces de publicación](#enlaces-de-publicación)
 - [Capítulo VI: Product Verification \& Validation](#capítulo-vi-product-verification--validation)
@@ -5340,8 +5348,15 @@ La tabla resume los commits disponibles en el repositorio móvil y conserva la t
 
 | Repository | Commit Id | Commit Message | Commit Message Body | Committed on (Date) |
 | --- | --- | --- | --- | --- |
-| `smartquote-native-mobile` | `0f02343` | `feat: added views for app` | — | 2026-09-16 |
-| `smartquote-native-mobile` | `b0cbb97` | `add: login view mobile smartquote` | Esqueleto funcional mobile | 2026-09-15 |
+| `smartquote-native-mobile` | `0c8cdee` | `feat : added tests for US` | — | 2026-10-07 |
+| `smartquote-native-mobile` | `eaa6546` | `fix: trigger mobile CI on push to develop` | — | 2026-10-07 |
+| `smartquote-native-mobile` | `350d871` | `ci: add Flutter analyze, test and debug APK pipeline` | — | 2026-10-07 |
+| `smartquote-native-mobile` | `dbc937e` | `feat: added evaluation and simulation for mobile app` | — | 2026-10-06 |
+| `smartquote-native-mobile` | `9dfa27d` | `add: actualización del código mobile` | Este contiene el código terminado en estado puro sin elementos esteticos, es decir tiene todas las funcionalidades del frontend | 2026-10-05 |
+| `smartquote-native-mobile` | `e639096` | `add: actualizacón` | actualizando la carpeta del código | 2026-10-05 |
+| `smartquote-native-mobile` | `022d47d` | `add: actualizacion` | problemas tecnicos | 2026-10-05 |
+| `smartquote-native-mobile` | `12ccccf` | `add: actualizacion` | — | 2026-10-05 |
+| `smartquote-native-mobile` | `b0cbb97` | `add: login view mobile smartquote` | - Esqueleto funcional mobile | 2026-09-15 |
 | `smartquote-native-mobile` | `576b509` | `Initial commit` | — | 2026-09-06 |
 
 La tabla conserva algunos commits de la implementación inicial; el historial completo y actualizado está disponible en el repositorio enlazado.
