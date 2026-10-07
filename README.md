@@ -5694,6 +5694,16 @@ La ejecución del flujo produjo una [captura de comparación en escritorio](asse
 
 ![Orden de compra en la aplicación web con ventana estrecha](assets/testing/vue-order-narrow-web.png)
 
+**Capturas del proyecto móvil ejecutado en Chrome (evidencia visual facilitada por el integrante responsable).** El compañero indicó que ejecutó la aplicación en Chrome. Tres capturas muestran `localhost:50661`; la captura de la lista de solicitudes está recortada y no permite identificar el dispositivo. Estas imágenes muestran pantallas de la interfaz, pero no documentan un recorrido de prueba completo ni una ejecución en Android.
+
+![Pantalla de inicio de sesión del proyecto Flutter ejecutado en Chrome](assets/testing/flutter-chrome-login.png)
+
+![Lista de solicitudes y menú del proyecto Flutter, captura compartida por el integrante](assets/testing/flutter-chrome-purchase-requests.png)
+
+![Formulario de nueva solicitud del proyecto Flutter ejecutado en Chrome](assets/testing/flutter-chrome-new-request.png)
+
+![Notificaciones del proyecto Flutter ejecutado en Chrome](assets/testing/flutter-chrome-notifications.png)
+
 **Pendiente para cerrar 6.1.4:** ejecutar el flujo principal en un dispositivo o emulador Android, registrar versión de la aplicación, dispositivo, fecha, pasos y resultado, y adjuntar capturas o video de esa ejecución. Hasta contar con esa evidencia, el recorrido de extremo a extremo queda verificado únicamente para la aplicación web en el entorno local descrito.
 ## Capítulo VII: DevOps Practices
 
