@@ -1,0 +1,13 @@
+
+> smartquote-frontend-web@0.2.0 test:e2e
+> playwright test --grep production creates a request --reporter=line
+
+
+Running 1 test using 1 worker
+
+
+
+(node:31652) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1/1] tests\e2e\workflow.spec.js:79:1 › production creates a request and manager completes the purchasing workflow against the real API
+  1 passed (17.5s)

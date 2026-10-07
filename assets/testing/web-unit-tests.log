@@ -1,0 +1,26 @@
+
+> smartquote-frontend-web@0.2.0 test
+> node --test tests/unit/*.test.js
+
+✔ domain and application remain independent from Vue and HTTP infrastructure (23.0844ms)
+✔ presentation uses application services rather than direct HTTP calls (18.3928ms)
+✔ English and Latin American Spanish provide matching translation keys (14.5696ms)
+✔ application sources contain Vue and JavaScript, with no React or TypeScript files (4.1196ms)
+✔ requests reject missing mandatory requirements and invalid quantities (4.0054ms)
+✔ application validates before calling its injected repository (0.4054ms)
+✔ request transitions preserve terminal states and require a reason (0.4015ms)
+✔ quotation mappings cover every line; editable fields match API contract (0.5439ms)
+✔ all mandatory requirements survive defaults and weights must sum to 100 (0.8209ms)
+✔ simulation cannot approve a superseded scenario or unrelated request (0.5207ms)
+✔ order approval revalidates current simulation before persisting (0.4538ms)
+✔ access only allows HTTPS or loopback HTTP; roles do not bypass backend validation (3.1928ms)
+✔ HTTP repository sends expectedVersion and client accepts 204 without retries (32.31ms)
+✔ 401, 403 and 409 stay explicit and failed mutations are never retried (5.6754ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 184.5831
