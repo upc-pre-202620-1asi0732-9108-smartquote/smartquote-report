@@ -5710,14 +5710,16 @@ La integración continua verifica los cambios antes de publicarlos. Los workflow
 | Orquestación CI/CD | GitHub Actions | Ejecuta workflows ante `push`, `pull_request` o una llamada reutilizable desde los pipelines de despliegue. |
 | Backend | .NET CLI y SDK indicado por `global.json` | Restaura dependencias con `dotnet restore`, compila en Release con `dotnet build` y ejecuta pruebas con `dotnet test`. |
 | Frontend | Node.js 24 y npm | Instala dependencias bloqueadas con `npm ci`; ejecuta ESLint, pruebas unitarias de Node.js, compilación Vite y pruebas de navegador Playwright. |
+| App móvil | Flutter SDK 3.47.4 (canal stable) y Dart | Instala Flutter con `subosito/flutter-action@v2`, descarga dependencias con `flutter pub get`, analiza el código con `dart analyze`, ejecuta `flutter test` y compila un APK de depuración con `flutter build apk --debug`. |
 | Evidencia de pruebas backend | `actions/upload-artifact@v4` | Conserva los archivos de resultados de pruebas `.trx` asociados a la ejecución. |
 | Artefacto web validado | `actions/upload-artifact@v4` y `actions/download-artifact@v4` | Transfiere `dist/` desde CI al job de publicación de Azure Static Web Apps sin compilarlo nuevamente. |
+| APK de prueba | `actions/upload-artifact@v4` | Publica el APK de depuración (`app-debug.apk`) generado por el workflow como artefacto descargable, sin firmar y sin uso para distribución. |
 
-Los pipelines se activan ante `pull_request` dirigido a `develop` o `main`. Los cambios en ramas de trabajo ejecutan CI en cada `push`; los `push` a `develop` y `main` se validan mediante los workflows de despliegue que invocan `ci.yml`. El backend publica artefactos `.trx`; el frontend publica el directorio compilado `dist/`, no un informe de cobertura.
+Los pipelines se activan ante `pull_request` dirigido a `develop` o `main`. Los cambios en ramas de trabajo ejecutan CI en cada `push`; los `push` a `develop` y `main` se validan mediante los workflows de despliegue que invocan `ci.yml`. El backend publica artefactos `.trx`; el frontend publica el directorio compilado `dist/`, no un informe de cobertura. La app móvil no tiene un pipeline de despliegue que reutilice `ci.yml`, así que su workflow se ejecuta directamente ante cualquier `push`, incluido `develop`, y publica el APK de depuración como artefacto.
 
 Un error en restauración, análisis de código, compilación o una prueba produce un resultado fallido. En los pipelines de despliegue, el job de publicación depende de la validación (`needs: validate`), por lo que no se ejecuta si CI falla. El bloqueo efectivo de una fusión en GitHub requiere configurar adicionalmente las reglas de protección para exigir los checks correspondientes; no se afirma aquí que dichas reglas estén habilitadas.
 
-El conjunto de pruebas del backend invoca `dotnet test`. El frontend ejecuta 14 pruebas unitarias, además de la suite Playwright; en la configuración predeterminada, los casos de navegador que requieren credenciales y servicios locales se omiten. Por ello, la aprobación del workflow no equivale a ejecutar las pruebas de integración contra la API desplegada.
+El conjunto de pruebas del backend invoca `dotnet test`. El frontend ejecuta 14 pruebas unitarias, además de la suite Playwright; en la configuración predeterminada, los casos de navegador que requieren credenciales y servicios locales se omiten. Por ello, la aprobación del workflow no equivale a ejecutar las pruebas de integración contra la API desplegada. La app móvil ejecuta su suite con `flutter test` (32 pruebas de widgets y unitarias, con repositorios falsos, sin red real). El APK de depuración que se compila y publica después sí queda configurado con `--dart-define=API_BASE_URL` apuntando a la API de Azure desplegada.
 
 #### 7.1.2. Build & Test Suite Pipeline Components
 
@@ -5819,6 +5821,64 @@ En el backend, `checkout` obtiene el código; `setup-dotnet` instala el SDK decl
 ![Artefacto de resultados TRX del backend](assets/devops/7.1.2-02-backend-test-artifact.png)
 
 ![Artefacto frontend-dist de la compilación validada](assets/devops/7.1.2-04-frontend-build-artifact.png)
+
+**Workflow CI de la app móvil — `smartquote-native-mobile/.github/workflows/ci.yml`:**
+
+```yaml
+name: CI - Native Mobile
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+    branches: [develop, main]
+  workflow_call:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: SmartquoteApp-mobile/smartquote_mobile
+
+jobs:
+  check:
+    name: Analyze, test and build debug APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.47.4"
+          channel: stable
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Analyze
+        run: dart analyze
+      - name: Run tests
+        run: flutter test
+      - name: Build debug APK
+        run: flutter build apk --debug
+          --dart-define=API_BASE_URL=https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: smartquote-mobile-debug-apk
+          path: SmartquoteApp-mobile/smartquote_mobile/build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7
+```
+
+El proyecto Flutter está anidado en `SmartquoteApp-mobile/smartquote_mobile`, por lo que `defaults.run.working-directory` evita repetirlo en cada paso. `setup-java` instala el JDK 17 que requiere el Gradle del proyecto Android; `subosito/flutter-action` instala el SDK de Flutter en el canal y la versión indicados; `flutter pub get` resuelve las dependencias declaradas en `pubspec.yaml`; `dart analyze` aplica las reglas de `analysis_options.yaml` (que incluye `flutter_lints`) sin depender del servidor de análisis interactivo; `flutter test` corre la suite de pruebas; `flutter build apk --debug` compila un APK de depuración con la URL de la API de Azure incluida; `upload-artifact` publica ese APK como artefacto descargable del workflow, con una retención de 7 días. Por tratarse de una compilación de depuración, el APK no está firmado para distribución.
+
+![Ejecución satisfactoria de CI de la app móvil en GitHub Actions](assets/devops/7.1.2-05-mobile-ci-success.png)
+
+![Artefacto smartquote-mobile-debug-apk publicado por el workflow](assets/devops/7.1.2-06-mobile-apk-artifact.png)
 
 ### 7.2. Continuous Delivery
 
