@@ -63,6 +63,7 @@ Proyecto
 | Versión | Fecha | Autor | Descripción de modificación |
 | --- | --- | --- | --- |
 | **AV1** | **13/09/2026** | **Bardales Tejada, Luis Alexis; De La Cruz De Los Santos, Mathias Marcelo; Guerrero Vasquez, Jhon Danny; Vallejo Trujillo, Fabio Cesar** | Consolidación del avance **AV1** del reporte de SmartQuote. Se incorporaron el Student Outcome 4; el Capítulo I (Startup Profile, Solution Profile y segmentos objetivo); el Capítulo II (Competidores, análisis competitivo, estrategias y tácticas, diseño de entrevistas y Ubiquitous Language); el Capítulo III (User Stories y Product Backlog); el Capítulo IV (Style Guidelines, Information Architecture, Landing Page wireframes y mock-ups, arquitectura DDD, diagramas de componentes y clases, y diseño de base de datos); y el Capítulo V (Software Configuration Management y Sprint 1: Sprint Planning, LACX y Sprint Backlog). También se actualizaron los perfiles y assets del equipo, las fuentes citadas, las conclusiones, recomendaciones, bibliografía y anexos. Las evidencias de entrevistas aún no registradas, prototipos de aplicaciones, implementación de productos, documentación de servicios y despliegue se mantienen pendientes para futuras actualizaciones. |
+| **TB1** | **06/10/2026** | **Bardales Tejada, Luis Alexis; De La Cruz De Los Santos, Mathias Marcelo; Guerrero Vasquez, Jhon Danny; Vallejo Trujillo, Fabio Cesar** | Actualización del Student Outcome 4 y desarrollo de los capítulos VI y VII. El capítulo VI documenta las suites de pruebas de entidades, integración, BDD y sistema. El capítulo VII presenta las herramientas y prácticas de integración continua, los componentes de compilación y pruebas, y los flujos de entrega y despliegue para staging y producción. Se incorporan evidencias y resultados de validación, así como contribuciones del equipo a las aplicaciones web y móvil, los servicios backend y sus pipelines. |
 
 ---
 
@@ -76,6 +77,15 @@ Proyecto
 | Frontend Web Application | [smartquote-frontend-web](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web) | ![GitHub Insights — smartquote-web-services](assets/collaboration/frontend-web-github-insights.png) |
 | Native Mobile Application | [smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile) | ![GitHub Insights — smartquote-web-services](assets/collaboration/native-mobile-github-insights.png) |
 | Web Services | [smartquote-web-services](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services) | ![GitHub Insights — smartquote-web-services](assets/collaboration/web-services-github-insights.png) |
+
+**TB1:**
+
+| Entregable | Repositorio GitHub | Evidencia de colaboración |
+|---|---|---|
+| Landing Page | [smartquote-landing-page](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page) | ![GitHub Insights TB1 — smartquote-landing-page](assets/collaboration/landing-page-github-insightsTP.png) |
+| Frontend Web Application | [smartquote-frontend-web](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web) | ![GitHub Insights TB1 — smartquote-frontend-web](assets/collaboration/frontend-web-github-insightsTP.png) |
+| Native Mobile Application | [smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile) | ![GitHub Insights TB1 — smartquote-native-mobile](assets/collaboration/native-mobile-github-insightsTP.png) |
+| Web Services | [smartquote-web-services](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services) | ![GitHub Insights TB1 — smartquote-web-services](assets/collaboration/web-services-github-insightsTP.png) |
 
 ## Contenido
 
@@ -233,12 +243,19 @@ Proyecto
         - [Quotation Intake Context](#quotation-intake-context)
         - [Evaluation \& Simulation Context — Core Domain](#evaluation--simulation-context--core-domain)
         - [Purchase Ordering Context](#purchase-ordering-context)
+        - [Identity \& Access Management Context — IdentityAccess](#identity--access-management-context--identityaccess)
       - [Web Application (`smartquote-frontend-web`)](#web-application-smartquote-frontend-web)
         - [Supply Requests Context](#supply-requests-context-1)
         - [Quotation Intake Context](#quotation-intake-context-1)
         - [Evaluation \& Simulation Context — Core Domain](#evaluation--simulation-context--core-domain-1)
         - [Purchase Ordering Context](#purchase-ordering-context-1)
+        - [Identity \& Access Management Context — IdentityAccess](#identity--access-management-context--identityaccess-1)
       - [Native Mobile Application (`smartquote-native-mobile`)](#native-mobile-application-smartquote-native-mobile)
+        - [Identity \& Access Management Context — IdentityAccess](#identity--access-management-context--identityaccess-2)
+        - [Supply Requests Context](#supply-requests-context-2)
+        - [Quotation Intake Context](#quotation-intake-context-2)
+        - [Evaluation \& Simulation Context — Core Domain](#evaluation--simulation-context--core-domain-2)
+        - [Purchase Ordering Context](#purchase-ordering-context-2)
   - [4.9. Software Object-Oriented Design](#49-software-object-oriented-design)
     - [4.9.1. Class Diagrams](#491-class-diagrams)
       - [4.9.1.1. Supply Requests Context](#4911-supply-requests-context)
@@ -409,6 +426,10 @@ Proyecto
         - [Aspect Leaders and Collaborators](#aspect-leaders-and-collaborators)
         - [Sprint Backlog 1](#sprint-backlog-1)
       - [5.2.1.2. Sprint 2](#5212-sprint-2)
+        - [Sprint Planning 2](#sprint-planning-2)
+        - [Aspect Leaders and Collaborators](#aspect-leaders-and-collaborators-1)
+        - [Sprint Backlog 2](#sprint-backlog-2)
+        - [Evidencias para Sprint Review](#evidencias-para-sprint-review)
     - [5.2.2. Implemented Landing Page Evidence](#522-implemented-landing-page-evidence)
       - [Repositorio de código fuente](#repositorio-de-código-fuente)
       - [Despliegue](#despliegue)
@@ -449,8 +470,8 @@ Proyecto
       - [Web Services](#web-services)
   - [5.3. Video About-the-Product](#53-video-about-the-product)
     - [Enlaces de publicación](#enlaces-de-publicación)
-- [Capítulo VI: Product Verification & Validation](#capítulo-vi-product-verification--validation)
-  - [6.1. Testing Suites & Validation](#61-testing-suites--validation)
+- [Capítulo VI: Product Verification \& Validation](#capítulo-vi-product-verification--validation)
+  - [6.1. Testing Suites \& Validation](#61-testing-suites--validation)
     - [6.1.1. Core Entities Unit Tests](#611-core-entities-unit-tests)
     - [6.1.2. Core Integration Tests](#612-core-integration-tests)
     - [6.1.3. Core Behavior-Driven Development](#613-core-behavior-driven-development)
@@ -469,7 +490,11 @@ Proyecto
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
 - [Bibliografía](#bibliografía)
 - [Anexos](#anexos)
-  - [Anexo A. Videos de Exposiciones](#anexo-a-videos-de-exposiciones)
+  - [Anexo A. Sistemas publicados](#anexo-a-sistemas-publicados)
+  - [Anexo B. Gestión del proyecto](#anexo-b-gestión-del-proyecto)
+  - [Anexo C. Repositorios del proyecto](#anexo-c-repositorios-del-proyecto)
+  - [Anexo D. Videos de entrevistas y del producto](#anexo-d-videos-de-entrevistas-y-del-producto)
+  - [Anexo E. Artefactos de diseño](#anexo-e-artefactos-de-diseño)
 
 # Student Outcome
 
@@ -480,8 +505,8 @@ Proyecto
 
 | Criterio específico | Acciones realizadas | Conclusiones |
 |---|---|---|
-| 4.c.1 Reconoce responsabilidad ética y profesional en situaciones de ingeniería de software | **Luis Alexis Bardales Tejada** _AV1_: desarrolló el proceso Lean UX, el análisis de competidores, el diseño y registro de entrevistas, su análisis y el Ubiquitous Language; incorporó consentimiento, confidencialidad, fuentes citadas y un vocabulario verificable para representar responsablemente el problema y a sus usuarios.<br><br>**Jhon Danny Guerrero Vasquez**<br>     _AV1_: realizó entrevistas para ambos segmentos y elaboró User Personas, User Task Matrix, User Journey Maps, Empathy Maps y As-Is Scenario Maps; vinculó los hallazgos con las necesidades reales y consideró accesibilidad y contexto operativo en las guías, wireframes, wireflows, mock-ups y prototipos móviles.<br><br>**Mathias Marcelo De La Cruz De Los Santos**<br>_AV1_: realizó entrevistas, escenarios To-Be, Impact Mapping, Style Guidelines, Information Architecture y los artefactos UX/UI de la Landing Page y Web App; aplicó i18n, accesibilidad, tono verificable y una comunicación clara para evitar mensajes engañosos a los usuarios.<br><br>**Fabio Cesar Vallejo Trujillo**<br>_AV1_: definió las User Stories, criterios de aceptación, Product Backlog, arquitectura DDD, diseño de clases y base de datos, configuración de desarrollo y el Sprint Backlog; estableció supervisión humana sobre la recomendación de IA, trazabilidad, controles de acceso, protección de secretos e idempotencia para que las decisiones profesionales no fueran reemplazadas ni quedaran sin evidencia. | En el entregable **AV1**, el equipo reconoció que una solución de adquisiciones con IA debe respetar la autonomía y la confidencialidad de las personas, comunicar la incertidumbre, ser accesible y conservar evidencia de cada decisión. La investigación con usuarios, el diseño inclusivo y la arquitectura con revisión y aprobación humana establecen una base ética y profesional para el desarrollo de SmartQuote. |
-| 4.c.2 Emite juicios informados considerando el impacto de las soluciones de ingeniería de software en contextos globales, económicos, ambientales y sociales | **Luis Alexis Bardales Tejada**<br> _AV1_: utilizó entrevistas, Lean UX y el análisis competitivo/FODA para contrastar la propuesta con necesidades y alternativas existentes, priorizando la reducción del trabajo manual, la trazabilidad y la especialización avícola antes de definir el alcance.<br><br>**Jhon Danny Guerrero Vasquez**<br>AV1: transformó la evidencia de las entrevistas en personas, tareas, journeys y mapas de empatía, y la empleó para decidir que el especialista de producción y sanidad requiere una experiencia móvil centrada en registrar solicitudes y anticipar riesgos de abastecimiento.<br><br>**Mathias Marcelo De La Cruz De Los Santos**<br>_AV1_: construyó el To-Be Scenario Mapping y el Impact Map con una meta SMART, y tomó decisiones de diseño, arquitectura de información, responsive, i18n y accesibilidad considerando la adopción de la solución por los segmentos de adquisiciones, producción y sanidad.<br><br>**Fabio Cesar Vallejo Trujillo**<br>_AV1_: priorizó y estimó las historias, y alineó requisitos, arquitectura, modelo de datos, configuración y Sprint Backlog; evaluó los efectos económicos de reducir tiempos y errores de compra, los riesgos técnicos de la extracción con IA, la seguridad de la información y la continuidad operativa mediante modo de contingencia. | En el entregable **AV1**, las decisiones del equipo se sustentaron en entrevistas, competencia, impacto y restricciones técnicas, en lugar de asumir que la automatización era suficiente por sí misma. El alcance resultante considera el contexto global mediante i18n y una arquitectura extensible, el económico mediante menor retrabajo y decisiones trazables, el social mediante roles y accesibilidad, y el ambiental mediante la digitalización y reducción de reprocesos documentales; los riesgos de IA permanecen sujetos a validación humana. |
+| 4.c.1 Reconoce responsabilidad ética y profesional en situaciones de ingeniería de software | **Luis Alexis Bardales Tejada**<br>_AV1_: desarrolló el proceso Lean UX, el análisis de competidores, el diseño y registro de entrevistas, su análisis y el Ubiquitous Language; incorporó consentimiento, confidencialidad, fuentes citadas y un vocabulario verificable para representar responsablemente el problema y a sus usuarios.<br>_TB1_: fortaleció la responsabilidad profesional mediante pruebas unitarias, de integración, BDD y de sistema, además de exponer métricas del proceso de compras con criterios definidos y verificables.<br><br>**Jhon Danny Guerrero Vasquez**<br>_AV1_: realizó entrevistas para ambos segmentos y elaboró User Personas, User Task Matrix, User Journey Maps, Empathy Maps y As-Is Scenario Maps; vinculó los hallazgos con las necesidades reales y consideró accesibilidad y contexto operativo en las guías, wireframes, wireflows, mock-ups y prototipos móviles.<br>_TB1_: desarrolló flujos móviles con validación, registro de cambios y consulta de métricas, reforzando la trazabilidad de las acciones y el control de la información presentada al usuario.<br><br>**Mathias Marcelo De La Cruz De Los Santos**<br>_AV1_: realizó entrevistas, escenarios To-Be, Impact Mapping, Style Guidelines, Information Architecture y los artefactos UX/UI de la Landing Page y Web App; aplicó i18n, accesibilidad, tono verificable y una comunicación clara para evitar mensajes engañosos a los usuarios.<br>_TB1_: trabajó el registro web y el acuerdo de servicio, y añadió un pipeline de CI para Flutter; esto contribuye a que las condiciones de uso sean explícitas y los cambios de la aplicación se verifiquen de manera consistente.<br><br>**Fabio Cesar Vallejo Trujillo**<br>_AV1_: definió las User Stories, criterios de aceptación, Product Backlog, arquitectura DDD, diseño de clases y base de datos, configuración de desarrollo y el Sprint Backlog; estableció supervisión humana sobre la recomendación de IA, trazabilidad, controles de acceso, protección de secretos e idempotencia para que las decisiones profesionales no fueran reemplazadas ni quedaran sin evidencia.<br>_TB1_: implementó y documentó cambios de backend, extracción de cotizaciones y conversión monetaria, además de configurar pipelines; estas prácticas apoyan el manejo trazable de datos y la publicación controlada del software. | En el entregable **AV1**, el equipo reconoció que una solución de adquisiciones con IA debe respetar la autonomía y la confidencialidad de las personas, comunicar la incertidumbre, ser accesible y conservar evidencia de cada decisión. La investigación con usuarios, el diseño inclusivo y la arquitectura con revisión y aprobación humana establecen una base ética y profesional para el desarrollo de SmartQuote.<br><br>En **TB1**, el equipo reforzó esa base mediante pruebas automatizadas, registro de cambios, validaciones y procesos de publicación controlados. Las funcionalidades de recomendación y métricas apoyan el trabajo profesional sin sustituir la revisión ni la aprobación de las personas responsables. |
+| 4.c.2 Emite juicios informados considerando el impacto de las soluciones de ingeniería de software en contextos globales, económicos, ambientales y sociales | **Luis Alexis Bardales Tejada**<br>_AV1_: utilizó entrevistas, Lean UX y el análisis competitivo/FODA para contrastar la propuesta con necesidades y alternativas existentes, priorizando la reducción del trabajo manual, la trazabilidad y la especialización avícola antes de definir el alcance.<br>_TB1_: orientó las pruebas y las métricas a evaluar el desempeño del flujo de compras, de modo que el equipo pueda juzgar sus resultados con evidencia en lugar de asumir que la automatización produce ahorros por sí sola.<br><br>**Jhon Danny Guerrero Vasquez**<br>_AV1_: transformó la evidencia de las entrevistas en personas, tareas, journeys y mapas de empatía, y la empleó para decidir que el especialista de producción y sanidad requiere una experiencia móvil centrada en registrar solicitudes y anticipar riesgos de abastecimiento.<br>_TB1_: llevó al móvil capacidades de registro, procesamiento de varias cotizaciones, consulta del tipo de cambio y desempeño de proveedores, considerando las necesidades operativas del especialista y el efecto de las decisiones de compra.<br><br>**Mathias Marcelo De La Cruz De Los Santos**<br>_AV1_: construyó el To-Be Scenario Mapping y el Impact Map con una meta SMART, y tomó decisiones de diseño, arquitectura de información, responsive, i18n y accesibilidad considerando la adopción de la solución por los segmentos de adquisiciones, producción y sanidad.<br>_TB1_: aportó al flujo de registro web, al acuerdo SaaS y a la automatización de integración de la aplicación móvil, atendiendo la adopción, la claridad de las condiciones comerciales y la consistencia entre plataformas.<br><br>**Fabio Cesar Vallejo Trujillo**<br>_AV1_: priorizó y estimó las historias, y alineó requisitos, arquitectura, modelo de datos, configuración y Sprint Backlog; evaluó los efectos económicos de reducir tiempos y errores de compra, los riesgos técnicos de la extracción con IA, la seguridad de la información y la continuidad operativa mediante modo de contingencia.<br>_TB1_: redujo pasos manuales en la carga de cotizaciones y habilitó su evaluación con conversión de moneda; también preparó CI/CD para facilitar una entrega repetible. Son capacidades orientadas a mejorar la eficiencia, cuyos beneficios aún requieren medición con usuarios y datos de operación. | En el entregable **AV1**, las decisiones del equipo se sustentaron en entrevistas, competencia, impacto y restricciones técnicas, en lugar de asumir que la automatización era suficiente por sí misma. El alcance resultante considera el contexto global mediante i18n y una arquitectura extensible, el económico mediante menor retrabajo y decisiones trazables, el social mediante roles y accesibilidad, y el ambiental mediante la digitalización y reducción de reprocesos documentales; los riesgos de IA permanecen sujetos a validación humana.<br><br>En **TB1**, el equipo avanzó capacidades web y móviles, medición del proceso y conversión de moneda para apoyar decisiones con datos comerciales comparables. Las pruebas y los pipelines permiten verificar cambios y reducir riesgos de publicación. La reducción de tiempos, costos y reprocesos sigue siendo un resultado esperado que debe medirse en uso real. |
 
 
 # Capítulo I: Introducción
@@ -764,7 +789,7 @@ La estrategia competitiva de SmartQuote no consiste solamente en utilizar inteli
 
 ## 2.2. Entrevistas
 
-Esta sección presenta el diseño de entrevistas para los dos segmentos objetivo y los registros disponibles del área de adquisiciones. Sus resúmenes sustentan el análisis de ese segmento. Los resultados de producción y sanidad se incorporarán cuando se registren sus entrevistas.
+Esta sección presenta el diseño de entrevistas y los registros disponibles para los segmentos de adquisiciones y producción y sanidad. Los resúmenes y la transcripción de las entrevistas sustentan el análisis correspondiente; los hallazgos del segundo segmento son exploratorios por el tamaño de la muestra.
 
 ### 2.2.1. Diseño de entrevistas
 
@@ -902,7 +927,7 @@ El análisis integra las entrevistas N.º 1 (Diego De la Cruz) y N.º 2 (Andy N�
 
 **Hallazgos del segmento entrevistado.** Los puntos más consistentes en estos registros son el esfuerzo de transcribir y comparar ofertas, los retrasos por información ambigua y la necesidad de confiar en un resultado que pueda revisarse. Por ello, la primera prueba del producto debe centrarse en extracción verificable, corrección de errores, comparación y decisión humana. El porcentaje del 100 % significa únicamente que ambos resúmenes coinciden, no que la necesidad esté validada para todo el mercado.
 
-**Datos aún no recogidos en los resúmenes:** género, estado civil y familia, trayectoria profesional, personalidad, influencias o marcas, dispositivo y navegador preferidos, volumen de compras, frecuencia de las tareas y consecuencias cuantificadas de los retrasos. **Pendiente:** completar la muestra de 3 a 5 entrevistas requerida por la guía para este segmento, los enlaces al video, el inicio de cada entrevista y las características faltantes, siempre con consentimiento para registrar datos personales.
+**Datos aún no recogidos en los resúmenes:** género, estado civil y familia, trayectoria profesional, personalidad, influencias o marcas, dispositivo y navegador preferidos, volumen de compras, frecuencia de las tareas y consecuencias cuantificadas de los retrasos. **Pendiente:** completar la muestra de 3 a 5 entrevistas requerida por la guía para este segmento y recoger, con consentimiento, las características faltantes. Los enlaces y minutajes disponibles constan en las fichas de registro.
 
 #### Segmento 2: Área de Producción y Sanidad (n = 1)
 
@@ -934,7 +959,7 @@ La entrevista N.º 3 corresponde a Joel Martínez, colaborador del área de alma
 
 ## 2.3. Needfinding
 
-Los artefactos siguientes organizan los hallazgos documentados en las entrevistas de adquisiciones y el primer registro del segmento de producción y sanidad. Para este último, los artefactos específicos permanecen pendientes de ampliar la muestra y validar los hallazgos. Los cuadros de este README presentan la síntesis textual; las capturas de las fichas y mapas elaborados en las herramientas indicadas por la guía deben incorporarse como evidencia visual.
+Los artefactos siguientes organizan los hallazgos documentados en las entrevistas de adquisiciones y el primer registro del segmento de producción y sanidad. Para este último, los artefactos específicos permanecen sujetos a ampliar la muestra y validar los hallazgos. Las capturas disponibles se enlazan en sus subsecciones; las evidencias de artefactos que aún no cuentan con imagen se mantienen identificadas allí.
 
 ### 2.3.1. User Personas
 
@@ -1203,7 +1228,7 @@ Las nuevas historias mantienen los identificadores existentes de las épicas EP0
 
 | **Story ID** | **User** | **Priority** | **Epic** |
 | --- | --- | --- | --- |
-| US13 | Jefe de adquisiciones | Alta | EP06 – Orden y trazabilidad |
+| US11 | Jefe de adquisiciones | Alta | EP06 – Orden y trazabilidad |
 | **Title** | Exportar la orden de compra aprobada en formato PDF corporativo |  |  |
 | **Description** | Como jefe de adquisiciones, deseo exportar la orden de compra aprobada en un documento PDF con formato corporativo estandarizado para su envío formal e inmediato al proveedor seleccionado. |  |  |
 | **Acceptance Criteria** | **Escenario 1: Exportación de una orden aprobada**<br>**Dado que** una orden de compra ha sido aprobada y contiene la información obligatoria<br>**Cuando** el jefe de adquisiciones solicita exportarla<br>**Entonces** el sistema genera un PDF legible con identificador, proveedor, partidas, cantidades, precios, moneda, condiciones de entrega y datos corporativos configurados.<br><br>**Escenario 2: Orden pendiente de aprobación**<br>**Dado que** una orden todavía no ha sido aprobada o su aprobación dejó de estar vigente<br>**Cuando** se solicita generar el documento oficial<br>**Entonces** el sistema impide la exportación como orden aprobada e informa el estado que debe resolverse.<br><br>**Escenario 3: Consistencia del documento**<br>**Dado que** el PDF se ha generado desde una orden aprobada<br>**Cuando** el usuario lo descarga o consulta posteriormente<br>**Entonces** los datos del documento coinciden con la versión aprobada y el sistema conserva la relación con la orden de origen. |  |  |
@@ -1217,21 +1242,21 @@ Las nuevas historias mantienen los identificadores existentes de las épicas EP0
 
 | **Story ID** | **User** | **Priority** | **Epic** |
 | --- | --- | --- | --- |
-| US14 | Auditor o gerente de operaciones | Alta | EP06 – Orden y trazabilidad |
+| US12 | Auditor o gerente de operaciones | Alta | EP06 – Orden y trazabilidad |
 | **Title** | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra |  |  |
 | **Description** | Como gerente de operaciones, deseo consultar la trazabilidad inmutable de cambios realizados en solicitudes y órdenes de compra para garantizar la transparencia y la responsabilidad en el proceso de adquisición. |  |  |
 | **Acceptance Criteria** | **Escenario 1: Registro de un evento auditable**<br>**Dado que** un usuario autorizado crea, modifica, aprueba o cancela una solicitud u orden<br>**Cuando** el sistema confirma la operación<br>**Entonces** agrega un evento de auditoría con entidad afectada, acción, usuario, fecha y hora, y motivo cuando corresponda.<br><br>**Escenario 2: Consulta de la trazabilidad**<br>**Dado que** existen eventos asociados con una solicitud u orden<br>**Cuando** un gerente de operaciones autorizado consulta su historial<br>**Entonces** el sistema presenta los eventos en orden cronológico con sus datos de contexto y permite identificar quién realizó cada acción.<br><br>**Escenario 3: Protección de la bitácora**<br>**Dado que** un usuario consulta o intenta alterar un evento existente<br>**Cuando** el sistema valida la operación<br>**Entonces** permite la consulta según los permisos asignados y rechaza la edición o eliminación del registro de auditoría. |  |  |
 
 | **Story ID** | **User** | **Priority** | **Epic** |
 | --- | --- | --- | --- |
-| US15 | Analista de adquisiciones | Media | EP07 – Gestión de proveedores y notificaciones |
+| US13 | Analista de adquisiciones | Media | EP07 – Gestión de proveedores y notificaciones |
 | **Title** | Registrar y consultar el desempeño histórico de los proveedores |  |  |
 | **Description** | Como analista de adquisiciones, deseo registrar una calificación de cumplimiento del plazo y la calidad del proveedor después de una entrega para considerar su desempeño histórico en futuras evaluaciones. |  |  |
 | **Acceptance Criteria** | **Escenario 1: Calificación posterior a la entrega**<br>**Dado que** una orden de compra registra una entrega concluida<br>**Cuando** el analista evalúa el cumplimiento del proveedor en plazo y calidad<br>**Entonces** el sistema registra la calificación, sus observaciones, la orden relacionada, el autor y la fecha.<br><br>**Escenario 2: Validación de la evaluación**<br>**Dado que** la entrega no ha concluido o la calificación contiene valores fuera de la escala permitida<br>**Cuando** el analista intenta registrar la evaluación<br>**Entonces** el sistema rechaza el registro e indica qué condición debe cumplirse.<br><br>**Escenario 3: Consulta del historial del proveedor**<br>**Dado que** un proveedor cuenta con evaluaciones de entregas anteriores<br>**Cuando** el analista consulta su perfil o lo considera en una evaluación de compra<br>**Entonces** el sistema presenta su historial y promedio con el período y la cantidad de evaluaciones usados en el cálculo. |  |  |
 
 | **Story ID** | **User** | **Priority** | **Epic** |
 | --- | --- | --- | --- |
-| US16 | Jefe de adquisiciones | Media | EP08 – Analítica del proceso de compras |
+| US14 | Jefe de adquisiciones | Media | EP08 – Analítica del proceso de compras |
 | **Title** | Consultar métricas de tiempo y ahorro del proceso de compras |  |  |
 | **Description** | Como jefe de adquisiciones, deseo visualizar indicadores clave sobre el tiempo de atención de solicitudes y el ahorro generado para evaluar la eficiencia del proceso de compras. |  |  |
 | **Acceptance Criteria** | **Escenario 1: Consulta de indicadores**<br>**Dado que** existen solicitudes y órdenes con fechas y montos registrados<br>**Cuando** el jefe de adquisiciones abre el panel de métricas<br>**Entonces** el sistema presenta el tiempo promedio de atención y el ahorro calculado para el período, junto con la definición de cada indicador.<br><br>**Escenario 2: Filtros y detalle**<br>**Dado que** el panel contiene información de más de un período o estado<br>**Cuando** el usuario selecciona filtros disponibles<br>**Entonces** los indicadores se recalculan con los datos que cumplen esos filtros y permiten consultar el período y volumen de registros considerados.<br><br>**Escenario 3: Datos insuficientes**<br>**Dado que** el período seleccionado no contiene información suficiente para calcular un indicador<br>**Cuando** el sistema actualiza el panel<br>**Entonces** identifica el indicador como no disponible y no presenta un valor de ahorro o tiempo sin respaldo en los registros. |  |  |
@@ -1255,15 +1280,15 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 | 9 | US08 | Aprobar la alternativa seleccionada y generar la orden de compra | Como analista o jefe de adquisiciones autorizado, deseo aprobar una alternativa evaluada y generar su orden de compra para continuar el proceso con información consistente y trazable. | 8 |
 | 10 | US03 | Conocer el avance de una solicitud de compra | Como especialista de producción y sanidad, deseo conocer el estado y el historial de mis solicitudes para anticipar riesgos de abastecimiento y coordinar las actividades operativas. | 5 |
 | 11 | US10 | Incorporar cotizaciones mediante carga masiva de archivos PDF | Como analista de adquisiciones, deseo subir múltiples archivos PDF de cotizaciones simultáneamente en un solo lote para agilizar el procesamiento de ofertas recibidas de diversos proveedores avícolas. | 8 |
-| 12 | US13 | Exportar la orden de compra aprobada en formato PDF corporativo | Como jefe de adquisiciones, deseo exportar la orden de compra aprobada en un documento PDF con formato corporativo estandarizado para su envío formal e inmediato al proveedor seleccionado. | 5 |
-| 13 | US14 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | Como gerente de operaciones, deseo consultar la trazabilidad inmutable de cambios realizados en solicitudes y órdenes de compra para garantizar la transparencia y la responsabilidad en el proceso de adquisición. | 8 |
+| 12 | US11 | Exportar la orden de compra aprobada en formato PDF corporativo | Como jefe de adquisiciones, deseo exportar la orden de compra aprobada en un documento PDF con formato corporativo estandarizado para su envío formal e inmediato al proveedor seleccionado. | 5 |
+| 13 | US12 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | Como gerente de operaciones, deseo consultar la trazabilidad inmutable de cambios realizados en solicitudes y órdenes de compra para garantizar la transparencia y la responsabilidad en el proceso de adquisición. | 8 |
 | 14 | SP02 | Evaluar la viabilidad del procesamiento asíncrono de lotes de documentos PDF | Como Developer, deseo investigar y realizar una prueba de concepto sobre colas de procesamiento asíncrono y trabajadores en segundo plano para determinar el rendimiento y los límites de consumo de recursos al procesar lotes grandes de PDF sin congelar la aplicación. | 5 |
 | 15 | US09 | Registrarse e iniciar sesión de forma segura en la plataforma | Como usuario del sistema de adquisiciones avícolas, deseo registrarme e iniciar sesión con credenciales seguras para acceder a los módulos de compras asignados a mi rol. | 5 |
 | 16 | TS02 | Implementar autenticación y control de acceso basado en roles mediante JWT | Como Developer, deseo implementar un servicio de autenticación mediante tokens JWT y control de acceso basado en roles (RBAC) para asegurar que cada endpoint de la API RESTful valide la identidad y los permisos de la solicitud. | 5 |
-| 17 | US16 | Consultar métricas de tiempo y ahorro del proceso de compras | Como jefe de adquisiciones, deseo visualizar indicadores clave sobre el tiempo de atención de solicitudes y el ahorro generado para evaluar la eficiencia del proceso de compras. | 8 |
+| 17 | US14 | Consultar métricas de tiempo y ahorro del proceso de compras | Como jefe de adquisiciones, deseo visualizar indicadores clave sobre el tiempo de atención de solicitudes y el ahorro generado para evaluar la eficiencia del proceso de compras. | 8 |
 | 18 | TS04 | Exponer un endpoint RESTful para integrar órdenes de compra con sistemas externos | Como Developer, deseo exponer un endpoint RESTful que entregue el detalle de las órdenes de compra en JSON normalizado para permitir su sincronización con los sistemas de inventario o contabilidad de la empresa. | 3 |
 | 19 | TS03 | Integrar una fuente de tipo de cambio para la conversión de cotizaciones | Como Developer, deseo consumir un servicio web oficial de tipo de cambio, como los publicados por SUNAT o SBS, para convertir automáticamente las cotizaciones en dólares estadounidenses (USD) a soles peruanos (PEN) durante la simulación de precios. | 5 |
-| 20 | US15 | Registrar y consultar el desempeño histórico de los proveedores | Como analista de adquisiciones, deseo registrar una calificación de cumplimiento del plazo y la calidad del proveedor después de una entrega para considerar su desempeño histórico en futuras evaluaciones. | 8 |
+| 20 | US13 | Registrar y consultar el desempeño histórico de los proveedores | Como analista de adquisiciones, deseo registrar una calificación de cumplimiento del plazo y la calidad del proveedor después de una entrega para considerar su desempeño histórico en futuras evaluaciones. | 8 |
 
 ![Trello Product Backlog](assets/requirements/product-backlog-smartquote.png)
 
@@ -2217,8 +2242,6 @@ Los diagramas de componentes detallan la organización interna del API REST, la 
 
 El API se implementa como un monolito modular en ASP.NET Core. Los controladores de la capa **Interfaces** reciben las solicitudes HTTP; la capa **Application** coordina casos de uso y contratos; la capa **Domain** contiene agregados, objetos de valor y servicios de dominio; y **Infrastructure** implementa persistencia e integraciones externas. Un despachador de eventos en proceso permite comunicar hechos de negocio sin crear dependencias directas entre los modelos internos de los contextos.
 
-![Diagrama general de componentes del Web Services RESTful API](assets/architecture/SmartQuoteBackendComponents.png)
-
 ##### Supply Requests Context
 
 Este contexto es propietario del agregado `PurchaseRequest`, de los requerimientos técnicos y de las transiciones de estado de una solicitud. `PurchaseRequestsController` expone el registro, la consulta de estado y el historial; **Purchase Request Application** ejecuta los casos de uso y publica contratos de consulta; y el adaptador de persistencia implementa los puertos del módulo mediante Entity Framework Core y un esquema PostgreSQL propio.
@@ -2243,11 +2266,17 @@ Este contexto convierte una simulación aprobada en una orden de compra. `Purcha
 
 ![Componentes backend del Purchase Ordering Context](assets/architecture/SmartQuoteBackendComponentsPurchaseContext.png)
 
+##### Identity & Access Management Context — IdentityAccess
+
+Este contexto administra las cuentas, los roles y las sesiones de SmartQuote. `AuthController`, en **Interfaces**, expone el registro, el inicio de sesión, la renovación, el cierre de sesión, la consulta del usuario actual y la aprobación de registros pendientes por el jefe de compras. En **Application**, `AuthenticationService` coordina estas operaciones mediante contratos de persistencia y seguridad. En **Domain**, `UserAccount` mantiene el estado de la cuenta y sus roles, `RefreshSession` representa una sesión renovable y `RegistrationPasswordPolicy` establece las restricciones de contraseña. El registro inicial habilita la primera cuenta de administración; las cuentas posteriores requieren aprobación antes de acceder al sistema.
+
+La capa **Infrastructure** implementa `IPasswordHasher`, `IAccessTokenIssuer` e `IRefreshTokenGenerator` mediante `AspNetPasswordHasher`, `JwtAccessTokenIssuer` y `RefreshTokenGenerator`. `UserAccountRepository`, `RefreshSessionRepository` e `IdentityAccessUnitOfWork` utilizan `IdentityAccessDbContext` para persistir cuentas y sesiones en el esquema propio de PostgreSQL. Las contraseñas se conservan como hashes y los JWT comunican la identidad y los roles a los demás contextos, sin exponerles las entidades internas ni la persistencia de IAM. La autorización definitiva de cada operación permanece en el backend.
+
+![Componentes backend del Identity and Access Management Context](assets/architecture/SmartQuoteBackendComponentsIAMContext.png)
+
 #### Web Application (`smartquote-frontend-web`)
 
 La aplicación web se implementa como un monolito modular de cliente con Vue.js, PrimeVue, Pinia y JavaScript. Cada contexto contiene componentes de **Presentation**, casos de uso y estado en **Application**, modelos del lado cliente en **Domain** y un repositorio HTTP en **Infrastructure**. El **Application Shell**, Vue Router, el cliente HTTP común y los tipos verdaderamente genéricos residen en `Shared`; las reglas y modelos particulares permanecen dentro del contexto que los posee.
-
-![Diagrama general de componentes de la Web Application](assets/architecture/SmartQuoteWebComponents.png)
 
 ##### Supply Requests Context
 
@@ -2273,13 +2302,61 @@ Este módulo presenta el resultado aprobado, permite solicitar la generación de
 
 ![Componentes web del Purchase Ordering Context](assets/architecture/SmartQuoteWebComponentsPurchaseContext.png)
 
+##### Identity & Access Management Context — IdentityAccess
+
+El módulo `identity` proporciona `AccessPage` y `RegisterForm` para iniciar sesión y solicitar una cuenta, y `PendingRegistrationsPage` para que el jefe de compras consulte registros pendientes y apruebe su acceso con un rol autorizado. En **Application**, `SessionService` coordina el inicio, la restauración y el cierre de sesión; `RegistrationService` valida y envía el registro; y `RegistrationApprovalService` consulta y aprueba las solicitudes de acceso. En **Domain**, `Session` representa la identidad, los roles y la vigencia recibidos del servidor, mientras las funciones de `registration.entity.js` validan los datos y roles del registro en el cliente.
+
+En **Infrastructure**, `AuthApiRepository` consume directamente mediante Fetch las operaciones de `/api/v1/iam/auth`, incluida la renovación de sesión; `HttpRegistrationApprovalRepository` utiliza el `HttpClient` compartido para consultar y aprobar registros mediante solicitudes autenticadas. `composition-root.js` construye e inyecta estos servicios, `App` administra la sesión con el estado reactivo de Vue y Vue Router restringe la navegación según los roles. Estas restricciones mejoran la experiencia de acceso, pero no reemplazan los controles de autorización del backend ni trasladan al navegador la emisión de credenciales.
+
+![Componentes web del Identity and Access Management Context](assets/architecture/SmartQuoteWebComponentsIAMContext.png)
+
 #### Native Mobile Application (`smartquote-native-mobile`)
 
-La aplicación Flutter se concentra inicialmente en **Supply Requests Context**, porque el especialista de producción o veterinario necesita registrar desde el campo los insumos y requerimientos biológicos, además de consultar el estado e historial de sus solicitudes. `RequestFormWidget` y `RequestTrackingList` conforman la presentación; `RequestStateController` administra los estados de carga, éxito y error; y los casos de uso de registro y seguimiento dependen de un repositorio REST, no de una implementación de red concreta.
+La aplicación móvil se implementa con Flutter y Dart y organiza sus componentes en cinco módulos alineados con los contextos del dominio: **IdentityAccess**, **SupplyRequests**, **QuotationIntake**, **EvaluationSimulation** y **PurchaseOrdering**. Cada módulo separa **Presentation**, **Application**, **Domain** e **Infrastructure**. Los modelos del cliente representan la información y las validaciones necesarias para la interacción; la persistencia, la autorización definitiva y las reglas de negocio centrales permanecen en el backend.
 
-El cliente HTTP, el almacenamiento seguro de credenciales y los tipos genéricos se mantienen en **Shared**. Esta carpeta brinda capacidades técnicas comunes, pero no contiene reglas del negocio ni constituye otro *bounded context*. Si el alcance móvil crece en iteraciones posteriores, los nuevos módulos deberán incorporarse respetando los mismos límites del dominio.
+La carpeta `app` integra los módulos mediante `Services`, `Workspace` y `RequestWorkspace`. La carpeta `shared` contiene los contratos genéricos de transporte, `ApiClient`, la selección de archivos y las utilidades comunes de presentación; no constituye otro *bounded context*. `main.dart` conecta las interfaces de los repositorios con sus adaptadores HTTP. Los tokens y las cookies de sesión del cliente nativo se mantienen en memoria, sin almacenar contraseñas ni credenciales en disco. Los diagramas muestran las dependencias entre componentes y las implementaciones de los contratos; estas últimas no representan llamadas de red.
 
-![Diagrama de componentes de la Native Mobile Application](assets/architecture/SmartQuoteMobileComponents.png)
+##### Identity & Access Management Context — IdentityAccess
+
+El módulo `identity_access` proporciona `AccessPage` para iniciar sesión y solicitar el registro, y `PendingPage` para que el jefe de compras apruebe cuentas y asigne roles. `SessionController`, basado en `ChangeNotifier`, administra la sesión, coordina su renovación y comunica los cambios al espacio de trabajo. `Session` representa la identidad, los roles y la vigencia, mientras la política de contraseña valida los datos del registro en el cliente.
+
+`HttpIdentityRepository` implementa `IdentityRepository` y consume los endpoints de IAM mediante los contratos comunes de transporte. `ApiClient` incorpora el JWT a las solicitudes protegidas y puede solicitar una renovación ante una respuesta HTTP 401. En Android, `http_platform_native` configura las cookies de sesión en memoria. `SmartQuoteApp` y `Workspace` muestran las vistas disponibles según los roles emitidos por el servidor; la API conserva la responsabilidad de autorizar cada operación.
+
+![Componentes móviles del Identity and Access Management Context](assets/architecture/SmartQuoteMobileComponentsIAMContext.png)
+
+##### Supply Requests Context
+
+El módulo `supply_requests` permite registrar necesidades mediante `NewRequestPage`, consultar solicitudes con filtros y paginación en `RequestListPage`, y revisar cambios notificados en `NotificationsPage`. `RequestDraft`, `ItemDraft` y `RequirementDraft` construyen el registro, validan los requisitos y preparan el cuerpo de la solicitud. `PurchaseRequest`, `RequestPage` y `requestTransitions` representan los datos, la paginación y las transiciones disponibles en el cliente.
+
+`HttpRequestRepository` implementa `RequestRepository` para registrar y consultar solicitudes, modificar estados, incorporar sustento y obtener historial y notificaciones. `RequestWorkspace`, ubicado en `app`, integra el detalle, los cambios de estado, los adjuntos y las pestañas de los demás contextos. La selección de sustento utiliza la infraestructura común de archivos; su envío incluye la versión esperada de la solicitud. La consulta autorizada de auditoría se realiza mediante `OrderRepository`, del contexto PurchaseOrdering.
+
+![Componentes móviles del Supply Requests Context](assets/architecture/SmartQuoteMobileComponentsSupplyContext.png)
+
+##### Quotation Intake Context
+
+El módulo `quotation_intake` reúne `QuotationsPanel`, que presenta la carga múltiple y el progreso por documento, y `QuotationReviewPage`, que permite examinar datos extraídos, confianza y evidencia, registrar correcciones, añadir especificaciones y confirmar la correspondencia entre líneas e ítems solicitados. El modelo `Quotation` representa campos, líneas, versiones y estados, y determina las condiciones de editabilidad y confirmación del cliente.
+
+`UploadQueue` y `UploadEntry` coordinan hasta dos documentos simultáneamente, mantienen sus estados y errores durante la sesión y permiten reintentos individuales utilizando los identificadores existentes. Esta cola es local al cliente y no equivale a un servicio durable de procesamiento en segundo plano. La selección admite hasta veinte PDF por lote, con un máximo de 15 MB por documento. `HttpQuotationRepository` implementa `QuotationRepository` y consume las operaciones de carga, procesamiento, corrección y confirmación. La extracción con IA se ejecuta exclusivamente en el backend; el móvil presenta sus resultados. Los contratos de SupplyRequests proporcionan los ítems, requisitos y operaciones de cambio de estado necesarios para continuar hacia la evaluación.
+
+![Componentes móviles del Quotation Intake Context](assets/architecture/SmartQuoteMobileComponentsQuotationContext.png)
+
+##### Evaluation & Simulation Context — Core Domain
+
+El módulo `evaluation_simulation` presenta `SimulationPanel` para configurar ponderaciones mediante controles deslizantes, guardar versiones de criterios, solicitar simulaciones y consultar su historial. La vista muestra clasificación, exclusiones, contribuciones por criterio, recomendación y vigencia de los resultados. Las funciones de `criteria_policy.dart` preparan los criterios, conservan los requisitos obligatorios de la solicitud y validan las ponderaciones antes del envío.
+
+`EvaluationScenario` y `Simulation` representan las configuraciones y los resultados devueltos por el servidor. `HttpEvaluationRepository` implementa `EvaluationRepository` para guardar versiones, ejecutar comparaciones y recuperar resultados persistidos. El módulo utiliza `PurchaseRequest` para obtener requisitos y `QuotationRepository` para identificar proveedores. El algoritmo del Core Domain y la integración con SUNAT permanecen en el backend: el móvil presenta los importes originales y comparados, la tasa, la fuente y las fechas recibidas, y comunica los errores de conversión sin sustituirlos por valores locales.
+
+![Componentes móviles del Evaluation and Simulation Context](assets/architecture/SmartQuoteMobileComponentsEvaluationContext.png)
+
+##### Purchase Ordering Context
+
+El módulo `purchase_ordering` proporciona `OrderPanel` para consultar alternativas elegibles, solicitar la aprobación autorizada, recuperar la orden persistida, registrar entregas y evaluar proveedores. `ManagementPage` permite consultar el historial y los promedios de desempeño del proveedor o los indicadores del proceso por período, según los permisos de la sesión. La consulta de auditoría se integra en el detalle de solicitudes y órdenes mediante el mismo contrato de acceso del contexto.
+
+`OrderingWorkflow` vuelve a consultar la vigencia y elegibilidad de la simulación antes de solicitar una aprobación y recupera la orden desde el servidor antes de exportarla. `HttpOrderRepository` implementa `OrderRepository` para consumir órdenes, entregas, evaluaciones, desempeño, auditoría y métricas. `PurchaseOrder` representa la orden y valida las calificaciones y observaciones; `CorporateProfile` y `assertExportable` comprueban los datos corporativos y las condiciones mínimas de exportación.
+
+`PdfOrderExporter` implementa `OrderExporter`; las funciones de `order_pdf.dart` construyen el documento mediante las bibliotecas `pdf` y `printing`, con fuentes locales y referencias a la orden, solicitud, cotización y simulación de origen. El PDF se genera en el cliente a partir de la orden aprobada consultada en la API. La validación definitiva y la generación idempotente de la orden permanecen en el backend.
+
+![Componentes móviles del Purchase Ordering Context](assets/architecture/SmartQuoteMobileComponentsPurchaseContext.png)
 
 ## 4.9. Software Object-Oriented Design
 
@@ -4764,12 +4841,10 @@ SmartQuote empleará Git como sistema de control de versiones y GitHub como plat
 | Producto | Repositorio | URL | Estado al redactar este informe |
 | --- | --- | --- | --- |
 | Informe | `smartquote-report` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-report](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-report) | Confirmado |
-| Landing Page | `smartquote-landing-page` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page) | URL objetivo; pendiente de crear o confirmar antes del primer despliegue |
-| Frontend Web | `smartquote-frontend-web` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web) | URL objetivo; pendiente de crear o confirmar antes del primer despliegue |
-| Aplicación móvil | `smartquote-native-mobile` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile) | URL objetivo; pendiente de crear o confirmar antes del primer despliegue |
-| Web Services | `smartquote-web-services` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services) | URL objetivo; pendiente de crear o confirmar antes del primer despliegue |
-
-Antes de la entrega pública, el equipo deberá crear o verificar los cuatro repositorios marcados como pendientes y reemplazar su estado por una URL pública comprobada. No se deberá modificar la URL del repositorio del informe sin actualizar esta tabla.
+| Landing Page | `smartquote-landing-page` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page) | Repositorio público |
+| Frontend Web | `smartquote-frontend-web` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web) | Repositorio público |
+| Aplicación móvil | `smartquote-native-mobile` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile) | Repositorio público |
+| Web Services | `smartquote-web-services` | [https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services) | Repositorio público |
 
 #### GitFlow Workflow
 
@@ -5012,26 +5087,26 @@ La planificación inicial del 1 de octubre de 2026 seleccionó US13, US14, TS04 
 | Location | Reunión virtual mediante Google Meet. |
 | Prepared By | Bardales Tejada, Luis Alexis. |
 | Attendees (to planning meeting) | Bardales Tejada, Luis Alexis / De La Cruz De Los Santos, Mathias Marcelo / Guerrero Vasquez, Jhon Danny / Vallejo Trujillo, Fabio Cesar. |
-| Actualización del alcance | 2026-10-06: se añadieron US10, SP02, US09, TS02, TS03 y US15 al plan inicial. Esta actualización se registra después de la reunión indicada arriba. |
+| Actualización del alcance | 2026-10-06: se añadieron US10, SP02, US09, TS02, TS03 y US13 al plan inicial. Esta actualización se registra después de la reunión indicada arriba. |
 | Sprint 1 Review Summary | El equipo revisó las evidencias disponibles del flujo de solicitudes, cotizaciones, evaluación y orden, las 32 pruebas unitarias backend aprobadas y el recorrido web de extremo a extremo aprobado. Se acordó revisar los criterios restantes y completar la evidencia móvil antes de cerrar el incremento. |
 | Sprint 1 Retrospective Summary | El equipo acordó conservar la integración entre módulos y mejorar el registro de estados del Board, la ejecución de pruebas en CI y la evidencia Android. |
-| Sprint Goal & User Stories | US10, US13, US14, SP02, US09, TS02, US16, TS04, TS03 y US15. |
+| Sprint Goal & User Stories | US10, US11, US12, SP02, US09, TS02, US14, TS04, TS03 y US13. |
 | Sprint 2 Goal | **Nuestro enfoque está en** completar capacidades de acceso seguro, incorporación y conversión de cotizaciones, seguimiento de órdenes y evaluación de proveedores. **Creemos que esto aporta** un proceso de compras más confiable y trazable para adquisiciones. **Se confirmará cuando** los criterios de aceptación de las diez historias se verifiquen con datos y usuarios de prueba, y el spike SP02 entregue una recomendación sustentada. |
 | Sprint 2 Velocity | Velocidad establecida para la planificación: 60 Story Points. La velocidad observada del Sprint 1 y la disponibilidad efectiva todavía deben contrastarse con este valor. |
-| Sum of Story Points | 60 Story Points: US10 (8), US13 (5), US14 (8), SP02 (5), US09 (5), TS02 (5), US16 (8), TS04 (3), TS03 (5) y US15 (8). |
+| Sum of Story Points | 60 Story Points: US10 (8), US11 (5), US12 (8), SP02 (5), US09 (5), TS02 (5), US14 (8), TS04 (3), TS03 (5) y US13 (8). |
 
 ##### Aspect Leaders and Collaborators
 
 La primera matriz LACX recoge los cuatro aspectos de la planificación inicial. La segunda incorpora los tres aspectos añadidos el 6 de octubre. Luis Alexis Bardales Tejada confirmó sus líderes para este plan; los colaboradores se identifican según las tareas TK59–TK76 asignadas en el Sprint Backlog. `L` indica líder, `C` colaborador y `—` que no hay tarea asignada en ese aspecto.
 
-| Integrante | GitHub | Exportación de órdenes (US13) | Auditoría (US14) | Integración (TS04) | Analítica (US16) |
+| Integrante | GitHub | Exportación de órdenes (US11) | Auditoría (US12) | Integración (TS04) | Analítica (US14) |
 | --- | --- | :---: | :---: | :---: | :---: |
 | Bardales Tejada, Luis Alexis | AlexisBardales | C | C | L | L |
 | De La Cruz De Los Santos, Mathias Marcelo | Dela050406 | C | C | C | C |
 | Guerrero Vasquez, Jhon Danny | Feli386 | C | C | C | C |
 | Vallejo Trujillo, Fabio Cesar | fabiovallejo | L | L | C | C |
 
-| Integrante | GitHub | Carga masiva y procesamiento asíncrono (US10, SP02) | Registro, autenticación y permisos (US09, TS02) | Conversión y desempeño de proveedores (TS03, US15) |
+| Integrante | GitHub | Carga masiva y procesamiento asíncrono (US10, SP02) | Registro, autenticación y permisos (US09, TS02) | Conversión y desempeño de proveedores (TS03, US13) |
 | --- | --- | :---: | :---: | :---: |
 | Bardales Tejada, Luis Alexis | AlexisBardales | C | — | L |
 | De La Cruz De Los Santos, Mathias Marcelo | Dela050406 | L | C | C |
@@ -5060,21 +5135,21 @@ La primera captura (histórica) muestra US13 y US14 en `Sprint Backlog (To-Do)`,
 
 | Story ID | Story Title | Task ID | Task Title | Description | Estimation (Hours) | Assigned To | Status |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| US13 | Exportar la orden de compra aprobada en formato PDF corporativo | TK44 | Diseñar el formato corporativo | Definir campos, jerarquía visual y versión aprobada que se representará en el PDF. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
-| US13 | Exportar la orden de compra aprobada en formato PDF corporativo | TK45 | Generar el PDF desde la orden | Implementar la exportación utilizando los datos aprobados y conservar la referencia a la orden de origen. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
-| US13 | Exportar la orden de compra aprobada en formato PDF corporativo | TK46 | Integrar la descarga web | Permitir la descarga de una orden aprobada desde la aplicación web. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
-| US13 | Exportar la orden de compra aprobada en formato PDF corporativo | TK47 | Verificar la consistencia del PDF | Comprobar que el documento coincide con la orden aprobada y rechaza exportaciones no autorizadas. | 3 | Jhon Danny Guerrero Vasquez | To-do |
-| US14 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK48 | Definir eventos auditables | Precisar acciones, datos mínimos y permisos de consulta para solicitudes y órdenes. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
-| US14 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK49 | Persistir eventos protegidos | Registrar los cambios sin permitir edición o eliminación desde las operaciones de la aplicación. | 8 | Fabio Cesar Vallejo Trujillo | To-do |
-| US14 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK50 | Exponer historial autorizado | Consultar eventos en orden cronológico con usuario, fecha, acción y motivo disponible. | 4 | Luis Alexis Bardales Tejada | To-do |
-| US14 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK51 | Probar protección e historial | Verificar permisos, orden cronológico y rechazo de alteraciones de la bitácora. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| US11 | Exportar la orden de compra aprobada en formato PDF corporativo | TK44 | Diseñar el formato corporativo | Definir campos, jerarquía visual y versión aprobada que se representará en el PDF. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US11 | Exportar la orden de compra aprobada en formato PDF corporativo | TK45 | Generar el PDF desde la orden | Implementar la exportación utilizando los datos aprobados y conservar la referencia a la orden de origen. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US11 | Exportar la orden de compra aprobada en formato PDF corporativo | TK46 | Integrar la descarga web | Permitir la descarga de una orden aprobada desde la aplicación web. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US11 | Exportar la orden de compra aprobada en formato PDF corporativo | TK47 | Verificar la consistencia del PDF | Comprobar que el documento coincide con la orden aprobada y rechaza exportaciones no autorizadas. | 3 | Jhon Danny Guerrero Vasquez | To-do |
+| US12 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK48 | Definir eventos auditables | Precisar acciones, datos mínimos y permisos de consulta para solicitudes y órdenes. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US12 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK49 | Persistir eventos protegidos | Registrar los cambios sin permitir edición o eliminación desde las operaciones de la aplicación. | 8 | Fabio Cesar Vallejo Trujillo | To-do |
+| US12 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK50 | Exponer historial autorizado | Consultar eventos en orden cronológico con usuario, fecha, acción y motivo disponible. | 4 | Luis Alexis Bardales Tejada | To-do |
+| US12 | Consultar una bitácora inmutable de cambios en solicitudes y órdenes de compra | TK51 | Probar protección e historial | Verificar permisos, orden cronológico y rechazo de alteraciones de la bitácora. | 4 | Jhon Danny Guerrero Vasquez | To-do |
 | TS04 | Exponer un endpoint RESTful para integrar órdenes de compra con sistemas externos | TK52 | Revisar el contrato existente | Comparar el endpoint JSON actual con los campos y respuestas exigidos por TS04. | 2 | Luis Alexis Bardales Tejada | To-do |
 | TS04 | Exponer un endpoint RESTful para integrar órdenes de compra con sistemas externos | TK53 | Completar contrato y OpenAPI | Ajustar permisos o errores solo donde el análisis detecte diferencias y documentar la respuesta. | 4 | Luis Alexis Bardales Tejada | To-do |
 | TS04 | Exponer un endpoint RESTful para integrar órdenes de compra con sistemas externos | TK54 | Probar integración de la orden | Comprobar consulta válida, token ausente, permisos insuficientes e identificador inexistente. | 4 | Jhon Danny Guerrero Vasquez | To-do |
-| US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK55 | Definir indicadores | Especificar fechas, filtros y referencia monetaria verificable para el ahorro; indicar cuándo un valor no está disponible. | 3 | Luis Alexis Bardales Tejada | To-do |
-| US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK56 | Implementar cálculo en la API | Calcular tiempo y ahorro con datos persistidos, período y volumen de registros, sin generar valores sin respaldo. | 8 | Luis Alexis Bardales Tejada | To-do |
-| US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK57 | Construir el panel web | Mostrar indicadores, filtros, definiciones y estado de datos insuficientes. | 6 | Mathias Marcelo De La Cruz De Los Santos | To-do |
-| US16 | Consultar métricas de tiempo y ahorro del proceso de compras | TK58 | Probar filtros y datos insuficientes | Verificar el recálculo y que el panel no exhiba tiempo o ahorro cuando faltan datos. | 4 | Jhon Danny Guerrero Vasquez | To-do |
+| US14 | Consultar métricas de tiempo y ahorro del proceso de compras | TK55 | Definir indicadores | Especificar fechas, filtros y referencia monetaria verificable para el ahorro; indicar cuándo un valor no está disponible. | 3 | Luis Alexis Bardales Tejada | To-do |
+| US14 | Consultar métricas de tiempo y ahorro del proceso de compras | TK56 | Implementar cálculo en la API | Calcular tiempo y ahorro con datos persistidos, período y volumen de registros, sin generar valores sin respaldo. | 8 | Luis Alexis Bardales Tejada | To-do |
+| US14 | Consultar métricas de tiempo y ahorro del proceso de compras | TK57 | Construir el panel web | Mostrar indicadores, filtros, definiciones y estado de datos insuficientes. | 6 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US14 | Consultar métricas de tiempo y ahorro del proceso de compras | TK58 | Probar filtros y datos insuficientes | Verificar el recálculo y que el panel no exhiba tiempo o ahorro cuando faltan datos. | 4 | Jhon Danny Guerrero Vasquez | To-do |
 | US10 | Incorporar cotizaciones mediante carga masiva de archivos PDF | TK59 | Revisar contrato de lote y estado por archivo | Verificar asociación con solicitud y proveedor, resultado y estado individual de cada PDF. | 4 | Luis Alexis Bardales Tejada | To-do |
 | US10 | Incorporar cotizaciones mediante carga masiva de archivos PDF | TK60 | Integrar carga y consulta de resultados | Permitir seleccionar varios PDF y consultar por archivo el estado, resultado y acción requerida. | 6 | Mathias Marcelo De La Cruz De Los Santos | To-do |
 | US10 | Incorporar cotizaciones mediante carga masiva de archivos PDF | TK61 | Probar errores parciales y duplicados | Verificar lote mixto, archivos dañados o no admitidos, duplicados y persistencia de los válidos. | 4 | Jhon Danny Guerrero Vasquez | To-do |
@@ -5090,11 +5165,9 @@ La primera captura (histórica) muestra US13 y US14 en `Sprint Backlog (To-Do)`,
 | TS03 | Integrar una fuente de tipo de cambio para la conversión de cotizaciones | TK71 | Seleccionar fuente oficial y datos de tasa | Definir fuente, fecha, hora, moneda, vigencia y conservación de la tasa aplicada. | 3 | Luis Alexis Bardales Tejada | To-do |
 | TS03 | Integrar una fuente de tipo de cambio para la conversión de cotizaciones | TK72 | Integrar conversión en la simulación | Convertir USD a PEN conservando importe y moneda originales y trazabilidad del cálculo. | 6 | Luis Alexis Bardales Tejada | To-do |
 | TS03 | Integrar una fuente de tipo de cambio para la conversión de cotizaciones | TK73 | Probar trazabilidad y falta de tasa | Verificar fuente y fecha mostradas, reproducibilidad y rechazo de conversión sin tasa vigente. | 3 | Jhon Danny Guerrero Vasquez | To-do |
-| US15 | Registrar y consultar el desempeño histórico de los proveedores | TK74 | Registrar evaluación posterior a entrega | Vincular calificación y observaciones con entrega, orden, autor y fecha; validar escala. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
-| US15 | Registrar y consultar el desempeño histórico de los proveedores | TK75 | Consultar historial y promedio | Mostrar evaluaciones previas, período y cantidad utilizada para el promedio. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
-| US15 | Registrar y consultar el desempeño histórico de los proveedores | TK76 | Probar reglas de evaluación | Rechazar evaluación antes de entrega o fuera de escala y verificar promedio e historial. | 4 | Jhon Danny Guerrero Vasquez | To-do |
-
-**Avance verificado de TS04 y US16 (3 y 4 de octubre de 2026).** En `Back`, el contrato de consulta de órdenes de TS04 quedó documentado y probado, y US16 incorporó `GET /api/v1/purchasing-metrics?from=YYYY-MM-DD&to=YYYY-MM-DD`, restringido a `PurchaseManager`. El cálculo usa órdenes y simulaciones persistidas y devuelve valores nulos cuando faltan datos suficientes. Las siete pruebas locales específicas de US16 aprobaron ([TRX](assets/testing/us16-local.trx)); la suite completa de integración aprobó 19 de 19 ([TRX](assets/testing/backend-integration-local.trx)). Los cambios están en `Back/develop`, commit `596e1db`. En `Front/develop`, commit `3651074`, el panel permite filtrar fechas y muestra definiciones, cantidad de registros y «No disponible» para valores nulos. Aprobaron compilación, lint y 15 de 15 pruebas unitarias ([registro](assets/testing/web-unit-tests-15.log)). Una prueba Playwright con respuestas simuladas aprobó el cambio de período y el estado sin datos; otra prueba Playwright aprobó la consulta de métricas contra la API y PostgreSQL locales con datos ficticios ([JUnit XML](assets/testing/us16-front-api-e2e.xml), 1 de 1). En esta última, el ingreso usa un token de prueba; la consulta de métricas sí llega a la API real local. No se ha verificado una ejecución de CI ni el funcionamiento en producción. Las filas TK44–TK58 conservan los estados de la planificación inicial; TK59–TK76 tienen horas y responsables confirmados para el plan del reporte, sin ejecución verificada. Trello muestra el estado actual de las tarjetas.
+| US13 | Registrar y consultar el desempeño histórico de los proveedores | TK74 | Registrar evaluación posterior a entrega | Vincular calificación y observaciones con entrega, orden, autor y fecha; validar escala. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US13 | Registrar y consultar el desempeño histórico de los proveedores | TK75 | Consultar historial y promedio | Mostrar evaluaciones previas, período y cantidad utilizada para el promedio. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US13 | Registrar y consultar el desempeño histórico de los proveedores | TK76 | Probar reglas de evaluación | Rechazar evaluación antes de entrega o fuera de escala y verificar promedio e historial. | 4 | Jhon Danny Guerrero Vasquez | To-do |
 
 La siguiente distribución de 68 horas corresponde a TK44–TK58, antes de la ampliación. Para TK59–TK76 se estiman otras 78 horas. El total planificado de Sprint 2 es 146 horas. Estas cifras no representan horas ejecutadas.
 
@@ -5253,7 +5326,7 @@ El proyecto se ejecuta desde `SmartquoteApp_mobile/smartquote_mobile`, conserva 
 
 #### Evidencias principales de la aplicación
 
-Las siguientes capturas deben reemplazarse con imágenes tomadas durante la ejecución de la aplicación. Se incluyen únicamente las evidencias principales del flujo móvil:
+Las siguientes capturas documentan la ejecución del flujo móvil y muestran sus evidencias principales:
 
 ![Anexo 5.2.5.1 — Inicio de sesión y validación del rol Production Specialist](assets/mobile/5.2.5-1-login-mobile.png)
 
@@ -5271,7 +5344,7 @@ La tabla resume los commits disponibles en el repositorio móvil y conserva la t
 | `smartquote-native-mobile` | `b0cbb97` | `add: login view mobile smartquote` | Esqueleto funcional mobile | 2026-09-15 |
 | `smartquote-native-mobile` | `576b509` | `Initial commit` | — | 2026-09-06 |
 
-Los cambios locales posteriores utilizados para completar la integración RESTful deben registrarse en el repositorio mediante nuevos commits `feat`, `fix`, `test` o `docs` antes de publicar una versión evaluable. Esta tabla debe actualizarse con esos identificadores reales una vez que el equipo sincronice la implementación.
+La tabla conserva algunos commits de la implementación inicial; el historial completo y actualizado está disponible en el repositorio enlazado.
 
 #### Conexión con los servicios web
 
@@ -5357,7 +5430,7 @@ Durante la documentación, el entorno Docker respondió correctamente en las sig
 | `GET http://localhost:8080/swagger/index.html` | `200 OK`; Swagger UI se sirve en modo Development. |
 | `GET http://localhost:8080/swagger/v1/swagger.json` | `200 OK`; contrato OpenAPI generado por la API. |
 
-Estas comprobaciones demuestran disponibilidad del entorno, pero las capturas de Postman y pgAdmin deben realizarse con datos de prueba controlados para completar la evidencia académica.
+Las capturas de Postman incluidas arriba documentan respuestas exitosas del flujo de solicitud, procesamiento de cotizaciones, simulación y generación de órdenes de compra; las imágenes de Docker y Azure muestran los entornos utilizados.
 
 #### Registro de modificaciones del backend
 
@@ -5621,10 +5694,20 @@ La ejecución del flujo produjo una [captura de comparación en escritorio](asse
 
 ![Orden de compra en la aplicación web con ventana estrecha](assets/testing/vue-order-narrow-web.png)
 
+**Capturas del proyecto móvil ejecutado en Chrome (evidencia visual facilitada por el integrante responsable).** El compañero indicó que ejecutó la aplicación en Chrome. Tres capturas muestran `localhost:50661`; la captura de la lista de solicitudes está recortada y no permite identificar el dispositivo. Estas imágenes muestran pantallas de la interfaz, pero no documentan un recorrido de prueba completo ni una ejecución en Android.
+
+![Pantalla de inicio de sesión del proyecto Flutter ejecutado en Chrome](assets/testing/flutter-chrome-login.png)
+
+![Lista de solicitudes y menú del proyecto Flutter, captura compartida por el integrante](assets/testing/flutter-chrome-purchase-requests.png)
+
+![Formulario de nueva solicitud del proyecto Flutter ejecutado en Chrome](assets/testing/flutter-chrome-new-request.png)
+
+![Notificaciones del proyecto Flutter ejecutado en Chrome](assets/testing/flutter-chrome-notifications.png)
+
 **Pendiente para cerrar 6.1.4:** ejecutar el flujo principal en un dispositivo o emulador Android, registrar versión de la aplicación, dispositivo, fecha, pasos y resultado, y adjuntar capturas o video de esa ejecución. Hasta contar con esa evidencia, el recorrido de extremo a extremo queda verificado únicamente para la aplicación web en el entorno local descrito.
 ## Capítulo VII: DevOps Practices
 
-Este capítulo describe la automatización de compilación, pruebas y publicación configurada en los repositorios de frontend web y servicios backend de SmartQuote. Los pipelines utilizan GitHub Actions y se dividen en integración continua (CI) y flujos de publicación por entorno (CD). Las capturas de ejecución se incorporarán cuando las ejecuciones de cada rama hayan concluido correctamente.
+Este capítulo describe la automatización de compilación, pruebas y publicación configurada en los repositorios de frontend web y servicios backend de SmartQuote. Los pipelines utilizan GitHub Actions y se dividen en integración continua (CI) y flujos de publicación por entorno (CD). Las evidencias disponibles de las ejecuciones y los artefactos se enlazan en las subsecciones correspondientes.
 
 ### 7.1. Continuous Integration
 
@@ -5637,14 +5720,16 @@ La integración continua verifica los cambios antes de publicarlos. Los workflow
 | Orquestación CI/CD | GitHub Actions | Ejecuta workflows ante `push`, `pull_request` o una llamada reutilizable desde los pipelines de despliegue. |
 | Backend | .NET CLI y SDK indicado por `global.json` | Restaura dependencias con `dotnet restore`, compila en Release con `dotnet build` y ejecuta pruebas con `dotnet test`. |
 | Frontend | Node.js 24 y npm | Instala dependencias bloqueadas con `npm ci`; ejecuta ESLint, pruebas unitarias de Node.js, compilación Vite y pruebas de navegador Playwright. |
+| App móvil | Flutter SDK 3.47.4 (canal stable) y Dart | Instala Flutter con `subosito/flutter-action@v2`, descarga dependencias con `flutter pub get`, analiza el código con `dart analyze`, ejecuta `flutter test` y compila un APK de depuración con `flutter build apk --debug`. |
 | Evidencia de pruebas backend | `actions/upload-artifact@v4` | Conserva los archivos de resultados de pruebas `.trx` asociados a la ejecución. |
 | Artefacto web validado | `actions/upload-artifact@v4` y `actions/download-artifact@v4` | Transfiere `dist/` desde CI al job de publicación de Azure Static Web Apps sin compilarlo nuevamente. |
+| APK de prueba | `actions/upload-artifact@v4` | Publica el APK de depuración (`app-debug.apk`) generado por el workflow como artefacto descargable, sin firmar y sin uso para distribución. |
 
-Los pipelines se activan ante `pull_request` dirigido a `develop` o `main`. Los cambios en ramas de trabajo ejecutan CI en cada `push`; los `push` a `develop` y `main` se validan mediante los workflows de despliegue que invocan `ci.yml`. El backend publica artefactos `.trx`; el frontend publica el directorio compilado `dist/`, no un informe de cobertura.
+Los pipelines se activan ante `pull_request` dirigido a `develop` o `main`. Los cambios en ramas de trabajo ejecutan CI en cada `push`; los `push` a `develop` y `main` se validan mediante los workflows de despliegue que invocan `ci.yml`. El backend publica artefactos `.trx`; el frontend publica el directorio compilado `dist/`, no un informe de cobertura. La app móvil no tiene un pipeline de despliegue que reutilice `ci.yml`, así que su workflow se ejecuta directamente ante cualquier `push`, incluido `develop`, y publica el APK de depuración como artefacto.
 
 Un error en restauración, análisis de código, compilación o una prueba produce un resultado fallido. En los pipelines de despliegue, el job de publicación depende de la validación (`needs: validate`), por lo que no se ejecuta si CI falla. El bloqueo efectivo de una fusión en GitHub requiere configurar adicionalmente las reglas de protección para exigir los checks correspondientes; no se afirma aquí que dichas reglas estén habilitadas.
 
-El conjunto de pruebas del backend invoca `dotnet test`. El frontend ejecuta 14 pruebas unitarias, además de la suite Playwright; en la configuración predeterminada, los casos de navegador que requieren credenciales y servicios locales se omiten. Por ello, la aprobación del workflow no equivale a ejecutar las pruebas de integración contra la API desplegada.
+El conjunto de pruebas del backend invoca `dotnet test`. El frontend ejecuta 14 pruebas unitarias, además de la suite Playwright; en la configuración predeterminada, los casos de navegador que requieren credenciales y servicios locales se omiten. Por ello, la aprobación del workflow no equivale a ejecutar las pruebas de integración contra la API desplegada. La app móvil ejecuta su suite con `flutter test` (32 pruebas de widgets y unitarias, con repositorios falsos, sin red real). El APK de depuración que se compila y publica después sí queda configurado con `--dart-define=API_BASE_URL` apuntando a la API de Azure desplegada.
 
 #### 7.1.2. Build & Test Suite Pipeline Components
 
@@ -5746,6 +5831,64 @@ En el backend, `checkout` obtiene el código; `setup-dotnet` instala el SDK decl
 ![Artefacto de resultados TRX del backend](assets/devops/7.1.2-02-backend-test-artifact.png)
 
 ![Artefacto frontend-dist de la compilación validada](assets/devops/7.1.2-04-frontend-build-artifact.png)
+
+**Workflow CI de la app móvil — `smartquote-native-mobile/.github/workflows/ci.yml`:**
+
+```yaml
+name: CI - Native Mobile
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+    branches: [develop, main]
+  workflow_call:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: SmartquoteApp-mobile/smartquote_mobile
+
+jobs:
+  check:
+    name: Analyze, test and build debug APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.47.4"
+          channel: stable
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Analyze
+        run: dart analyze
+      - name: Run tests
+        run: flutter test
+      - name: Build debug APK
+        run: flutter build apk --debug
+          --dart-define=API_BASE_URL=https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: smartquote-mobile-debug-apk
+          path: SmartquoteApp-mobile/smartquote_mobile/build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7
+```
+
+El proyecto Flutter está anidado en `SmartquoteApp-mobile/smartquote_mobile`, por lo que `defaults.run.working-directory` evita repetirlo en cada paso. `setup-java` instala el JDK 17 que requiere el Gradle del proyecto Android; `subosito/flutter-action` instala el SDK de Flutter en el canal y la versión indicados; `flutter pub get` resuelve las dependencias declaradas en `pubspec.yaml`; `dart analyze` aplica las reglas de `analysis_options.yaml` (que incluye `flutter_lints`) sin depender del servidor de análisis interactivo; `flutter test` corre la suite de pruebas; `flutter build apk --debug` compila un APK de depuración con la URL de la API de Azure incluida; `upload-artifact` publica ese APK como artefacto descargable del workflow, con una retención de 7 días. Por tratarse de una compilación de depuración, el APK no está firmado para distribución.
+
+![Ejecución satisfactoria de CI de la app móvil en GitHub Actions](assets/devops/7.1.2-05-mobile-ci-success.png)
+
+![Artefacto smartquote-mobile-debug-apk publicado por el workflow](assets/devops/7.1.2-06-mobile-apk-artifact.png)
 
 ### 7.2. Continuous Delivery
 
@@ -6003,4 +6146,32 @@ El desarrollo documental de SmartQuote permite establecer las siguientes conclus
 
 # Anexos
 
-## Anexo A. Videos de Exposiciones
+## Anexo A. Sistemas publicados
+
+- **Landing Page:** <https://upc-pre-202620-1asi0732-9108-smartquote.github.io/smartquote-landing-page/>
+- **Aplicación web:** <https://agreeable-bush-0f1889d10.5.azurestaticapps.net>
+
+## Anexo B. Gestión del proyecto
+
+- **Trello** (Product Backlog y tableros de los sprints): <https://trello.com/b/8zqlWB0a>
+
+## Anexo C. Repositorios del proyecto
+
+- **Informe y documentación:** <https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-report>
+- **Landing Page:** <https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page>
+- **Aplicación web:** <https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-frontend-web>
+- **Aplicación móvil:** <https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile>
+- **Servicios web RESTful:** <https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-web-services>
+
+## Anexo D. Videos de entrevistas y del producto
+
+- **Videos de entrevistas:** <https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQAiY-EXwg1tQoKo-0XOzT0QASvKovIdOAC29CvAAs7HmdY?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=dJ3lPz>
+- **About-the-Product — YouTube:** <https://youtu.be/LdcyPcPV8VY>
+- **About-the-Product — Microsoft Stream / OneDrive:** <https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQC_UgK0aEsxQoJU6a_AlO-cATwIHkuO41EIbBiz3SsICLc>
+- **Demostración de la aplicación móvil:** <https://upcedupe-my.sharepoint.com/:v:/g/personal/u20211d989_upc_edu_pe/IQB9HilKlndFSLYzkIT6mKY0AW6sMWsIdmg3he0IIRiUt2s?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=6gBegE>
+- **Prototipo de la aplicación web:** <https://upcedupe-my.sharepoint.com/:v:/g/personal/u202424059_upc_edu_pe/IQAcC97wx3i_QpIJfEWrR3D7AfYPYAkXvNQRmb0vAu84Y_o?e=k0UWGe>
+
+## Anexo E. Artefactos de diseño
+
+- **To-Be Scenario Mapping** (Lucidchart): <https://lucid.app/lucidchart/63eeb3ac-dccc-418e-b44e-39a3f170b394/edit?viewport_loc=158%2C-2009%2C7125%2C4056%2C0_0&invitationId=inv_9dda55b5-fe7d-4339-b4b2-62507b26eb4a>
+- **Impact Mapping** (Lucidchart): <https://lucid.app/lucidchart/13a6f9fc-7c96-45e5-b767-2f3b6f50c81d/edit?viewport_loc=-3448%2C-421%2C8163%2C6048%2C0_0&invitationId=inv_3fc3599f-7fd4-49c3-9fa8-518b6b6af74b>
