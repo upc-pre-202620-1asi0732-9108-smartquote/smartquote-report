@@ -5239,9 +5239,9 @@ Esta sección establece los derechos, obligaciones y restricciones aplicables a 
 
 ### 5.2.5. Implemented Native-Mobile Application Evidence
 
-La aplicación móvil nativa de SmartQuote se implementó con Flutter y Dart para el segmento de especialistas de producción y sanidad que opera desde la granja. El alcance de esta iteración cubre el registro móvil de solicitudes de insumos (`US02`) y el seguimiento del avance de una solicitud (`US03`). La solución permite iniciar sesión con una cuenta autorizada, registrar la fecha requerida, prioridad, ítems y requisitos técnicos biológicos, adjuntar un sustento opcional y consultar el estado, el área responsable, el historial cronológico y las notificaciones asociadas.
+La aplicación móvil nativa de SmartQuote se desarrolló con Flutter y Dart, diseñada específicamente para el personal de producción y sanidad que trabaja en las granjas. En esta fase, el alcance se concentra en el registro de solicitudes de insumos (`US02`) y el monitoreo de su evolución (`US03`). El sistema permite el ingreso mediante cuentas autorizadas, la asignación de fechas operativas, prioridades, ítems con especificaciones técnico-biológicas, el anexo de documentación de soporte y la revisión detallada de estados, responsables, bitácoras de tiempo y alertas.
 
-La interfaz sigue los lineamientos móviles del proyecto: Material 3, tipografía Roboto, tarjetas de lectura rápida, colores semánticos para estados y una acción principal visible para crear una nueva solicitud. El cliente valida los datos antes del envío y consume los recursos RESTful del contexto `SupplyRequests` y de notificaciones del backend.
+El diseño de la interfaz se alinea con las pautas móviles del proyecto mediante el uso de Material 3, la tipografía Roboto, componentes visuales de lectura ágil y colores semánticos para los estados. Asimismo, se destaca un botón de acción principal para iniciar nuevos requerimientos. Toda la validación de reglas de negocio ocurre en el dispositivo antes del envío, interactuando directamente con los servicios RESTful del módulo SupplyRequests y la API de notificaciones en el backend.
 
 #### Repositorio de código fuente
 
@@ -5249,17 +5249,17 @@ El código fuente independiente de la aplicación móvil se encuentra en el repo
 
 [smartquote-native-mobile](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-native-mobile)
 
-El proyecto se ejecuta desde `SmartQuote_app/smart_quote`, conserva la sesión mediante almacenamiento seguro del dispositivo y recibe la URL de la API mediante `API_BASE_URL`, por lo que no se incluyen contraseñas, tokens ni claves en el repositorio.
+El proyecto se ejecuta desde `SmartquoteApp_mobile/smartquote_mobile`, conserva la sesión mediante almacenamiento seguro del dispositivo y recibe la URL de la API mediante `API_BASE_URL`, por lo que no se incluyen contraseñas, tokens ni claves en el repositorio.
 
 #### Evidencias principales de la aplicación
 
 Las siguientes capturas deben reemplazarse con imágenes tomadas durante la ejecución de la aplicación. Se incluyen únicamente las evidencias principales del flujo móvil:
 
-![Anexo 5.2.5.1 — Inicio de sesión y validación del rol Production Specialist](assets/mobile/5.2.4-01-login-mobile.png)
+![Anexo 5.2.5.1 — Inicio de sesión y validación del rol Production Specialist](assets/mobile/5.2.5-1-login-mobile.png)
 
-![Anexo 5.2.5.2 — Registro de una nueva solicitud con requisitos técnicos](assets/mobile/5.2.4-02-new-request-mobile.png)
+![Anexo 5.2.5.2 — Registro de una nueva solicitud con requisitos técnicos](assets/mobile/5.2.5-1-nueva-solicitud-mobile.png)
 
-![Anexo 5.2.5.3 — Detalle, estado, historial y notificaciones de una solicitud](assets/mobile/5.2.4-03-request-tracking-mobile.png)
+![Anexo 5.2.5.3 — Detalle, estado, historial y notificaciones de una solicitud](assets/mobile/5.2.5-3-notificaciones-mobile.png)
 
 #### Tabla de commits de implementación
 
