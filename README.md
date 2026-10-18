@@ -484,6 +484,25 @@ Proyecto
     - [6.1.2. Core Integration Tests](#612-core-integration-tests)
     - [6.1.3. Core Behavior-Driven Development](#613-core-behavior-driven-development)
     - [6.1.4. Core System Tests](#614-core-system-tests)
+  - [6.2. Static testing \& Verification](#62-static-testing--verification)
+    - [6.2.1. Static Code Analysis](#621-static-code-analysis)
+      - [6.2.1.1. Coding standard \& Code conventions](#6211-coding-standard--code-conventions)
+      - [6.2.1.2. Code Quality \& Code Security](#6212-code-quality--code-security)
+    - [6.2.2. Reviews](#622-reviews)
+  - [6.3. Validation Interviews](#63-validation-interviews)
+    - [6.3.1. Diseño de Entrevistas](#631-diseño-de-entrevistas)
+    - [6.3.2. Registro de Entrevistas](#632-registro-de-entrevistas)
+    - [6.3.3. Evaluaciones según heurísticas](#633-evaluaciones-según-heurísticas)
+  - [6.4. Auditoría de Experiencias de Usuario](#64-auditoría-de-experiencias-de-usuario)
+    - [6.4.1. Auditoría realizada](#641-auditoría-realizada)
+      - [6.4.1.1. Información del grupo auditado](#6411-información-del-grupo-auditado)
+      - [6.4.1.2. Cronograma de auditoría realizada](#6412-cronograma-de-auditoría-realizada)
+      - [6.4.1.3. Contenido de auditoría realizada](#6413-contenido-de-auditoría-realizada)
+    - [6.4.2. Auditoría recibida](#642-auditoría-recibida)
+      - [6.4.2.1. Información del grupo auditor](#6421-información-del-grupo-auditor)
+      - [6.4.2.2. Cronograma de auditoría recibida](#6422-cronograma-de-auditoría-recibida)
+      - [6.4.2.3. Contenido de auditoría recibida](#6423-contenido-de-auditoría-recibida)
+      - [6.4.2.4. Resumen de modificaciones para subsanar hallazgos](#6424-resumen-de-modificaciones-para-subsanar-hallazgos)
   - [Capítulo VII: DevOps Practices](#capítulo-vii-devops-practices)
     - [7.1. Continuous Integration](#71-continuous-integration)
       - [7.1.1. Tools and Practices](#711-tools-and-practices)
@@ -494,6 +513,30 @@ Proyecto
     - [7.3. Continuous Deployment](#73-continuous-deployment)
       - [7.3.1. Tools and Practices](#731-tools-and-practices)
       - [7.3.2. Production Deployment Pipeline Components](#732-production-deployment-pipeline-components)
+    - [7.4. Continuous Monitoring](#74-continuous-monitoring)
+      - [7.4.1. Tools and Practices](#741-tools-and-practices)
+      - [7.4.2. Monitoring Pipeline Components](#742-monitoring-pipeline-components)
+      - [7.4.3. Alerting Pipeline Components](#743-alerting-pipeline-components)
+      - [7.4.4. Notification Pipeline Components](#744-notification-pipeline-components)
+- [Capítulo VIII: Experiment-Driven Development](#capítulo-viii-experiment-driven-development)
+  - [8.1. Experiment Planning](#81-experiment-planning)
+    - [8.1.1. As-Is Summary](#811-as-is-summary)
+    - [8.1.2. Raw Material: Assumptions, Knowledge Gaps, Ideas, Claims](#812-raw-material-assumptions-knowledge-gaps-ideas-claims)
+    - [8.1.3. Experiment-Ready Questions](#813-experiment-ready-questions)
+    - [8.1.4. Question Backlog](#814-question-backlog)
+    - [8.1.5. Experiment Cards](#815-experiment-cards)
+  - [8.2. Experiment Design](#82-experiment-design)
+    - [8.2.1. Hypotheses](#821-hypotheses)
+    - [8.2.2. Domain Business Metrics](#822-domain-business-metrics)
+    - [8.2.3. Measures](#823-measures)
+    - [8.2.4. Conditions](#824-conditions)
+    - [8.2.5. Scale Calculations and Decisions](#825-scale-calculations-and-decisions)
+    - [8.2.6. Methods Selection](#826-methods-selection)
+    - [8.2.7. Data Analytics: Goals, KPIs and Metrics Selection](#827-data-analytics-goals-kpis-and-metrics-selection)
+    - [8.2.8. Web and Mobile Tracking Plan](#828-web-and-mobile-tracking-plan)
+  - [8.3. Experimentation](#83-experimentation)
+    - [8.3.1. To-Be User Stories](#831-to-be-user-stories)
+    - [8.3.2. To-Be Product Backlog](#832-to-be-product-backlog)
 - [Conclusiones](#conclusiones)
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
 - [Bibliografía](#bibliografía)
@@ -5772,6 +5815,90 @@ La ejecución del flujo produjo una [captura de comparación en escritorio](asse
 ![Notificaciones del proyecto Flutter ejecutado en Chrome](assets/testing/flutter-chrome-notifications.png)
 
 **Pendiente para cerrar 6.1.4:** ejecutar el flujo principal en un dispositivo o emulador Android, registrar versión de la aplicación, dispositivo, fecha, pasos y resultado, y adjuntar capturas o video de esa ejecución. Hasta contar con esa evidencia, el recorrido de extremo a extremo queda verificado únicamente para la aplicación web en el entorno local descrito.
+## 6.2. Static testing & Verification
+
+### 6.2.1. Static Code Analysis
+
+#### 6.2.1.1. Coding standard & Code conventions
+
+#### 6.2.1.2. Code Quality & Code Security
+
+### 6.2.2. Reviews
+
+## 6.3. Validation Interviews
+
+### 6.3.1. Diseño de Entrevistas
+
+Las entrevistas de validación buscan observar si los representantes de Adquisiciones y de Producción y Sanidad comprenden la propuesta de SmartQuote y completan tareas de su trabajo en la Landing Page, la aplicación web y la aplicación móvil. Complementan los datos de perfil con evidencia de uso; no sustituyen las pruebas técnicas ni permiten afirmar resultados representativos de todo el sector con solo seis participantes.
+
+**Formato y duración.** Se realizan tres sesiones por segmento, de aproximadamente 8–10 minutos: presentación y consentimiento (1 minuto), cuatro tareas breves (5–6 minutos), preguntas y cierre (2–3 minutos). La ficha de perfil se recoge previamente para evitar repetir preguntas. El registro audiovisual puede editarse a 3–5 minutos por entrevista, conservando las dificultades y respuestas relevantes.
+
+**Preparación y conducción.** Cada sesión utiliza cuentas de prueba con el rol del participante, documentos ficticios y un caso preparado con una solicitud y cotizaciones comparables. El entrevistador solicita permiso para grabar y publicar el enlace privado de evaluación, explica que se evalúa el producto y no a la persona, y permite omitir preguntas o detener la sesión. Presenta las consignas sin indicar botones ni respuestas esperadas, observa el primer intento y registra toda ayuda posterior. No solicita contraseñas, documentos comerciales reales ni información clínica de terceros.
+
+**Ficha previa y preguntas de contexto comunes.**
+
+| Pregunta principal | Información complementaria, solo cuando resulta pertinente |
+|---|---|
+| ¿Cuál es su ocupación y qué responsabilidad tiene en la solicitud o compra de insumos? | Funciones, experiencia, frecuencia de la tarea, tipos de insumos y breve trayectoria laboral; objetivo principal y dificultad habitual. |
+| ¿Qué dispositivos, herramientas y canales utiliza para esa tarea? | Dispositivo preferido, familiaridad digital y habilidades; herramientas o marcas utilizadas, correo o mensajería y personas o fuentes que influyen en sus decisiones. |
+
+La ficha también recoge nombre y apellidos, edad y distrito de residencia. Género autodescrito, estado civil y contexto familiar son datos voluntarios: se incluyen únicamente si el participante desea aportarlos y ayudan a comprender su contexto de uso. Las preferencias, hábitos y rasgos de trabajo se registran como declaraciones del participante o conductas observadas, sin atribuirle rasgos de personalidad no sustentados.
+
+**Segmento 1 — Analistas y jefes de adquisiciones.**
+
+| Tarea | Producto | Consigna para el participante | Evidencia observable |
+|---|---|---|---|
+| A1 | Landing Page | Revise la presentación de SmartQuote, explique para quién sirve y encuentre cómo acceder al sistema. | Comprensión espontánea de la propuesta y acceso al destino correcto. |
+| A2 | Web | Localice la solicitud del caso e identifique qué dato de la cotización necesita revisar antes de compararla. Resuelva o derive la duda según su responsabilidad. | Localización de la solicitud, identificación del dato y comprensión de su origen o de la acción pendiente. |
+| A3 | Web | Compare las ofertas del caso y explique qué alternativa recomendaría y qué condición impediría continuar la compra. | Interpretación de criterios, recomendación, exclusiones y límites de autorización; no se exige aprobar con un rol sin permiso. |
+| A4 | Móvil | Encuentre el mismo caso desde el móvil e identifique su responsable y la siguiente acción pendiente. | Continuidad entre productos, localización del caso y comprensión del seguimiento. |
+
+| Pregunta principal al terminar las tareas | Pregunta complementaria, si se necesita profundizar |
+|---|---|
+| ¿Qué información utilizó para recomendar una alternativa y qué información le faltó? | ¿Qué comprobaría por su cuenta antes de continuar y por qué? |
+| ¿Qué parte del recorrido le resultó más difícil o diferente de su trabajo habitual? | ¿Qué ocurrió, qué esperaba que ocurriera y cómo lo resolvería actualmente? |
+
+**Segmento 2 — Especialistas de producción y sanidad.**
+
+| Tarea | Producto | Consigna para el participante | Evidencia observable |
+|---|---|---|---|
+| P1 | Landing Page | Revise la presentación y explique en qué parte de su trabajo podría utilizar SmartQuote. Encuentre cómo acceder al sistema. | Comprensión del alcance y acceso al destino correcto, sin sugerir que debe encontrarlo útil. |
+| P2 | Móvil | Registre la necesidad de insumos de la ficha del caso con su cantidad, fecha y requisitos técnicos. | Registro completo, interpretación de los campos y respuesta ante una validación. |
+| P3 | Móvil | Consulte el avance de la solicitud preparada e identifique quién debe actuar y qué información necesita esa persona. | Interpretación del estado, historial y responsabilidad pendiente. |
+| P4 | Web | Localice la solicitud del mismo caso desde la web y compruebe si expresa la necesidad técnica que desea comunicar. | Consistencia entre productos, comprensión de los requisitos e identificación de datos o aclaraciones pendientes. |
+
+| Pregunta principal al terminar las tareas | Pregunta complementaria, si se necesita profundizar |
+|---|---|
+| ¿Qué información de la solicitud permite expresar su necesidad y cuál le falta? | ¿Qué podría interpretar de otra manera el área de adquisiciones? |
+| ¿Cómo determina si su solicitud avanza o necesita una intervención suya? | ¿Qué haría si no encuentra la información necesaria y con quién coordinaría? |
+
+
+**Cierre común.** «¿Qué cambiaría primero de esta experiencia y por qué?». El entrevistador registra el resultado por tarea como **lograda sin ayuda**, **lograda con ayuda**, **no lograda** o **no evaluada**, junto con tiempo aproximado, errores, ayudas y expresiones relevantes. Las interpretaciones del equipo se separan de las respuestas y conductas del participante.
+
+### 6.3.2. Registro de Entrevistas
+
+### 6.3.3. Evaluaciones según heurísticas
+
+## 6.4. Auditoría de Experiencias de Usuario
+
+### 6.4.1. Auditoría realizada
+
+#### 6.4.1.1. Información del grupo auditado
+
+#### 6.4.1.2. Cronograma de auditoría realizada
+
+#### 6.4.1.3. Contenido de auditoría realizada
+
+### 6.4.2. Auditoría recibida
+
+#### 6.4.2.1. Información del grupo auditor
+
+#### 6.4.2.2. Cronograma de auditoría recibida
+
+#### 6.4.2.3. Contenido de auditoría recibida
+
+#### 6.4.2.4. Resumen de modificaciones para subsanar hallazgos
+
 ## Capítulo VII: DevOps Practices
 
 Este capítulo describe la automatización de compilación, pruebas y publicación configurada en los repositorios de frontend web y servicios backend de SmartQuote. Los pipelines utilizan GitHub Actions y se dividen en integración continua (CI) y flujos de publicación por entorno (CD). Las evidencias disponibles de las ejecuciones y los artefactos se enlazan en las subsecciones correspondientes.
@@ -6177,6 +6304,54 @@ jobs:
 La comprobación de salud de producción se realiza de forma manual abriendo [`https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net/health`](https://smartquote-api-h8czffe5b4dtg6d7.chilecentral-01.azurewebsites.net/health); la respuesta saludable esperada es HTTP 200. La URL del frontend publicada es [`https://agreeable-bush-0f1889d10.5.azurestaticapps.net`](https://agreeable-bush-0f1889d10.5.azurestaticapps.net). Para verificar un despliegue, se recomienda conservar evidencia de la ejecución verde, la imagen `latest` en ACR, la revisión del contenedor en App Service, la etiqueta de versión si el disparador fue un tag y la aplicación accesible con HTTPS.
 
 ![Anexo 7.3.2.5 — Sitio SmartQuote de producción accesible mediante HTTPS](assets/devops/7.3.2-05-frontend-production-https.png)
+
+### 7.4. Continuous Monitoring
+
+#### 7.4.1. Tools and Practices
+
+#### 7.4.2. Monitoring Pipeline Components
+
+#### 7.4.3. Alerting Pipeline Components
+
+#### 7.4.4. Notification Pipeline Components
+
+# Capítulo VIII: Experiment-Driven Development
+
+## 8.1. Experiment Planning
+
+### 8.1.1. As-Is Summary
+
+### 8.1.2. Raw Material: Assumptions, Knowledge Gaps, Ideas, Claims
+
+### 8.1.3. Experiment-Ready Questions
+
+### 8.1.4. Question Backlog
+
+### 8.1.5. Experiment Cards
+
+## 8.2. Experiment Design
+
+### 8.2.1. Hypotheses
+
+### 8.2.2. Domain Business Metrics
+
+### 8.2.3. Measures
+
+### 8.2.4. Conditions
+
+### 8.2.5. Scale Calculations and Decisions
+
+### 8.2.6. Methods Selection
+
+### 8.2.7. Data Analytics: Goals, KPIs and Metrics Selection
+
+### 8.2.8. Web and Mobile Tracking Plan
+
+## 8.3. Experimentation
+
+### 8.3.1. To-Be User Stories
+
+### 8.3.2. To-Be Product Backlog
 
 # Conclusiones
 
