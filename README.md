@@ -5749,24 +5749,54 @@ Duración: **00:02:45**
 
 ## 6.1. Testing Suites & Validation
 
-Las pruebas de esta sección se ejecutaron el **3 de octubre de 2026** con datos ficticios, PostgreSQL 16.15 local y el proveedor de extracción `Stub`. Las primeras ejecuciones se hicieron sobre copias locales de `smartquote-web-services` (base `develop`, commit `9af0fed`) y `smartquote-frontend-web` (base `develop`, commit `421558f`). Después, las pruebas nuevas del backend se incorporaron a `Back/develop` en los commits `3af19f8` y `596e1db`; el panel US16 y su prueba unitaria se incorporaron a `Front/develop` en `3651074`. Los resultados describen solo las ejecuciones locales documentadas: no prueban uso real, extracción con el proveedor de IA externo, producción ni Android. No se ha verificado la ejecución de CI.
-
 | Nivel | Herramienta y alcance | Resultado local | Evidencia |
 |---|---|---|---|
-| Unitaria backend | xUnit: dominio e identidad/acceso | 32 aprobadas; 0 fallidas | [Resultados Domain](assets/testing/domain.trx) y [IdentityAccess](assets/testing/identity.trx) |
+| Unitaria backend | xUnit: dominio e identidad/acceso; ejecución del 20/10/2026 | 76 aprobadas; 0 fallidas; 0 omitidas | [Resultados Domain](assets/testing/backend-domain-2026-10-20.trx) y [IdentityAccess](assets/testing/backend-identity-2026-10-20.trx) |
 | Unitaria frontend | Node Test Runner: reglas y adaptadores web, incluido US16 | 15 aprobadas; 0 fallidas | [Registro actualizado](assets/testing/web-unit-tests-15.log) |
 | Integración API y persistencia | `WebApplicationFactory`, xUnit y PostgreSQL | 3 aprobadas; 0 fallidas | [Resultado TRX](assets/testing/integration-waf.trx) |
 | Comprobación adicional API | Script HTTP sobre API y PostgreSQL locales | 20 comprobaciones aprobadas | [Salida](assets/testing/api-persistence.log) |
-| BDD | Reqnroll, Gherkin, xUnit, API y PostgreSQL | 3 escenarios aprobados; 0 fallidos | [Resultado TRX](assets/testing/bdd.trx) |
+| BDD | Reqnroll, Gherkin, xUnit, API y PostgreSQL; ejecución del 20/10/2026 | 3 escenarios aprobados; 0 fallidos; 0 omitidos; no incluye todavía US15–US22 | [Resultado TRX](assets/testing/backend-bdd-2026-10-20.trx) |
 | Sistema web | Playwright con Chrome, frontend, API y PostgreSQL | 2 recorridos aprobados en ejecuciones separadas | [Flujo de compra](assets/testing/web-e2e-full.log) y [acceso adaptable](assets/testing/web-e2e-responsive.log) |
 | Sistema web US16 | Playwright con Edge, frontend, API local y PostgreSQL; autenticación de prueba | 1 aprobada; 0 fallidas | [JUnit XML](assets/testing/us16-front-api-e2e.xml) |
 | Sistema Android nativo | Dispositivo o emulador Android | Pendiente de ejecución | Aún no hay evidencia de ejecución nativa |
 
 ### 6.1.1. Core Entities Unit Tests
 
-Se ejecutaron los proyectos xUnit de `smartquote-web-services` en configuración `Release`. `SmartQuote.Domain.Tests` aprobó **15 de 15** pruebas: 9 preexistentes y 6 nuevas para creación de solicitudes, transiciones permitidas y prohibidas, historial y cierre. `SmartQuote.Modules.IdentityAccess.Tests` aprobó **17 de 17** pruebas: 16 preexistentes y 1 nueva que verifica los límites exactos de longitud de la contraseña. Los resultados se guardaron en [domain.trx](assets/testing/domain.trx) e [identity.trx](assets/testing/identity.trx). Las 7 pruebas nuevas forman parte de `Back/develop` mediante los commits `3af19f8` y `596e1db`.
+Las pruebas unitarias verifican las entidades, los objetos de valor y las reglas de negocio del backend de SmartQuote de forma aislada. Se utiliza **xUnit sobre .NET 10**, con casos positivos y negativos, datos sintéticos y fechas controladas cuando la regla depende del tiempo. Su ejecución no necesita navegador, aplicación móvil, PostgreSQL, credenciales de producción ni servicios externos de OpenAI o SUNAT. Este nivel comprueba invariantes del dominio; la autorización HTTP, la persistencia y las transacciones entre contextos se verifican por separado mediante pruebas de integración.
 
-Como comprobación complementaria de reglas de la aplicación web, `npm test` aprobó **15 de 15** pruebas el 4 de octubre de 2026. Entre los casos ejecutados están la validación de cantidades y requisitos de solicitudes, las transiciones de estado, las restricciones para aprobar simulaciones y el tratamiento explícito de respuestas HTTP `401`, `403` y `409`. Su [salida de consola actualizada](assets/testing/web-unit-tests-15.log) conserva los nombres de los casos y el resultado, incluida la prueba de US16 sobre período, consulta HTTP y valores no disponibles. Estas pruebas web no sustituyen las pruebas de entidades del backend.
+| Proyecto | Alcance | Aprobadas | Fallidas | Omitidas | Evidencia |
+| --- | --- | --- | --- | --- | --- |
+| `SmartQuote.Domain.Tests` | Solicitudes, cotizaciones, evaluación, órdenes, auditoría, entregas, métricas y reglas de las nuevas historias | 59 | 0 | 0 | [Resultados de dominio](assets/testing/backend-domain-2026-10-20.trx) |
+| `SmartQuote.Modules.IdentityAccess.Tests` | Reglas de identidad, cuentas y credenciales | 17 | 0 | 0 | [Resultados de identidad y acceso](assets/testing/backend-identity-2026-10-20.trx) |
+| **Total** | **Pruebas unitarias del backend** | **76** | **0** | **0** | Archivos TRX de la ejecución |
+
+**Reglas nuevas y trazabilidad.** Las pruebas de las historias nuevas mantienen los identificadores de historia y escenario mediante atributos `Trait("Story", "US##")` y `Trait("Scenario", "E#")`; las variantes de una regla se expresan con `Theory` e `InlineData`. Los comentarios de los casos identifican el comportamiento comprobado. La relación siguiente describe la cobertura unitaria existente, sin atribuir a una prueba aislada la validación de todos los escenarios HTTP de una historia.
+
+| Historia y escenarios comprobados | Contexto y componentes | Regla, límites y errores verificados | Archivo de pruebas |
+| --- | --- | --- | --- |
+| US15 — E2 y E3 | SupplyRequests: `TechnicalClarification`, `PurchaseRequest` y requisitos técnicos | Solo el destinatario responde; una respuesta no se registra dos veces; la revisión conserva la identidad del requisito y sus valores anterior/nuevo; un requisito obligatorio no se elimina mediante la aclaración. | `RequestWorkflowTests.cs` |
+| US16 — E1, E2 y E4 | SupplyRequests: `RecurringRequestSchedule` y borradores de solicitudes | Se rechazan intervalos nulos o negativos y anticipaciones negativas; se conserva la zona horaria; el borrador no genera un evento de envío hasta su confirmación; no se reenvía ni se envía con fecha vencida; la pausa conserva las ocurrencias anteriores. | `RequestWorkflowTests.cs` |
+| US17 — E2 y E3 | QuotationIntake: `QuotationExpiryAlert` | La lectura repetida conserva su fecha; la reasignación no borra el estado de lectura; otro destinatario no puede leer la alerta; una oferta vencida no genera una alerta preventiva nueva. | `AdvancedPurchasingTests.cs` |
+| US18 — E1 y E4 | PurchaseOrdering: `SupplierAccount` | El proveedor identificado comienza pendiente; una habilitación exige justificación y conserva actor, fecha y cambio de estado; la reactivación incrementa la versión y mantiene el historial. | `OrderingPolicyTests.cs` |
+| US19 — E3 | EvaluationSimulation: `SensitivityAnalysis` | No se admite un análisis que presente conclusiones con menos de dos ofertas elegibles en alguna configuración. | `AdvancedPurchasingTests.cs` |
+| US20 — E1 a E4 | PurchaseOrdering: `PurchaseBudget`, `BudgetAssessment` y contraste monetario de aplicación | Se rechazan cero, importes negativos y presupuestos en una moneda distinta de PEN; la ausencia del límite no equivale a cero; la igualdad con el límite se permite; se suma toda la adquisición; el exceso se identifica; USD exige una tasa conservada y no se omiten partidas; las revisiones mantienen las autorizaciones anteriores. | `OrderingPolicyTests.cs` |
+| US21 — E1 y E2 | EvaluationSimulation: `DistributedSimulationEngine` | Se evalúa por ítem usando la cantidad solicitada y una tasa común; se conservan importes originales y PEN; las ofertas parciales no se suman para completar la cantidad de un ítem; una cobertura incompleta no queda aprobable. | `AdvancedPurchasingTests.cs` |
+| US22 — E2 | SupplyRequests: asignación de `PurchaseRequest` | Una reasignación exige motivo y conserva solicitante, estado, responsable anterior, nuevo responsable y autor del cambio. | `RequestWorkflowTests.cs` |
+
+Estos casos complementan las pruebas de regresión existentes de solicitudes, criterios técnicos, conversión monetaria, auditoría, evaluación de entregas y métricas. Por ejemplo, `FastFlowTests.cs` comprueba la interpretación de valores decimales y unidades, y `ExchangeRateTests.cs` verifica reglas de conversión sin consultar el servicio oficial. Las pruebas unitarias utilizan valores conocidos: no constituyen una evaluación de precisión del modelo de IA ni una comprobación de disponibilidad de SUNAT.
+
+**Ejemplo de comprobación de límites de US20 — E1:**
+
+```csharp
+[Theory, Trait("Story", "US20"), Trait("Scenario", "E1")]
+[InlineData(0, "PEN"), InlineData(-1, "PEN"), InlineData(100, "USD")]
+public void InvalidBudgetCannotBeAuthorized(decimal amount, string currency) =>
+    Assert.Throws<DomainException>(() => PurchaseBudget.Create(
+        Guid.NewGuid(), amount, currency, "Autorización",
+        Guid.NewGuid(), DateTimeOffset.UtcNow));
+```
+
+La evidencia se obtuvo dentro de la ejecución reproducible `pwsh -NoProfile -File tests/run-tests.ps1 -Level All`; el registro de esta ejecución es `113a1ad91e0f47cebe5259ba851f1c10`. Los proyectos unitarios también pueden ejecutarse por separado con `dotnet test tests/SmartQuote.Domain.Tests/SmartQuote.Domain.Tests.csproj --configuration Release` y `dotnet test tests/SmartQuote.Modules.IdentityAccess.Tests/SmartQuote.Modules.IdentityAccess.Tests.csproj --configuration Release`. En JetBrains Rider, los atributos de xUnit permiten ejecutar una clase o un caso individual y revisar su resultado en el explorador de pruebas.
 
 ### 6.1.2. Core Integration Tests
 
@@ -5782,15 +5812,55 @@ Los PDF empleados son archivos sintéticos mínimos; estos resultados verifican 
 
 ### 6.1.3. Core Behavior-Driven Development
 
-Se implementaron tres escenarios ejecutables en Gherkin con Reqnroll y xUnit, conectados a una API local con PostgreSQL. El [resultado TRX](assets/testing/bdd.trx) registra **3 escenarios aprobados y 0 fallidos**:
+El desarrollo dirigido por comportamiento expresa las reglas observables mediante **Gherkin**, siguiendo la estructura `Given–When–Then`. SmartQuote utiliza **Reqnroll y xUnit** en el proyecto `SmartQuote.Bdd.Tests`: cada escenario de `Features/PurchaseFlow.feature` se vincula con métodos ejecutables de `Steps/PurchaseFlowSteps.cs`. Los pasos realizan peticiones a la API ASP.NET Core y comprueban las respuestas y la recuperación posterior de los recursos; no dependen de las pantallas web o móviles.
 
-| Escenario | Resultado observado |
-|---|---|
-| Producción registra una solicitud completa | La API devuelve `201` y la solicitud se lee con estado `Submitted`. |
-| Un analista intenta registrar una solicitud de producción | La API devuelve `403` por la restricción de rol. |
-| Se carga un PDF junto con un archivo no admitido | La API devuelve `207`; se conserva la cotización válida y se informa el error del otro archivo. |
+Las condiciones previas preparan datos ficticios y roles conocidos. La API utiliza PostgreSQL aislado y credenciales de prueba; el ejecutor crea los recursos temporales y los elimina al finalizar. Los escenarios vigentes no invocan el proveedor real de IA ni SUNAT. El aislamiento permite repetir las comprobaciones sin afectar la base de trabajo ni utilizar claves de producción.
 
-Estos escenarios cubren el registro de solicitudes y la incorporación de cotizaciones correspondientes a **US02** y **US04**. Se ejecutaron localmente con datos ficticios y están incluidos en `Back/develop` (`596e1db`); no se ha verificado un resultado de estos escenarios en GitHub Actions.
+| Historia / escenario etiquetado | Escenario Gherkin implementado | Comprobación ejecutada | Resultado |
+| --- | --- | --- | --- |
+| `@US02 @E1` | `Production registers a complete purchase request` | Con la API disponible y el rol de producción, el registro devuelve `201`; la solicitud se recupera con el mismo identificador y estado `Submitted`. | Aprobado |
+| `@TS02 @E3` | `Purchasing cannot register a production request` | Un analista intenta registrar una solicitud reservada al rol de producción; la API devuelve `403`. | Aprobado |
+| `@US04 @US10 @E2` | `A batch preserves a valid quotation when another file is unsupported` | La carga de un PDF y un archivo no permitido devuelve `207`; el PDF queda disponible en la consulta de cotizaciones y el archivo no admitido se rechaza con `unsupported_media_type`. | Aprobado |
+
+Las etiquetas vinculan la especificación con la historia y el escenario; Reqnroll genera los casos de xUnit a partir del archivo `.feature`. El TRX conserva los nombres y resultados de los casos generados, de modo que la evidencia corresponde a comportamientos ejecutados y no únicamente a una descripción textual.
+
+**Ejemplo ejecutable de éxito incluido en `PurchaseFlow.feature`:**
+
+```gherkin
+@US02 @E1
+Scenario: Production registers a complete purchase request
+  Given the SmartQuote API and PostgreSQL are available
+  And I have the ProductionSpecialist role
+  When I register a complete purchase request
+  Then the API responds with 201
+  And the request can be read back with Submitted status
+```
+
+**Ejemplo ejecutable de rechazo del mismo archivo:**
+
+```gherkin
+@TS02 @E3
+Scenario: Purchasing cannot register a production request
+  Given the SmartQuote API and PostgreSQL are available
+  And I have the PurchaseAnalyst role
+  When I register a complete purchase request
+  Then the API responds with 403
+```
+
+**Alcance de las nuevas historias.** US15–US22 cuentan con comprobaciones xUnit de dominio y de integración HTTP/PostgreSQL, pero todavía no tienen escenarios Gherkin vinculados a pasos ejecutables. Por tanto, los tres resultados BDD anteriores no se presentan como aceptación BDD de estas historias. Su ampliación requiere los siguientes comportamientos de éxito y rechazo:
+
+| Historia | Comportamiento de éxito para ampliar la especificación | Comportamiento de rechazo para ampliar la especificación | Estado BDD |
+| --- | --- | --- | --- |
+| US15 | Aclaración respondida por su destinatario y revisión técnica trazable. | Respuesta de un tercero o aprobación basada en una especificación anterior. | Pendiente de automatización y ejecución en Gherkin |
+| US16 | Generación de un único borrador recurrente y confirmación explícita del especialista. | Duplicación de una ocurrencia, envío de un borrador vencido o generación de una programación pausada. | Pendiente de automatización y ejecución en Gherkin |
+| US17 | Alerta para el analista responsable sin duplicados ni pérdida de lectura. | Generación preventiva para una oferta vencida o aprobación con condiciones comerciales vencidas. | Pendiente de automatización y ejecución en Gherkin |
+| US18 | Habilitación y reactivación justificadas con historial de decisiones. | Nueva adjudicación a un proveedor pendiente o suspendido. | Pendiente de automatización y ejecución en Gherkin |
+| US19 | Variantes comparables y promoción explícita a criterios y simulación oficiales. | Ponderaciones inválidas, ofertas elegibles insuficientes o promoción de un análisis desactualizado. | Pendiente de automatización y ejecución en Gherkin |
+| US20 | Aprobación de la adquisición completa dentro del presupuesto vigente, incluida la conversión conservada. | Exceso global, evidencia cambiaria ausente o comprobación de una versión presupuestal anterior. | Pendiente de automatización y ejecución en Gherkin |
+| US21 | Adjudicación completa por ítem, una orden por proveedor y reintento idempotente. | Cobertura incompleta o fallo de la emisión, sin dejar una adjudicación parcial. | Pendiente de automatización y ejecución en Gherkin |
+| US22 | Asignación vigente y reasignación justificada con conservación del historial. | Destinatario no habilitado o solicitud cerrada, sin alterar al responsable existente. | Pendiente de automatización y ejecución en Gherkin |
+
+La ejecución local reproducible se realiza mediante `pwsh -NoProfile -File tests/run-tests.ps1 -Level All`. Con la API y el entorno aislado ya disponibles, el proyecto BDD también se ejecuta mediante `dotnet test tests/SmartQuote.Bdd.Tests/SmartQuote.Bdd.Tests.csproj --configuration Release`. Los resultados documentados acreditan la ejecución local de los tres escenarios existentes; no constituyen evidencia de CI, producción ni recorridos en Android.
 
 ### 6.1.4. Core System Tests
 
