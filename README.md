@@ -426,6 +426,7 @@ Proyecto
         - [Aspect Leaders and Collaborators](#aspect-leaders-and-collaborators)
         - [Sprint Backlog 1](#sprint-backlog-1)
       - [5.2.1.2. Sprint 2](#5212-sprint-2)
+      - [5.2.1.3. Sprint 3](#5213-sprint-3)
         - [Sprint Planning 2](#sprint-planning-2)
         - [Aspect Leaders and Collaborators](#aspect-leaders-and-collaborators-1)
         - [Sprint Backlog 2](#sprint-backlog-2)
@@ -1392,6 +1393,34 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 | 18 | TS04 | Exponer un endpoint RESTful para integrar órdenes de compra con sistemas externos | Como Developer, deseo exponer un endpoint RESTful que entregue el detalle de las órdenes de compra en JSON normalizado para permitir su sincronización con los sistemas de inventario o contabilidad de la empresa. | 3 |
 | 19 | TS03 | Integrar una fuente de tipo de cambio para la conversión de cotizaciones | Como Developer, deseo consumir un servicio web oficial de tipo de cambio, como los publicados por SUNAT o SBS, para convertir automáticamente las cotizaciones en dólares estadounidenses (USD) a soles peruanos (PEN) durante la simulación de precios. | 5 |
 | 20 | US13 | Registrar y consultar el desempeño histórico de los proveedores | Como analista de adquisiciones, deseo registrar una calificación de cumplimiento del plazo y la calidad del proveedor después de una entrega para considerar su desempeño histórico en futuras evaluaciones. | 8 |
+| 21 | US22 | Asignar y reasignar solicitudes a un analista responsable | Como jefe de adquisiciones, deseo asignar cada solicitud a un analista responsable para distribuir la carga de trabajo y evitar solicitudes desatendidas o con responsabilidades ambiguas. | 3 |
+| 22 | US15 | Resolver aclaraciones técnicas entre adquisiciones y producción | Como analista de adquisiciones, deseo solicitar aclaraciones al especialista de producción y sanidad sobre especificaciones ambiguas para continuar la evaluación con una interpretación técnica confirmada y trazable. | 5 |
+| 23 | US18 | Habilitar o suspender proveedores para nuevas compras | Como jefe de adquisiciones, deseo administrar la habilitación de proveedores para nuevas compras para impedir adjudicaciones a proveedores suspendidos por la organización y conservar el sustento de cada decisión. | 5 |
+| 24 | US20 | Controlar el presupuesto de una adquisición | Como jefe de adquisiciones, deseo establecer un presupuesto máximo para una solicitud y contrastarlo con las alternativas evaluadas para evitar comprometer importes superiores al límite autorizado. | 5 |
+| 25 | US21 | Simular una compra distribuida entre proveedores | Como analista de adquisiciones, deseo simular la adjudicación de los ítems de una solicitud entre proveedores elegibles para obtener una combinación con mejor ajuste técnico y comercial sin depender de una única oferta para toda la compra. | 8 |
+| 26 | US19 | Analizar la sensibilidad de la recomendación de compra | Como jefe de adquisiciones, deseo analizar cómo cambia la alternativa recomendada al variar las ponderaciones comerciales para identificar si la decisión se mantiene estable dentro de las configuraciones evaluadas. | 5 |
+| 27 | US16 | Programar solicitudes recurrentes de insumos | Como especialista de producción y sanidad, deseo programar solicitudes periódicas de insumos para reducir el registro repetitivo de necesidades de abastecimiento y revisar cada solicitud antes de enviarla a adquisiciones. | 8 |
+| 28 | US17 | Recibir alertas anticipadas del vencimiento de cotizaciones | Como analista de adquisiciones, deseo recibir alertas sobre cotizaciones próximas a vencer para priorizar decisiones antes de que sus condiciones comerciales pierdan vigencia. | 3 |
+
+### Ampliación AV2 — ocho historias nuevas
+
+El 7 de noviembre de 2026 se prepara la ampliación con **US15–US22**, definidas por Fabio en 3.2. Se conservan las veinte filas anteriores y sus estimaciones. Las nuevas historias suman **42 Story Points** y mantienen literalmente IDs, títulos, descripciones, prioridades y criterios de aceptación de 3.2. El orden 21–28 expresa prioridad relativa dentro de la ampliación; no modifica el orden histórico de los ítems anteriores.
+
+| Orden AV2 | Story ID | Prioridad de 3.2 | Story Points | Motivo de secuencia |
+| ---: | --- | --- | ---: | --- |
+| 1 | US22 | Alta | 3 | Establecer responsabilidad vigente antes de coordinar aclaraciones y alertas. |
+| 2 | US15 | Alta | 5 | Resolver ambigüedades y controlar versiones antes de evaluar. |
+| 3 | US18 | Alta | 5 | Asegurar habilitación del proveedor antes de adjudicar. |
+| 4 | US20 | Alta | 5 | Aplicar presupuesto global y conversión antes de aprobar. |
+| 5 | US21 | Alta | 8 | Combinar ítems y aprobar de forma atómica bajo controles previos. |
+| 6 | US19 | Media | 5 | Examinar configuraciones comparables sin reemplazar aprobación. |
+| 7 | US16 | Media | 8 | Reducir registro repetitivo con revisión humana e idempotencia. |
+| 8 | US17 | Media | 3 | Priorizar cotizaciones vigentes mediante avisos únicos al responsable. |
+| **Total** | **8 historias** | | **42** | |
+
+Las estimaciones son iniciales de planificación, revisables tras contrastar capacidad y complejidad. No equivalen a horas ni a velocidad histórica. El detalle de tareas aparece en [Sprint 3](#5213-sprint-3). Los criterios se conservan en [3.2](#32-user-stories) como fuente única y se trasladan completos a cada tarjeta.
+
+**Tablero único:** [Trello SmartQuote](https://trello.com/b/8zqlWB0a). El estado de sincronización se documenta en Sprint 3. Los IDs que aparecen en capturas o párrafos históricos de Sprint 2 pueden corresponder a numeraciones anteriores; esas evidencias no se renombran ni se interpretan como las US15–US22 de AV2.
 
 ![Trello Product Backlog](assets/requirements/product-backlog-smartquote.png)
 
@@ -5297,6 +5326,165 @@ La siguiente distribución de 68 horas corresponde a TK44–TK58, antes de la am
 
 Durante el Sprint se registrarán, según el modelo de la guía: tabla de commits de desarrollo, tabla de commits y resultados de pruebas, capturas y video de ejecución, endpoints OpenAPI del alcance, evidencias de despliegue y analíticas de colaboración. Esta sección se completará con los artefactos generados por la ejecución.
 
+#### 5.2.1.3. Sprint 3
+
+Sprint 3 selecciona **únicamente US15–US22**, las ocho historias nuevas de AV2. Los ítems de Sprint 1 y Sprint 2 se mantienen como antecedentes y dependencias del flujo; no se incorporan otra vez como alcance del sprint. Esta sección documenta planificación, no certifica implementación ni aceptación.
+
+##### Sprint Planning 3
+
+| Campo | Plan de Sprint 3 |
+| --- | --- |
+| Sprint # | 3 |
+| Sprint Planning Background | Ampliar el flujo de adquisiciones con coordinación técnica, recurrencia, alertas, control de proveedores, sensibilidad, presupuesto, compra distribuida y responsabilidad vigente. |
+| Date | 2026-11-07: fecha de preparación documental. |
+| Time / Location | No registrados: no se atribuye una reunión ni un horario no comprobados. |
+| Prepared By | Bardales Tejada, Luis Alexis. |
+| Equipo previsto | Luis Alexis Bardales Tejada; Mathias Marcelo De La Cruz De Los Santos; Jhon Danny Guerrero Vasquez; Fabio Cesar Vallejo Trujillo. Esta lista no acredita asistencia a una reunión. |
+| Sprint 2 Review Summary | Se conservan las evidencias de Sprint 2 ya documentadas. No se declara aceptado el sprint ni se calcula velocidad observada sin acta y resultados verificables. |
+| Sprint 2 Retrospective Summary | Sin registro de retrospectiva consultado. Se planifican contrato temprano, pruebas por escenario y sincronización de evidencias sin atribuir estos acuerdos a una reunión realizada. |
+| Sprint Goal & User Stories | US15, US16, US17, US18, US19, US20, US21 y US22. |
+| Duración de referencia | 4 semanas, siguiendo el horizonte utilizado en los sprints anteriores; fechas de inicio y cierre por registrar según el calendario del equipo. |
+| Sum of Story Points | 42 Story Points de estimación inicial. |
+| Sprint 3 Velocity | No disponible como dato observado. Los 42 puntos son alcance planificado y no prueban capacidad efectiva ni velocidad. |
+| Estimación operativa | 182 horas de tareas propuestas; la disponibilidad individual debe contrastarse antes de comprometer el alcance. |
+| Tablero | [Tablero único de Trello](https://trello.com/b/8zqlWB0a); identificar estas tarjetas mediante Sprint 3 y su título actual. |
+
+##### Sprint 3 Goal
+
+**Nuestro enfoque está en** entregar una ampliación integrada de SmartQuote que permita coordinar requisitos y responsables, anticipar necesidades y vencimientos y evaluar compras con control de habilitación, presupuesto y distribución por ítem.
+
+**Creemos que esto aporta** decisiones de compra sustentadas y responsabilidades claras a adquisiciones, producción y sanidad, manteniendo revisión humana, trazabilidad y consistencia entre web, Flutter y API.
+
+**Se confirmará cuando** los escenarios de US15–US22 de 3.2 se ejecuten con datos autorizados: las aclaraciones preserven versiones; una programación genere solicitudes únicas para revisión y respete suspensión; las alertas no se dupliquen; proveedores no habilitados y presupuestos excedidos bloqueen nuevas adjudicaciones; la sensibilidad se limite a configuraciones probadas; una combinación cubra cada ítem completo exactamente una vez y emita órdenes por proveedor de forma atómica e idempotente; y la reasignación mantenga un responsable vigente y actualice su conjunto de trabajo. La confirmación requiere resultados y evidencias reales, no solo presencia del código.
+
+##### Aspect Leaders and Collaborators — LACX 3
+
+La asignación sigue el reparto AV2: Fabio lidera backend y pruebas; Mathias implementa web y US18–US20 móviles; Fabio implementa US15–US17 móviles; Alexis implementa US21–US22 móviles y mantiene backlog e informe. Jhon lidera la revisión funcional prevista de criterios y aporta contexto de los segmentos. Esta revisión no equivale a sus entrevistas reales, que conservan su entrega independiente.
+
+L = líder del aspecto; C = colaborador; — = sin tarea prevista en ese aspecto.
+
+| Integrante | GitHub | Backend/contratos | Web | Flutter US15–17 | Flutter US18–20 | Flutter US21–22 | Revisión funcional | Backlog/informe |
+| --- | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Luis Alexis Bardales Tejada | AlexisBardales | C | C | — | — | L | C | L |
+| Mathias Marcelo De La Cruz De Los Santos | Dela050406 | C | L | C | L | C | C | C |
+| Jhon Danny Guerrero Vasquez | Feli386 | — | — | — | — | — | L | C |
+| Fabio Cesar Vallejo Trujillo | fabiovallejo | L | C | L | C | C | C | C |
+
+El liderazgo no implica aceptación automática del trabajo. Las pruebas automatizadas quedan asignadas a Fabio en cada historia; la revisión funcional de Jhon se separa de su ejecución técnica.
+
+##### Sprint Backlog 3
+
+Los identificadores continúan después de TK76 para evitar colisiones. Cada historia se desglosa en contrato/backend, web, Flutter, pruebas automatizadas, revisión funcional y trazabilidad. Los puntos estiman tamaño relativo de la historia; las horas dimensionan tareas y no se convierten unos en otras.
+
+**Estado inicial:** To-do significa ejecución no verificada para este desglose. El estado “Completado” de una actividad general en la hoja de reparto no demuestra por sí solo aceptación de cada historia; las tareas se actualizarán con evidencia específica. La preparación de L01/L02 no significa que US15–US22 estén terminadas.
+
+| Story ID | Task ID | Task Title | Description | Estimation (Hours) | Assigned To | Status |
+| --- | --- | --- | --- | ---: | --- | --- |
+| US15 | TK77 | Contrato e implementación backend | Publicar contrato e implementar consultas y respuestas técnicas con permisos, historial y versionado; invalidar evaluaciones cuando cambie un requisito. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US15 | TK78 | Implementación web | Integrar consulta, respuesta y contexto del requisito; mostrar aclaraciones pendientes y necesidad de reevaluación. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US15 | TK79 | Implementación Flutter | Integrar consultas y respuestas con el mismo control de requisitos y vigencia que web. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US15 | TK80 | Pruebas automatizadas e integración | Cubrir registro, respuesta autorizada y cambio de requisito; rechazar accesos indebidos y aprobación de evaluación obsoleta. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US15 | TK81 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US15 | TK82 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US16 | TK83 | Contrato e implementación backend | Publicar contrato y persistir programación, zona horaria, periodicidad y ocurrencias idempotentes; generar solicitudes para revisión y respetar suspensión. | 8 | Fabio Cesar Vallejo Trujillo | To-do |
+| US16 | TK84 | Implementación web | Integrar programación, revisión y suspensión; diferenciar borrador generado de solicitud enviada. | 6 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US16 | TK85 | Implementación Flutter | Implementar programación recurrente, revisión previa al envío y suspensión en Flutter. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US16 | TK86 | Pruebas automatizadas e integración | Cubrir programación válida/inválida, ocurrencia única, revisión obligatoria y suspensión; verificar conservación de cambios en reintentos. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US16 | TK87 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US16 | TK88 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US17 | TK89 | Contrato e implementación backend | Publicar contrato y detectar vencimientos dentro del plazo configurado; crear alertas únicas y conservar lectura/historial al finalizar seguimiento. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US17 | TK90 | Implementación web | Mostrar alertas por responsable, vencimiento y lectura sin duplicar avisos ni permitir aprobar ofertas vencidas. | 3 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US17 | TK91 | Implementación Flutter | Integrar listado y lectura de alertas con reglas equivalentes a web. | 3 | Fabio Cesar Vallejo Trujillo | To-do |
+| US17 | TK92 | Pruebas automatizadas e integración | Cubrir anticipación y zona horaria, comprobaciones repetidas y cese por vencimiento/adjudicación; conservar historial. | 3 | Fabio Cesar Vallejo Trujillo | To-do |
+| US17 | TK93 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US17 | TK94 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US18 | TK95 | Contrato e implementación backend | Publicar contrato y habilitar, suspender y reactivar proveedores con autorización e historial; bloquear adjudicación y exigir reevaluación cuando corresponda. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US18 | TK96 | Implementación web | Integrar estados y decisiones justificadas; mostrar impacto sobre recomendaciones pendientes sin alterar órdenes históricas. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US18 | TK97 | Implementación Flutter | Implementar administración de habilitación de proveedores, restricciones de rol e historial en Flutter. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US18 | TK98 | Pruebas automatizadas e integración | Cubrir los cuatro escenarios: habilitación, suspensión, bloqueo de adjudicación y reactivación sin restaurar automáticamente evaluaciones. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US18 | TK99 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US18 | TK100 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US19 | TK101 | Contrato e implementación backend | Publicar contrato y analizar variaciones válidas de pesos conservando entradas, requisitos y tasa; no modificar criterios vigentes ni emitir órdenes. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US19 | TK102 | Implementación web | Comparar configuraciones, puntajes y cambios de proveedor, delimitando la conclusión al conjunto evaluado. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US19 | TK103 | Implementación Flutter | Implementar sensibilidad, comparación y mensajes de información insuficiente con paridad web. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US19 | TK104 | Pruebas automatizadas e integración | Cubrir configuraciones comparables, cambios de recomendación, rechazo de pesos/datos insuficientes y aprobación mediante simulación vigente. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US19 | TK105 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US19 | TK106 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US20 | TK107 | Contrato e implementación backend | Publicar contrato y versionar presupuesto positivo en PEN; validar importe global, conversión conservada y presupuesto vigente antes de aprobar. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US20 | TK108 | Implementación web | Integrar presupuesto y margen/exceso, distinguiendo ausencia de límite y falta de conversión de presupuesto cero. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US20 | TK109 | Implementación Flutter | Implementar presupuesto y sus bloqueos de aprobación en Flutter, considerando total distribuido. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US20 | TK110 | Pruebas automatizadas e integración | Cubrir límite válido, igualdad al máximo, exceso, falta de tasa y cambio de versión; sumar todas las órdenes distribuidas. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US20 | TK111 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US20 | TK112 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US21 | TK113 | Contrato e implementación backend | Publicar contrato y simular un proveedor por ítem completo; validar cobertura total, vigencia, habilitación y presupuesto; emitir órdenes por proveedor en transacción idempotente. | 10 | Fabio Cesar Vallejo Trujillo | To-do |
+| US21 | TK114 | Implementación web | Mostrar proveedor/cotización/puntaje/importe por ítem, total y cobertura pendiente; integrar aprobación del conjunto sin duplicados. | 6 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US21 | TK115 | Implementación Flutter | Implementar US21 en Flutter: combinación por ítem, exclusiones, total y aprobación autorizada con las mismas reglas que web. | 6 | Luis Alexis Bardales Tejada | To-do |
+| US21 | TK116 | Pruebas automatizadas e integración | Cubrir los cuatro escenarios; rechazar cobertura incompleta y reparto de un ítem; probar atomicidad, versiones, presupuesto global y reintento sin duplicados. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US21 | TK117 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US21 | TK118 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US22 | TK119 | Contrato e implementación backend | Publicar contrato e implementar asignación única, reasignación justificada e historial; validar solicitud activa, analista activo y permisos. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US22 | TK120 | Implementación web | Integrar asignación/reasignación y consulta de trabajo vigente; conservar solicitante y estado. | 3 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US22 | TK121 | Implementación Flutter | Implementar US22 en Flutter: asignación, reasignación y solicitudes propias con paridad web y control de rol. | 3 | Luis Alexis Bardales Tejada | To-do |
+| US22 | TK122 | Pruebas automatizadas e integración | Cubrir los cuatro escenarios, destinatario inválido, solicitud inactiva y retiro del conjunto del responsable anterior; conservar historial. | 3 | Fabio Cesar Vallejo Trujillo | To-do |
+| US22 | TK123 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US22 | TK124 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+
+##### Resumen de estimaciones de Sprint 3
+
+| Story ID | Título de 3.2 | Story Points | Horas de tareas |
+| --- | --- | ---: | ---: |
+| US15 | Resolver aclaraciones técnicas entre adquisiciones y producción | 5 | 22 |
+| US16 | Programar solicitudes recurrentes de insumos | 8 | 28 |
+| US17 | Recibir alertas anticipadas del vencimiento de cotizaciones | 3 | 17 |
+| US18 | Habilitar o suspender proveedores para nuevas compras | 5 | 22 |
+| US19 | Analizar la sensibilidad de la recomendación de compra | 5 | 22 |
+| US20 | Controlar el presupuesto de una adquisición | 5 | 22 |
+| US21 | Simular una compra distribuida entre proveedores | 8 | 32 |
+| US22 | Asignar y reasignar solicitudes a un analista responsable | 3 | 17 |
+| **Total** | **8 historias** | **42** | **182** |
+
+| Integrante | Horas estimadas |
+| --- | ---: |
+| Fabio Cesar Vallejo Trujillo | 95 |
+| Mathias Marcelo De La Cruz De Los Santos | 46 |
+| Jhon Danny Guerrero Vasquez | 16 |
+| Luis Alexis Bardales Tejada | 25 |
+| **Total** | **182** |
+
+La carga propuesta no es uniforme: Fabio concentra 95 horas por backend, pruebas y tres historias móviles. Esa concentración es un riesgo de capacidad que debe contrastarse con su disponibilidad; no se presenta como un compromiso aceptado por el equipo. Los clientes pueden avanzar sobre contratos OpenAPI y pruebas con dobles, pero la aceptación exige integración con el backend real del entorno de prueba.
+
+##### Secuencia, dependencias y Definition of Done
+
+1. Publicar contratos de las ocho historias y confirmar los controles base de autenticación, solicitudes, cotizaciones verificadas, criterios y órdenes.
+2. Integrar US22 y US15 para responsabilidad y coordinación. En paralelo, trabajar US18 y US20 como controles previos a adjudicar.
+3. Integrar US21 sobre vigencia, habilitación y presupuesto global. US19 conserva configuraciones separadas y nunca aprueba directamente.
+4. Integrar US16 y US17, verificando ocurrencias y avisos idempotentes, revisión humana y zona horaria.
+5. Ejecutar los escenarios de cada US en API/web/Flutter, revisar resultados y sincronizar evidencias antes de mover una historia a Done.
+
+Una historia está Done cuando cumple todos los escenarios actuales de 3.2, respeta autorización y reglas de negocio, conserva persistencia y trazabilidad, funciona en web y Flutter contra el contrato vigente y cuenta con pruebas ejecutadas, revisión funcional y enlaces de versión/resultado. No se acepta una captura de navegador estrecho como prueba de Flutter nativo. Las evidencias no deben exponer credenciales ni datos personales innecesarios.
+
+##### Sincronización y evidencias de Sprint 3
+
+El 7 de noviembre de 2026 se crearon y verificaron las ocho tarjetas de Sprint 3 en el [tablero existente de SmartQuote](https://trello.com/b/8zqlWB0a), dentro de **Sprint Backlog (To-Do)**. Las veinte tarjetas previas se conservaron. El prefijo Sprint 3 y el título actual distinguen las nuevas US15 y US16 de las historias con numeración histórica coincidente.
+
+Cada tarjeta contiene descripción, prioridad de 3.2, estimación de puntos coincidente con 3.3, épica, criterios de aceptación íntegros, fuente y Definition of Done. Se verificaron **30 escenarios** y **48 elementos de checklist**, seis por historia, con los IDs TK77–TK124, responsables y horas de este plan. Todos los elementos permanecen sin completar; esta sincronización no acredita implementación de las historias.
+
+| Story ID | Tarjeta verificada | Puntos | Tareas | Estado observado |
+| --- | --- | ---: | ---: | --- |
+| US22 | [Asignar y reasignar solicitudes a un analista responsable](https://trello.com/c/41WZ6l5p/21-sprint-3-us22-asignar-y-reasignar-solicitudes-a-un-analista-responsable-3-sp) | 3 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US15 | [Resolver aclaraciones técnicas entre adquisiciones y producción](https://trello.com/c/BLO1fgK0/22-sprint-3-us15-resolver-aclaraciones-t%C3%A9cnicas-entre-adquisiciones-y-producci%C3%B3n-5-sp) | 5 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US18 | [Habilitar o suspender proveedores para nuevas compras](https://trello.com/c/wG96Xf2M/23-sprint-3-us18-habilitar-o-suspender-proveedores-para-nuevas-compras-5-sp) | 5 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US20 | [Controlar el presupuesto de una adquisición](https://trello.com/c/PPzNYa5f/24-sprint-3-us20-controlar-el-presupuesto-de-una-adquisici%C3%B3n-5-sp) | 5 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US21 | [Simular una compra distribuida entre proveedores](https://trello.com/c/QWnN8s0k/25-sprint-3-us21-simular-una-compra-distribuida-entre-proveedores-8-sp) | 8 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US19 | [Analizar la sensibilidad de la recomendación de compra](https://trello.com/c/ixzniBOQ/26-sprint-3-us19-analizar-la-sensibilidad-de-la-recomendaci%C3%B3n-de-compra-5-sp) | 5 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US16 | [Programar solicitudes recurrentes de insumos](https://trello.com/c/F24XwuWV/27-sprint-3-us16-programar-solicitudes-recurrentes-de-insumos-8-sp) | 8 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US17 | [Recibir alertas anticipadas del vencimiento de cotizaciones](https://trello.com/c/9hi3BEw9/28-sprint-3-us17-recibir-alertas-anticipadas-del-vencimiento-de-cotizaciones-3-sp) | 3 | 6 | Sprint Backlog (To-Do), 0/6 |
+| **Total** | **8 tarjetas** | **42** | **48** | **Pendientes de ejecución** |
+
+La comprobación se realizó reabriendo cada tarjeta y verificando el contenido de sus criterios y sus seis elementos sin completar. Los enlaces de cada tarjeta permiten consultar la evidencia de planificación; no se presentan como evidencia de implementación de API, web o Flutter.
+
+Esta sección incorpora al informe el Product Backlog ampliado y la planificación de Sprint 3, sincronizados con las ocho tarjetas enlazadas. El cierre de las actividades documentales L01 y L02 no equivale a completar la implementación de US15–US22, cuyas tareas conservan el estado observado en Trello.
+
 ### 5.2.2. Implemented Landing Page Evidence
 
 La Landing Page de SmartQuote se implementó como un sitio estático en HTML5, CSS3 y JavaScript vainilla, sin frameworks ni dependencias de build, orientado a comunicar la propuesta de valor a los segmentos de Adquisiciones y de Producción y Sanidad. Incluye soporte bilingüe (español e inglés) mediante `i18n.js`, un simulador interactivo que recalcula en tiempo real el ranking de tres cotizaciones de ejemplo según criterios ponderados por el usuario (precio, plazo de entrega, etc.), y un formulario de contacto con validación de campos en el cliente (nombre, correo corporativo y empresa).
@@ -6487,3 +6675,4 @@ El desarrollo documental de SmartQuote permite establecer las siguientes conclus
 
 - **To-Be Scenario Mapping** (Lucidchart): <https://lucid.app/lucidchart/63eeb3ac-dccc-418e-b44e-39a3f170b394/edit?viewport_loc=158%2C-2009%2C7125%2C4056%2C0_0&invitationId=inv_9dda55b5-fe7d-4339-b4b2-62507b26eb4a>
 - **Impact Mapping** (Lucidchart): <https://lucid.app/lucidchart/13a6f9fc-7c96-45e5-b767-2f3b6f50c81d/edit?viewport_loc=-3448%2C-421%2C8163%2C6048%2C0_0&invitationId=inv_3fc3599f-7fd4-49c3-9fa8-518b6b6af74b>
+
