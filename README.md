@@ -426,11 +426,18 @@ Proyecto
         - [Aspect Leaders and Collaborators](#aspect-leaders-and-collaborators)
         - [Sprint Backlog 1](#sprint-backlog-1)
       - [5.2.1.2. Sprint 2](#5212-sprint-2)
-      - [5.2.1.3. Sprint 3](#5213-sprint-3)
         - [Sprint Planning 2](#sprint-planning-2)
         - [Aspect Leaders and Collaborators](#aspect-leaders-and-collaborators-1)
         - [Sprint Backlog 2](#sprint-backlog-2)
         - [Evidencias para Sprint Review](#evidencias-para-sprint-review)
+      - [5.2.1.3. Sprint 3](#5213-sprint-3)
+        - [Sprint Planning 3](#sprint-planning-3)
+        - [Sprint 3 Goal](#sprint-3-goal)
+        - [Aspect Leaders and Collaborators — LACX 3](#aspect-leaders-and-collaborators--lacx-3)
+        - [Sprint Backlog 3](#sprint-backlog-3)
+        - [Resumen de estimaciones de Sprint 3](#resumen-de-estimaciones-de-sprint-3)
+        - [Secuencia, dependencias y Definition of Done](#secuencia-dependencias-y-definition-of-done)
+        - [Sincronización y evidencias de Sprint 3](#sincronización-y-evidencias-de-sprint-3)
     - [5.2.2. Implemented Landing Page Evidence](#522-implemented-landing-page-evidence)
       - [Repositorio de código fuente](#repositorio-de-código-fuente)
       - [Despliegue](#despliegue)
@@ -1402,25 +1409,7 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 | 27 | US16 | Programar solicitudes recurrentes de insumos | Como especialista de producción y sanidad, deseo programar solicitudes periódicas de insumos para reducir el registro repetitivo de necesidades de abastecimiento y revisar cada solicitud antes de enviarla a adquisiciones. | 8 |
 | 28 | US17 | Recibir alertas anticipadas del vencimiento de cotizaciones | Como analista de adquisiciones, deseo recibir alertas sobre cotizaciones próximas a vencer para priorizar decisiones antes de que sus condiciones comerciales pierdan vigencia. | 3 |
 
-### Ampliación AV2 — ocho historias nuevas
-
-El 7 de noviembre de 2026 se prepara la ampliación con **US15–US22**, definidas por Fabio en 3.2. Se conservan las veinte filas anteriores y sus estimaciones. Las nuevas historias suman **42 Story Points** y mantienen literalmente IDs, títulos, descripciones, prioridades y criterios de aceptación de 3.2. El orden 21–28 expresa prioridad relativa dentro de la ampliación; no modifica el orden histórico de los ítems anteriores.
-
-| Orden AV2 | Story ID | Prioridad de 3.2 | Story Points | Motivo de secuencia |
-| ---: | --- | --- | ---: | --- |
-| 1 | US22 | Alta | 3 | Establecer responsabilidad vigente antes de coordinar aclaraciones y alertas. |
-| 2 | US15 | Alta | 5 | Resolver ambigüedades y controlar versiones antes de evaluar. |
-| 3 | US18 | Alta | 5 | Asegurar habilitación del proveedor antes de adjudicar. |
-| 4 | US20 | Alta | 5 | Aplicar presupuesto global y conversión antes de aprobar. |
-| 5 | US21 | Alta | 8 | Combinar ítems y aprobar de forma atómica bajo controles previos. |
-| 6 | US19 | Media | 5 | Examinar configuraciones comparables sin reemplazar aprobación. |
-| 7 | US16 | Media | 8 | Reducir registro repetitivo con revisión humana e idempotencia. |
-| 8 | US17 | Media | 3 | Priorizar cotizaciones vigentes mediante avisos únicos al responsable. |
-| **Total** | **8 historias** | | **42** | |
-
-Las estimaciones son iniciales de planificación, revisables tras contrastar capacidad y complejidad. No equivalen a horas ni a velocidad histórica. El detalle de tareas aparece en [Sprint 3](#5213-sprint-3). Los criterios se conservan en [3.2](#32-user-stories) como fuente única y se trasladan completos a cada tarjeta.
-
-**Tablero único:** [Trello SmartQuote](https://trello.com/b/8zqlWB0a). El estado de sincronización se documenta en Sprint 3. Los IDs que aparecen en capturas o párrafos históricos de Sprint 2 pueden corresponder a numeraciones anteriores; esas evidencias no se renombran ni se interpretan como las US15–US22 de AV2.
+**Tablero único:** [Trello SmartQuote](https://trello.com/b/8zqlWB0a). El estado de sincronización se documenta en Sprint 3.
 
 ![Trello Product Backlog](assets/requirements/product-backlog-smartquote.png)
 
