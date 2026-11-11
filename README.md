@@ -5926,16 +5926,28 @@ Duración: **00:02:45**
 
 ## 6.1. Testing Suites & Validation
 
+La verificación de Sprint 3 comprende las reglas de negocio y los contratos de US15–US22 en el backend, junto con los componentes móviles implementados para US15, US16, US17, US21 y US22. Las nuevas historias de la aplicación web y las funciones móviles de US18, US19 y US20 quedan fuera del alcance de ejecución de clientes de esta iteración. Los resultados del 10/11/2026 se obtienen con datos sintéticos y entornos locales aislados; las evidencias anteriores se conservan como regresión del flujo existente.
+
 | Nivel | Herramienta y alcance | Resultado local | Evidencia |
 |---|---|---|---|
-| Unitaria backend | xUnit: dominio e identidad/acceso; ejecución del 20/10/2026 | 76 aprobadas; 0 fallidas; 0 omitidas | [Resultados Domain](assets/testing/backend-domain-2026-10-20.trx) y [IdentityAccess](assets/testing/backend-identity-2026-10-20.trx) |
-| Unitaria frontend | Node Test Runner: reglas y adaptadores web, incluido US16 | 15 aprobadas; 0 fallidas | [Registro actualizado](assets/testing/web-unit-tests-15.log) |
-| Integración API y persistencia | `WebApplicationFactory`, xUnit y PostgreSQL | 3 aprobadas; 0 fallidas | [Resultado TRX](assets/testing/integration-waf.trx) |
-| Comprobación adicional API | Script HTTP sobre API y PostgreSQL locales | 20 comprobaciones aprobadas | [Salida](assets/testing/api-persistence.log) |
-| BDD | Reqnroll, Gherkin, xUnit, API y PostgreSQL; ejecución del 20/10/2026 | 3 escenarios aprobados; 0 fallidos; 0 omitidos; no incluye todavía US15–US22 | [Resultado TRX](assets/testing/backend-bdd-2026-10-20.trx) |
-| Sistema web | Playwright con Chrome, frontend, API y PostgreSQL | 2 recorridos aprobados en ejecuciones separadas | [Flujo de compra](assets/testing/web-e2e-full.log) y [acceso adaptable](assets/testing/web-e2e-responsive.log) |
-| Sistema web US16 | Playwright con Edge, frontend, API local y PostgreSQL; autenticación de prueba | 1 aprobada; 0 fallidas | [JUnit XML](assets/testing/us16-front-api-e2e.xml) |
-| Sistema Android nativo | Dispositivo o emulador Android | Pendiente de ejecución | Aún no hay evidencia de ejecución nativa |
+| Unitaria backend | xUnit: dominio e identidad/acceso; ejecución del 10/11/2026 | 76 aprobadas; 0 fallidas; 0 omitidas | [Dominio](assets/testing/backend-domain-2026-11-10.trx) e [identidad y acceso](assets/testing/backend-identity-2026-11-10.trx) |
+| Integración API y persistencia | xUnit, `WebApplicationFactory` y PostgreSQL temporal; regresión y US15–US22 | 98 aprobadas; 0 fallidas; 0 omitidas | [Resultados de integración](assets/testing/backend-integration-2026-11-10.trx) |
+| BDD | Reqnroll, Gherkin, xUnit, API y PostgreSQL; ejecución del 10/11/2026 | 3 escenarios aprobados; 0 fallidos; 0 omitidos; no incluye US15–US22 | [Resultados BDD](assets/testing/backend-bdd-2026-11-10.trx) |
+| Unitaria y componentes móviles | Flutter Test: dominio, repositorios con dobles y widgets; ocho archivos locales, incluidas US15–US17, US21 y US22 | 50 aprobadas; 0 fallidas; 0 omitidas | [Registro de Flutter](assets/testing/mobile-tests-2026-11-10.jsonl) |
+| Integración HTTP móvil | Repositorios móviles contra API ASP.NET Core y PostgreSQL temporales; flujo de compra existente | 1 recorrido aprobado; 0 fallidos | [Registro HTTP móvil](assets/testing/mobile-api-tests-2026-11-10.jsonl) |
+| Unitaria frontend, evidencia previa | Node Test Runner: reglas y adaptadores web del alcance anterior | 15 aprobadas; 0 fallidas | [Registro conservado](assets/testing/web-unit-tests-15.log) |
+| Comprobación adicional API, evidencia previa | Script HTTP sobre API y PostgreSQL locales | 20 comprobaciones aprobadas | [Salida conservada](assets/testing/api-persistence.log) |
+| Sistema web, evidencia previa | Playwright con Chrome, frontend, API y PostgreSQL | 2 recorridos aprobados en ejecuciones separadas | [Flujo de compra](assets/testing/web-e2e-full.log) y [acceso adaptable](assets/testing/web-e2e-responsive.log) |
+| Sistema web US14, evidencia previa | Panel de métricas con Playwright, Edge, API local y PostgreSQL; autenticación de prueba | 1 aprobada; 0 fallidas | [JUnit XML](assets/testing/us16-front-api-e2e.xml), conservado con su nombre original |
+| Sistema Android nativo | Recorrido de pantallas en dispositivo o emulador Android | Sin ejecución documentada para las nuevas historias | Evidencia pendiente |
+
+**Entorno y conservación de resultados.** La ejecución utiliza Windows, .NET 10, PostgreSQL 16 en Docker y Flutter 3.47.9 con Dart 3.13.7. El backend registra **177 pruebas aprobadas** entre dominio, identidad, integración y BDD. Las 50 pruebas locales de Flutter combinan pruebas unitarias y pruebas de widgets; no se clasifican en su totalidad como pruebas unitarias de entidades. Los registros JSONL conservan los eventos de resultados de Flutter en formato máquina y excluyen los mensajes auxiliares del depurador. La integración HTTP móvil utiliza red real hacia el entorno temporal; sus resultados no acreditan un recorrido por las pantallas ni una ejecución en Android.
+
+**Ejecución y artefactos en CI.** El workflow del backend ejecuta `tests/run-tests.ps1 -Coverage` y publica `backend-test-results` con archivos TRX y cobertura Cobertura. El workflow móvil utiliza `tool/run-tests.ps1 -Level Unit -Coverage -Machine`, descubre los ocho archivos locales y publica `mobile-test-results` y `mobile-test-coverage`. La prueba de red opcional `live_backend_test.dart` se excluye de esta selección. Un trabajo separado ejecuta el recorrido HTTP contra el backend aislado y publica `mobile-api-integration-results`; selecciona la revisión compatible del backend mediante `SMARTQUOTE_BACKEND_TEST_REF`. Los resultados de esta sección corresponden a la ejecución local; la configuración de los workflows no sustituye la evidencia de una ejecución en GitHub Actions.
+
+![Resultados y artefactos de pruebas del backend en GitHub Actions](assets/testing/6.1-01-backend-ci-tests.png)
+
+![Resultados y artefactos de pruebas móviles en GitHub Actions](assets/testing/6.1-02-mobile-ci-tests.png)
 
 ### 6.1.1. Core Entities Unit Tests
 
@@ -5943,8 +5955,8 @@ Las pruebas unitarias verifican las entidades, los objetos de valor y las reglas
 
 | Proyecto | Alcance | Aprobadas | Fallidas | Omitidas | Evidencia |
 | --- | --- | --- | --- | --- | --- |
-| `SmartQuote.Domain.Tests` | Solicitudes, cotizaciones, evaluación, órdenes, auditoría, entregas, métricas y reglas de las nuevas historias | 59 | 0 | 0 | [Resultados de dominio](assets/testing/backend-domain-2026-10-20.trx) |
-| `SmartQuote.Modules.IdentityAccess.Tests` | Reglas de identidad, cuentas y credenciales | 17 | 0 | 0 | [Resultados de identidad y acceso](assets/testing/backend-identity-2026-10-20.trx) |
+| `SmartQuote.Domain.Tests` | Solicitudes, cotizaciones, evaluación, órdenes, auditoría, entregas, métricas y reglas de las nuevas historias | 59 | 0 | 0 | [Resultados de dominio](assets/testing/backend-domain-2026-11-10.trx) |
+| `SmartQuote.Modules.IdentityAccess.Tests` | Reglas de identidad, cuentas y credenciales | 17 | 0 | 0 | [Resultados de identidad y acceso](assets/testing/backend-identity-2026-11-10.trx) |
 | **Total** | **Pruebas unitarias del backend** | **76** | **0** | **0** | Archivos TRX de la ejecución |
 
 **Reglas nuevas y trazabilidad.** Las pruebas de las historias nuevas mantienen los identificadores de historia y escenario mediante atributos `Trait("Story", "US##")` y `Trait("Scenario", "E#")`; las variantes de una regla se expresan con `Theory` e `InlineData`. Los comentarios de los casos identifican el comportamiento comprobado. La relación siguiente describe la cobertura unitaria existente, sin atribuir a una prueba aislada la validación de todos los escenarios HTTP de una historia.
@@ -5973,19 +5985,54 @@ public void InvalidBudgetCannotBeAuthorized(decimal amount, string currency) =>
         Guid.NewGuid(), DateTimeOffset.UtcNow));
 ```
 
-La evidencia se obtuvo dentro de la ejecución reproducible `pwsh -NoProfile -File tests/run-tests.ps1 -Level All`; el registro de esta ejecución es `113a1ad91e0f47cebe5259ba851f1c10`. Los proyectos unitarios también pueden ejecutarse por separado con `dotnet test tests/SmartQuote.Domain.Tests/SmartQuote.Domain.Tests.csproj --configuration Release` y `dotnet test tests/SmartQuote.Modules.IdentityAccess.Tests/SmartQuote.Modules.IdentityAccess.Tests.csproj --configuration Release`. En JetBrains Rider, los atributos de xUnit permiten ejecutar una clase o un caso individual y revisar su resultado en el explorador de pruebas.
+La evidencia corresponde a la ejecución del 10/11/2026 mediante `pwsh -NoProfile -File tests/run-tests.ps1 -Level All -Coverage`, identificada como `41c10ad85deb450f80ec85da192c58e5`. La selección `-Level Unit` también ejecuta las 76 pruebas unitarias: las clases de reglas de solicitudes y políticas de compra incluyen la categoría `Unit`. Los identificadores `Story` y `Scenario` permiten seleccionar una historia sin cambiar los nombres de sus pruebas.
+
+```powershell
+# Desde la raíz de smartquote-web-services.
+pwsh -NoProfile -File tests/run-tests.ps1 -Level Unit
+pwsh -NoProfile -File tests/run-tests.ps1 -Story US15 -Level Unit
+```
+
+Los proyectos unitarios también pueden ejecutarse por separado con `dotnet test tests/SmartQuote.Domain.Tests/SmartQuote.Domain.Tests.csproj --configuration Release` y `dotnet test tests/SmartQuote.Modules.IdentityAccess.Tests/SmartQuote.Modules.IdentityAccess.Tests.csproj --configuration Release`. En JetBrains Rider, los atributos de xUnit permiten ejecutar una clase o un caso individual y revisar su resultado en el explorador de pruebas.
 
 ### 6.1.2. Core Integration Tests
 
-Se agregaron tres pruebas xUnit con `WebApplicationFactory<Program>` que inician la API ASP.NET Core en memoria, aplican las migraciones y consultan directamente una base PostgreSQL de prueba. Las tres aprobaron:
+Las pruebas de `SmartQuote.Integration.Tests` comprueban los contratos REST, la autorización por rol, las migraciones, la persistencia y las operaciones entre contextos. `WebApplicationFactory<Program>` ejecuta los controladores y servicios reales con PostgreSQL temporal. El proyecto está incluido en `SmartQuote.sln`, junto con las pruebas de dominio, identidad y BDD. La ejecución del 10/11/2026 registra **98 casos aprobados, 0 fallidos y 0 omitidos** en el [resultado TRX de integración](assets/testing/backend-integration-2026-11-10.trx).
 
-1. Una solicitud creada por el rol de producción devuelve `201`, puede recuperarse por API y tiene estado `Submitted` en la tabla `supply_requests.purchase_requests`.
-2. Un lote con un PDF de prueba y un archivo `.txt` no admitido devuelve `207`; la cotización válida queda en `quotation_intake.poultry_quotes` y el archivo inválido devuelve `unsupported_media_type`.
-3. Dos archivos PDF idénticos en un lote hacen referencia a la misma cotización y dejan una sola fila persistida.
+**Aislamiento y datos de prueba.** `tests/run-tests.ps1` crea un contenedor PostgreSQL exclusivo, asigna un puerto local disponible, prepara credenciales y claves temporales y aplica las migraciones. Al finalizar retira el proceso de API, el contenedor y los archivos temporales de esa ejecución. Las comprobaciones no utilizan la base de trabajo ni credenciales de producción. Los límites de extracción de documentos y tipo de cambio se sustituyen por adaptadores controlados; los controladores, las reglas del dominio y PostgreSQL se ejecutan realmente. Los casos de SUNAT comprueban el uso y la conservación de una tasa conocida y el rechazo ante indisponibilidad, sin acreditar la disponibilidad del servicio oficial.
 
-El [archivo TRX de integración](assets/testing/integration-waf.trx) registra **3 aprobadas y 0 fallidas**. Además, una comprobación HTTP independiente contra la API local aprobó **20 verificaciones** de registro e inicio de sesión, autorización por rol, creación y lectura de solicitud, dos transiciones de estado y carga parcial. Su [registro](assets/testing/api-persistence.log) y [resumen JSON](assets/testing/api-persistence-result.json) muestran los códigos de respuesta y los identificadores generados.
+**Trazabilidad de US15–US22.** Las pruebas incluyen casos etiquetados para los 30 escenarios de aceptación de las ocho historias. La cobertura siguiente corresponde al backend y no implica que las pantallas web o móviles estén implementadas o verificadas de extremo a extremo.
 
-Los PDF empleados son archivos sintéticos mínimos; estos resultados verifican la aceptación, persistencia y manejo de errores del lote con el proveedor `Stub`, pero no la calidad de extracción de cotizaciones reales. Las pruebas de integración están incluidas en `Back/develop` (`596e1db`). Su proyecto se ejecuta por separado: no forma parte de `SmartQuote.sln`. No se ha verificado una ejecución de CI.
+| Historia | Escenarios | Contratos, permisos y persistencia comprobados | Archivo en `tests/SmartQuote.Integration.Tests` |
+| --- | --- | --- | --- |
+| US15 — Aclaraciones técnicas | E1–E3 | Origen de la pregunta y destinatario; respuesta autorizada; conservación del requisito hasta una revisión explícita; versiones e invalidación de decisiones basadas en especificaciones anteriores. | `RequestWorkflowAcceptanceTests.cs` |
+| US16 — Solicitudes recurrentes | E1–E4 | Programación válida con responsable y zona horaria; borrador privado y editable; envío explícito; generación única de ocurrencias concurrentes; pausa con conservación del historial. | `RequestWorkflowAcceptanceTests.cs` |
+| US17 — Alertas de vencimiento | E1–E3 | Bandeja del analista responsable; ausencia de duplicados en comprobaciones paralelas; lectura persistente y reasignación; invalidación de evaluaciones vencidas y cese de alertas preventivas. | `AdvancedPurchasingAcceptanceTests.cs` |
+| US18 — Habilitación de proveedores | E1–E4 | Estado pendiente y decisiones reservadas al jefe; suspensión que invalida recomendaciones pendientes; bloqueo de nuevas órdenes y conflictos concurrentes; reactivación sin restaurar simulaciones anteriores. | `OrderingPolicyAcceptanceTests.cs` |
+| US19 — Sensibilidad | E1–E4 | Configuraciones comparables con las mismas entradas y tasa; variación de recomendaciones; rechazo de pesos inválidos u ofertas insuficientes; promoción explícita y atómica a una simulación oficial vigente. | `AdvancedPurchasingAcceptanceTests.cs` |
+| US20 — Presupuesto | E1–E4 | Límite positivo en PEN y permisos; igualdad con el máximo; conversión conservada; rechazo del exceso o de evidencia cambiaria ausente; historial y control de cambios concurrentes. | `OrderingPolicyAcceptanceTests.cs` |
+| US21 — Compra distribuida | E1–E4 | Evaluación por ítem y cantidad completa; bloqueo por cobertura insuficiente; una orden por proveedor con importes trazables; presupuesto global; reversión de la operación ante fallos e idempotencia concurrente. | `AdvancedPurchasingAcceptanceTests.cs` |
+| US22 — Asignación de analista | E1–E4 | Asignación a una cuenta habilitada sin cambiar autor o estado; motivo e historial de reasignación; conflictos de versión; rechazo de destinatarios inválidos y bandeja propia con restricciones de acceso. | `RequestWorkflowAcceptanceTests.cs` |
+
+`PurchaseAwardMigrationTests.cs` complementa US21 mediante una actualización real sobre una orden anterior: verifica que la migración hacia adjudicaciones conserve identificador, número, moneda y referencias de origen. Las pruebas de concurrencia y reversión comprueban el estado persistido después del conflicto, además de la respuesta HTTP. La regresión incluye registro de solicitudes, cargas parciales, rechazo de archivos no admitidos y deduplicación de documentos.
+
+**Ejecución reproducible.** Desde la raíz del backend, con Docker disponible:
+
+```powershell
+pwsh -NoProfile -File tests/run-tests.ps1 -Level Integration -Coverage
+pwsh -NoProfile -File tests/run-tests.ps1 -Story US21 -Level Integration
+```
+
+**Integración de repositorios móviles.** `tool/core_api_test.dart` ejecuta un recorrido con los clientes HTTP de Flutter contra una API local y PostgreSQL exclusivos. Comprueba inicio de sesión real, permisos, solicitud y adjunto, carga y corrección de cotizaciones, simulación, orden idempotente, consultas, PDF, auditoría, métricas y evaluación de entrega. La preparación habilita al proveedor mediante el contrato vigente antes de simular. Este paso prepara los datos de la prueba; no acredita una pantalla móvil de administración de proveedores. El [registro HTTP móvil del 10/11/2026](assets/testing/mobile-api-tests-2026-11-10.jsonl) contiene **1 recorrido aprobado y 0 fallidos**.
+
+```powershell
+# Desde SmartquoteApp-mobile/smartquote_mobile, con Flutter y Docker disponibles.
+pwsh -NoProfile -File tool/run-tests.ps1 -Level Integration -BackendPath E:\smartquote-web-services
+```
+
+El recorrido HTTP móvil cubre el flujo anterior a US15–US22. Las nuevas funciones móviles de US15–US17, US21 y US22 cuentan con las comprobaciones locales de contratos y widgets detalladas en 6.1.4; utilizan respuestas controladas y no sustituyen una prueba de integración de sus pantallas con la API. La aplicación web todavía no aporta integración de las nuevas historias. Las funciones móviles de US18–US20 no forman parte del alcance implementado de esta iteración.
+
+![Resultados de integración HTTP y persistencia del backend](assets/testing/6.1.2-01-backend-integration-results.png)
 
 ### 6.1.3. Core Behavior-Driven Development
 
@@ -6000,6 +6047,8 @@ Las condiciones previas preparan datos ficticios y roles conocidos. La API utili
 | `@US04 @US10 @E2` | `A batch preserves a valid quotation when another file is unsupported` | La carga de un PDF y un archivo no permitido devuelve `207`; el PDF queda disponible en la consulta de cotizaciones y el archivo no admitido se rechaza con `unsupported_media_type`. | Aprobado |
 
 Las etiquetas vinculan la especificación con la historia y el escenario; Reqnroll genera los casos de xUnit a partir del archivo `.feature`. El TRX conserva los nombres y resultados de los casos generados, de modo que la evidencia corresponde a comportamientos ejecutados y no únicamente a una descripción textual.
+
+La ejecución del 10/11/2026 mantiene **3 escenarios aprobados, 0 fallidos y 0 omitidos**, según el [registro BDD](assets/testing/backend-bdd-2026-11-10.trx). Estos resultados forman parte de las 177 pruebas del backend registradas en 6.1.
 
 **Ejemplo ejecutable de éxito incluido en `PurchaseFlow.feature`:**
 
@@ -6043,7 +6092,7 @@ La ejecución local reproducible se realiza mediante `pwsh -NoProfile -File test
 
 Se ejecutaron dos pruebas Playwright de la aplicación **web** en Chrome. La primera comprobó el acceso en inglés y español y una pantalla adaptable; aprobó **1 de 1**. La segunda recorrió la creación de una solicitud desde producción y el flujo de adquisiciones desde la interfaz hasta la orden de compra, con la API y PostgreSQL locales; aprobó **1 de 1**. Quedaron los registros del [acceso adaptable](assets/testing/web-e2e-responsive.log) y del [flujo de compra](assets/testing/web-e2e-full.log).
 
-Además, una prueba Playwright de US16 aprobó la consulta del panel contra la API y PostgreSQL locales con datos ficticios. El ingreso se simuló con un token de prueba; el endpoint de métricas respondió desde la API local. El [resultado JUnit XML](assets/testing/us16-front-api-e2e.xml) registra 1 aprobada y 0 fallidas. Esta comprobación corresponde al panel web, no a Android.
+Además, una prueba Playwright del panel de métricas, correspondiente a US14 en la numeración vigente, aprobó la consulta contra la API y PostgreSQL locales con datos ficticios. El ingreso se simuló con un token de prueba; el endpoint de métricas respondió desde la API local. El [resultado JUnit XML](assets/testing/us16-front-api-e2e.xml), conservado con su nombre original, registra 1 aprobada y 0 fallidas. Esta comprobación corresponde al panel web, no a Android ni a la programación recurrente de US16.
 
 La ejecución del flujo produjo una [captura de comparación en escritorio](assets/testing/vue-comparison-desktop.png) y una [captura de la orden en una ventana web estrecha](assets/testing/vue-order-narrow-web.png). Ambas utilizan datos ficticios. La segunda imagen corresponde al navegador web con ancho reducido: **no es evidencia de la aplicación Android nativa**.
 
@@ -6051,7 +6100,7 @@ La ejecución del flujo produjo una [captura de comparación en escritorio](asse
 
 ![Orden de compra en la aplicación web con ventana estrecha](assets/testing/vue-order-narrow-web.png)
 
-**Capturas del proyecto móvil ejecutado en Chrome (evidencia visual facilitada por el integrante responsable).** El compañero indicó que ejecutó la aplicación en Chrome. Tres capturas muestran `localhost:50661`; la captura de la lista de solicitudes está recortada y no permite identificar el dispositivo. Estas imágenes muestran pantallas de la interfaz, pero no documentan un recorrido de prueba completo ni una ejecución en Android.
+**Capturas del proyecto móvil ejecutado en Chrome.** Tres capturas muestran `localhost:50661`; la captura de la lista de solicitudes está recortada y no permite identificar el dispositivo. Estas imágenes documentan las pantallas del flujo previo, sin constituir evidencia de un recorrido completo de las nuevas historias ni de una ejecución en Android.
 
 ![Pantalla de inicio de sesión del proyecto Flutter ejecutado en Chrome](assets/testing/flutter-chrome-login.png)
 
@@ -6061,7 +6110,36 @@ La ejecución del flujo produjo una [captura de comparación en escritorio](asse
 
 ![Notificaciones del proyecto Flutter ejecutado en Chrome](assets/testing/flutter-chrome-notifications.png)
 
-**Pendiente para cerrar 6.1.4:** ejecutar el flujo principal en un dispositivo o emulador Android, registrar versión de la aplicación, dispositivo, fecha, pasos y resultado, y adjuntar capturas o video de esa ejecución. Hasta contar con esa evidencia, el recorrido de extremo a extremo queda verificado únicamente para la aplicación web en el entorno local descrito.
+**Verificación local de componentes móviles de Sprint 3.** El 10/11/2026 se ejecutan las pruebas existentes de US15, US16, US17, US21 y US22 con Flutter 3.47.9 y Dart 3.13.7 en Windows, sin dispositivo Android. La selección completa comprende ocho archivos y registra **50 pruebas aprobadas, 0 fallidas y 0 omitidas**. Dentro de esa selección, 19 casos están identificados con las cinco historias nuevas implementadas. El [registro en formato máquina](assets/testing/mobile-tests-2026-11-10.jsonl) conserva los nombres y resultados individuales. Los casos de widgets interactúan con controles reales de Flutter, pero sus repositorios reciben respuestas del doble `TestApi`; por ello verifican comportamiento de componentes y contratos enviados, no persistencia real ni un recorrido completo del sistema.
+
+| Historia | Archivo en `test` | Casos aprobados | Comportamiento comprobado en el cliente | Alcance de la evidencia |
+| --- | --- | --- | --- | --- |
+| US15 — Aclaraciones técnicas | `request_workflows_test.dart` | 6 | Origen de la aclaración; respuesta explícita del especialista; comandos independientes de respuesta y revisión; conservación del requisito obligatorio y de las versiones enviadas. | Repositorio y widgets con respuestas controladas. |
+| US16 — Solicitudes recurrentes | `request_workflows_test.dart` | 8 | Rechazo local de programación inválida; conservación de ítems y requisitos del borrador; guardado sin envío automático; comandos versionados; ocurrencias visibles y pausa con conservación de referencias. | Validación local, repositorio y widgets; la generación única del servidor se verifica en integración del backend. |
+| US17 — Alertas de vencimiento | `request_workflows_test.dart` | 2 | Lectura de la bandeja, proveedor y vigencia; marcado de lectura mediante el contrato del servidor sin modificar la validez de la cotización. | Repositorio y widgets; la planificación de alertas se verifica en integración del backend. |
+| US21 — Compra distribuida | `distributed_purchase_test.dart` | 1 | Bloqueo de cobertura incompleta y exceso de presupuesto; emisión explícita del conjunto de órdenes revisado. | Estados del panel y solicitudes enviadas con respuestas controladas; no comprueba transacciones de PostgreSQL. |
+| US22 — Asignación de analista | `request_assignment_test.dart` | 2 | Motivo obligatorio y versión observada al reasignar; actualización de la responsabilidad; filtro de solicitudes propias y recarga de la bandeja. | Interacción de widgets y contratos enviados; no comprueba permisos del servidor. |
+
+La repetición de una historia se realiza con el mismo ejecutor local, sin cambiar la selección de archivos ni los nombres de los casos:
+
+```powershell
+# Desde SmartquoteApp-mobile/smartquote_mobile.
+pwsh -NoProfile -File tool/run-tests.ps1 -Level Unit
+pwsh -NoProfile -File tool/run-tests.ps1 -Story US15 -Level Unit
+pwsh -NoProfile -File tool/run-tests.ps1 -Story US21 -Level Unit
+pwsh -NoProfile -File tool/run-tests.ps1 -Story US22 -Level Unit
+```
+
+**Estado de verificación de extremo a extremo.** Las nuevas historias web permanecen pendientes de implementación y no se presentan como recorridos aprobados. En móvil, US15–US17, US21 y US22 disponen de componentes implementados y pruebas locales, pero no cuentan todavía con un recorrido documentado de sus pantallas contra la API en un dispositivo o emulador Android. US18–US20 permanecen fuera del alcance móvil implementado. El recorrido HTTP descrito en 6.1.2 verifica los repositorios del flujo previo; `integration_test/core_workflow_test.dart` reutiliza ese recorrido y no automatiza la navegación por las pantallas.
+
+| Registro de ejecución | Aplicación y entorno | Datos | Resultado acreditado | Verificación pendiente |
+| --- | --- | --- | --- | --- |
+| Regresión web conservada | Navegadores Chrome y Edge, API y PostgreSQL locales | Solicitud y cotizaciones ficticias | Flujo de compra, acceso adaptable y panel de métricas del alcance previo. | Recorridos de US15–US22 cuando sus pantallas estén implementadas. |
+| Componentes Flutter, 10/11/2026 | Entorno de pruebas Flutter en Windows; sin dispositivo | Respuestas sintéticas y roles controlados en `TestApi` | 50 pruebas aprobadas, incluidas 19 de US15–US17, US21 y US22. | Flujo real de las cinco historias implementadas en Android, con API y persistencia. |
+| Repositorios HTTP Flutter, 10/11/2026 | Entorno Flutter en Windows, API ASP.NET Core y PostgreSQL temporales | Cuentas y documentos sintéticos; extracción `Stub` | 1 recorrido del flujo previo aprobado. | Navegación e interacción de las pantallas móviles con esos servicios. |
+
+La evidencia nativa de sistema requiere registrar dispositivo, versión de la aplicación, entorno de API, fecha, pasos, resultado y captura o video del recorrido. La compilación de un APK y las capturas aisladas de Chrome no sustituyen ese registro.
+
 ## 6.2. Static testing & Verification
 
 ### 6.2.1. Static Code Analysis
