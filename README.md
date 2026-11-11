@@ -6914,6 +6914,36 @@ Cada hipótesis de trabajo (HW) tiene su hipótesis nula (H0), está vinculada a
 
 ### 8.2.2. Domain Business Metrics
 
+Catálogo único de métricas. Las tarjetas y el diseño experimental usan **solo** estas métricas; no se crean métricas ad hoc en cada tarjeta. Cuando la meta depende de una línea base aún no medida, se indica así y no se inventa un número.
+
+| ID | Métrica | Significado | Fórmula | Unidad | Fuente / técnica de recolección | Meta |
+|---|---|---|---|---|---|---|
+| M01 | Tiempo de estructuración de cotización | Tiempo para dejar una cotización con sus campos obligatorios completos y verificados. | Hora de fin − hora de inicio, por cotización. | Minutos | Cronometraje desde la grabación de la sesión. | Menor que el manual (línea base por medir en EC08). |
+| M02 | Precisión de campos obligatorios | Proporción de campos extraídos que coinciden con la referencia verificada. | (campos coincidentes ÷ campos obligatorios evaluados) × 100. | % | Comparación campo por campo con la referencia verificada. | ≥ 90 % (H1) |
+| M03 | Valores inventados | Campos con un valor que no figura en el documento. | (campos con valor no presente ÷ campos obligatorios evaluados) × 100. | % | Revisión contra el documento fuente. | 0 % |
+| M04 | Tasa de éxito de tarea sin ayuda | Tareas logradas sin ayuda sobre las evaluadas. | (tareas «lograda sin ayuda» ÷ tareas evaluadas) × 100. | % | Registro por tarea según 6.3.1. | Por calibrar con la prueba (descriptivo). |
+| M05 | Confianza reportada | Confianza del participante en el resultado mostrado. | Mediana de la escala de 1 a 5 tras la tarea. | Puntos (1–5) | Pregunta posterior a la tarea. | Por calibrar (descriptivo). |
+| M06 | Errores y ayudas por tarea | Fallos observados y ayudas necesarias. | Conteo por tarea. | Eventos | Observación registrada en la ficha. | Tendencia a la baja entre ciclos. |
+| M07 | Coherencia del ranking | Escenarios cuyo ranking coincide con el esperado por sus reglas. | (escenarios coherentes ÷ escenarios ejecutados) × 100. | % | Cálculo esperado a mano frente a la salida del sistema. | 100 % |
+| M08 | Exclusión correcta de incumplimientos | Ofertas que incumplen un criterio obligatorio y quedan excluidas. | (excluidas correctamente ÷ ofertas incumplidoras) × 100. | % | Revisión de la salida de la simulación. | 100 % |
+| M09 | Repetibilidad de la simulación | Repeticiones con mismas entradas y mismo resultado. | (repeticiones idénticas ÷ repeticiones totales) × 100. | % | Comparación de ranking y huella de entrada entre ejecuciones. | 100 % |
+| M10 | Aclaraciones por solicitud | Veces que una solicitud requiere aclaración. | Conteo de aclaraciones ÷ solicitudes observadas. | Aclaraciones/solicitud | Hoja de registro o relato declarado. | Menor que la línea base (por medir). |
+| M11 | Solicitudes localizables | Solicitudes que se encuentran cuando se buscan. | (solicitudes localizadas ÷ solicitudes buscadas) × 100. | % | Registro de búsqueda o relato declarado. | Mayor que la línea base (por medir). |
+| M12 | Completitud de la solicitud | Campos obligatorios completos de una solicitud registrada. | (campos obligatorios completos ÷ campos obligatorios) × 100. | % | Revisión del registro creado en la sesión. | 100 % |
+| M13 | Órdenes duplicadas | Órdenes adicionales creadas al repetir una aprobación. | Conteo de órdenes − 1, por aprobación repetida. | Órdenes | Consulta a la base de datos o a la API. | 0 |
+| M14 | Tiempo de elaboración del cuadro comparativo | Tiempo total para comparar las ofertas de un requerimiento. | Hora de fin − hora de inicio, por requerimiento. | Minutos | Hoja de registro del analista. | Es una línea base; no tiene meta. |
+| M15 | Cotizaciones procesadas por periodo | Volumen de trabajo del analista. | Conteo de cotizaciones ÷ periodo observado. | Cotizaciones/semana | Hoja de registro o dato autorizado. | Es una línea base; no tiene meta. |
+| M16 | Distribución de formatos de cotización | Peso de cada formato en las cotizaciones recibidas. | (cotizaciones de un formato ÷ cotizaciones totales) × 100, por formato. | % | Hoja de registro del analista. | Es una línea base; no tiene meta. |
+
+**Vínculo con los objetivos de negocio.** Según la guía, cada métrica debe responder a un objetivo de negocio. Se usan los resultados del Lean UX Canvas (bloque 2); son objetivos por medir, no logrados.
+
+| Objetivo de negocio (Lean UX Canvas, bloque 2) | Métricas |
+|---|---|
+| Reducir el tiempo de atención y el retrabajo. | M01, M14, M15 |
+| Disminuir errores y datos incompletos. | M02, M03, M07, M08, M12, M16 |
+| Disminuir aclaraciones y solicitudes no localizadas. | M10, M11 |
+| Conservar evidencia de criterios, fuentes y aprobaciones (evitar órdenes duplicadas). | M09, M13 |
+| Favorecer la adopción mediante confianza y facilidad de uso. | M04, M05, M06 |
 
 ### 8.2.3. Measures
 
