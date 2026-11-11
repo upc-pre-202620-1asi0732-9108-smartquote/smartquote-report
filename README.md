@@ -6123,8 +6123,38 @@ La ficha también recoge nombre y apellidos, edad y distrito de residencia. Gén
 **Cierre común.** «¿Qué cambiaría primero de esta experiencia y por qué?». El entrevistador registra el resultado por tarea como **lograda sin ayuda**, **lograda con ayuda**, **no lograda** o **no evaluada**, junto con tiempo aproximado, errores, ayudas y expresiones relevantes. Las interpretaciones del equipo se separan de las respuestas y conductas del participante.
 
 ### 6.3.2. Registro de Entrevistas
+## Segmento 2: Producción y Sanidad
+### Ficha de registro — Entrevista de validación S2-1
+
+| Elemento del registro | Información de la entrevista |
+|---|---|
+| **Nombres y apellidos** | _Pendiente (o código si no autoriza publicarlo)_ |
+| **Edad** | _Pendiente_ |
+| **Distrito de residencia** | _Pendiente_ |
+| **Segmento objetivo** | Área de Producción y Sanidad _(indicar cargo: veterinario, nutricionista, jefe de granja u otro)_ |
+| **Fecha de realización** | _Pendiente_ |
+| **Captura de pantalla (screenshot)** | `![Entrevista de validación S2-1](assets/research/validation/s2-1.png)` |
+| **Enlace (URL)** | _Pendiente: enlace privado del video_ |
+| **Minutaje (timing)** | **Inicio:** _hh:mm:ss_ · **Fin:** _hh:mm:ss_ · **Duración:** _hh:mm:ss_ |
+| **Resumen descriptivo y recolección de datos** | _Pendiente: 5–8 líneas. Ocupación y responsabilidad en la solicitud de insumos, herramientas y dispositivos, dificultad habitual, lo que se observó en cada tarea y lo que el participante dijo (sin atribuir rasgos de personalidad no sustentados)._ |
+
+**Resultado por tarea (según 6.3.1):**
+
+| Tarea | Producto | Resultado (lograda sin ayuda / con ayuda / no lograda / no evaluada) | Tiempo aprox. | Errores y ayudas | Expresión relevante del participante |
+|---|---|---|---|---|---|
+| P1 | Landing Page | _Pendiente_ | | | |
+| P2 | Móvil | _Pendiente_ | | | |
+| P3 | Móvil | _Pendiente_ | | | |
+| P4 | Web | _Pendiente_ | | | |
+
+**Cierre común:** «¿Qué cambiaría primero de esta experiencia y por qué?» → _Pendiente._
+
+### Ficha de registro — Entrevista de validación S2-2
+
+_Repetir exactamente la estructura anterior (imagen `s2-2.png`)._
 
 ### 6.3.3. Evaluaciones según heurísticas
+
 
 ## 6.4. Auditoría de Experiencias de Usuario
 
