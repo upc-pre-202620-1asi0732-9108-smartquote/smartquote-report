@@ -7001,6 +7001,21 @@ Los cálculos justifican tamaño de muestra y duración con significación, pote
 
 ### 8.2.6. Methods Selection
 
+Se elige el método más simple que responda cada pregunta con las condiciones y la escala de 8.2.4 y 8.2.5.
+
+| Tarjeta | Método elegido | Por qué es el más simple útil | Alternativa descartada | Riesgos éticos y de solapamiento |
+|---|---|---|---|---|
+| EC01 | Evaluación fuera de línea contra una referencia verificada. | No requiere usuarios ni tráfico real; mide directamente la precisión. | Prueba A/B con usuarios: no hay tráfico y mide otra cosa. | Los documentos deben estar anonimizados y autorizados (TK08). No cargar cotizaciones reales de proveedores sin permiso. |
+| EC02 | Comparación pareada intra-sujeto con orden contrabalanceado. | Controla la variabilidad entre analistas con pocos participantes. | Grupos independientes: requeriría muchos más participantes. | Evitar el efecto de aprendizaje con cotizaciones distintas. No reutilizar al mismo analista en EC03 durante la misma sesión. |
+| EC03 y EC05 | Prueba de tareas moderada con observación del primer intento. | Es el método de 6.3.1 y revela dificultades concretas. | Encuesta: no muestra el comportamiento real. | Consentimiento para grabar; se evalúa el producto, no a la persona; se puede detener o omitir. Sin contraseñas ni datos clínicos de terceros. |
+| EC04 y EC06 | Pruebas automatizadas deterministas (xUnit y BDD). | Ya existen en el repo y son repetibles. | Prueba manual repetida: más lenta y menos fiable. | Sin datos personales; usar datos ficticios. |
+| EC07 | Entrevista semiestructurada. | Permite explorar lo que se conoce sin imponer hipótesis. | Encuesta cerrada: presupone lo que se quiere descubrir. | No repetir al mismo participante en otras tarjetas el mismo día. Consentimiento y opción de anonimato. |
+| EC08 | Observación con hoja de registro simple. | Obtiene la línea base con poco esfuerzo para el analista. | Medición con software de seguimiento: invasivo y requiere permisos de TI. | Los datos deben ser autorizados y sin información comercial sensible. |
+
+**Solapamientos.** Un mismo usuario no participa en dos experimentos sobre el mismo tema en un mismo ciclo (por ejemplo, EC02 y EC03 con los mismos analistas se separan en el tiempo y con documentos distintos). Para EC02 se usa un orden contrabalanceado. **Riesgos éticos comunes:** consentimiento explícito, derecho a retirarse, protección de la confidencialidad comercial, anonimización y almacenamiento privado de los videos.
+
+---
+
 ### 8.2.7. Data Analytics: Goals, KPIs and Metrics Selection
 
 ### 8.2.8. Web and Mobile Tracking Plan
