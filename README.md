@@ -6144,7 +6144,54 @@ La evidencia nativa de sistema requiere registrar dispositivo, versión de la ap
 
 ### 6.2.1. Static Code Analysis
 
+El análisis estático revisa el código fuente sin ejecutarlo para detectar defectos, desviaciones del estándar, vulnerabilidades y oportunidades de mejora antes de que el software llegue a pruebas dinámicas o a producción. En SmartQuote se aplica a los tres sistemas que componen la solución —backend en ASP.NET Core, aplicación web en Vue y aplicación móvil en Flutter— y combina herramientas automatizadas propias de cada lenguaje con revisiones manuales del código. Detectar estos problemas durante el desarrollo reduce el costo de corregirlos y evita que se acumulen entre sprints.
+
+El alcance se organiza en dos frentes: el cumplimiento del estándar de codificación y las convenciones de cada lenguaje (6.2.1.1) y la evaluación de la calidad y la seguridad del código (6.2.1.2). Cada resultado indica la revisión analizada, la herramienta y su versión, de modo que pueda reproducirse sobre el mismo commit.
+
 #### 6.2.1.1. Coding standard & Code conventions
+
+El estándar de codificación de SmartQuote se define por sistema mediante archivos versionados en cada repositorio: `.editorconfig` en el backend, `eslint.config.js` en la aplicación web y `analysis_options.yaml` en la aplicación móvil. El análisis del 11/11/2026 verifica esas reglas sobre una copia limpia de cada revisión indicada. Además, en el backend se realizó una medición complementaria con `dotnet format`, que no forma parte del flujo habitual del equipo, para cuantificar el cumplimiento del `.editorconfig` en todo el código. Las sugerencias de severidad informativa se registran como observaciones, no como defectos.
+
+**Convenciones adoptadas**
+
+| Sistema | Lenguaje | Convención y fuente | Cómo se aplica | Reglas principales |
+| --- | --- | --- | --- | --- |
+| Backend (`smartquote-web-services`) | C# 14 sobre .NET 10 | `.editorconfig` en la raíz; tipos de referencia anulables (`<Nullable>enable</Nullable>`) en los 11 proyectos de la solución | Rider muestra las reglas del `.editorconfig` durante la edición; el compilador de C# (Roslyn) ejecuta los analizadores por defecto del SDK en cada compilación. Las reglas de estilo no se exigen al compilar ni en CI. | Archivos UTF-8 sin BOM, fin de línea LF, nueva línea final y sin espacios finales; sangría de 4 espacios en C# y 2 en JSON/YAML. Interfaces con prefijo `I`; clases, estructuras, enumeraciones, registros, métodos y propiedades en PascalCase; parámetros y variables locales en camelCase. Espacios de nombres por contexto acotado según la arquitectura modular. |
+| Frontend web (`smartquote-frontend-web`) | JavaScript (ES modules) y Vue 3 SFC | `eslint.config.js` con `eslint-plugin-vue` (`flat/essential`) | `npm run lint` en el desarrollo y como paso del workflow de CI | Reglas esenciales de plantillas Vue; `no-unused-vars` (se admiten argumentos con prefijo `_`) y `no-undef` como errores; `vue/multi-word-component-names` desactivada. Archivos en kebab-case por capa (`*.entity.js`, `*.service.js`, `*.repository.js`). |
+| Aplicación móvil (`smartquote-native-mobile`) | Dart 3 y Flutter | `analysis_options.yaml` con `package:flutter_lints/flutter.yaml` (`flutter_lints` 6.0.0); se excluyen `build/`, `android/`, `ios/` y `web/` | `dart analyze` en el desarrollo y como paso del workflow de CI; `dart format` en el editor | Conjunto recomendado de `package:lints` más las reglas de Flutter del paquete (nombres `lowerCamelCase`/`UpperCamelCase`, archivos `snake_case`, uso seguro de `BuildContext`) y las advertencias del analizador de Dart. Formato oficial de `dart format`. |
+
+**Versiones analizadas y herramientas**
+
+| Sistema | Revisión analizada | Herramienta y versión | Alcance | Comando |
+| --- | --- | --- | --- | --- |
+| Backend | `develop`, commit `04b9d93` | .NET SDK 10.0.301 (compilador Roslyn y analizadores incluidos); `dotnet format` 10.0.301 como medición complementaria | `SmartQuote.sln`: 11 proyectos y 396 archivos `.cs`, incluidas pruebas y migraciones | `dotnet build -c Release -p:EnforceCodeStyleInBuild=true`; `dotnet format whitespace --verify-no-changes`; `dotnet format style --verify-no-changes --severity info` |
+| Frontend web | `feature/av2-m01-us15-us22`, commit `bc5a412` | ESLint 9.39.5; `eslint-plugin-vue` 10.11.0 | `src`, `tests`, `scripts` y archivos de configuración: 110 archivos | `npm run lint` |
+| Aplicación móvil | `feature/av2-m02-us18-us20`, commit `52923d5` | Flutter 3.47.4; Dart SDK 3.13.3; `flutter_lints` 6.0.0 | `lib` y `test`: 65 archivos `.dart` | `dart analyze lib test`; `dart format --output=none --set-exit-if-changed lib test` |
+
+**Resultados**
+
+| Sistema | Verificación | Resultado |
+| --- | --- | --- |
+| Backend | Compilación con los analizadores del SDK y, para esta medición, las reglas del `.editorconfig` exigidas (`EnforceCodeStyleInBuild`) | 0 advertencias y 0 errores en los 11 proyectos; las reglas de nombres se cumplen |
+| Backend | Formato de espacios y codificación (medición complementaria con `dotnet format`) | 115 de 396 archivos con diferencias: 93 archivos guardados en UTF-8 con BOM y 149 ajustes de espacios en 22 archivos |
+| Backend | Sugerencias de estilo del IDE (severidad informativa; medición complementaria con `dotnet format`) | 282 sugerencias: 149 `IDE0130` (espacio de nombres distinto de la carpeta), 117 simplificaciones de inicialización de colecciones (`IDE0305`, `IDE0300`, `IDE0028`) y 16 sugerencias puntuales |
+| Frontend web | ESLint | 110 archivos; 0 errores y 0 advertencias |
+| Aplicación móvil | `dart analyze` con `flutter_lints` | Sin hallazgos (*No issues found!*) |
+| Aplicación móvil | `dart format` | 1 de 65 archivos con diferencias de formato: `test/request_assignment_test.dart` |
+
+**Hallazgos y tratamiento**
+
+| Id | Sistema | Hallazgo | Decisión | Estado |
+| --- | --- | --- | --- | --- |
+| CS-01 | Backend | 93 archivos con BOM, concentrados en QuotationIntake (52) y EvaluationSimulation (30), contrarios a `charset = utf-8`. | Normalizar la codificación con `dotnet format whitespace` en un commit exclusivo de formato, sin cambios funcionales. | Pendiente |
+| CS-02 | Backend | 149 ajustes de espacios en 22 archivos, principalmente en clases compactas de US15–US22 y en `AdvancedPurchasingAcceptanceTests.cs`. | Aplicar el formateador en el mismo commit de normalización. | Pendiente |
+| CS-03 | Backend | `IDE0130`: los espacios de nombres usan el prefijo `SmartQuote.API.<Contexto>` dentro de proyectos `SmartQuote.Modules.<Contexto>`. | Se conserva hasta un refactor coordinado del monolito modular, porque cambia referencias entre módulos y pruebas. Se registra como deuda de convención. | Pendiente |
+| CS-04 | Backend | Sugerencias informativas de colecciones, constructores primarios y simplificaciones. | No se aplican masivamente; se adoptan en el código nuevo o al modificar cada archivo. | No aplicable |
+| CS-05 | Frontend web | Prettier 3.6.2 figura como dependencia de desarrollo desde la migración a Vue, pero no tiene configuración, script ni paso en CI; el formato del código web no está estandarizado por una herramienta. | Definir en el equipo si se adopta (configuración, script `format:check` y paso en CI) o si se elimina la dependencia sin uso. | Pendiente |
+| CS-06 | Aplicación móvil | `test/request_assignment_test.dart` no seguía el formato oficial tras el ajuste de US22 de M02. | Se aplicó `dart format` al archivo; el cambio queda pendiente de commit en la rama móvil. | Corregido |
+| CS-07 | Backend | Las reglas del `.editorconfig` solo se observan en el editor: no se exigen al compilar ni en el workflow de CI, lo que explica CS-01 y CS-02. | Incorporar `dotnet format --verify-no-changes` al workflow una vez completados CS-01 y CS-02. | Pendiente |
+
+**Condiciones de la medición.** En Windows, con `core.autocrlf=true`, la copia de trabajo convierte los archivos a CRLF, aunque el repositorio los conserva con LF: esto generó 18 818 diferencias de fin de línea en el backend. Para no informar diferencias causadas solo por la extracción local, los resultados anteriores provienen de una copia de cada revisión extraída con `core.autocrlf=false` (archivos en LF, como en el repositorio). En la aplicación web se excluye del análisis un archivo de prueba local no versionado. Las versiones del SDK de Flutter y Dart corresponden al equipo donde se realizó el análisis.
 
 #### 6.2.1.2. Code Quality & Code Security
 
