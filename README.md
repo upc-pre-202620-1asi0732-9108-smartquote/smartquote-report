@@ -6142,6 +6142,10 @@ La evidencia nativa de sistema requiere registrar dispositivo, versión de la ap
 
 ## 6.2. Static testing & Verification
 
+Esta sección reúne las técnicas de verificación estática aplicadas a SmartQuote: métodos que examinan el código y los artefactos del proyecto sin ejecutarlos, para comprobar que cumplen los estándares de calidad y seguridad antes de su despliegue. Su objetivo es identificar defectos en una fase temprana del ciclo de desarrollo, cuando corregirlos es más simple y económico que después de una prueba de sistema o de un despliegue.
+
+El alcance comprende los tres repositorios de la solución —`smartquote-web-services`, `smartquote-frontend-web` y `smartquote-native-mobile`— en las revisiones que incorporan las historias del Sprint 3 (US15–US22). La verificación estática se organiza en dos partes: el análisis automatizado del código con herramientas propias de cada lenguaje (6.2.1) y las revisiones del código realizadas por los integrantes del equipo (6.2.2). Ambas complementan las pruebas dinámicas de la sección 6.1.
+
 ### 6.2.1. Static Code Analysis
 
 El análisis estático revisa el código fuente sin ejecutarlo para detectar defectos, desviaciones del estándar, vulnerabilidades y oportunidades de mejora antes de que el software llegue a pruebas dinámicas o a producción. En SmartQuote se aplica a los tres sistemas que componen la solución —backend en ASP.NET Core, aplicación web en Vue y aplicación móvil en Flutter— y combina herramientas automatizadas propias de cada lenguaje con revisiones manuales del código. Detectar estos problemas durante el desarrollo reduce el costo de corregirlos y evita que se acumulen entre sprints.
@@ -6168,7 +6172,7 @@ Cada repositorio versiona sus reglas, de modo que todos los integrantes trabajan
 
 **Verificación del cumplimiento**
 
-El 11/11/2026 se verificaron estas convenciones sobre copias limpias de las revisiones `04b9d93` del backend (`develop`), `bc5a412` del frontend (`feature/av2-m01-us15-us22`) y `52923d5` de la aplicación móvil (`feature/av2-m02-us18-us20`):
+Se verificaron estas convenciones sobre copias limpias de las revisiones `04b9d93` del backend (`develop`), `bc5a412` del frontend (`feature/av2-m01-us15-us22`) y `52923d5` de la aplicación móvil (`feature/av2-m02-us18-us20`):
 
 | Sistema | Herramienta | Resultado | Decisión | Estado |
 | --- | --- | --- | --- | --- |
@@ -6212,7 +6216,7 @@ La complejidad del backend se concentra en los flujos de aprobación: `ApproveAs
 - **Credenciales:** las claves de JWT, OpenAI y SUNAT se configuran con *user-secrets* o variables de entorno; ningún repositorio versiona `.env`, certificados ni almacenes de claves, y la aplicación móvil exige HTTPS en la versión de distribución.
 - **Integridad de las operaciones:** versión esperada (`expectedVersion`) en las modificaciones y claves de idempotencia en la aprobación de adjudicaciones, para evitar cambios perdidos u órdenes duplicadas.
 
-La verificación del 11/11/2026 no encontró reglas de seguridad infringidas en el código productivo (CA2100 y CA5394 solo aparecen en proyectos de prueba), patrones de riesgo en la web, hallazgos de `dart analyze` ni secretos versionados. El backend no tiene paquetes NuGet vulnerables y pub.dev no informa avisos para la aplicación móvil; las únicas vulnerabilidades conocidas están en dependencias de la aplicación web.
+La verificación no encontró reglas de seguridad infringidas en el código productivo (CA2100 y CA5394 solo aparecen en proyectos de prueba), patrones de riesgo en la web, hallazgos de `dart analyze` ni secretos versionados. El backend no tiene paquetes NuGet vulnerables y pub.dev no informa avisos para la aplicación móvil; las únicas vulnerabilidades conocidas están en dependencias de la aplicación web.
 
 **Hallazgos y tratamiento**
 
@@ -6227,6 +6231,40 @@ La verificación del 11/11/2026 no encontró reglas de seguridad infringidas en 
 **Limitaciones.** lizard realiza un análisis sintáctico ligero, por lo que sus valores son aproximados. La auditoría de dependencias refleja los avisos publicados al 11/11/2026. No se realizaron pruebas dinámicas de seguridad sobre la API en ejecución; estos resultados no sustituyen una auditoría de seguridad completa.
 
 ### 6.2.2. Reviews
+
+Las revisiones de código verifican que cada cambio cumpla los estándares de 6.2.1, respete la arquitectura y satisfaga los criterios de aceptación de su historia antes de integrarse en `develop`. SmartQuote combina dos tipos de revisión:
+
+- **Revisión entre pares:** un integrante distinto del autor lee el cambio, lo contrasta con la historia de usuario y con el contrato de la API, y registra sus observaciones. Cuando una observación requiere ejecutar el sistema, la revisión se apoya en las pruebas de 6.1.
+- **Revisión automática:** los workflows de GitHub Actions ejecutan las pruebas del backend, ESLint y las pruebas del frontend, y `dart analyze` y las pruebas de la aplicación móvil en cada push a una rama de trabajo y en cada pull request hacia `develop` o `main`.
+
+**Proceso de revisión**
+
+1. El autor trabaja en una rama `feature/*` creada desde `develop` y abre un pull request hacia `develop` que identifica las historias, las tareas y las pruebas asociadas.
+2. Los workflows de CI deben completarse sin errores.
+3. Un revisor distinto del autor examina el cambio con la lista de verificación y registra sus observaciones en el pull request o, si la corrección se realiza en otra rama, en el commit que la resuelve.
+4. El autor corrige las observaciones bloqueantes antes de la integración; las mejoras no bloqueantes se registran como deuda técnica con su decisión.
+
+**Lista de verificación**
+
+- **Criterios de aceptación:** el cambio cubre los escenarios Given/When/Then de la historia y respeta las reglas del backend (roles, versiones esperadas, estados válidos).
+- **Estándar y arquitectura:** cumple las convenciones de 6.2.1.1 y mantiene la separación entre dominio, aplicación, infraestructura y presentación.
+- **Calidad:** nombres del lenguaje del negocio, métodos con una responsabilidad, sin duplicación innecesaria ni código sin uso.
+- **Seguridad:** sin credenciales versionadas, autorización por rol en el servidor, validación de entradas y sin contenido HTML sin escapar.
+- **Pruebas:** incluye pruebas identificadas con la historia y el escenario, y los workflows de CI se completan sin errores.
+- **Experiencia del usuario:** los textos de la interfaz usan el lenguaje del usuario; no muestran identificadores internos, rutas de datos ni valores del API sin traducir.
+
+**Revisiones realizadas en el Sprint 3**
+
+| Cambio revisado | Autor | Observaciones | Decisión y evidencia |
+| --- | --- | --- | --- |
+| Backend US15–US22: commits `cb2c301`, `ee2b053` y `db1615d` en `develop` | Fabio Vallejo | Los contratos se revisaron al integrar las pantallas web y móviles. Se confirmó una regla no documentada: una revisión técnica debe cambiar al menos un valor de la especificación. El análisis de 6.2.1 detectó en estas clases archivos con BOM, formato compacto y métodos de aprobación con complejidad de 22 a 29. | La regla se incorporó como validación en el cliente web (commit `e349881`). El formato y la complejidad se registraron como CS-01 y QS-02, pendientes. |
+| Aplicación móvil US15–US17: commit `760e861` en `develop` | Fabio Vallejo | Las aclaraciones mostraban el ítem, el requisito y los autores como UUID. El historial de toda solicitud nueva mostraba «Borrador por revisar → Enviada», porque el backend registra el estado interno `Draft`. La pantalla de verificación de cotizaciones mostraba rutas internas como `líneas[0].cantidad`. | Corregido: nombres del ítem y del requisito, roles en lugar de identificadores, «Registro» para solicitudes que no provienen de una programación y rótulos «Línea 1 · Cantidad» (commit `846b842`, PR #3). |
+| Aplicación móvil US21–US22: PR #2 (`feature/av2-l03-us21-us22`) | Alexis Bardales | El código cumple la arquitectura e incluye pruebas para ambas historias; conserva la decisión si se pierde la respuesta de la aprobación y excluye al analista actual al reasignar. El analista responsable y su historial se mostraban como UUID, y el área responsable con valores del API en inglés. | Corregido: nombre del analista o «Tú», y áreas en español (commit `846b842`, PR #3). La paginación repetida entre pantallas se registró como QS-04. |
+| Frontend web US15–US22 (PR #7) y aplicación móvil US18–US20 (PR #3) | Mathias De La Cruz | Antes de la integración se ejecutaron contra la API real. El análisis de sensibilidad mostraba los pesos como «—%» al promover una configuración, porque usaba los criterios vigentes en lugar de los analizados; en web, la configuración vigente no aparecía primero y los filtros de estado se mostraban vacíos. | Corregido antes de la integración (commits `e349881` y `846b842`). |
+
+**Hallazgos del proceso**
+
+Ningún pull request del Sprint 3 registra una aprobación o comentarios en GitHub: el PR #2 fue integrado por un integrante distinto del autor sin una revisión formal, y los PR #3 y #7 fueron integrados por su autor. Además, los cambios del backend y el commit `760e861` de la aplicación móvil se incorporaron a `develop` sin pull request; los workflows del backend y del frontend no se ejecutan en pushes directos a `develop`, por lo que esos cambios no pasaron por CI antes de integrarse. La rama `develop` no tiene reglas de protección. Las revisiones de la tabla anterior se realizaron después de la integración y sus correcciones se entregaron en otros commits. Por eso se adoptan las siguientes decisiones para los próximos sprints: proteger la rama `develop` para exigir un pull request con al menos una aprobación de un integrante distinto del autor y los workflows de CI aprobados; agregar una plantilla de pull request con la lista de verificación anterior; y registrar las observaciones como comentarios del pull request para conservar su trazabilidad.
 
 ## 6.3. Validation Interviews
 
