@@ -6596,7 +6596,43 @@ La comprobación de salud de producción se realiza de forma manual abriendo [`h
 
 ## 8.1. Experiment Planning
 
-### 8.1.1. As-Is Summary
+### 8.1.1. As-Is Summary (J03)
+
+Esta sección describe el estado actual que servirá de referencia para los experimentos. Se separan los **hechos observados** (con su fuente en el informe) de lo **todavía desconocido**. Ninguna expectativa del equipo se presenta como resultado.
+
+#### Proceso de compra actual (sin SmartQuote)
+
+| Fase | Hecho observado | Fuente |
+|---|---|---|
+| Requerimiento | En un caso el requerimiento se registra en SAP HANA. En el segmento de producción/almacén, la necesidad se comunica mediante un informe al jefe, quien la deriva a otras áreas. | Entrevistas N.º 1 y N.º 3 (2.2.2) |
+| Recepción de ofertas | Las cotizaciones llegan de varios proveedores; un participante las gestiona por correo. | N.º 1 y N.º 2 |
+| Consolidación y comparación | Ambos analistas trasladan manualmente precio, disponibilidad y especificaciones a hojas de cálculo; lo describen como varias horas por requerimiento. La comparación ocurre fuera del ERP. | N.º 1 y N.º 2 (2.2.3, 2.3.5) |
+| Fricción principal | Cotizaciones incompletas o ambiguas son la causa de retrasos reportada por los dos analistas. | N.º 1 y N.º 2 |
+| Decisión y orden | La selección se mantiene bajo supervisión humana; en un caso la orden se formaliza en el ERP. La validación técnica pasa por filtros de supervisión y recomendación del jefe de área antes de la decisión de gerencia. | N.º 1, N.º 2 y N.º 3 |
+| Seguimiento | Las solicitudes físicas se traspapelan; las aclaraciones son frecuentes porque las áreas usan modelos y lenguajes distintos. | N.º 3 |
+| Condiciones de confianza | Confidencialidad de la información comercial, origen visible de cada dato y supervisión humana final. | N.º 1 y N.º 2 |
+
+#### Estado actual de los sistemas de SmartQuote (hechos del informe)
+
+| Componente | Hecho observado | Fuente |
+|---|---|---|
+| Backend | Monolito modular ASP.NET Core con cuatro módulos (Supply Requests, Quotation Intake, Evaluation & Simulation, Purchase Ordering), PostgreSQL y Docker; los endpoints de salud y Swagger respondieron `200 OK` en la comprobación local documentada. | 5.2.6 |
+| Pruebas automatizadas | Unitarias de backend: 76 aprobadas, 0 fallidas. Unitarias web: 15 aprobadas. Integración: 3 aprobadas. BDD: 3 escenarios aprobados (sin US15–US22). E2E web: 2 recorridos aprobados. | 6.1 |
+| App Android nativa | Ejecución nativa **pendiente**; no hay evidencia. | 6.1 |
+| Extracción con IA | El Spike SP01 (corpus anonimizado, prueba de concepto, medición de precisión) figura en la planificación del Sprint 1 con tareas TK04–TK07 en estado *To-do*. **No hay resultado de precisión publicado.** | 5.2.1.1 (verificar estado actual) |
+| Sprint 3 | Planifica US15–US22; el propio informe aclara que no certifica implementación ni aceptación. | 5.2.1.3 |
+| Validación con usuarios | Las entrevistas de validación (6.3.2) aún no están registradas. | 6.3.2 |
+
+#### Hechos observados frente a aspectos desconocidos
+
+| Hechos observados (con fuente) | Aspectos todavía desconocidos |
+|---|---|
+| Dos analistas trasladan datos a Excel y describen varias horas de trabajo (N.º 1, N.º 2). | Duración exacta por requerimiento, número de cotizaciones por periodo y costo del retrabajo. |
+| Un registro del segmento operativo (almacén) describe comunicación jerárquica y pérdida de solicitudes (N.º 3). | Cómo operan veterinarios, nutricionistas y jefes de granja; solo hay n = 1 y es un subperfil de almacén. |
+| Ambos analistas valoran origen visible del dato y control humano. | Qué restricciones concretas de confidencialidad o almacenamiento impiden cargar cotizaciones. |
+| Un analista usa SAP HANA y pide complementarlo, no reemplazarlo (N.º 1). | Qué ERP usa el resto de empresas y cómo se integraría. |
+| Existe el flujo extremo a extremo implementado y probado a nivel técnico (6.1). | Precisión real de extracción en cotizaciones heterogéneas; rendimiento en Android nativo; desempeño con usuarios reales. |
+| La muestra de entrevistas es pequeña (2 + 1). | Emociones, motivaciones, dispositivos, conectividad en granja (T12) y datos de perfil faltantes (2.2.3). |
 
 ### 8.1.2. Raw Material: Assumptions, Knowledge Gaps, Ideas, Claims
 
