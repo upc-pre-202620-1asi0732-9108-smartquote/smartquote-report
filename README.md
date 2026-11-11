@@ -6195,6 +6195,62 @@ El estándar de codificación de SmartQuote se define por sistema mediante archi
 
 #### 6.2.1.2. Code Quality & Code Security
 
+La calidad del código se evalúa mediante complejidad ciclomática, tamaño de las funciones, acoplamiento, índice de mantenibilidad y duplicación. La seguridad se evalúa mediante reglas de seguridad de los analizadores, auditoría de dependencias con vulnerabilidades conocidas y revisión de patrones de riesgo en el código y la configuración. El análisis del 11/11/2026 se ejecuta sobre las mismas revisiones de 6.2.1.1, en copias limpias, y solo sobre código productivo; las pruebas y las migraciones generadas de Entity Framework se excluyen salvo que se indique lo contrario. El equipo no utiliza SonarQube ni ejecuta estas mediciones en CI: se trata de una evaluación puntual con herramientas de línea de comandos.
+
+**Herramientas y versiones**
+
+| Aspecto | Backend (`04b9d93`) | Frontend web (`bc5a412`) | Aplicación móvil (`52923d5`) |
+| --- | --- | --- | --- |
+| Complejidad y tamaño | lizard 1.26.0 (C#) y regla CA1502 de los analizadores de .NET, con umbral de 10 | lizard 1.26.0 (JavaScript y bloques `<script>` de Vue); reglas `complexity`, `max-depth` y `max-params` de ESLint 9.39.5 | lizard 1.26.0 (Dart) |
+| Mantenibilidad y acoplamiento | Reglas CA1505 (índice de mantenibilidad menor que 20) y CA1506 (acoplamiento de clases) del SDK .NET 10.0.301 | — | — |
+| Duplicación | jscpd 4.0.5, bloques de al menos 50 tokens | jscpd 4.0.5 (JavaScript y Vue) | jscpd 4.0.5 (Dart) |
+| Reglas de calidad y seguridad | Analizadores de .NET con `AnalysisMode=All` (todas las reglas CA activas) | ESLint y búsqueda de patrones de riesgo (`v-html`, `innerHTML`, `eval`, almacenamiento local) | `dart analyze` con `flutter_lints` 6.0.0 |
+| Dependencias | `dotnet list package --vulnerable --include-transitive` | `npm audit` (npm 11.19.1) | Avisos de seguridad de pub.dev informados por `flutter pub get` |
+| Secretos | Revisión de `appsettings*.json` y búsqueda de claves, certificados y archivos `.env` versionados | Búsqueda de archivos `.env` y claves versionadas | Búsqueda de archivos `.env`, almacenes de claves y claves versionadas |
+
+**Métricas de calidad**
+
+| Métrica | Backend | Frontend web | Aplicación móvil |
+| --- | --- | --- | --- |
+| Archivos y líneas de código analizadas (NLOC) | 187 archivos; 6 816 NLOC | 80 archivos; 3 009 NLOC | 52 archivos; 6 333 NLOC |
+| Funciones o métodos detectados | 676 | 647 | 375 |
+| Complejidad ciclomática promedio / mediana | 2.47 / 1 | 1.58 / 1 | 3.74 / 2 |
+| Funciones con complejidad mayor que 10 / mayor que 20 | 20 / 3 | 3 / 0 | 34 / 13 |
+| Complejidad máxima | 29: `PurchaseAwardApplicationService.ApproveAsync` | 13: `loadCheck` de `order-panel.vue` y `request` de `http-client.js` | 40: `_RequestWorkspaceState.detail` |
+| Funciones con más de 50 líneas | 16 (principalmente configuraciones de Entity Framework) | 0 | 30 (métodos `build` de pantallas) |
+| Funciones con más de 5 parámetros | 36 | 2 | 1 |
+| Índice de mantenibilidad (CA1505) | 1 tipo por debajo de 20: `Program` (18) | — | — |
+| Acoplamiento de clases (CA1506) | `Program` con 122 tipos; 4 métodos de aplicación con 44 a 57 tipos | — | — |
+| Duplicación (jscpd) | 1.67 %: 25 bloques, 205 de 12 283 líneas | 0.76 %: 5 bloques, 53 de 6 948 líneas | 2.08 %: 13 bloques, 164 de 7 874 líneas |
+
+En el backend, la complejidad se concentra en los flujos de aprobación y extracción: `ApproveAsync` de adjudicaciones distribuidas (29), `ApproveAndGenerateAsync` de órdenes (22), `PoultryQuote.ApplyCorrectedValue` (22), `DistributedSimulationEngine.Evaluate` (20) y `PurchasingMetricsController.Get` (19). En la aplicación móvil, los valores altos corresponden a métodos `build` de Flutter que deciden qué controles mostrar según rol y estado; lizard cuenta esas condiciones como ramas, mientras que en la aplicación web la misma lógica reside en las plantillas Vue, que la herramienta no mide. Por ello, las cifras de ambos clientes no son directamente comparables. Los bloques duplicados del backend corresponden sobre todo a pares *View*/*Resource* que replican campos entre la capa de aplicación y la API; en los clientes, a estructuras de listados con paginación, actualización y estado vacío.
+
+**Seguridad**
+
+| Verificación | Backend | Frontend web | Aplicación móvil |
+| --- | --- | --- | --- |
+| Reglas de seguridad de los analizadores | Sin hallazgos de seguridad en código productivo; las reglas CA2100 (SQL construido dinámicamente) y CA5394 (aleatoriedad no criptográfica) solo aparecen en proyectos de prueba | Sin `v-html`, `innerHTML` ni `eval`; `localStorage` almacena únicamente el idioma de la interfaz | `dart analyze` sin hallazgos; la versión de distribución exige una API HTTPS |
+| Dependencias con vulnerabilidades conocidas | 0 en los 11 proyectos, incluidas las dependencias transitivas | 8 de severidad alta: 6 en dependencias de producción (`vue-i18n` 11.4.10 y paquetes `@intlify/*`; `source-map-js`) y 2 solo de desarrollo (`vite` 8.3.0 y `brace-expansion`) | Sin avisos de seguridad informados por pub.dev |
+| Secretos en el repositorio | Ninguno: las claves de JWT, OpenAI y SUNAT se configuran con *user-secrets* o variables de entorno; `appsettings.json` no contiene credenciales | Ninguno: `.env` está excluido; solo se versiona `.env.example` con la URL pública de la API | Ninguno: no se versionan `.env`, almacenes de claves ni configuraciones de firma |
+
+Con todas las reglas CA activas, los analizadores de .NET informan 767 advertencias en código productivo. El 85 % corresponde a dos reglas no aplicables al proyecto: CA2007 (501, uso de `ConfigureAwait`), innecesaria en ASP.NET Core porque no existe un contexto de sincronización, y CA1062 (150, validar argumentos nulos en métodos públicos), cubierta por los tipos de referencia anulables habilitados. Entre las restantes destacan CA1848 (20, registro de logs sin `LoggerMessage`) y CA1031 (5, captura de excepciones generales en el middleware de errores y en los procesos en segundo plano, donde es intencional para traducir errores y mantener activos los procesos).
+
+**Hallazgos y tratamiento**
+
+| Id | Sistema | Hallazgo | Decisión | Estado |
+| --- | --- | --- | --- | --- |
+| QS-01 | Frontend web | `vue-i18n` 11.4.10 y sus paquetes `@intlify/*` tienen una vulnerabilidad alta de XSS (GHSA-8rc2-428q-7ww3) cuando un parámetro de traducción se inserta en `srcdoc`. La aplicación no usa `v-html` y sus mensajes son estáticos, por lo que la exposición es baja. | Actualizar `vue-i18n` a 11.4.14 o superior (última disponible: 11.4.18) y repetir las pruebas. | Pendiente |
+| QS-02 | Frontend web | `source-map-js` 1.2.1, dependencia transitiva del compilador de Vue y de `vue-i18n`, permite denegación de servicio con mapas de código manipulados (GHSA-68fv-2mgg-jv7q). Solo procesa mapas durante la compilación. | Actualizar al publicarse la versión corregida en la cadena de Vue; verificar con `npm audit`. | Pendiente |
+| QS-03 | Frontend web | `vite` 8.3.0 (vía `launch-editor`) y `brace-expansion` tienen vulnerabilidades altas que afectan al servidor de desarrollo, no al paquete desplegado. | Actualizar `vite` y ejecutar `npm audit fix` en un cambio independiente. | Pendiente |
+| QS-04 | Backend | 20 métodos superan una complejidad de 10, con máximo de 29 en `ApproveAsync`, y 4 métodos de aplicación están acoplados con más de 40 tipos. | Al modificar esos flujos, separar validaciones de proveedor, presupuesto y vigencia en métodos o servicios de dominio. Las pruebas de integración de US18–US21 protegen el comportamiento durante el refactor. | Pendiente |
+| QS-05 | Backend | `Program` tiene un índice de mantenibilidad de 18 y depende de 122 tipos. | Es la raíz de composición de la API y registra todos los módulos. Se acepta; se puede reducir moviendo registros a métodos de extensión por módulo. | No aplicable |
+| QS-06 | Aplicación móvil | 34 métodos superan una complejidad de 10 y 30 superan las 50 líneas; el mayor es `_RequestWorkspaceState.detail` (40 de complejidad y 190 líneas). | Extraer subwidgets (tarjetas de solicitud, asignación, historial) en los archivos que se modifiquen en el siguiente sprint. | Pendiente |
+| QS-07 | Aplicación móvil y web | Bloques repetidos de listados con paginación y estado vacío entre pantallas nuevas (por ejemplo, vencimientos, aclaraciones y programaciones). | Extraer un componente común de listado paginado en cada cliente. | Pendiente |
+| QS-08 | Backend | Pares *View*/*Resource* con campos duplicados entre aplicación e interfaz REST. | Se conservan: separan el contrato público de la API del modelo interno, de acuerdo con la arquitectura por capas. | No aplicable |
+| QS-09 | Backend | 767 advertencias de calidad en modo `All`, de las cuales 651 son CA2007 y CA1062. | No se habilita el modo `All` en la compilación; se evaluará activar un conjunto reducido (`AnalysisLevel=latest-recommended`) con CA2007 y CA1062 desactivadas. | Pendiente |
+
+**Limitaciones.** lizard detecta funciones mediante análisis sintáctico ligero: en C# puede omitir miembros con cuerpo de expresión, y en Vue no mide las plantillas, por lo que los valores son aproximados. La auditoría de dependencias refleja las bases de avisos disponibles el 11/11/2026. No se realizaron pruebas dinámicas de seguridad (por ejemplo, escaneo de la API en ejecución) ni un análisis con SonarQube; estos resultados no sustituyen una auditoría de seguridad completa.
+
 ### 6.2.2. Reviews
 
 ## 6.3. Validation Interviews
