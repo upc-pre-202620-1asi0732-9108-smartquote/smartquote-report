@@ -6962,6 +6962,17 @@ Medidas necesarias para responder cada pregunta, su cálculo, su periodicidad, l
 
 ### 8.2.4. Conditions
 
+| Tarjeta | Condición de control | Condición experimental | Población | Asignación | Variables que se mantienen |
+|---|---|---|---|---|---|
+| EC01 | No aplica; la referencia verificada es el criterio. | Extracción asistida sobre el corpus. | Cotizaciones anonimizadas con tres o más estructuras documentales. | Todo el corpus se evalúa. | Lista de campos obligatorios, versión del agente y del modelo, formato del PDF. |
+| EC02 | Estructuración manual en Excel. | Estructuración con el flujo asistido de SmartQuote. | Analistas de adquisiciones. | Orden contrabalanceado (unos empiezan manual y otros asistido). | Mismos campos, cotizaciones de dificultad comparable, dispositivo y consignas. |
+| EC03 | No aplica (descriptivo). | Prueba de tareas con cuenta de prueba y documentos ficticios. | Analistas o jefes de adquisiciones. | Todos realizan la misma tarea. | Caso preparado, consigna sin indicar botones, mismo entorno. |
+| EC04 | Escenario A. | Escenario B con pesos distintos. | Mismo conjunto de cotizaciones verificadas. | Ambos escenarios se ejecutan sobre las mismas entradas. | Cotizaciones, criterios obligatorios y reloj de vigencia. |
+| EC05 | No aplica (descriptivo). | Registro móvil con ficha de caso. | Especialistas de producción y sanidad. | Todos realizan la misma tarea. | Ficha, cuenta de prueba y dispositivo. |
+| EC06 | Primera solicitud de aprobación. | Solicitudes repetidas con el mismo identificador. | Aprobación vigente única. | Repetición automatizada. | Identificador, usuario autorizado y versión de la simulación. |
+| EC07 | No aplica. **Grupo y contexto de estudio:** veterinarios, nutricionistas y jefes de granja de empresas avícolas. | Entrevista semiestructurada. | Personal técnico del segmento 2, no solo almacén. | Muestreo por conveniencia con consentimiento. | Misma guía y mismo entrevistador. |
+| EC08 | No aplica. **Grupo y contexto de estudio:** analistas de adquisiciones en su proceso actual. | Registro del proceso habitual. | Analistas de empresas avícolas. | Voluntaria, con datos autorizados. | Hoja de registro común. |
+
 ### 8.2.5. Scale Calculations and Decisions
 
 ### 8.2.6. Methods Selection
