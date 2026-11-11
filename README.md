@@ -6662,7 +6662,7 @@ La comprobación de salud de producción se realiza de forma manual abriendo [`h
 
 ### 7.4. Continuous Monitoring
 
-Esta sección define la estrategia de monitoreo continuo de SmartQuote: las herramientas, la recolección de telemetría, las alertas y las notificaciones. La instrumentación de la API y de la aplicación web está implementada en el código; la configuración de los recursos de Azure se documenta como diseño, porque no pudo aplicarse: el 11/11/2026, la suscripción *Azure for Students* que aloja el proyecto se encontraba deshabilitada y en modo de solo lectura (`ReadOnlyDisabledSubscription`), y ningún integrante del equipo dispone de créditos para habilitar otra. La suscripción conserva el acceso de lectura, por lo que se presentan como evidencia las métricas de plataforma que Azure Monitor registró automáticamente para la API, la aplicación web y la base de datos durante los 30 días previos; en cambio, la telemetría de aplicación, la prueba de disponibilidad, las alertas y las notificaciones no pudieron crearse ni ejecutarse.
+Esta sección define la estrategia de monitoreo continuo de SmartQuote: las herramientas, la recolección de telemetría, las alertas y las notificaciones. La instrumentación de la API y de la aplicación web está implementada en el código; la configuración de los recursos de Azure se documenta como diseño, porque no pudo puesto que, la suscripción *Azure for Students* que aloja el proyecto se encontraba deshabilitada y en modo de solo lectura (`ReadOnlyDisabledSubscription`), y ningún integrante del equipo dispone de créditos para habilitar otra. La suscripción conserva el acceso de lectura, por lo que se presentan como evidencia las métricas de plataforma que Azure Monitor registró automáticamente para la API, la aplicación web y la base de datos durante los 30 días previos; en cambio, la telemetría de aplicación, la prueba de disponibilidad, las alertas y las notificaciones no pudieron crearse ni ejecutarse.
 
 #### 7.4.1. Tools and Practices
 
@@ -6793,7 +6793,7 @@ AppDependencies
 
 #### 7.4.3. Alerting Pipeline Components
 
-Las alertas convierten la telemetría de 7.4.2 en avisos accionables. Se definen como reglas de Azure Monitor sobre el recurso de Application Insights y el App Service de la API; cada regla evalúa una señal en una ventana de tiempo, se dispara al superar su umbral y se resuelve automáticamente cuando la condición deja de cumplirse.
+Las alertas convierten la telemetría vistas en 7.4.2 en avisos accionables. Se definen como reglas de Azure Monitor sobre el recurso de Application Insights y el App Service de la API; cada regla evalúa una señal en una ventana de tiempo, se dispara al superar su umbral y se resuelve automáticamente cuando la condición deja de cumplirse.
 
 | Id | Señal | Condición | Ventana y frecuencia | Severidad | Propósito |
 | --- | --- | --- | --- | --- | --- |
@@ -6809,7 +6809,7 @@ Las severidades orientan la respuesta: una alerta de severidad 1 requiere atenci
 
 #### 7.4.4. Notification Pipeline Components
 
-Las notificaciones entregan cada alerta a las personas responsables mediante un **grupo de acciones** de Azure Monitor (*Action Group*), reutilizable por todas las reglas de 7.4.3.
+Las notificaciones entregan cada alerta a las personas responsables mediante un **grupo de acciones** de Azure Monitor (*Action Group*), reutilizable por todas las reglas establecidas en 7.4.3.
 
 - **Grupo de acciones:** `ag-smartquote-equipo`, con nombre corto `SQAlertas`, en el mismo grupo de recursos que la API.
 - **Destinatarios y canales:** correo electrónico a la cuenta institucional de cada integrante del equipo y notificación *push* en la aplicación móvil de Azure para el responsable del backend. Las direcciones se registran solo en Azure, no en el repositorio ni en este informe.
@@ -6817,7 +6817,7 @@ Las notificaciones entregan cada alerta a las personas responsables mediante un 
 - **Asignación por severidad:** las reglas de severidad 1 y 2 (AL-01, AL-02 y AL-04) notifican a todo el equipo; las de severidad 3 (AL-03 y AL-05) solo al responsable del sistema afectado, para evitar el exceso de avisos.
 - **Recuperación:** cuando una alerta se resuelve, el mismo grupo envía la notificación de cierre, de modo que el equipo sabe que el incidente terminó sin consultar el portal.
 
-El recorrido completo es: la telemetría llega a Application Insights (7.4.2), una regla de alerta detecta la condición (7.4.3), la alerta invoca `ag-smartquote-equipo` y Azure Monitor envía el correo y la notificación *push* a los destinatarios. La prueba prevista de este recorrido utiliza la opción *Test action group* del portal, que envía una notificación de muestra a cada destinatario, y luego la comprobación controlada de 7.4.3, que valida el flujo con una alerta real. Ambas quedan pendientes hasta disponer de una suscripción activa.
+El recorrido completo es: la telemetría llega a Application Insights, una regla de alerta detecta la condición, la alerta invoca `ag-smartquote-equipo` y Azure Monitor envía el correo y la notificación *push* a los destinatarios. La prueba prevista de este recorrido utiliza la opción *Test action group* del portal, que envía una notificación de muestra a cada destinatario, y luego la comprobación controlada que valida el flujo con una alerta real.
 
 # Capítulo VIII: Experiment-Driven Development
 
