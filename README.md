@@ -6142,13 +6142,129 @@ La evidencia nativa de sistema requiere registrar dispositivo, versión de la ap
 
 ## 6.2. Static testing & Verification
 
+Esta sección reúne las técnicas de verificación estática aplicadas a SmartQuote: métodos que examinan el código y los artefactos del proyecto sin ejecutarlos, para comprobar que cumplen los estándares de calidad y seguridad antes de su despliegue. Su objetivo es identificar defectos en una fase temprana del ciclo de desarrollo, cuando corregirlos es más simple y económico que después de una prueba de sistema o de un despliegue.
+
+El alcance comprende los tres repositorios de la solución —`smartquote-web-services`, `smartquote-frontend-web` y `smartquote-native-mobile`— en las revisiones que incorporan las historias del Sprint 3 (US15–US22). La verificación estática se organiza en dos partes: el análisis automatizado del código con herramientas propias de cada lenguaje (6.2.1) y las revisiones del código realizadas por los integrantes del equipo (6.2.2). Ambas complementan las pruebas dinámicas de la sección 6.1.
+
 ### 6.2.1. Static Code Analysis
+
+El análisis estático revisa el código fuente sin ejecutarlo para detectar defectos, desviaciones del estándar, vulnerabilidades y oportunidades de mejora antes de que el software llegue a pruebas dinámicas o a producción. En SmartQuote se aplica a los tres sistemas que componen la solución —backend en ASP.NET Core, aplicación web en Vue y aplicación móvil en Flutter— y combina herramientas automatizadas propias de cada lenguaje con revisiones manuales del código. Detectar estos problemas durante el desarrollo reduce el costo de corregirlos y evita que se acumulen entre sprints.
+
+El alcance se organiza en dos frentes: el cumplimiento del estándar de codificación y las convenciones de cada lenguaje (6.2.1.1) y la evaluación de la calidad y la seguridad del código (6.2.1.2). Cada resultado indica la revisión analizada, la herramienta y su versión, de modo que pueda reproducirse sobre el mismo commit.
 
 #### 6.2.1.1. Coding standard & Code conventions
 
+Las normas de codificación y las convenciones son las directrices que el equipo sigue para que el código de SmartQuote sea legible, mantenible y coherente entre sus tres sistemas: el backend en ASP.NET Core, la aplicación web en Vue y la aplicación móvil en Flutter. Se aplican los siguientes principios:
+
+- **Clean Code.** Los nombres de clases, métodos y variables provienen del lenguaje del negocio y describen su intención, por ejemplo `PurchaseRequest`, `SupplierAccount`, `PurchaseBudget` o `assertTransition`. Cada método tiene una responsabilidad concreta y valida sus precondiciones al inicio, lanzando excepciones del dominio (`DomainException`, `ConflictException`) en lugar de devolver estados ambiguos. Se evita el código muerto: ESLint y el analizador de Dart rechazan variables e importaciones sin uso. Los comentarios se reservan para explicar decisiones del negocio, y las pruebas se nombran por historia y escenario (por ejemplo, `US20 E3`).
+- **Clean Architecture.** Cada módulo del backend se divide en cuatro capas: *Domain* (agregados, entidades, objetos de valor y reglas, sin dependencias de frameworks), *Application* (casos de uso y puertos), *Infrastructure* (Entity Framework Core con PostgreSQL y los adaptadores de OpenAI y SUNAT) e *Interfaces* (controladores REST, recursos y ensambladores de transformación). Las dependencias apuntan hacia el dominio y `Program.cs` actúa como raíz de composición. Los clientes reproducen esta organización por contexto en `domain`, `application`, `infrastructure` y `presentation`; en la aplicación web, una prueba de arquitectura impide que el dominio y la aplicación importen Vue, PrimeVue o el cliente HTTP.
+- **Domain-Driven Design (DDD).** El sistema se divide en los *bounded contexts* `IdentityAccess`, `SupplyRequests`, `QuotationIntake`, `EvaluationSimulation` y `PurchaseOrdering`, más un *shared kernel* (`SmartQuote.Shared`) con excepciones, eventos y unidad de trabajo. El lenguaje ubicuo traduce los términos del negocio de forma estable (solicitud, cotización, simulación, adjudicación y orden de compra). Los agregados protegen sus invariantes, por ejemplo `PurchaseRequest` con sus ítems y requisitos técnicos, y los identificadores tipados como objetos de valor (`PurchaseRequestId`, `TechnicalRequirementId`) evitan mezclar entidades. Los repositorios se definen como puertos del dominio o de la aplicación; los eventos de dominio comunican cambios entre contextos, y los adaptadores de `SmartQuote.API/Integration` actúan como capa anticorrupción mediante los contratos `OutboundServices` de cada módulo. Las operaciones de escritura y lectura se separan en servicios de comandos y de consultas.
+
+**Convenciones por lenguaje**
+
+Cada repositorio versiona sus reglas, de modo que todos los integrantes trabajan con la misma configuración:
+
+| Sistema | Fuente | Cómo se aplica | Reglas principales |
+| --- | --- | --- | --- |
+| Backend (C# 14, .NET 10) | `.editorconfig` en la raíz; tipos de referencia anulables habilitados en los 11 proyectos | Rider muestra las reglas durante la edición; el compilador de C# (Roslyn) ejecuta los analizadores del SDK en cada compilación. Las reglas de estilo no se exigen al compilar ni en CI. | UTF-8 sin BOM, fin de línea LF, sin espacios finales; 4 espacios en C# y 2 en JSON/YAML. Interfaces con prefijo `I`; tipos, métodos y propiedades en PascalCase; parámetros y variables locales en camelCase. |
+| Frontend web (JavaScript y Vue 3) | `eslint.config.js` con `eslint-plugin-vue` (`flat/essential`) | `npm run lint` en el desarrollo y en el workflow de CI | Reglas esenciales de plantillas Vue; `no-unused-vars` y `no-undef` como errores. Archivos en kebab-case con sufijo por capa (`*.entity.js`, `*.service.js`, `*.repository.js`). |
+| Aplicación móvil (Dart 3 y Flutter) | `analysis_options.yaml` con `flutter_lints` 6.0.0 | `dart analyze` en el desarrollo y en el workflow de CI; `dart format` desde el editor | Reglas recomendadas de Dart y Flutter: tipos en `UpperCamelCase`, miembros en `lowerCamelCase`, archivos en `snake_case` y uso seguro de `BuildContext`. Formato oficial de `dart format`. |
+
+**Verificación del cumplimiento**
+
+Se verificaron estas convenciones sobre copias limpias de las revisiones `04b9d93` del backend (`develop`), `bc5a412` del frontend (`feature/av2-m01-us15-us22`) y `52923d5` de la aplicación móvil (`feature/av2-m02-us18-us20`):
+
+| Sistema | Herramienta | Resultado | Decisión | Estado |
+| --- | --- | --- | --- | --- |
+| Backend | Compilación con .NET SDK 10.0.301 exigiendo las reglas del `.editorconfig` | 0 advertencias y 0 errores: las reglas de nombres se cumplen en los 11 proyectos. | Ninguna. | Cumple |
+| Backend | `dotnet format` 10.0.301 (medición complementaria) | 115 de 396 archivos con diferencias: 93 guardados con BOM y 149 ajustes de espacios en 22 archivos, concentrados en QuotationIntake, EvaluationSimulation y las clases de US15–US22. Las reglas solo se observan en el editor y no se verifican en CI. | Normalizar los archivos con `dotnet format whitespace` en un commit exclusivo de formato y luego agregar `dotnet format --verify-no-changes` al workflow. | Pendiente |
+| Backend | `dotnet format` 10.0.301 (sugerencias informativas) | 282 sugerencias; 149 indican que el espacio de nombres `SmartQuote.API.<Contexto>` no coincide con la carpeta del módulo `SmartQuote.Modules.<Contexto>`. | Conservar los espacios de nombres hasta un refactor coordinado del monolito modular, porque el cambio afecta referencias entre módulos y pruebas. | Pendiente |
+| Frontend web | ESLint 9.39.5 | 110 archivos sin errores ni advertencias. Prettier figura como dependencia, pero no tiene configuración, script ni paso en CI. | Decidir en el equipo si se adopta Prettier o se elimina la dependencia sin uso. | Cumple con ESLint |
+| Aplicación móvil | `dart analyze` (Dart 3.13.3) y `dart format` | Sin hallazgos del analizador; 1 de 65 archivos sin el formato oficial (`test/request_assignment_test.dart`). | Aplicar `dart format` al archivo. | Corregido |
+
+En Windows, `core.autocrlf=true` convierte los archivos a CRLF al extraerlos, aunque el repositorio los guarda con LF; por eso la medición se realizó sobre copias extraídas sin esa conversión, para no contar como errores diferencias que no existen en el repositorio.
+
 #### 6.2.1.2. Code Quality & Code Security
 
+La calidad y la seguridad del código son esenciales para que SmartQuote sea confiable: una plataforma que respalda decisiones de compra debe ser fácil de mantener y proteger la información de solicitudes, proveedores y presupuestos.
+
+- **Calidad del código.** Se mide con la complejidad ciclomática, el tamaño de las funciones, el acoplamiento entre clases, el índice de mantenibilidad y el porcentaje de código duplicado, complementados con las pruebas automatizadas de 6.1, que protegen el comportamiento al refactorizar. SmartQuote no utiliza SonarQube; para esta evaluación se emplearon herramientas de línea de comandos: los analizadores de .NET (reglas CA1502, CA1505, CA1506 y el conjunto completo `AnalysisMode=All`), ESLint, lizard 1.26.0 para la complejidad en C#, JavaScript, Vue y Dart, y jscpd 4.0.5 para la duplicación.
+- **Seguridad del código.** Se busca prevenir vulnerabilidades comunes como inyección SQL, XSS, exposición de credenciales y accesos no autorizados mediante prácticas de codificación segura, validación de entradas y revisión de las dependencias. La verificación combina las reglas de seguridad de los analizadores, la auditoría de dependencias (`dotnet list package --vulnerable`, `npm audit` y los avisos de pub.dev) y la búsqueda de patrones de riesgo y secretos versionados.
+
+**Resultados de calidad**
+
+Medición sobre el código productivo de las mismas revisiones de 6.2.1.1, sin pruebas ni migraciones generadas:
+
+| Métrica | Backend | Frontend web | Aplicación móvil |
+| --- | --- | --- | --- |
+| Tamaño analizado | 187 archivos; 6 816 líneas de código | 80 archivos; 3 009 líneas de código | 52 archivos; 6 333 líneas de código |
+| Complejidad ciclomática promedio | 2.47 | 1.58 | 3.74 |
+| Funciones con complejidad mayor que 10 | 20 de 676 (máximo 29) | 3 de 647 (máximo 13) | 34 de 375 (máximo 40) |
+| Funciones con más de 50 líneas | 16 | 0 | 30 |
+| Código duplicado | 1.67 % | 0.76 % | 2.08 % |
+| Mantenibilidad y acoplamiento | Solo `Program` tiene un índice de mantenibilidad menor que 20 (18) y 122 dependencias, por ser la raíz de composición | — | — |
+
+La complejidad del backend se concentra en los flujos de aprobación: `ApproveAsync` de adjudicaciones distribuidas (29), `ApproveAndGenerateAsync` de órdenes (22) y `PoultryQuote.ApplyCorrectedValue` (22). En la aplicación móvil, los valores altos corresponden a métodos `build` que deciden qué controles mostrar según el rol y el estado; en la web esa lógica reside en las plantillas Vue, que la herramienta no mide, por lo que ambos clientes no son directamente comparables. La duplicación es baja en los tres sistemas y proviene de pares *View*/*Resource* del backend, que separan intencionalmente el modelo interno del contrato de la API, y de estructuras de listados paginados en los clientes. Con todas las reglas CA activas, los analizadores de .NET informan 767 advertencias en código productivo; el 85 % corresponde a CA2007 (`ConfigureAwait`), innecesaria en ASP.NET Core, y a CA1062 (argumentos nulos), cubierta por los tipos de referencia anulables.
+
+**Prácticas de seguridad aplicadas**
+
+- **Accesos no autorizados:** JWT de 10 minutos con sesión de renovación en una cookie `HttpOnly`, autorización por rol en cada endpoint y verificación de cuenta activa en las operaciones de US15, US16 y US22.
+- **Fuerza bruta:** límite de intentos en inicio de sesión y registro (`RateLimiter`), política de contraseñas y almacenamiento con el `PasswordHasher` de ASP.NET Core.
+- **Inyección SQL:** acceso a datos con Entity Framework Core; las consultas SQL explícitas usan texto constante o interpolación parametrizada.
+- **XSS:** la aplicación web no utiliza `v-html`, `innerHTML` ni `eval`; Vue escapa el contenido interpolado y el token de acceso permanece en memoria (`localStorage` solo guarda el idioma).
+- **Exposición de información:** los errores no controlados se devuelven como `ProblemDetails` con un mensaje genérico, y CORS solo admite los orígenes configurados.
+- **Credenciales:** las claves de JWT, OpenAI y SUNAT se configuran con *user-secrets* o variables de entorno; ningún repositorio versiona `.env`, certificados ni almacenes de claves, y la aplicación móvil exige HTTPS en la versión de distribución.
+- **Integridad de las operaciones:** versión esperada (`expectedVersion`) en las modificaciones y claves de idempotencia en la aprobación de adjudicaciones, para evitar cambios perdidos u órdenes duplicadas.
+
+La verificación no encontró reglas de seguridad infringidas en el código productivo (CA2100 y CA5394 solo aparecen en proyectos de prueba), patrones de riesgo en la web, hallazgos de `dart analyze` ni secretos versionados. El backend no tiene paquetes NuGet vulnerables y pub.dev no informa avisos para la aplicación móvil; las únicas vulnerabilidades conocidas están en dependencias de la aplicación web.
+
+**Hallazgos y tratamiento**
+
+| Id | Sistema | Hallazgo | Decisión | Estado |
+| --- | --- | --- | --- | --- |
+| QS-01 | Frontend web | 8 dependencias con vulnerabilidades altas. En producción: `vue-i18n` 11.4.10 y paquetes `@intlify/*`, con un XSS cuando un parámetro de traducción se inserta en `srcdoc` (GHSA-8rc2-428q-7ww3), y `source-map-js` 1.2.1, con denegación de servicio mediante mapas de código manipulados (GHSA-68fv-2mgg-jv7q). Solo en desarrollo: `vite` 8.3.0 y `brace-expansion`. La exposición del XSS es baja porque los mensajes son estáticos y no se usa `v-html`. | Actualizar `vue-i18n` a 11.4.14 o superior y `vite`, aplicar `npm audit fix`, verificar `source-map-js` cuando la cadena de Vue publique la corrección y repetir las pruebas. | Pendiente |
+| QS-02 | Backend | 20 métodos con complejidad mayor que 10, principalmente en la aprobación de órdenes y adjudicaciones. | Separar las validaciones de proveedor, presupuesto y vigencia al modificar esos flujos, con las pruebas de integración de US18–US21 como red de seguridad. | Pendiente |
+| QS-03 | Aplicación móvil | 34 métodos con complejidad mayor que 10; el mayor es `_RequestWorkspaceState.detail` (40 de complejidad y 190 líneas). | Extraer subwidgets en las pantallas que se modifiquen en el siguiente sprint. | Pendiente |
+| QS-04 | Web y móvil | Estructuras de listado paginado repetidas entre pantallas nuevas. | Extraer un componente común de listado en cada cliente. | Pendiente |
+| QS-05 | Backend | 767 advertencias de calidad en modo `All`, el 85 % de reglas no aplicables. | No activar el modo `All`; evaluar `AnalysisLevel=latest-recommended` sin CA2007 ni CA1062. | Pendiente |
+
+**Limitaciones.** lizard realiza un análisis sintáctico ligero, por lo que sus valores son aproximados. La auditoría de dependencias refleja los avisos publicados al 11/11/2026. No se realizaron pruebas dinámicas de seguridad sobre la API en ejecución; estos resultados no sustituyen una auditoría de seguridad completa.
+
 ### 6.2.2. Reviews
+
+Las revisiones de código verifican que cada cambio cumpla los estándares de 6.2.1, respete la arquitectura y satisfaga los criterios de aceptación de su historia antes de integrarse en `develop`. SmartQuote combina dos tipos de revisión:
+
+- **Revisión entre pares:** un integrante distinto del autor lee el cambio, lo contrasta con la historia de usuario y con el contrato de la API, y registra sus observaciones. Cuando una observación requiere ejecutar el sistema, la revisión se apoya en las pruebas de 6.1.
+- **Revisión automática:** los workflows de GitHub Actions ejecutan las pruebas del backend, ESLint y las pruebas del frontend, y `dart analyze` y las pruebas de la aplicación móvil en cada push a una rama de trabajo, en cada pull request hacia `develop` o `main` y como validación previa a cada despliegue.
+
+**Proceso de revisión**
+
+1. El autor trabaja en una rama `feature/*` creada desde `develop` y abre un pull request hacia `develop` que identifica las historias, las tareas y las pruebas asociadas.
+2. Los workflows de CI deben completarse sin errores.
+3. Un revisor distinto del autor examina el cambio con la lista de verificación y registra sus observaciones en el pull request o, si la corrección se realiza en otra rama, en el commit que la resuelve.
+4. El autor corrige las observaciones bloqueantes antes de la integración; las mejoras no bloqueantes se registran como deuda técnica con su decisión.
+
+**Lista de verificación**
+
+- **Criterios de aceptación:** el cambio cubre los escenarios Given/When/Then de la historia y respeta las reglas del backend (roles, versiones esperadas, estados válidos).
+- **Estándar y arquitectura:** cumple las convenciones de 6.2.1.1 y mantiene la separación entre dominio, aplicación, infraestructura y presentación.
+- **Calidad:** nombres del lenguaje del negocio, métodos con una responsabilidad, sin duplicación innecesaria ni código sin uso.
+- **Seguridad:** sin credenciales versionadas, autorización por rol en el servidor, validación de entradas y sin contenido HTML sin escapar.
+- **Pruebas:** incluye pruebas identificadas con la historia y el escenario, y los workflows de CI se completan sin errores.
+- **Experiencia del usuario:** los textos de la interfaz usan el lenguaje del usuario; no muestran identificadores internos, rutas de datos ni valores del API sin traducir.
+
+**Revisiones realizadas en el Sprint 3**
+
+| Cambio revisado | Autor | Observaciones | Decisión y evidencia |
+| --- | --- | --- | --- |
+| Backend US15–US22: commits `cb2c301`, `ee2b053` y `db1615d` en `develop` | Fabio Vallejo | Los contratos se revisaron al integrar las pantallas web y móviles. Se confirmó una regla no documentada: una revisión técnica debe cambiar al menos un valor de la especificación. El análisis de 6.2.1 detectó en estas clases archivos con BOM, formato compacto y métodos de aprobación con complejidad de 22 a 29. | La regla se incorporó como validación en el cliente web (commit `e349881`). El formato y la complejidad se registraron como CS-01 y QS-02, pendientes. |
+| Aplicación móvil US15–US17: commit `760e861` en `develop` | Fabio Vallejo | Las aclaraciones mostraban el ítem, el requisito y los autores como UUID. El historial de toda solicitud nueva mostraba «Borrador por revisar → Enviada», porque el backend registra el estado interno `Draft`. La pantalla de verificación de cotizaciones mostraba rutas internas como `líneas[0].cantidad`. | Corregido: nombres del ítem y del requisito, roles en lugar de identificadores, «Registro» para solicitudes que no provienen de una programación y rótulos «Línea 1 · Cantidad» (commit `846b842`, PR #3). |
+| Aplicación móvil US21–US22: PR #2 (`feature/av2-l03-us21-us22`) | Alexis Bardales | El código cumple la arquitectura e incluye pruebas para ambas historias; conserva la decisión si se pierde la respuesta de la aprobación y excluye al analista actual al reasignar. El analista responsable y su historial se mostraban como UUID, y el área responsable con valores del API en inglés. | Corregido: nombre del analista o «Tú», y áreas en español (commit `846b842`, PR #3). La paginación repetida entre pantallas se registró como QS-04. |
+| Frontend web US15–US22 (PR #7) y aplicación móvil US18–US20 (PR #3) | Mathias De La Cruz | Antes de la integración se ejecutaron contra la API real. El análisis de sensibilidad mostraba los pesos como «—%» al promover una configuración, porque usaba los criterios vigentes en lugar de los analizados; en web, la configuración vigente no aparecía primero y los filtros de estado se mostraban vacíos. | Corregido antes de la integración (commits `e349881` y `846b842`). |
+
+**Hallazgos del proceso**
+
+Ningún pull request del Sprint 3 registra una aprobación o comentarios en GitHub: el PR #2 fue integrado por un integrante distinto del autor sin una revisión formal, y los PR #3 y #7 fueron integrados por su autor. Además, los cambios del backend y el commit `760e861` de la aplicación móvil se incorporaron a `develop` sin pull request; en esos casos los workflows de CI se ejecutaron recién al publicarse el cambio en `develop`, como validación previa al despliegue de staging, y no antes de su integración. La rama `develop` no tiene reglas de protección. Las revisiones de la tabla anterior se realizaron después de la integración y sus correcciones se entregaron en otros commits. Por eso se adoptan las siguientes decisiones para los próximos sprints: proteger la rama `develop` para exigir un pull request con al menos una aprobación de un integrante distinto del autor y los workflows de CI aprobados; agregar una plantilla de pull request con la lista de verificación anterior; y registrar las observaciones como comentarios del pull request para conservar su trazabilidad.
 
 ## 6.3. Validation Interviews
 
