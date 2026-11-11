@@ -6775,6 +6775,128 @@ Los puntajes son juicios iniciales del equipo y deben acordarse en una sesión; 
 
 ### 8.1.5. Experiment Cards
 
+Cada tarjeta lleva en el **frente** la pregunta, el porqué, la hipótesis (si aplica) y el *Simplest Useful Thing* (lo mínimo que permite aprender). En el **reverso** van medidas, condiciones y escala. Solo se usan métricas definidas en 8.2.2 y los IDs son trazables hacia 8.2.1, 8.2.3, 8.2.4 y 8.2.5.
+
+#### EC01 — Precisión de extracción
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q01 |
+| **Por qué** | Es la premisa de mayor riesgo (A07/G01): si la extracción inventa u omite campos, el resto del flujo pierde valor. |
+| **Hipótesis** | HW01 / H0-01 |
+| **Simplest Useful Thing** | Ejecutar la prueba de concepto de SP01 sobre el corpus anonimizado y comparar cada campo obligatorio con la referencia verificada. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M02, M03 |
+| **Condiciones** | Sin grupo control; la referencia verificada actúa como criterio. Ver 8.2.4. |
+| **Escala** | 139 observaciones de campo para ±5 pp (95 %); el corpus mínimo de SP01 solo permite una estimación exploratoria. Ver 8.2.5. |
+
+#### EC02 — Tiempo de estructuración manual frente a asistido
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q02 |
+| **Por qué** | Reducir tiempo es el beneficio central (OA1) y hoy solo hay relatos de «varias horas». |
+| **Hipótesis** | HW02 / H0-02 |
+| **Simplest Useful Thing** | Cada analista estructura cotizaciones comparables con su método habitual (Excel) y con SmartQuote, alternando el orden, y se cronometra con la grabación. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M01 (principal), M02 (secundaria) |
+| **Condiciones** | Control: Excel; experimental: flujo asistido; diseño pareado con orden contrabalanceado. |
+| **Escala** | 12 pares para un efecto grande (dz = 0,8); alcance real limitado por el acceso a analistas. |
+
+#### EC03 — Verificación explicable
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q03 |
+| **Por qué** | La propuesta depende de que el analista pueda comprobar el origen del dato (A08, A14). |
+| **Hipótesis** | HW03 / H0-03 |
+| **Simplest Useful Thing** | Tarea A2 de 6.3.1 con una cotización ambigua preparada, cuenta de prueba y documentos ficticios. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M04, M05, M06 |
+| **Condiciones** | Grupo de estudio: analistas o jefes de adquisiciones; sin grupo control. |
+| **Escala** | n = 3 (6.3.1); resultado descriptivo, no estimación de tasa. |
+
+#### EC04 — Simulación por escenarios
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q04 |
+| **Por qué** | Si los rankings no son coherentes o no se repiten, la recomendación no es defendible (A09). |
+| **Hipótesis** | HW04 / H0-04 |
+| **Simplest Useful Thing** | Ejecutar dos escenarios con pesos distintos sobre las mismas cotizaciones verificadas, incluida una con incumplimiento obligatorio, y repetir cada ejecución. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M07, M08, M09 |
+| **Condiciones** | Entradas fijas; solo cambian los pesos entre escenarios. |
+| **Escala** | 59 repeticiones automatizadas por escenario (límite superior 5 % con cero fallos). |
+
+#### EC05 — Registro móvil de solicitudes
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q05 |
+| **Por qué** | El segmento 2 usa el móvil para originar la solicitud (A10) y hoy depende de informes físicos (C04). |
+| **Hipótesis** | HW05 / H0-05 |
+| **Simplest Useful Thing** | Tarea P2 de 6.3.1 con la ficha del caso, cuenta de prueba y observación del primer intento. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M04, M12, M06 |
+| **Condiciones** | Grupo de estudio: especialistas de producción y sanidad. |
+| **Escala** | n = 3 (6.3.1); resultado descriptivo. |
+
+#### EC06 — Aprobación idempotente
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q07 |
+| **Por qué** | Una orden duplicada tiene consecuencias comerciales (A11). |
+| **Hipótesis** | HW06 / H0-06 |
+| **Simplest Useful Thing** | Enviar la misma solicitud de aprobación repetidamente en una prueba automatizada y contar órdenes creadas. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M13 |
+| **Condiciones** | Misma aprobación vigente, mismo identificador. |
+| **Escala** | 59 repeticiones sin fallos. |
+
+#### EC07 — Proceso real del segmento operativo (exploratoria)
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q08 |
+| **Por qué** | La evidencia del segmento 2 es de un solo registro de almacén (G04). |
+| **Hipótesis** | No aplica (pregunta exploratoria). |
+| **Simplest Useful Thing** | Entrevistas semiestructuradas con la guía T1–T14 del 2.2.1 a veterinarios, nutricionistas o jefes de granja. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M10 y M11 (autorreportadas) |
+| **Condiciones** | Grupo y contexto de estudio delimitados en 8.2.4. |
+| **Escala** | 3 a 5 entrevistas, hasta que no aparezcan temas nuevos. |
+
+#### EC08 — Línea base del cuadro comparativo (exploratoria)
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q09 y Q14 |
+| **Por qué** | Sin línea base no se puede validar ninguna reducción de tiempo (G02). |
+| **Hipótesis** | No aplica (pregunta exploratoria). |
+| **Simplest Useful Thing** | Hoja de registro simple donde analistas anotan, con datos autorizados, tiempo, correcciones y formato de cada cotización recibida. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M14, M15, M10, M16 |
+| **Condiciones** | Grupo de estudio: analistas de adquisiciones en su proceso actual. |
+| **Escala** | Descriptivo; objetivo propuesto de al menos 10 cuadros registrados, sujeto al acceso. |
+
 ## 8.2. Experiment Design
 
 ### 8.2.1. Hypotheses
