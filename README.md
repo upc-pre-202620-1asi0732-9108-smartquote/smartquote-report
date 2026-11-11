@@ -6636,6 +6636,78 @@ Esta sección describe el estado actual que servirá de referencia para los expe
 
 ### 8.1.2. Raw Material: Assumptions, Knowledge Gaps, Ideas, Claims
 
+Se clasifica el material de partida **sin presentar creencias como resultados comprobados**. «Origen» indica de dónde sale cada elemento; «Investigar» indica si conviene convertirlo en pregunta de experimento y con qué urgencia.
+
+#### Assumptions (suposiciones)
+
+| ID | Suposición | Origen | Investigar |
+|---|---|---|---|
+| A01 | Las empresas avícolas contratarían una membresía B2B SaaS si se reduce el esfuerzo de compras. | BA1 (1.2.2.2) | Media: sin evidencia de disposición de pago. |
+| A02 | Complementar el ERP es más viable que reemplazarlo. | BA2; N.º 1 | Alta: depende de integración y confidencialidad. |
+| A03 | Demoras, errores y pérdida de trazabilidad tienen un costo que justifica una solución especializada. | BA3 | Alta: no hay datos de costo. |
+| A04 | Los analistas necesitan comparar ofertas sin dominar todas las especificaciones técnicas. | UA1 | Media. |
+| A05 | Producción, sanidad y operación necesitan requisitos claros y seguimiento sin documentos físicos. | UA2; N.º 3 | Alta: solo un registro. |
+| A06 | Los aprobadores requieren recomendación explicable, evidencia de origen y control humano. | UA3; N.º 1, N.º 2 | Alta. |
+| A07 | Un agente de IA convierte PDF heterogéneos en datos estructurados sin inventar valores. | FA1 | **Muy alta:** es el riesgo central. |
+| A08 | Mostrar fuente, confianza, valor original y correcciones permite resolver excepciones antes de verificar. | FA2 | Alta. |
+| A09 | Criterios obligatorios y pesos configurables permiten simular prioridades sin ocultar ofertas no elegibles. | FA3 | Media. |
+| A10 | Un formulario móvil con requisitos, adjuntos, historial y notificaciones facilita la coordinación. | FA4 | Alta: depende del contexto de campo. |
+| A11 | Roles, versionado e idempotencia permiten aprobar sin duplicar órdenes. | FA5 | Media: verificable técnicamente. |
+| A12 | Estructurar y comparar cotizaciones reducirá el tiempo del cuadro comparativo. | OA1 | **Muy alta.** |
+| A13 | Campos normalizados y requisitos claros reducirán aclaraciones y datos incompletos. | OA2 | Media. |
+| A14 | Evidencia, historial y aprobación humana aumentarán la confianza en la recomendación. | OA3 | Alta. |
+| A15 | El seguimiento digital reducirá solicitudes perdidas y permitirá anticipar retrasos. | OA4 | Media. |
+
+#### Knowledge Gaps (brechas de conocimiento)
+
+| ID | Brecha | Origen | Investigar |
+|---|---|---|---|
+| G01 | Precisión real de la extracción por campo en cotizaciones heterogéneas (sin medición publicada). | 5.2.1.1 (SP01) | **Muy alta.** |
+| G02 | Línea base: tiempo real de elaboración del cuadro comparativo. | 2.2.3 (solo «varias horas») | **Muy alta.** |
+| G03 | Volumen de solicitudes y cotizaciones por periodo. | 2.2.3 (dato no recogido) | Alta. |
+| G04 | Proceso real de veterinarios, nutricionistas y jefes de granja (n = 1, almacén). | 2.2.3 | **Muy alta.** |
+| G05 | Cómo valida producción/sanidad la conformidad técnica de una cotización y qué decisiones exigen aprobación profesional. | Guion T6, T8, T9; no respondido | Alta. |
+| G06 | Restricciones de confidencialidad, permisos y almacenamiento para cargar documentos comerciales. | Guion A13; N.º 2 solo menciona confidencialidad | Alta. |
+| G07 | Integración con ERP en empresas distintas a la de N.º 1. | N.º 2 no lo aborda | Media. |
+| G08 | Conectividad y uso del teléfono en granja o campo. | Guion T12; no recogido | Alta. |
+| G09 | Comportamiento de la app en Android nativo. | 6.1 (pendiente) | Media. |
+| G10 | Resultados de las pruebas de tareas con usuarios en Landing, web y móvil. | 6.3.2 (vacío) | Alta. |
+| G11 | Emociones y motivaciones de los analistas. | 2.3.4–2.3.5 (marcado Pendiente) | Baja. |
+
+#### Ideas (propuestas de solución, aún no validadas)
+
+Siguiendo la guía, **se prueban las premisas que sostienen cada idea, no la idea en sí**.
+
+| ID | Idea | Premisa subyacente que se pondría a prueba | Origen |
+|---|---|---|---|
+| I01 | Formulario móvil de solicitudes con requisitos técnicos y adjuntos. | El personal operativo puede y quiere registrar requisitos técnicos completos desde el móvil en su contexto de trabajo (A10, G08). | Lean UX Canvas, bloque 5 |
+| I02 | Carga de PDF con extracción asistida por IA que muestre confianza y evidencia de origen. | Las cotizaciones llegan en PDF legibles y el analista confía en el resultado cuando ve la evidencia (A07, A08). | Lean UX Canvas, bloque 5 |
+| I03 | Corrección auditable de campos extraídos. | Corregir un campo extraído es más rápido que transcribirlo desde cero (A12). | Lean UX Canvas, bloque 5 |
+| I04 | Simulación con criterios obligatorios y ponderados, con explicación del ranking. | Los pesos configurables reflejan cómo se decide en la práctica (A09, A06). | Lean UX Canvas, bloque 5 |
+| I05 | Campos estandarizados y vocabulario común entre áreas. | La falta de lenguaje común es una causa real de las aclaraciones (A13, C04). | N.º 3; 2.4 Ubiquitous Language |
+| I06 | Integración gradual con el ERP. | Las empresas permiten intercambiar datos con su ERP y eso es técnicamente viable (A02, G06, G07). | Lean UX Canvas; N.º 1 |
+
+#### Claims (afirmaciones de fuentes; no verificadas por el equipo)
+
+C03 y C06 son afirmaciones sobre el producto; C01, C02, C04 y C05 son afirmaciones sobre el problema.
+
+| ID | Afirmación | Quién la hace | Estado |
+|---|---|---|---|
+| C01 | Trasladar y comparar ofertas consume varias horas por requerimiento. | N.º 1 y N.º 2 | Reportado; sin medición. |
+| C02 | Cotizaciones incompletas o ambiguas son la principal causa de retraso. | N.º 1 y N.º 2 | Reportado; sin medición. |
+| C03 | Una plataforma con IA ahorraría tiempo y reduciría errores. | N.º 1 y N.º 2 | Expectativa, no mejora demostrada. |
+| C04 | Las solicitudes físicas se traspapelan y las aclaraciones son frecuentes por lenguajes distintos. | N.º 3 | Reportado por una sola persona. |
+| C05 | Compras tardías o incorrectas causan pérdidas económicas y retrasos en ventas. | N.º 3 | Reportado; sin cuantificar. |
+| C06 | La herramienta no debería reemplazar al ERP sino integrarse con él. | N.º 1 | Preferencia expresada por una persona. |
+
+#### Premisas que conviene investigar primero
+
+1. **A07 / G01** (extracción sin inventar valores): es la premisa de mayor riesgo y la base de H1.
+2. **A12 / G02 / C01** (reducción de tiempo): sin línea base no se puede afirmar mejora.
+3. **A05 / G04 / C04** (necesidades del segmento operativo): la evidencia es de una sola persona.
+4. **A02 / G06 / G07** (ERP y confidencialidad): condicionan si el producto puede usarse en la práctica.
+5. **A08 / A14** (confianza en la evidencia mostrada): sostiene la propuesta de «IA que recomienda, no decide».
+
 ### 8.1.3. Experiment-Ready Questions
 
 ### 8.1.4. Question Backlog
