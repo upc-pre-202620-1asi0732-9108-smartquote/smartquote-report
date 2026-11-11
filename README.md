@@ -6733,6 +6733,46 @@ Las preguntas convierten el material de 8.1.2 en algo investigable. Se distingue
 
 ### 8.1.4. Question Backlog
 
+El Question Backlog ordena **preguntas de aprendizaje**, no funcionalidades: no es el Product Backlog de la sección 3.3 (que contiene historias de usuario y tareas técnicas) y sus ítems no se estiman en Story Points.
+
+**Escala propuesta (1–5), por confirmar con la guía del curso:**
+
+- **Confianza (C):** cuánta evidencia ya existe. 1 = casi ninguna; 5 = evidencia sólida.
+- **Riesgo (R):** qué tan grave sería que la creencia fuera falsa. 5 = compromete el valor central del producto.
+- **Impacto (I):** cuánto cambiaría una decisión de producto o de alcance según la respuesta.
+- **Interés (In):** interés del equipo en aprenderlo ahora.
+- **Puntaje de prioridad = R + I + In + (6 − C).** Un puntaje alto indica algo importante y poco conocido. **Desempate:** mayor riesgo; si persiste, mayor impacto y luego mayor interés.
+
+Los puntajes son juicios iniciales del equipo y deben acordarse en una sesión; no son mediciones.
+
+| Orden | ID | Pregunta (resumen) | Motivación | C | R | I | In | Puntaje |
+|---:|---|---|---|---:|---:|---:|---:|---:|
+| 1 | Q08 | Proceso real y datos faltantes en producción y sanidad | Solo hay un registro de almacén; el segmento operativo sostiene la solicitud y la validación técnica. | 1 | 5 | 5 | 5 | 20 |
+| 2 | Q01 | Precisión de extracción ≥ 90 % sin valores inventados | Es el riesgo técnico central; no hay medición publicada. | 2 | 5 | 5 | 5 | 19 |
+| 3 | Q09 | Línea base de tiempo, volumen y retrabajo | Sin línea base no se puede afirmar ninguna mejora. | 1 | 4 | 5 | 4 | 18 |
+| 4 | Q14 | Formatos reales de cotización y proporción de incompletas | Si llegan escaneos o imágenes, la extracción por PDF digital pierde valor y cambia el alcance. | 1 | 5 | 4 | 3 | 17 |
+| 5 | Q02 | Reducción de tiempo de estructuración | Es el beneficio principal prometido (OA1). | 2 | 4 | 5 | 4 | 17 |
+| 6 | Q10 | Confidencialidad y ERP | Puede impedir el uso real del producto. | 2 | 5 | 4 | 3 | 16 |
+| 7 | Q11 | Evidencia para confiar en la IA | Sostiene el principio «IA recomienda, humano decide». | 2 | 4 | 4 | 4 | 16 |
+| 8 | Q13 | Disposición a contratar | Valida el modelo de negocio. | 1 | 4 | 4 | 3 | 16 |
+| 9 | Q03 | Localizar fuente y corregir campo ambiguo | Valida la verificación explicable (H2). | 3 | 4 | 4 | 4 | 15 |
+| 10 | Q05 | Registro móvil sin ayuda | Valida el canal del segmento 2 (H4). | 3 | 3 | 4 | 4 | 14 |
+| 11 | Q12 | Conectividad en granja/almacén | Condiciona el diseño móvil. | 2 | 3 | 3 | 3 | 13 |
+| 12 | Q07 | Aprobación idempotente | Verificable técnicamente; evidencia previa de pruebas. | 4 | 4 | 3 | 3 | 12 |
+| 13 | Q04 | Escenarios coherentes y repetibles | Hay pruebas de dominio previas. | 4 | 3 | 4 | 3 | 12 |
+| 14 | Q06 | Seguimiento: estado y responsable | Complementa Q05. | 3 | 3 | 3 | 3 | 12 |
+
+**Backlog amplio y profundo.** La guía distingue ambos. La tabla anterior es el backlog **amplio** (*broad*): cubre muchos temas distintos del producto. El backlog **profundo** (*deep*) baja a sub-preguntas de una pregunta amplia; estas se ejecutan después de la pregunta madre y no compiten con las amplias hasta entonces.
+
+| ID | Pregunta madre | Sub-pregunta | Motivación | C | R | I | In | Puntaje |
+|---|---|---|---|---:|---:|---:|---:|---:|
+| Q01.1 | Q01 | ¿En qué tipos de campo y de estructura documental falla más la extracción? | Permite corregir donde más duele. | 1 | 4 | 4 | 4 | 17 |
+| Q01.2 | Q01 | ¿Qué umbral de confianza separa los campos correctos de los dudosos? | Define cuándo pedir revisión humana. | 1 | 4 | 3 | 4 | 16 |
+| Q02.1 | Q02 | ¿Qué actividad consume más tiempo: transcribir, pedir aclaraciones o comparar? | Indica qué automatizar primero. | 2 | 3 | 4 | 4 | 15 |
+| Q08.1 | Q08 | ¿Qué datos técnicos se omiten más según el tipo de insumo (alimento, vacuna, medicamento)? | Define los campos obligatorios de la solicitud. | 1 | 4 | 4 | 4 | 17 |
+
+**Selección para el primer ciclo:** se llevan a Experiment Cards Q01, Q02, Q03, Q04, Q05, Q07, Q08 y Q09. **Q14 se responde dentro de EC08** (la hoja de registro anota el formato de cada cotización). Q10, Q11, Q12 y Q13 quedan para el siguiente ciclo; Q06 se cubrirá junto con Q05 si el tiempo de la sesión lo permite.
+
 ### 8.1.5. Experiment Cards
 
 ## 8.2. Experiment Design
