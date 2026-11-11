@@ -6662,13 +6662,162 @@ La comprobación de salud de producción se realiza de forma manual abriendo [`h
 
 ### 7.4. Continuous Monitoring
 
+Esta sección define la estrategia de monitoreo continuo de SmartQuote: las herramientas, la recolección de telemetría, las alertas y las notificaciones. La instrumentación de la API y de la aplicación web está implementada en el código; la configuración de los recursos de Azure se documenta como diseño, porque no pudo aplicarse: el 11/11/2026, la suscripción *Azure for Students* que aloja el proyecto se encontraba deshabilitada y en modo de solo lectura (`ReadOnlyDisabledSubscription`), y ningún integrante del equipo dispone de créditos para habilitar otra. La suscripción conserva el acceso de lectura, por lo que se presentan como evidencia las métricas de plataforma que Azure Monitor registró automáticamente para la API, la aplicación web y la base de datos durante los 30 días previos; en cambio, la telemetría de aplicación, la prueba de disponibilidad, las alertas y las notificaciones no pudieron crearse ni ejecutarse.
+
 #### 7.4.1. Tools and Practices
+
+El monitoreo continuo permite conocer el estado de SmartQuote en Azure después de cada despliegue: si la API responde, cuánto tarda, qué operaciones fallan y cómo se comportan sus dependencias (PostgreSQL, SUNAT y OpenAI). Como la API se ejecuta en Azure App Service y la aplicación web en Azure Static Web Apps, se selecciona **Azure Monitor** con **Application Insights**, que se integra con ambos servicios sin infraestructura adicional y admite OpenTelemetry, el estándar abierto de telemetría.
+
+| Herramienta | Función |
+| --- | --- |
+| Application Insights (basado en área de trabajo) | Recibe solicitudes, dependencias, excepciones, registros y métricas de la API, y vistas de página, errores y llamadas HTTP del navegador. |
+| Log Analytics workspace | Almacena la telemetría y permite consultarla con KQL (Kusto Query Language). |
+| Métricas de plataforma de Azure Monitor | Informa CPU, memoria, solicitudes, errores HTTP 5xx y tiempo de respuesta del App Service sin cambios en el código. |
+| Pruebas de disponibilidad de Application Insights | Consultan periódicamente el endpoint `/health` de la API desde varias regiones. |
+| Azure Monitor OpenTelemetry Distro 1.6.0 (`Azure.Monitor.OpenTelemetry.AspNetCore`) | Instrumenta la API ASP.NET Core: solicitudes, excepciones, registros, llamadas HTTP salientes y comandos de PostgreSQL (fuente `Npgsql`). |
+| SDK de Application Insights para JavaScript 3.4.6 (`@microsoft/applicationinsights-web`) | Instrumenta la aplicación web: vistas de página, excepciones del navegador y llamadas a la API. |
+| Endpoints `/health` y `/health/live` | `/health` comprueba la conexión con cada base de datos de los contextos; `/health/live` confirma que el proceso responde. |
+
+**Prácticas adoptadas**
+
+- **Activación por configuración:** la API envía telemetría solo cuando existe la variable `APPLICATIONINSIGHTS_CONNECTION_STRING` en la configuración del App Service, y la aplicación web solo cuando se compila con `VITE_APPINSIGHTS_CONNECTION_STRING`, tomada de la variable de repositorio `APPINSIGHTS_CONNECTION_STRING` en los despliegues. El desarrollo local, las pruebas y los pull requests no envían telemetría. El SDK web se descarga en un archivo aparte únicamente cuando el monitoreo está activo.
+- **Sin credenciales en el código:** la cadena de conexión se configura en Azure y en GitHub, nunca en los repositorios. No es un secreto de autenticación, pero se administra fuera del código para cambiarla sin publicar una nueva versión.
+- **Privacidad:** no se registran nombres, correos ni contenidos de solicitudes o cotizaciones; el SDK web no utiliza cookies y agrupa las vistas por patrón de ruta (por ejemplo, `/requests/:id`) para no registrar identificadores. Las cabeceras de correlación solo se envían a la API configurada.
+- **Correlación de extremo a extremo:** cada solicitud del navegador comparte el identificador de operación con la solicitud de la API y sus consultas a PostgreSQL, de modo que un error puede seguirse desde la pantalla hasta la base de datos. Los componentes se distinguen por su rol: `smartquote-api` y `smartquote-web`.
+- **Métricas operativas:** tasa de solicitudes, porcentaje de solicitudes fallidas (HTTP 5xx), tiempo de respuesta promedio y percentil 95, dependencias fallidas por destino, excepciones, disponibilidad de `/health` y tiempo de carga y llamadas fallidas en el navegador.
+- **Retención:** 30 días en el área de trabajo de Log Analytics, suficientes para comparar el comportamiento entre sprints sin costos de retención adicional.
+- **Acceso:** el propietario de la suscripción administra los recursos; los demás integrantes reciben el rol *Monitoring Reader* para consultar la telemetría, sin permisos para modificar la configuración.
+- **Aplicación móvil:** no incluye un SDK de telemetría; sus operaciones se observan a través de las solicitudes que recibe la API, identificables por el rol `smartquote-api`.
 
 #### 7.4.2. Monitoring Pipeline Components
 
+El pipeline de monitoreo sigue el recorrido de la telemetría desde cada componente hasta su consulta:
+
+| Componente | Origen | Datos que recolecta | Destino |
+| --- | --- | --- | --- |
+| Instrumentación de la API | `Program.cs` del backend (rama `feature/monitoring`) | Solicitudes HTTP con código y duración, excepciones, registros, llamadas a SUNAT y OpenAI, y comandos de PostgreSQL | Application Insights, rol `smartquote-api` |
+| Instrumentación web | `src/shared/infrastructure/monitoring.js` del frontend (rama `feature/monitoring`) | Vistas de página por ruta, excepciones del navegador y llamadas `fetch` a la API | Application Insights, rol `smartquote-web` |
+| Métricas de plataforma | Azure App Service | CPU, memoria, solicitudes, errores HTTP 5xx y tiempo de respuesta | Azure Monitor (métricas) |
+| Prueba de disponibilidad | Application Insights, prueba estándar sobre `/health` cada 5 minutos desde 3 regiones | Resultado, duración y región de cada comprobación | Application Insights |
+| Consulta y panel | Log Analytics workspace y un panel (*dashboard*) de Azure | Las consultas KQL siguientes | Panel compartido del equipo |
+
+**Evidencia: métricas de plataforma de Azure Monitor**
+
+Sin instrumentación adicional, Azure Monitor registra métricas de plataforma para cada recurso. Las consultadas el 11/11/2026 cubren los 30 días previos (12/10/2026–11/11/2026) y muestran la actividad de SmartQuote hasta que sus servicios dejaron de recibir tráfico, alrededor del 08/11/2026, cuando la suscripción quedó deshabilitada:
+
+| Recurso | Métrica (agregación en 30 días) | Valor | Lectura |
+| --- | --- | --- | --- |
+| API (`smartquote-api`, App Service) | Solicitudes (suma) | 417 | Pico cercano a 250 solicitudes alrededor del 25/10, coincidente con las pruebas del flujo de compra. |
+| API | Errores HTTP 5xx (suma) | 0 | No se registraron errores del servidor en el periodo. |
+| API | Tiempo de respuesta (promedio) | 588,66 ms | Picos aislados cercanos a 20 s a mediados de octubre y a inicios de noviembre, compatibles con arranques en frío del plan B1 tras periodos sin tráfico. |
+| API | Datos recibidos / enviados (suma) | 636,4 kB / 3 MB | Tráfico bajo, propio de pruebas y demostraciones. |
+| Aplicación web (`smartquote-frontend`, Static Web Apps) | Visitas (`SiteHits`, suma) | 156 | Picos alrededor del 25/10 y a inicios de noviembre. |
+| Aplicación web | Errores (`SiteErrors`, suma) | Sin registros | No se registraron errores del sitio estático. |
+| Base de datos (`smartquote-pg`, PostgreSQL) | Conexiones activas (promedio) | 8,23 | Aumento a cerca de 9,6 conexiones a inicios de noviembre, con la incorporación de los procesos en segundo plano de US16 y US17. |
+| Base de datos | CPU (promedio) | 6,68 % | Uso estable entre 6 % y 7,5 %, sin saturación. |
+
+El estado *Admin disabled* del App Service confirma la suspensión del servicio por la suscripción.
+
+![Métricas de la API en 30 días: estado del App Service, errores HTTP 5xx y tráfico](assets/devops/7.4.2-01-api-errors-traffic-30d.png)
+
+![Métricas de la API en 30 días: solicitudes, tiempo de respuesta y almacenamiento](assets/devops/7.4.2-02-api-requests-latency-30d.png)
+
+![Métricas de la aplicación web en 30 días: visitas y errores de Static Web Apps](assets/devops/7.4.2-03-web-hits-errors-30d.png)
+
+![Métricas de PostgreSQL en 30 días: conexiones activas y uso de CPU](assets/devops/7.4.2-04-postgresql-connections-cpu-30d.png)
+
+Estas métricas evidencian la recolección de tráfico, errores y latencias de la API y de la aplicación web, y del estado de su base de datos. No sustituyen la telemetría de aplicación: no identifican la operación, la pantalla ni la dependencia que originó cada valor, y no incluyen la disponibilidad medida desde el exterior. Esa información corresponde a los componentes de Application Insights descritos en esta sección, que no pudieron activarse.
+
+**Configuración prevista en Azure**
+
+1. Crear un Log Analytics workspace y un recurso de Application Insights basado en ese workspace, en el mismo grupo de recursos y región de la API; fijar la retención del workspace en 30 días.
+2. En el App Service de la API, agregar la configuración `APPLICATIONINSIGHTS_CONNECTION_STRING` con la cadena de conexión del recurso y reiniciar la aplicación.
+3. En el repositorio del frontend, crear la variable `APPINSIGHTS_CONNECTION_STRING` con la misma cadena; el siguiente despliegue compila la aplicación web con la instrumentación activa.
+4. Crear una prueba de disponibilidad estándar sobre `https://<api>/health` con frecuencia de 5 minutos y 3 ubicaciones.
+5. Asignar el rol *Monitoring Reader* a los integrantes del equipo.
+
+**Consultas reproducibles (KQL)**
+
+Solicitudes, errores y latencia de la API por hora:
+
+```kusto
+AppRequests
+| where TimeGenerated > ago(24h) and AppRoleName == "smartquote-api"
+| summarize Solicitudes = count(),
+            Fallidas = countif(toint(ResultCode) >= 500),
+            PromedioMs = avg(DurationMs),
+            P95Ms = percentile(DurationMs, 95)
+  by bin(TimeGenerated, 1h)
+| order by TimeGenerated asc
+```
+
+Dependencias de la API (PostgreSQL, SUNAT y OpenAI) por destino:
+
+```kusto
+AppDependencies
+| where TimeGenerated > ago(24h) and AppRoleName == "smartquote-api"
+| summarize Llamadas = count(), Fallidas = countif(Success == false),
+            PromedioMs = avg(DurationMs)
+  by DependencyType, Target
+| order by Fallidas desc, Llamadas desc
+```
+
+Disponibilidad del endpoint `/health`:
+
+```kusto
+AppAvailabilityResults
+| where TimeGenerated > ago(24h)
+| summarize DisponibilidadPct = round(100.0 * countif(Success == true) / count(), 2)
+  by bin(TimeGenerated, 1h), Location
+```
+
+Pantallas más visitadas de la aplicación web y su tiempo de carga:
+
+```kusto
+AppPageViews
+| where TimeGenerated > ago(7d) and AppRoleName == "smartquote-web"
+| summarize Vistas = count(), CargaPromedioMs = avg(DurationMs) by Pantalla = Name
+| order by Vistas desc
+```
+
+Llamadas fallidas desde el navegador hacia la API:
+
+```kusto
+AppDependencies
+| where TimeGenerated > ago(7d) and AppRoleName == "smartquote-web" and Success == false
+| summarize LlamadasFallidas = count() by Target, ResultCode
+| order by LlamadasFallidas desc
+```
+
+**Estado.** La instrumentación de la API y de la aplicación web está implementada en las ramas `feature/monitoring` de ambos repositorios: la API compila sin advertencias, inicia correctamente con la telemetría activada y supera sus pruebas de dominio, y la aplicación web supera sus 67 pruebas unitarias, incluidas las del monitoreo. Los pasos de configuración y las consultas anteriores quedan definidos para aplicarse cuando el proyecto disponga de una suscripción activa; hasta entonces, la evidencia disponible corresponde a las métricas de plataforma presentadas.
+
 #### 7.4.3. Alerting Pipeline Components
 
+Las alertas convierten la telemetría de 7.4.2 en avisos accionables. Se definen como reglas de Azure Monitor sobre el recurso de Application Insights y el App Service de la API; cada regla evalúa una señal en una ventana de tiempo, se dispara al superar su umbral y se resuelve automáticamente cuando la condición deja de cumplirse.
+
+| Id | Señal | Condición | Ventana y frecuencia | Severidad | Propósito |
+| --- | --- | --- | --- | --- | --- |
+| AL-01 | Prueba de disponibilidad de `/health` | Falla en 2 o más de las 3 ubicaciones | Evaluación cada 5 minutos | 1 (Error) | Detectar que la API o alguna de sus bases de datos no responde. |
+| AL-02 | Solicitudes fallidas de la API (HTTP 5xx) | Más de 5 solicitudes | Ventana de 5 minutos; evaluación cada minuto | 2 (Advertencia) | Detectar errores del servidor tras un despliegue o una falla de dependencias. |
+| AL-03 | Tiempo de respuesta del servidor | Promedio mayor que 2 segundos | Ventana de 15 minutos; evaluación cada 5 minutos | 3 (Informativa) | Detectar degradación del rendimiento antes de que afecte a los usuarios. |
+| AL-04 | Dependencias fallidas de la API (PostgreSQL, SUNAT y OpenAI) | Más de 5 llamadas fallidas | Ventana de 15 minutos; evaluación cada 5 minutos | 2 (Advertencia) | Distinguir fallas de servicios externos de errores propios de la API. |
+| AL-05 | Excepciones en el navegador (`smartquote-web`) | Más de 10 excepciones | Ventana de 15 minutos; evaluación cada 5 minutos | 3 (Informativa) | Detectar errores de la aplicación web que no llegan a la API. |
+
+Las severidades orientan la respuesta: una alerta de severidad 1 requiere atención inmediata del responsable del backend, mientras que las de severidad 2 y 3 se revisan el mismo día. Para evitar avisos repetidos, cada regla espera a resolverse antes de volver a dispararse.
+
+**Comprobación controlada prevista.** Para verificar el pipeline sin afectar a los usuarios, se crea temporalmente una prueba de disponibilidad adicional sobre una ruta inexistente de la API, de modo que falle en todas las ubicaciones y dispare una regla equivalente a AL-01. Se registran la hora de la falla, la hora en que la alerta pasa a *Fired*, la notificación recibida y, al eliminar la prueba temporal, la hora en que la alerta pasa a *Resolved*. La diferencia entre ambos momentos documenta el tiempo de detección y de recuperación.
+
 #### 7.4.4. Notification Pipeline Components
+
+Las notificaciones entregan cada alerta a las personas responsables mediante un **grupo de acciones** de Azure Monitor (*Action Group*), reutilizable por todas las reglas de 7.4.3.
+
+- **Grupo de acciones:** `ag-smartquote-equipo`, con nombre corto `SQAlertas`, en el mismo grupo de recursos que la API.
+- **Destinatarios y canales:** correo electrónico a la cuenta institucional de cada integrante del equipo y notificación *push* en la aplicación móvil de Azure para el responsable del backend. Las direcciones se registran solo en Azure, no en el repositorio ni en este informe.
+- **Contenido:** se habilita el esquema común de alertas (*common alert schema*), de modo que cada correo indique la regla, la severidad, el recurso afectado, el valor medido, el umbral y el enlace a la alerta en el portal.
+- **Asignación por severidad:** las reglas de severidad 1 y 2 (AL-01, AL-02 y AL-04) notifican a todo el equipo; las de severidad 3 (AL-03 y AL-05) solo al responsable del sistema afectado, para evitar el exceso de avisos.
+- **Recuperación:** cuando una alerta se resuelve, el mismo grupo envía la notificación de cierre, de modo que el equipo sabe que el incidente terminó sin consultar el portal.
+
+El recorrido completo es: la telemetría llega a Application Insights (7.4.2), una regla de alerta detecta la condición (7.4.3), la alerta invoca `ag-smartquote-equipo` y Azure Monitor envía el correo y la notificación *push* a los destinatarios. La prueba prevista de este recorrido utiliza la opción *Test action group* del portal, que envía una notificación de muestra a cada destinatario, y luego la comprobación controlada de 7.4.3, que valida el flujo con una alerta real. Ambas quedan pendientes hasta disponer de una suscripción activa.
 
 # Capítulo VIII: Experiment-Driven Development
 
