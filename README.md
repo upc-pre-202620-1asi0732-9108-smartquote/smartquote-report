@@ -6975,6 +6975,30 @@ Medidas necesarias para responder cada pregunta, su cálculo, su periodicidad, l
 
 ### 8.2.5. Scale Calculations and Decisions
 
+Los cálculos justifican tamaño de muestra y duración con significación, potencia, efecto mínimo detectable y supuestos. **No se afirma ninguna muestra ya ejecutada.** Supuestos de trabajo (por confirmar con la guía): α = 0,05 (unilateral donde se indica), potencia = 0,80.
+
+| Tarjeta | Cálculo y supuestos | Resultado | Decisión |
+|---|---|---|---|
+| EC01 | Estimar una proporción esperada de 0,90 con margen de ±5 pp y confianza del 95 %: n = 1,96² · 0,9 · 0,1 / 0,05². Si se necesitan ±4 pp o ±3 pp, n sube a 217 o 385. | **139 observaciones de campo.** | Los campos de una misma cotización no son independientes. Con un supuesto de 8 campos obligatorios por cotización y correlación intraclase 0,3 (efecto de diseño 3,1), se necesitan unas **54 cotizaciones**. Ambos valores son supuestos a confirmar con TK04. |
+| EC01 (corpus de SP01) | Con 15 cotizaciones y 8 campos: 120 observaciones; con efecto de diseño 3,1, el tamaño efectivo es ≈ 39. | Margen de error ≈ **±9,4 pp**. | El corpus de SP01 sirve como **estudio de factibilidad**: no basta para sostener «≥ 90 %». Se debe informar el IC y ampliar el corpus. |
+| EC02 | Prueba t pareada unilateral, α = 0,05, potencia 0,80. | Efecto estandarizado grande (dz = 0,8): **12 pares**. dz = 1,0: 8 pares. dz = 0,5: 27 pares. | Se fija como objetivo detectar dz ≥ 0,8. Si solo se accede a 2 o 3 analistas, se usarán al menos 12 cotizaciones comparables repartidas entre ellos, y se declara la limitación de dependencia entre mediciones. |
+| EC03 y EC05 | Tres participantes por segmento, como define 6.3.1. Con 3 de 3 éxitos, el límite inferior del IC 95 % exacto es 29 %; con 5 de 5, 48 %. | Intervalos muy amplios. | Se usan para **detectar problemas de usabilidad**, no para estimar tasas. No se generalizan al sector. |
+| EC04 y EC06 | Prueba determinista: si se repite n veces y no hay fallos, el límite superior (95 %) de la tasa de fallo es 1 − 0,05^(1/n). | **29 repeticiones** → ≤ 10 %; **59 repeticiones** → ≤ 5 %. | Se automatizan 59 repeticiones por escenario. Un fallo refuta la hipótesis. |
+| EC07 | Entrevistas cualitativas; no hay potencia estadística. | 3 a 5 entrevistas (mínimo de 2.2.3). | Se detiene cuando las últimas entrevistas no aportan temas nuevos. |
+| EC08 | Estudio descriptivo de línea base. | Al menos 10 cuadros registrados (propuesta). | Depende del acceso y de datos autorizados; no se calcula potencia. |
+
+**Parámetros de certeza y precisión por tarjeta** (la guía los define así: certeza = nivel de significación y poder estadístico; precisión = efecto mínimo detectable, MDE).
+
+| Tarjeta | Nivel de significación | Poder estadístico | MDE o precisión |
+|---|---|---|---|
+| EC01 | α = 0,05 (IC 95 %) | No aplica (estimación) | Precisión de ±5 pp en la proporción |
+| EC02 | α = 0,05 unilateral | 0,80 | dz = 0,8 (efecto grande) |
+| EC03 y EC05 | No aplica | No aplica | Descriptivo; detecta problemas, no estima tasas |
+| EC04 y EC06 | Confianza 95 % | No aplica | Tasa de fallo detectable ≤ 5 % con 59 repeticiones |
+| EC07 y EC08 | No aplica | No aplica | Exploratorio |
+
+**Limitaciones.** Los participantes son pocos y por conveniencia; las cotizaciones de prueba pueden no representar la variedad real; no se han medido todavía la correlación intraclase ni el número real de campos obligatorios.
+
 ### 8.2.6. Methods Selection
 
 ### 8.2.7. Data Analytics: Goals, KPIs and Metrics Selection
