@@ -6947,6 +6947,19 @@ Catálogo único de métricas. Las tarjetas y el diseño experimental usan **sol
 
 ### 8.2.3. Measures
 
+Medidas necesarias para responder cada pregunta, su cálculo, su periodicidad, la evidencia principal y secundaria, y el tiempo de observación.
+
+| Tarjeta | Medida | Cálculo | Periodicidad | Evidencia principal | Evidencia secundaria | Tiempo de observación |
+|---|---|---|---|---|---|---|
+| EC01 | M02, M03 | Según 8.2.2, con IC 95 % ajustado por agrupación en documentos. | Una corrida por versión del corpus. | Salida del agente frente a la referencia verificada. | Valores no resueltos y niveles de confianza reportados. | Una ejecución completa del corpus. |
+| EC02 | M01 (M02 secundaria) | Diferencia pareada manual − asistido por cotización. | Por cotización en cada sesión. | Cronometraje de la grabación. | Observaciones y comentarios del analista. | Una sesión por analista. |
+| EC03 | M04, M05, M06 | Conteos y mediana por participante. | Por tarea. | Resultado registrado en la ficha. | Grabación y expresiones relevantes. | Sesión de 8–10 min (6.3.1). |
+| EC04 | M07, M08, M09 | Comparación con el resultado esperado y entre repeticiones. | Por ejecución automatizada. | Salida del motor de simulación. | Huella de entrada (`InputFingerprint`). | Una corrida de 59 repeticiones por escenario. |
+| EC05 | M04, M12, M06 | Conteo y porcentaje por participante. | Por tarea. | Registro creado en la sesión. | Grabación y observación del primer intento. | Sesión de 8–10 min. |
+| EC06 | M13 | Conteo de órdenes tras N repeticiones. | Por repetición. | Consulta a base de datos. | Respuesta de la API. | Una corrida de 59 repeticiones. |
+| EC07 | M10, M11 (declaradas) | Conteo y porcentaje declarados, con la guía T1–T14. | Por entrevista. | Transcripción o grabación. | Notas del entrevistador. | Entrevista de 15–25 min (2.2.1). |
+| EC08 | M14, M15, M10, M16 | Según 8.2.2. | Por cuadro comparativo registrado. | Hoja de registro del analista. | Entrevista breve posterior. | El periodo que se pueda autorizar; por definir con la empresa. |
+
 ### 8.2.4. Conditions
 
 ### 8.2.5. Scale Calculations and Decisions
