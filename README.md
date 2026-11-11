@@ -6235,7 +6235,7 @@ La verificación no encontró reglas de seguridad infringidas en el código prod
 Las revisiones de código verifican que cada cambio cumpla los estándares de 6.2.1, respete la arquitectura y satisfaga los criterios de aceptación de su historia antes de integrarse en `develop`. SmartQuote combina dos tipos de revisión:
 
 - **Revisión entre pares:** un integrante distinto del autor lee el cambio, lo contrasta con la historia de usuario y con el contrato de la API, y registra sus observaciones. Cuando una observación requiere ejecutar el sistema, la revisión se apoya en las pruebas de 6.1.
-- **Revisión automática:** los workflows de GitHub Actions ejecutan las pruebas del backend, ESLint y las pruebas del frontend, y `dart analyze` y las pruebas de la aplicación móvil en cada push a una rama de trabajo y en cada pull request hacia `develop` o `main`.
+- **Revisión automática:** los workflows de GitHub Actions ejecutan las pruebas del backend, ESLint y las pruebas del frontend, y `dart analyze` y las pruebas de la aplicación móvil en cada push a una rama de trabajo, en cada pull request hacia `develop` o `main` y como validación previa a cada despliegue.
 
 **Proceso de revisión**
 
@@ -6264,7 +6264,7 @@ Las revisiones de código verifican que cada cambio cumpla los estándares de 6.
 
 **Hallazgos del proceso**
 
-Ningún pull request del Sprint 3 registra una aprobación o comentarios en GitHub: el PR #2 fue integrado por un integrante distinto del autor sin una revisión formal, y los PR #3 y #7 fueron integrados por su autor. Además, los cambios del backend y el commit `760e861` de la aplicación móvil se incorporaron a `develop` sin pull request; los workflows del backend y del frontend no se ejecutan en pushes directos a `develop`, por lo que esos cambios no pasaron por CI antes de integrarse. La rama `develop` no tiene reglas de protección. Las revisiones de la tabla anterior se realizaron después de la integración y sus correcciones se entregaron en otros commits. Por eso se adoptan las siguientes decisiones para los próximos sprints: proteger la rama `develop` para exigir un pull request con al menos una aprobación de un integrante distinto del autor y los workflows de CI aprobados; agregar una plantilla de pull request con la lista de verificación anterior; y registrar las observaciones como comentarios del pull request para conservar su trazabilidad.
+Ningún pull request del Sprint 3 registra una aprobación o comentarios en GitHub: el PR #2 fue integrado por un integrante distinto del autor sin una revisión formal, y los PR #3 y #7 fueron integrados por su autor. Además, los cambios del backend y el commit `760e861` de la aplicación móvil se incorporaron a `develop` sin pull request; en esos casos los workflows de CI se ejecutaron recién al publicarse el cambio en `develop`, como validación previa al despliegue de staging, y no antes de su integración. La rama `develop` no tiene reglas de protección. Las revisiones de la tabla anterior se realizaron después de la integración y sus correcciones se entregaron en otros commits. Por eso se adoptan las siguientes decisiones para los próximos sprints: proteger la rama `develop` para exigir un pull request con al menos una aprobación de un integrante distinto del autor y los workflows de CI aprobados; agregar una plantilla de pull request con la lista de verificación anterior; y registrar las observaciones como comentarios del pull request para conservar su trazabilidad.
 
 ## 6.3. Validation Interviews
 
