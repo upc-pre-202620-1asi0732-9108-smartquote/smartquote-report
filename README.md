@@ -6201,8 +6201,38 @@ La ficha también recoge nombre y apellidos, edad y distrito de residencia. Gén
 **Cierre común.** «¿Qué cambiaría primero de esta experiencia y por qué?». El entrevistador registra el resultado por tarea como **lograda sin ayuda**, **lograda con ayuda**, **no lograda** o **no evaluada**, junto con tiempo aproximado, errores, ayudas y expresiones relevantes. Las interpretaciones del equipo se separan de las respuestas y conductas del participante.
 
 ### 6.3.2. Registro de Entrevistas
+## Segmento 2: Producción y Sanidad
+### Ficha de registro — Entrevista de validación S2-1
+
+| Elemento del registro | Información de la entrevista |
+|---|---|
+| **Nombres y apellidos** | _Pendiente (o código si no autoriza publicarlo)_ |
+| **Edad** | _Pendiente_ |
+| **Distrito de residencia** | _Pendiente_ |
+| **Segmento objetivo** | Área de Producción y Sanidad _(indicar cargo: veterinario, nutricionista, jefe de granja u otro)_ |
+| **Fecha de realización** | _Pendiente_ |
+| **Captura de pantalla (screenshot)** | `![Entrevista de validación S2-1](assets/research/validation/s2-1.png)` |
+| **Enlace (URL)** | _Pendiente: enlace privado del video_ |
+| **Minutaje (timing)** | **Inicio:** _hh:mm:ss_ · **Fin:** _hh:mm:ss_ · **Duración:** _hh:mm:ss_ |
+| **Resumen descriptivo y recolección de datos** | _Pendiente: 5–8 líneas. Ocupación y responsabilidad en la solicitud de insumos, herramientas y dispositivos, dificultad habitual, lo que se observó en cada tarea y lo que el participante dijo (sin atribuir rasgos de personalidad no sustentados)._ |
+
+**Resultado por tarea (según 6.3.1):**
+
+| Tarea | Producto | Resultado (lograda sin ayuda / con ayuda / no lograda / no evaluada) | Tiempo aprox. | Errores y ayudas | Expresión relevante del participante |
+|---|---|---|---|---|---|
+| P1 | Landing Page | _Pendiente_ | | | |
+| P2 | Móvil | _Pendiente_ | | | |
+| P3 | Móvil | _Pendiente_ | | | |
+| P4 | Web | _Pendiente_ | | | |
+
+**Cierre común:** «¿Qué cambiaría primero de esta experiencia y por qué?» → _Pendiente._
+
+### Ficha de registro — Entrevista de validación S2-2
+
+_Repetir exactamente la estructura anterior (imagen `s2-2.png`)._
 
 ### 6.3.3. Evaluaciones según heurísticas
+
 
 ## 6.4. Auditoría de Experiencias de Usuario
 
@@ -6644,29 +6674,425 @@ La comprobación de salud de producción se realiza de forma manual abriendo [`h
 
 ## 8.1. Experiment Planning
 
-### 8.1.1. As-Is Summary
+### 8.1.1. As-Is Summary (J03)
+
+Esta sección describe el estado actual que servirá de referencia para los experimentos. Se separan los **hechos observados** (con su fuente en el informe) de lo **todavía desconocido**. Ninguna expectativa del equipo se presenta como resultado.
+
+#### Proceso de compra actual (sin SmartQuote)
+
+| Fase | Hecho observado | Fuente |
+|---|---|---|
+| Requerimiento | En un caso el requerimiento se registra en SAP HANA. En el segmento de producción/almacén, la necesidad se comunica mediante un informe al jefe, quien la deriva a otras áreas. | Entrevistas N.º 1 y N.º 3 (2.2.2) |
+| Recepción de ofertas | Las cotizaciones llegan de varios proveedores; un participante las gestiona por correo. | N.º 1 y N.º 2 |
+| Consolidación y comparación | Ambos analistas trasladan manualmente precio, disponibilidad y especificaciones a hojas de cálculo; lo describen como varias horas por requerimiento. La comparación ocurre fuera del ERP. | N.º 1 y N.º 2 (2.2.3, 2.3.5) |
+| Fricción principal | Cotizaciones incompletas o ambiguas son la causa de retrasos reportada por los dos analistas. | N.º 1 y N.º 2 |
+| Decisión y orden | La selección se mantiene bajo supervisión humana; en un caso la orden se formaliza en el ERP. La validación técnica pasa por filtros de supervisión y recomendación del jefe de área antes de la decisión de gerencia. | N.º 1, N.º 2 y N.º 3 |
+| Seguimiento | Las solicitudes físicas se traspapelan; las aclaraciones son frecuentes porque las áreas usan modelos y lenguajes distintos. | N.º 3 |
+| Condiciones de confianza | Confidencialidad de la información comercial, origen visible de cada dato y supervisión humana final. | N.º 1 y N.º 2 |
+
+#### Estado actual de los sistemas de SmartQuote (hechos del informe)
+
+| Componente | Hecho observado | Fuente |
+|---|---|---|
+| Backend | Monolito modular ASP.NET Core con cuatro módulos (Supply Requests, Quotation Intake, Evaluation & Simulation, Purchase Ordering), PostgreSQL y Docker; los endpoints de salud y Swagger respondieron `200 OK` en la comprobación local documentada. | 5.2.6 |
+| Pruebas automatizadas | Unitarias de backend: 76 aprobadas, 0 fallidas. Unitarias web: 15 aprobadas. Integración: 3 aprobadas. BDD: 3 escenarios aprobados (sin US15–US22). E2E web: 2 recorridos aprobados. | 6.1 |
+| App Android nativa | Ejecución nativa **pendiente**; no hay evidencia. | 6.1 |
+| Extracción con IA | El Spike SP01 (corpus anonimizado, prueba de concepto, medición de precisión) figura en la planificación del Sprint 1 con tareas TK04–TK07 en estado *To-do*. **No hay resultado de precisión publicado.** | 5.2.1.1 (verificar estado actual) |
+| Sprint 3 | Planifica US15–US22; el propio informe aclara que no certifica implementación ni aceptación. | 5.2.1.3 |
+| Validación con usuarios | Las entrevistas de validación (6.3.2) aún no están registradas. | 6.3.2 |
+
+#### Hechos observados frente a aspectos desconocidos
+
+| Hechos observados (con fuente) | Aspectos todavía desconocidos |
+|---|---|
+| Dos analistas trasladan datos a Excel y describen varias horas de trabajo (N.º 1, N.º 2). | Duración exacta por requerimiento, número de cotizaciones por periodo y costo del retrabajo. |
+| Un registro del segmento operativo (almacén) describe comunicación jerárquica y pérdida de solicitudes (N.º 3). | Cómo operan veterinarios, nutricionistas y jefes de granja; solo hay n = 1 y es un subperfil de almacén. |
+| Ambos analistas valoran origen visible del dato y control humano. | Qué restricciones concretas de confidencialidad o almacenamiento impiden cargar cotizaciones. |
+| Un analista usa SAP HANA y pide complementarlo, no reemplazarlo (N.º 1). | Qué ERP usa el resto de empresas y cómo se integraría. |
+| Existe el flujo extremo a extremo implementado y probado a nivel técnico (6.1). | Precisión real de extracción en cotizaciones heterogéneas; rendimiento en Android nativo; desempeño con usuarios reales. |
+| La muestra de entrevistas es pequeña (2 + 1). | Emociones, motivaciones, dispositivos, conectividad en granja (T12) y datos de perfil faltantes (2.2.3). |
 
 ### 8.1.2. Raw Material: Assumptions, Knowledge Gaps, Ideas, Claims
 
+Se clasifica el material de partida **sin presentar creencias como resultados comprobados**. «Origen» indica de dónde sale cada elemento; «Investigar» indica si conviene convertirlo en pregunta de experimento y con qué urgencia.
+
+#### Assumptions (suposiciones)
+
+| ID | Suposición | Origen | Investigar |
+|---|---|---|---|
+| A01 | Las empresas avícolas contratarían una membresía B2B SaaS si se reduce el esfuerzo de compras. | BA1 (1.2.2.2) | Media: sin evidencia de disposición de pago. |
+| A02 | Complementar el ERP es más viable que reemplazarlo. | BA2; N.º 1 | Alta: depende de integración y confidencialidad. |
+| A03 | Demoras, errores y pérdida de trazabilidad tienen un costo que justifica una solución especializada. | BA3 | Alta: no hay datos de costo. |
+| A04 | Los analistas necesitan comparar ofertas sin dominar todas las especificaciones técnicas. | UA1 | Media. |
+| A05 | Producción, sanidad y operación necesitan requisitos claros y seguimiento sin documentos físicos. | UA2; N.º 3 | Alta: solo un registro. |
+| A06 | Los aprobadores requieren recomendación explicable, evidencia de origen y control humano. | UA3; N.º 1, N.º 2 | Alta. |
+| A07 | Un agente de IA convierte PDF heterogéneos en datos estructurados sin inventar valores. | FA1 | **Muy alta:** es el riesgo central. |
+| A08 | Mostrar fuente, confianza, valor original y correcciones permite resolver excepciones antes de verificar. | FA2 | Alta. |
+| A09 | Criterios obligatorios y pesos configurables permiten simular prioridades sin ocultar ofertas no elegibles. | FA3 | Media. |
+| A10 | Un formulario móvil con requisitos, adjuntos, historial y notificaciones facilita la coordinación. | FA4 | Alta: depende del contexto de campo. |
+| A11 | Roles, versionado e idempotencia permiten aprobar sin duplicar órdenes. | FA5 | Media: verificable técnicamente. |
+| A12 | Estructurar y comparar cotizaciones reducirá el tiempo del cuadro comparativo. | OA1 | **Muy alta.** |
+| A13 | Campos normalizados y requisitos claros reducirán aclaraciones y datos incompletos. | OA2 | Media. |
+| A14 | Evidencia, historial y aprobación humana aumentarán la confianza en la recomendación. | OA3 | Alta. |
+| A15 | El seguimiento digital reducirá solicitudes perdidas y permitirá anticipar retrasos. | OA4 | Media. |
+
+#### Knowledge Gaps (brechas de conocimiento)
+
+| ID | Brecha | Origen | Investigar |
+|---|---|---|---|
+| G01 | Precisión real de la extracción por campo en cotizaciones heterogéneas (sin medición publicada). | 5.2.1.1 (SP01) | **Muy alta.** |
+| G02 | Línea base: tiempo real de elaboración del cuadro comparativo. | 2.2.3 (solo «varias horas») | **Muy alta.** |
+| G03 | Volumen de solicitudes y cotizaciones por periodo. | 2.2.3 (dato no recogido) | Alta. |
+| G04 | Proceso real de veterinarios, nutricionistas y jefes de granja (n = 1, almacén). | 2.2.3 | **Muy alta.** |
+| G05 | Cómo valida producción/sanidad la conformidad técnica de una cotización y qué decisiones exigen aprobación profesional. | Guion T6, T8, T9; no respondido | Alta. |
+| G06 | Restricciones de confidencialidad, permisos y almacenamiento para cargar documentos comerciales. | Guion A13; N.º 2 solo menciona confidencialidad | Alta. |
+| G07 | Integración con ERP en empresas distintas a la de N.º 1. | N.º 2 no lo aborda | Media. |
+| G08 | Conectividad y uso del teléfono en granja o campo. | Guion T12; no recogido | Alta. |
+| G09 | Comportamiento de la app en Android nativo. | 6.1 (pendiente) | Media. |
+| G10 | Resultados de las pruebas de tareas con usuarios en Landing, web y móvil. | 6.3.2 (vacío) | Alta. |
+| G11 | Emociones y motivaciones de los analistas. | 2.3.4–2.3.5 (marcado Pendiente) | Baja. |
+
+#### Ideas (propuestas de solución, aún no validadas)
+
+Siguiendo la guía, **se prueban las premisas que sostienen cada idea, no la idea en sí**.
+
+| ID | Idea | Premisa subyacente que se pondría a prueba | Origen |
+|---|---|---|---|
+| I01 | Formulario móvil de solicitudes con requisitos técnicos y adjuntos. | El personal operativo puede y quiere registrar requisitos técnicos completos desde el móvil en su contexto de trabajo (A10, G08). | Lean UX Canvas, bloque 5 |
+| I02 | Carga de PDF con extracción asistida por IA que muestre confianza y evidencia de origen. | Las cotizaciones llegan en PDF legibles y el analista confía en el resultado cuando ve la evidencia (A07, A08). | Lean UX Canvas, bloque 5 |
+| I03 | Corrección auditable de campos extraídos. | Corregir un campo extraído es más rápido que transcribirlo desde cero (A12). | Lean UX Canvas, bloque 5 |
+| I04 | Simulación con criterios obligatorios y ponderados, con explicación del ranking. | Los pesos configurables reflejan cómo se decide en la práctica (A09, A06). | Lean UX Canvas, bloque 5 |
+| I05 | Campos estandarizados y vocabulario común entre áreas. | La falta de lenguaje común es una causa real de las aclaraciones (A13, C04). | N.º 3; 2.4 Ubiquitous Language |
+| I06 | Integración gradual con el ERP. | Las empresas permiten intercambiar datos con su ERP y eso es técnicamente viable (A02, G06, G07). | Lean UX Canvas; N.º 1 |
+
+#### Claims (afirmaciones de fuentes; no verificadas por el equipo)
+
+C03 y C06 son afirmaciones sobre el producto; C01, C02, C04 y C05 son afirmaciones sobre el problema.
+
+| ID | Afirmación | Quién la hace | Estado |
+|---|---|---|---|
+| C01 | Trasladar y comparar ofertas consume varias horas por requerimiento. | N.º 1 y N.º 2 | Reportado; sin medición. |
+| C02 | Cotizaciones incompletas o ambiguas son la principal causa de retraso. | N.º 1 y N.º 2 | Reportado; sin medición. |
+| C03 | Una plataforma con IA ahorraría tiempo y reduciría errores. | N.º 1 y N.º 2 | Expectativa, no mejora demostrada. |
+| C04 | Las solicitudes físicas se traspapelan y las aclaraciones son frecuentes por lenguajes distintos. | N.º 3 | Reportado por una sola persona. |
+| C05 | Compras tardías o incorrectas causan pérdidas económicas y retrasos en ventas. | N.º 3 | Reportado; sin cuantificar. |
+| C06 | La herramienta no debería reemplazar al ERP sino integrarse con él. | N.º 1 | Preferencia expresada por una persona. |
+
+#### Premisas que conviene investigar primero
+
+1. **A07 / G01** (extracción sin inventar valores): es la premisa de mayor riesgo y la base de H1.
+2. **A12 / G02 / C01** (reducción de tiempo): sin línea base no se puede afirmar mejora.
+3. **A05 / G04 / C04** (necesidades del segmento operativo): la evidencia es de una sola persona.
+4. **A02 / G06 / G07** (ERP y confidencialidad): condicionan si el producto puede usarse en la práctica.
+5. **A08 / A14** (confianza en la evidencia mostrada): sostiene la propuesta de «IA que recomienda, no decide».
+
 ### 8.1.3. Experiment-Ready Questions
+
+Las preguntas convierten el material de 8.1.2 en algo investigable. Se distinguen las **basadas en creencias** (ponen a prueba una suposición con una hipótesis y un criterio) de las **exploratorias** (buscan comprender, sin hipótesis previa). Cada una precisa quién, qué y en qué contexto se busca aprender.
+
+| ID | Tipo | Pregunta investigable | Quién | Qué se busca aprender | Contexto | Origen |
+|---|---|---|---|---|---|---|
+| Q01 | Basada en creencia | ¿La extracción asistida por IA alcanza una precisión de al menos 90 % en los campos obligatorios de cotizaciones PDF heterogéneas, sin introducir valores ausentes? | Agente de extracción evaluado con la referencia verificada del equipo | Precisión por campo y tasa de valores inventados | Corpus anonimizado de cotizaciones con tres o más estructuras documentales | A07, G01, H1 (Lean UX) |
+| Q02 | Basada en creencia | ¿El flujo asistido reduce el tiempo de estructurar una cotización frente al proceso manual en Excel? | Analistas de adquisiciones | Diferencia de tiempo por cotización | Sesión controlada con cotizaciones comparables y cuentas de prueba | A12, G02, C01, H1 |
+| Q03 | Basada en creencia | ¿Mostrar confianza, fuente y valor original permite al analista localizar el origen de un dato y corregir un campo ambiguo sin ayuda? | Analistas y jefes de adquisiciones | Éxito de tarea, errores y confianza reportada | Prueba de tareas moderada en la web (tarea A2 de 6.3.1) | A08, A14, H2 |
+| Q04 | Basada en creencia | ¿Dos escenarios con pesos distintos producen rankings coherentes con sus reglas, excluyen incumplimientos obligatorios y repiten el resultado con las mismas entradas? | Motor de simulación (verificado por el equipo) | Coherencia, exclusión correcta y repetibilidad | Al menos dos cotizaciones verificadas, una con incumplimiento obligatorio | A09, H3 |
+| Q05 | Basada en creencia | ¿Un especialista de producción o sanidad puede registrar en el móvil una solicitud completa con requisitos técnicos sin ayuda? | Especialistas de producción y sanidad | Éxito de tarea y completitud de la solicitud | Prueba moderada con ficha de caso (tarea P2 de 6.3.1) | A10, I01, H4 |
+| Q06 | Basada en creencia | ¿El seguimiento por estado, historial y responsable permite identificar quién debe actuar y qué necesita? | Especialistas de producción y sanidad | Comprensión del estado y de la responsabilidad pendiente | Prueba moderada (tarea P3 de 6.3.1) | A15, H4 |
+| Q07 | Basada en creencia | ¿Repetir una misma aprobación devuelve la orden existente sin crear un duplicado? | Servicio de órdenes de compra (probado por el equipo) | Número de órdenes duplicadas | Pruebas automatizadas con el mismo identificador de aprobación | A11, H5 |
+| Q08 | Exploratoria | ¿Cómo piden y validan hoy veterinarios, nutricionistas y jefes de granja los insumos con adquisiciones, y qué datos técnicos suelen faltar o interpretarse distinto? | Veterinarios, nutricionistas, jefes de granja | Flujo real, canales, datos omitidos y puntos de decisión | Entrevistas semiestructuradas en su entorno de trabajo | A05, G04, G05, C04 |
+| Q09 | Exploratoria | ¿Cuánto tiempo, volumen y retrabajo implica hoy elaborar un cuadro comparativo? | Analistas de adquisiciones | Línea base de tiempo, volumen de cotizaciones y correcciones | Observación del proceso actual con datos autorizados | A03, G02, G03, C01, C05 |
+| Q10 | Exploratoria | ¿Qué restricciones de confidencialidad, permisos y ERP condicionan la carga de cotizaciones a una plataforma externa? | Analistas, jefes de compras y personal de TI | Restricciones y requisitos de integración | Entrevistas en empresas avícolas medianas | A02, G06, G07, C06 |
+| Q11 | Exploratoria | ¿Qué evidencia necesitan los aprobadores para confiar en una recomendación generada por IA? | Jefes de compras y gerencia | Criterios de confianza y evidencia mínima | Revisión de escenarios de aprobación con participantes | A06, A14 |
+| Q12 | Exploratoria | ¿Qué conectividad y dispositivos tiene el personal de granja o almacén al registrar solicitudes? | Personal de granja y almacén | Restricciones de uso móvil | Observación contextual y entrevistas | A10, G08, G09 |
+| Q13 | Exploratoria | ¿Qué condiciones de precio y decisión influirían en contratar una membresía? | Decisores de empresas avícolas | Disposición y condiciones de contratación | Entrevistas con decisores | A01 |
+| Q14 | Exploratoria | ¿En qué formatos reciben realmente las cotizaciones (PDF digital, escaneado, imagen, hoja de cálculo, mensajería) y cuántas llegan incompletas? | Analistas de adquisiciones | Distribución de formatos y proporción de cotizaciones incompletas | Observación de las cotizaciones recibidas, con documentos autorizados | A07, C02, 5W1H |
+
+**Premisas ocultas detectadas con las Cinco Ws y una H.** Se aplicó la técnica al flujo de extracción: *Who* envía la cotización (¿el proveedor la redacta siempre igual?), *What* formato tiene, *Where* se recibe (correo, mensajería, portal), *When* vence su vigencia, *Why* llega incompleta y *How* se corrige hoy. De ahí surgió una premisa oculta no escrita en 8.1.2: **la extracción supone PDF digitales legibles**, no escaneos ni fotografías. Esa premisa dio origen a Q14.
 
 ### 8.1.4. Question Backlog
 
+El Question Backlog ordena **preguntas de aprendizaje**, no funcionalidades: no es el Product Backlog de la sección 3.3 (que contiene historias de usuario y tareas técnicas) y sus ítems no se estiman en Story Points.
+
+**Escala propuesta (1–5), por confirmar con la guía del curso:**
+
+- **Confianza (C):** cuánta evidencia ya existe. 1 = casi ninguna; 5 = evidencia sólida.
+- **Riesgo (R):** qué tan grave sería que la creencia fuera falsa. 5 = compromete el valor central del producto.
+- **Impacto (I):** cuánto cambiaría una decisión de producto o de alcance según la respuesta.
+- **Interés (In):** interés del equipo en aprenderlo ahora.
+- **Puntaje de prioridad = R + I + In + (6 − C).** Un puntaje alto indica algo importante y poco conocido. **Desempate:** mayor riesgo; si persiste, mayor impacto y luego mayor interés.
+
+Los puntajes son juicios iniciales del equipo y deben acordarse en una sesión; no son mediciones.
+
+| Orden | ID | Pregunta (resumen) | Motivación | C | R | I | In | Puntaje |
+|---:|---|---|---|---:|---:|---:|---:|---:|
+| 1 | Q08 | Proceso real y datos faltantes en producción y sanidad | Solo hay un registro de almacén; el segmento operativo sostiene la solicitud y la validación técnica. | 1 | 5 | 5 | 5 | 20 |
+| 2 | Q01 | Precisión de extracción ≥ 90 % sin valores inventados | Es el riesgo técnico central; no hay medición publicada. | 2 | 5 | 5 | 5 | 19 |
+| 3 | Q09 | Línea base de tiempo, volumen y retrabajo | Sin línea base no se puede afirmar ninguna mejora. | 1 | 4 | 5 | 4 | 18 |
+| 4 | Q14 | Formatos reales de cotización y proporción de incompletas | Si llegan escaneos o imágenes, la extracción por PDF digital pierde valor y cambia el alcance. | 1 | 5 | 4 | 3 | 17 |
+| 5 | Q02 | Reducción de tiempo de estructuración | Es el beneficio principal prometido (OA1). | 2 | 4 | 5 | 4 | 17 |
+| 6 | Q10 | Confidencialidad y ERP | Puede impedir el uso real del producto. | 2 | 5 | 4 | 3 | 16 |
+| 7 | Q11 | Evidencia para confiar en la IA | Sostiene el principio «IA recomienda, humano decide». | 2 | 4 | 4 | 4 | 16 |
+| 8 | Q13 | Disposición a contratar | Valida el modelo de negocio. | 1 | 4 | 4 | 3 | 16 |
+| 9 | Q03 | Localizar fuente y corregir campo ambiguo | Valida la verificación explicable (H2). | 3 | 4 | 4 | 4 | 15 |
+| 10 | Q05 | Registro móvil sin ayuda | Valida el canal del segmento 2 (H4). | 3 | 3 | 4 | 4 | 14 |
+| 11 | Q12 | Conectividad en granja/almacén | Condiciona el diseño móvil. | 2 | 3 | 3 | 3 | 13 |
+| 12 | Q07 | Aprobación idempotente | Verificable técnicamente; evidencia previa de pruebas. | 4 | 4 | 3 | 3 | 12 |
+| 13 | Q04 | Escenarios coherentes y repetibles | Hay pruebas de dominio previas. | 4 | 3 | 4 | 3 | 12 |
+| 14 | Q06 | Seguimiento: estado y responsable | Complementa Q05. | 3 | 3 | 3 | 3 | 12 |
+
+**Backlog amplio y profundo.** La guía distingue ambos. La tabla anterior es el backlog **amplio** (*broad*): cubre muchos temas distintos del producto. El backlog **profundo** (*deep*) baja a sub-preguntas de una pregunta amplia; estas se ejecutan después de la pregunta madre y no compiten con las amplias hasta entonces.
+
+| ID | Pregunta madre | Sub-pregunta | Motivación | C | R | I | In | Puntaje |
+|---|---|---|---|---:|---:|---:|---:|---:|
+| Q01.1 | Q01 | ¿En qué tipos de campo y de estructura documental falla más la extracción? | Permite corregir donde más duele. | 1 | 4 | 4 | 4 | 17 |
+| Q01.2 | Q01 | ¿Qué umbral de confianza separa los campos correctos de los dudosos? | Define cuándo pedir revisión humana. | 1 | 4 | 3 | 4 | 16 |
+| Q02.1 | Q02 | ¿Qué actividad consume más tiempo: transcribir, pedir aclaraciones o comparar? | Indica qué automatizar primero. | 2 | 3 | 4 | 4 | 15 |
+| Q08.1 | Q08 | ¿Qué datos técnicos se omiten más según el tipo de insumo (alimento, vacuna, medicamento)? | Define los campos obligatorios de la solicitud. | 1 | 4 | 4 | 4 | 17 |
+
+**Selección para el primer ciclo:** se llevan a Experiment Cards Q01, Q02, Q03, Q04, Q05, Q07, Q08 y Q09. **Q14 se responde dentro de EC08** (la hoja de registro anota el formato de cada cotización). Q10, Q11, Q12 y Q13 quedan para el siguiente ciclo; Q06 se cubrirá junto con Q05 si el tiempo de la sesión lo permite.
+
 ### 8.1.5. Experiment Cards
+
+Cada tarjeta lleva en el **frente** la pregunta, el porqué, la hipótesis (si aplica) y el *Simplest Useful Thing* (lo mínimo que permite aprender). En el **reverso** van medidas, condiciones y escala. Solo se usan métricas definidas en 8.2.2 y los IDs son trazables hacia 8.2.1, 8.2.3, 8.2.4 y 8.2.5.
+
+#### EC01 — Precisión de extracción
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q01 |
+| **Por qué** | Es la premisa de mayor riesgo (A07/G01): si la extracción inventa u omite campos, el resto del flujo pierde valor. |
+| **Hipótesis** | HW01 / H0-01 |
+| **Simplest Useful Thing** | Ejecutar la prueba de concepto de SP01 sobre el corpus anonimizado y comparar cada campo obligatorio con la referencia verificada. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M02, M03 |
+| **Condiciones** | Sin grupo control; la referencia verificada actúa como criterio. Ver 8.2.4. |
+| **Escala** | 139 observaciones de campo para ±5 pp (95 %); el corpus mínimo de SP01 solo permite una estimación exploratoria. Ver 8.2.5. |
+
+#### EC02 — Tiempo de estructuración manual frente a asistido
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q02 |
+| **Por qué** | Reducir tiempo es el beneficio central (OA1) y hoy solo hay relatos de «varias horas». |
+| **Hipótesis** | HW02 / H0-02 |
+| **Simplest Useful Thing** | Cada analista estructura cotizaciones comparables con su método habitual (Excel) y con SmartQuote, alternando el orden, y se cronometra con la grabación. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M01 (principal), M02 (secundaria) |
+| **Condiciones** | Control: Excel; experimental: flujo asistido; diseño pareado con orden contrabalanceado. |
+| **Escala** | 12 pares para un efecto grande (dz = 0,8); alcance real limitado por el acceso a analistas. |
+
+#### EC03 — Verificación explicable
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q03 |
+| **Por qué** | La propuesta depende de que el analista pueda comprobar el origen del dato (A08, A14). |
+| **Hipótesis** | HW03 / H0-03 |
+| **Simplest Useful Thing** | Tarea A2 de 6.3.1 con una cotización ambigua preparada, cuenta de prueba y documentos ficticios. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M04, M05, M06 |
+| **Condiciones** | Grupo de estudio: analistas o jefes de adquisiciones; sin grupo control. |
+| **Escala** | n = 3 (6.3.1); resultado descriptivo, no estimación de tasa. |
+
+#### EC04 — Simulación por escenarios
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q04 |
+| **Por qué** | Si los rankings no son coherentes o no se repiten, la recomendación no es defendible (A09). |
+| **Hipótesis** | HW04 / H0-04 |
+| **Simplest Useful Thing** | Ejecutar dos escenarios con pesos distintos sobre las mismas cotizaciones verificadas, incluida una con incumplimiento obligatorio, y repetir cada ejecución. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M07, M08, M09 |
+| **Condiciones** | Entradas fijas; solo cambian los pesos entre escenarios. |
+| **Escala** | 59 repeticiones automatizadas por escenario (límite superior 5 % con cero fallos). |
+
+#### EC05 — Registro móvil de solicitudes
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q05 |
+| **Por qué** | El segmento 2 usa el móvil para originar la solicitud (A10) y hoy depende de informes físicos (C04). |
+| **Hipótesis** | HW05 / H0-05 |
+| **Simplest Useful Thing** | Tarea P2 de 6.3.1 con la ficha del caso, cuenta de prueba y observación del primer intento. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M04, M12, M06 |
+| **Condiciones** | Grupo de estudio: especialistas de producción y sanidad. |
+| **Escala** | n = 3 (6.3.1); resultado descriptivo. |
+
+#### EC06 — Aprobación idempotente
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q07 |
+| **Por qué** | Una orden duplicada tiene consecuencias comerciales (A11). |
+| **Hipótesis** | HW06 / H0-06 |
+| **Simplest Useful Thing** | Enviar la misma solicitud de aprobación repetidamente en una prueba automatizada y contar órdenes creadas. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M13 |
+| **Condiciones** | Misma aprobación vigente, mismo identificador. |
+| **Escala** | 59 repeticiones sin fallos. |
+
+#### EC07 — Proceso real del segmento operativo (exploratoria)
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q08 |
+| **Por qué** | La evidencia del segmento 2 es de un solo registro de almacén (G04). |
+| **Hipótesis** | No aplica (pregunta exploratoria). |
+| **Simplest Useful Thing** | Entrevistas semiestructuradas con la guía T1–T14 del 2.2.1 a veterinarios, nutricionistas o jefes de granja. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M10 y M11 (autorreportadas) |
+| **Condiciones** | Grupo y contexto de estudio delimitados en 8.2.4. |
+| **Escala** | 3 a 5 entrevistas, hasta que no aparezcan temas nuevos. |
+
+#### EC08 — Línea base del cuadro comparativo (exploratoria)
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q09 y Q14 |
+| **Por qué** | Sin línea base no se puede validar ninguna reducción de tiempo (G02). |
+| **Hipótesis** | No aplica (pregunta exploratoria). |
+| **Simplest Useful Thing** | Hoja de registro simple donde analistas anotan, con datos autorizados, tiempo, correcciones y formato de cada cotización recibida. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M14, M15, M10, M16 |
+| **Condiciones** | Grupo de estudio: analistas de adquisiciones en su proceso actual. |
+| **Escala** | Descriptivo; objetivo propuesto de al menos 10 cuadros registrados, sujeto al acceso. |
 
 ## 8.2. Experiment Design
 
 ### 8.2.1. Hypotheses
 
+Cada hipótesis de trabajo (HW) tiene su hipótesis nula (H0), está vinculada a una tarjeta y a una métrica del catálogo de 8.2.2 y se puede refutar con datos. Las preguntas exploratorias (EC07 y EC08) no llevan hipótesis. **Los valores objetivo son metas de validación, no resultados alcanzados.** Se relacionan con H1–H5 de la sección 1.2.2.3.
+
+| ID | Tarjeta | Métrica | Hipótesis de trabajo (HW) | Hipótesis nula (H0) | Regla de decisión |
+|---|---|---|---|---|---|
+| HW01 / H0-01 | EC01 | M02, M03 | La precisión de campos obligatorios es de al menos 90 % y no se inventan valores ausentes (M03 = 0). *(H1)* | La precisión es menor de 90 % o hay al menos un valor inventado. | Se **refuta** si el límite superior del IC 95 % de M02 es menor de 90 %. Se **sostiene provisionalmente** si M02 ≥ 90 % y el límite inferior ≥ 85 % y M03 = 0. En otro caso, **no concluyente**. |
+| HW02 / H0-02 | EC02 | M01 | La mediana del tiempo de estructuración con el flujo asistido es menor que con el manual. *(H1)* | La mediana de las diferencias (manual − asistido) es menor o igual a cero. | Prueba pareada unilateral (t pareada o Wilcoxon si no hay normalidad), α = 0,05. Se rechaza H0 si p < 0,05. El tamaño de efecto mínimo de interés debe acordarse en el equipo. |
+| HW03 / H0-03 | EC03 | M04, M05 | Al menos 2 de 3 participantes localizan la fuente y corrigen un campo ambiguo sin ayuda. *(H2)* | Como máximo 1 de 3 lo logra sin ayuda. | Conteo descriptivo por participante; con n = 3 no hay contraste estadístico. Se registran errores (M06) y confianza (M05). |
+| HW04 / H0-04 | EC04 | M07, M08, M09 | En todos los escenarios evaluados, el ranking es coherente con sus reglas, las ofertas con incumplimiento obligatorio se excluyen y la repetición con las mismas entradas da el mismo resultado. *(H3)* | Existe al menos un escenario con ranking incoherente, una oferta incumplidora no excluida o un resultado distinto en la repetición. | Un solo contraejemplo refuta HW04. |
+| HW05 / H0-05 | EC05 | M04, M12 | Al menos 2 de 3 especialistas registran una solicitud completa sin ayuda. *(H4)* | Como máximo 1 de 3 la completa sin ayuda. | Conteo descriptivo; M12 debe ser 100 % en los casos logrados. |
+| HW06 / H0-06 | EC06 | M13 | Repetir la misma aprobación no genera órdenes adicionales (M13 = 0). *(H5)* | Al menos una repetición genera una orden duplicada. | Un solo duplicado refuta HW06. |
+
 ### 8.2.2. Domain Business Metrics
+
+Catálogo único de métricas. Las tarjetas y el diseño experimental usan **solo** estas métricas; no se crean métricas ad hoc en cada tarjeta. Cuando la meta depende de una línea base aún no medida, se indica así y no se inventa un número.
+
+| ID | Métrica | Significado | Fórmula | Unidad | Fuente / técnica de recolección | Meta |
+|---|---|---|---|---|---|---|
+| M01 | Tiempo de estructuración de cotización | Tiempo para dejar una cotización con sus campos obligatorios completos y verificados. | Hora de fin − hora de inicio, por cotización. | Minutos | Cronometraje desde la grabación de la sesión. | Menor que el manual (línea base por medir en EC08). |
+| M02 | Precisión de campos obligatorios | Proporción de campos extraídos que coinciden con la referencia verificada. | (campos coincidentes ÷ campos obligatorios evaluados) × 100. | % | Comparación campo por campo con la referencia verificada. | ≥ 90 % (H1) |
+| M03 | Valores inventados | Campos con un valor que no figura en el documento. | (campos con valor no presente ÷ campos obligatorios evaluados) × 100. | % | Revisión contra el documento fuente. | 0 % |
+| M04 | Tasa de éxito de tarea sin ayuda | Tareas logradas sin ayuda sobre las evaluadas. | (tareas «lograda sin ayuda» ÷ tareas evaluadas) × 100. | % | Registro por tarea según 6.3.1. | Por calibrar con la prueba (descriptivo). |
+| M05 | Confianza reportada | Confianza del participante en el resultado mostrado. | Mediana de la escala de 1 a 5 tras la tarea. | Puntos (1–5) | Pregunta posterior a la tarea. | Por calibrar (descriptivo). |
+| M06 | Errores y ayudas por tarea | Fallos observados y ayudas necesarias. | Conteo por tarea. | Eventos | Observación registrada en la ficha. | Tendencia a la baja entre ciclos. |
+| M07 | Coherencia del ranking | Escenarios cuyo ranking coincide con el esperado por sus reglas. | (escenarios coherentes ÷ escenarios ejecutados) × 100. | % | Cálculo esperado a mano frente a la salida del sistema. | 100 % |
+| M08 | Exclusión correcta de incumplimientos | Ofertas que incumplen un criterio obligatorio y quedan excluidas. | (excluidas correctamente ÷ ofertas incumplidoras) × 100. | % | Revisión de la salida de la simulación. | 100 % |
+| M09 | Repetibilidad de la simulación | Repeticiones con mismas entradas y mismo resultado. | (repeticiones idénticas ÷ repeticiones totales) × 100. | % | Comparación de ranking y huella de entrada entre ejecuciones. | 100 % |
+| M10 | Aclaraciones por solicitud | Veces que una solicitud requiere aclaración. | Conteo de aclaraciones ÷ solicitudes observadas. | Aclaraciones/solicitud | Hoja de registro o relato declarado. | Menor que la línea base (por medir). |
+| M11 | Solicitudes localizables | Solicitudes que se encuentran cuando se buscan. | (solicitudes localizadas ÷ solicitudes buscadas) × 100. | % | Registro de búsqueda o relato declarado. | Mayor que la línea base (por medir). |
+| M12 | Completitud de la solicitud | Campos obligatorios completos de una solicitud registrada. | (campos obligatorios completos ÷ campos obligatorios) × 100. | % | Revisión del registro creado en la sesión. | 100 % |
+| M13 | Órdenes duplicadas | Órdenes adicionales creadas al repetir una aprobación. | Conteo de órdenes − 1, por aprobación repetida. | Órdenes | Consulta a la base de datos o a la API. | 0 |
+| M14 | Tiempo de elaboración del cuadro comparativo | Tiempo total para comparar las ofertas de un requerimiento. | Hora de fin − hora de inicio, por requerimiento. | Minutos | Hoja de registro del analista. | Es una línea base; no tiene meta. |
+| M15 | Cotizaciones procesadas por periodo | Volumen de trabajo del analista. | Conteo de cotizaciones ÷ periodo observado. | Cotizaciones/semana | Hoja de registro o dato autorizado. | Es una línea base; no tiene meta. |
+| M16 | Distribución de formatos de cotización | Peso de cada formato en las cotizaciones recibidas. | (cotizaciones de un formato ÷ cotizaciones totales) × 100, por formato. | % | Hoja de registro del analista. | Es una línea base; no tiene meta. |
+
+**Vínculo con los objetivos de negocio.** Según la guía, cada métrica debe responder a un objetivo de negocio. Se usan los resultados del Lean UX Canvas (bloque 2); son objetivos por medir, no logrados.
+
+| Objetivo de negocio (Lean UX Canvas, bloque 2) | Métricas |
+|---|---|
+| Reducir el tiempo de atención y el retrabajo. | M01, M14, M15 |
+| Disminuir errores y datos incompletos. | M02, M03, M07, M08, M12, M16 |
+| Disminuir aclaraciones y solicitudes no localizadas. | M10, M11 |
+| Conservar evidencia de criterios, fuentes y aprobaciones (evitar órdenes duplicadas). | M09, M13 |
+| Favorecer la adopción mediante confianza y facilidad de uso. | M04, M05, M06 |
 
 ### 8.2.3. Measures
 
+Medidas necesarias para responder cada pregunta, su cálculo, su periodicidad, la evidencia principal y secundaria, y el tiempo de observación.
+
+| Tarjeta | Medida | Cálculo | Periodicidad | Evidencia principal | Evidencia secundaria | Tiempo de observación |
+|---|---|---|---|---|---|---|
+| EC01 | M02, M03 | Según 8.2.2, con IC 95 % ajustado por agrupación en documentos. | Una corrida por versión del corpus. | Salida del agente frente a la referencia verificada. | Valores no resueltos y niveles de confianza reportados. | Una ejecución completa del corpus. |
+| EC02 | M01 (M02 secundaria) | Diferencia pareada manual − asistido por cotización. | Por cotización en cada sesión. | Cronometraje de la grabación. | Observaciones y comentarios del analista. | Una sesión por analista. |
+| EC03 | M04, M05, M06 | Conteos y mediana por participante. | Por tarea. | Resultado registrado en la ficha. | Grabación y expresiones relevantes. | Sesión de 8–10 min (6.3.1). |
+| EC04 | M07, M08, M09 | Comparación con el resultado esperado y entre repeticiones. | Por ejecución automatizada. | Salida del motor de simulación. | Huella de entrada (`InputFingerprint`). | Una corrida de 59 repeticiones por escenario. |
+| EC05 | M04, M12, M06 | Conteo y porcentaje por participante. | Por tarea. | Registro creado en la sesión. | Grabación y observación del primer intento. | Sesión de 8–10 min. |
+| EC06 | M13 | Conteo de órdenes tras N repeticiones. | Por repetición. | Consulta a base de datos. | Respuesta de la API. | Una corrida de 59 repeticiones. |
+| EC07 | M10, M11 (declaradas) | Conteo y porcentaje declarados, con la guía T1–T14. | Por entrevista. | Transcripción o grabación. | Notas del entrevistador. | Entrevista de 15–25 min (2.2.1). |
+| EC08 | M14, M15, M10, M16 | Según 8.2.2. | Por cuadro comparativo registrado. | Hoja de registro del analista. | Entrevista breve posterior. | El periodo que se pueda autorizar; por definir con la empresa. |
+
 ### 8.2.4. Conditions
+
+| Tarjeta | Condición de control | Condición experimental | Población | Asignación | Variables que se mantienen |
+|---|---|---|---|---|---|
+| EC01 | No aplica; la referencia verificada es el criterio. | Extracción asistida sobre el corpus. | Cotizaciones anonimizadas con tres o más estructuras documentales. | Todo el corpus se evalúa. | Lista de campos obligatorios, versión del agente y del modelo, formato del PDF. |
+| EC02 | Estructuración manual en Excel. | Estructuración con el flujo asistido de SmartQuote. | Analistas de adquisiciones. | Orden contrabalanceado (unos empiezan manual y otros asistido). | Mismos campos, cotizaciones de dificultad comparable, dispositivo y consignas. |
+| EC03 | No aplica (descriptivo). | Prueba de tareas con cuenta de prueba y documentos ficticios. | Analistas o jefes de adquisiciones. | Todos realizan la misma tarea. | Caso preparado, consigna sin indicar botones, mismo entorno. |
+| EC04 | Escenario A. | Escenario B con pesos distintos. | Mismo conjunto de cotizaciones verificadas. | Ambos escenarios se ejecutan sobre las mismas entradas. | Cotizaciones, criterios obligatorios y reloj de vigencia. |
+| EC05 | No aplica (descriptivo). | Registro móvil con ficha de caso. | Especialistas de producción y sanidad. | Todos realizan la misma tarea. | Ficha, cuenta de prueba y dispositivo. |
+| EC06 | Primera solicitud de aprobación. | Solicitudes repetidas con el mismo identificador. | Aprobación vigente única. | Repetición automatizada. | Identificador, usuario autorizado y versión de la simulación. |
+| EC07 | No aplica. **Grupo y contexto de estudio:** veterinarios, nutricionistas y jefes de granja de empresas avícolas. | Entrevista semiestructurada. | Personal técnico del segmento 2, no solo almacén. | Muestreo por conveniencia con consentimiento. | Misma guía y mismo entrevistador. |
+| EC08 | No aplica. **Grupo y contexto de estudio:** analistas de adquisiciones en su proceso actual. | Registro del proceso habitual. | Analistas de empresas avícolas. | Voluntaria, con datos autorizados. | Hoja de registro común. |
 
 ### 8.2.5. Scale Calculations and Decisions
 
+Los cálculos justifican tamaño de muestra y duración con significación, potencia, efecto mínimo detectable y supuestos. **No se afirma ninguna muestra ya ejecutada.** Supuestos de trabajo (por confirmar con la guía): α = 0,05 (unilateral donde se indica), potencia = 0,80.
+
+| Tarjeta | Cálculo y supuestos | Resultado | Decisión |
+|---|---|---|---|
+| EC01 | Estimar una proporción esperada de 0,90 con margen de ±5 pp y confianza del 95 %: n = 1,96² · 0,9 · 0,1 / 0,05². Si se necesitan ±4 pp o ±3 pp, n sube a 217 o 385. | **139 observaciones de campo.** | Los campos de una misma cotización no son independientes. Con un supuesto de 8 campos obligatorios por cotización y correlación intraclase 0,3 (efecto de diseño 3,1), se necesitan unas **54 cotizaciones**. Ambos valores son supuestos a confirmar con TK04. |
+| EC01 (corpus de SP01) | Con 15 cotizaciones y 8 campos: 120 observaciones; con efecto de diseño 3,1, el tamaño efectivo es ≈ 39. | Margen de error ≈ **±9,4 pp**. | El corpus de SP01 sirve como **estudio de factibilidad**: no basta para sostener «≥ 90 %». Se debe informar el IC y ampliar el corpus. |
+| EC02 | Prueba t pareada unilateral, α = 0,05, potencia 0,80. | Efecto estandarizado grande (dz = 0,8): **12 pares**. dz = 1,0: 8 pares. dz = 0,5: 27 pares. | Se fija como objetivo detectar dz ≥ 0,8. Si solo se accede a 2 o 3 analistas, se usarán al menos 12 cotizaciones comparables repartidas entre ellos, y se declara la limitación de dependencia entre mediciones. |
+| EC03 y EC05 | Tres participantes por segmento, como define 6.3.1. Con 3 de 3 éxitos, el límite inferior del IC 95 % exacto es 29 %; con 5 de 5, 48 %. | Intervalos muy amplios. | Se usan para **detectar problemas de usabilidad**, no para estimar tasas. No se generalizan al sector. |
+| EC04 y EC06 | Prueba determinista: si se repite n veces y no hay fallos, el límite superior (95 %) de la tasa de fallo es 1 − 0,05^(1/n). | **29 repeticiones** → ≤ 10 %; **59 repeticiones** → ≤ 5 %. | Se automatizan 59 repeticiones por escenario. Un fallo refuta la hipótesis. |
+| EC07 | Entrevistas cualitativas; no hay potencia estadística. | 3 a 5 entrevistas (mínimo de 2.2.3). | Se detiene cuando las últimas entrevistas no aportan temas nuevos. |
+| EC08 | Estudio descriptivo de línea base. | Al menos 10 cuadros registrados (propuesta). | Depende del acceso y de datos autorizados; no se calcula potencia. |
+
+**Parámetros de certeza y precisión por tarjeta** (la guía los define así: certeza = nivel de significación y poder estadístico; precisión = efecto mínimo detectable, MDE).
+
+| Tarjeta | Nivel de significación | Poder estadístico | MDE o precisión |
+|---|---|---|---|
+| EC01 | α = 0,05 (IC 95 %) | No aplica (estimación) | Precisión de ±5 pp en la proporción |
+| EC02 | α = 0,05 unilateral | 0,80 | dz = 0,8 (efecto grande) |
+| EC03 y EC05 | No aplica | No aplica | Descriptivo; detecta problemas, no estima tasas |
+| EC04 y EC06 | Confianza 95 % | No aplica | Tasa de fallo detectable ≤ 5 % con 59 repeticiones |
+| EC07 y EC08 | No aplica | No aplica | Exploratorio |
+
+**Limitaciones.** Los participantes son pocos y por conveniencia; las cotizaciones de prueba pueden no representar la variedad real; no se han medido todavía la correlación intraclase ni el número real de campos obligatorios.
+
 ### 8.2.6. Methods Selection
+
+Se elige el método más simple que responda cada pregunta con las condiciones y la escala de 8.2.4 y 8.2.5.
+
+| Tarjeta | Método elegido | Por qué es el más simple útil | Alternativa descartada | Riesgos éticos y de solapamiento |
+|---|---|---|---|---|
+| EC01 | Evaluación fuera de línea contra una referencia verificada. | No requiere usuarios ni tráfico real; mide directamente la precisión. | Prueba A/B con usuarios: no hay tráfico y mide otra cosa. | Los documentos deben estar anonimizados y autorizados (TK08). No cargar cotizaciones reales de proveedores sin permiso. |
+| EC02 | Comparación pareada intra-sujeto con orden contrabalanceado. | Controla la variabilidad entre analistas con pocos participantes. | Grupos independientes: requeriría muchos más participantes. | Evitar el efecto de aprendizaje con cotizaciones distintas. No reutilizar al mismo analista en EC03 durante la misma sesión. |
+| EC03 y EC05 | Prueba de tareas moderada con observación del primer intento. | Es el método de 6.3.1 y revela dificultades concretas. | Encuesta: no muestra el comportamiento real. | Consentimiento para grabar; se evalúa el producto, no a la persona; se puede detener o omitir. Sin contraseñas ni datos clínicos de terceros. |
+| EC04 y EC06 | Pruebas automatizadas deterministas (xUnit y BDD). | Ya existen en el repo y son repetibles. | Prueba manual repetida: más lenta y menos fiable. | Sin datos personales; usar datos ficticios. |
+| EC07 | Entrevista semiestructurada. | Permite explorar lo que se conoce sin imponer hipótesis. | Encuesta cerrada: presupone lo que se quiere descubrir. | No repetir al mismo participante en otras tarjetas el mismo día. Consentimiento y opción de anonimato. |
+| EC08 | Observación con hoja de registro simple. | Obtiene la línea base con poco esfuerzo para el analista. | Medición con software de seguimiento: invasivo y requiere permisos de TI. | Los datos deben ser autorizados y sin información comercial sensible. |
+
+**Solapamientos.** Un mismo usuario no participa en dos experimentos sobre el mismo tema en un mismo ciclo (por ejemplo, EC02 y EC03 con los mismos analistas se separan en el tiempo y con documentos distintos). Para EC02 se usa un orden contrabalanceado. **Riesgos éticos comunes:** consentimiento explícito, derecho a retirarse, protección de la confidencialidad comercial, anonimización y almacenamiento privado de los videos.
+
+---
 
 ### 8.2.7. Data Analytics: Goals, KPIs and Metrics Selection
 
