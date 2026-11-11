@@ -6710,6 +6710,27 @@ C03 y C06 son afirmaciones sobre el producto; C01, C02, C04 y C05 son afirmacion
 
 ### 8.1.3. Experiment-Ready Questions
 
+Las preguntas convierten el material de 8.1.2 en algo investigable. Se distinguen las **basadas en creencias** (ponen a prueba una suposición con una hipótesis y un criterio) de las **exploratorias** (buscan comprender, sin hipótesis previa). Cada una precisa quién, qué y en qué contexto se busca aprender.
+
+| ID | Tipo | Pregunta investigable | Quién | Qué se busca aprender | Contexto | Origen |
+|---|---|---|---|---|---|---|
+| Q01 | Basada en creencia | ¿La extracción asistida por IA alcanza una precisión de al menos 90 % en los campos obligatorios de cotizaciones PDF heterogéneas, sin introducir valores ausentes? | Agente de extracción evaluado con la referencia verificada del equipo | Precisión por campo y tasa de valores inventados | Corpus anonimizado de cotizaciones con tres o más estructuras documentales | A07, G01, H1 (Lean UX) |
+| Q02 | Basada en creencia | ¿El flujo asistido reduce el tiempo de estructurar una cotización frente al proceso manual en Excel? | Analistas de adquisiciones | Diferencia de tiempo por cotización | Sesión controlada con cotizaciones comparables y cuentas de prueba | A12, G02, C01, H1 |
+| Q03 | Basada en creencia | ¿Mostrar confianza, fuente y valor original permite al analista localizar el origen de un dato y corregir un campo ambiguo sin ayuda? | Analistas y jefes de adquisiciones | Éxito de tarea, errores y confianza reportada | Prueba de tareas moderada en la web (tarea A2 de 6.3.1) | A08, A14, H2 |
+| Q04 | Basada en creencia | ¿Dos escenarios con pesos distintos producen rankings coherentes con sus reglas, excluyen incumplimientos obligatorios y repiten el resultado con las mismas entradas? | Motor de simulación (verificado por el equipo) | Coherencia, exclusión correcta y repetibilidad | Al menos dos cotizaciones verificadas, una con incumplimiento obligatorio | A09, H3 |
+| Q05 | Basada en creencia | ¿Un especialista de producción o sanidad puede registrar en el móvil una solicitud completa con requisitos técnicos sin ayuda? | Especialistas de producción y sanidad | Éxito de tarea y completitud de la solicitud | Prueba moderada con ficha de caso (tarea P2 de 6.3.1) | A10, I01, H4 |
+| Q06 | Basada en creencia | ¿El seguimiento por estado, historial y responsable permite identificar quién debe actuar y qué necesita? | Especialistas de producción y sanidad | Comprensión del estado y de la responsabilidad pendiente | Prueba moderada (tarea P3 de 6.3.1) | A15, H4 |
+| Q07 | Basada en creencia | ¿Repetir una misma aprobación devuelve la orden existente sin crear un duplicado? | Servicio de órdenes de compra (probado por el equipo) | Número de órdenes duplicadas | Pruebas automatizadas con el mismo identificador de aprobación | A11, H5 |
+| Q08 | Exploratoria | ¿Cómo piden y validan hoy veterinarios, nutricionistas y jefes de granja los insumos con adquisiciones, y qué datos técnicos suelen faltar o interpretarse distinto? | Veterinarios, nutricionistas, jefes de granja | Flujo real, canales, datos omitidos y puntos de decisión | Entrevistas semiestructuradas en su entorno de trabajo | A05, G04, G05, C04 |
+| Q09 | Exploratoria | ¿Cuánto tiempo, volumen y retrabajo implica hoy elaborar un cuadro comparativo? | Analistas de adquisiciones | Línea base de tiempo, volumen de cotizaciones y correcciones | Observación del proceso actual con datos autorizados | A03, G02, G03, C01, C05 |
+| Q10 | Exploratoria | ¿Qué restricciones de confidencialidad, permisos y ERP condicionan la carga de cotizaciones a una plataforma externa? | Analistas, jefes de compras y personal de TI | Restricciones y requisitos de integración | Entrevistas en empresas avícolas medianas | A02, G06, G07, C06 |
+| Q11 | Exploratoria | ¿Qué evidencia necesitan los aprobadores para confiar en una recomendación generada por IA? | Jefes de compras y gerencia | Criterios de confianza y evidencia mínima | Revisión de escenarios de aprobación con participantes | A06, A14 |
+| Q12 | Exploratoria | ¿Qué conectividad y dispositivos tiene el personal de granja o almacén al registrar solicitudes? | Personal de granja y almacén | Restricciones de uso móvil | Observación contextual y entrevistas | A10, G08, G09 |
+| Q13 | Exploratoria | ¿Qué condiciones de precio y decisión influirían en contratar una membresía? | Decisores de empresas avícolas | Disposición y condiciones de contratación | Entrevistas con decisores | A01 |
+| Q14 | Exploratoria | ¿En qué formatos reciben realmente las cotizaciones (PDF digital, escaneado, imagen, hoja de cálculo, mensajería) y cuántas llegan incompletas? | Analistas de adquisiciones | Distribución de formatos y proporción de cotizaciones incompletas | Observación de las cotizaciones recibidas, con documentos autorizados | A07, C02, 5W1H |
+
+**Premisas ocultas detectadas con las Cinco Ws y una H.** Se aplicó la técnica al flujo de extracción: *Who* envía la cotización (¿el proveedor la redacta siempre igual?), *What* formato tiene, *Where* se recibe (correo, mensajería, portal), *When* vence su vigencia, *Why* llega incompleta y *How* se corrige hoy. De ahí surgió una premisa oculta no escrita en 8.1.2: **la extracción supone PDF digitales legibles**, no escaneos ni fotografías. Esa premisa dio origen a Q14.
+
 ### 8.1.4. Question Backlog
 
 ### 8.1.5. Experiment Cards
