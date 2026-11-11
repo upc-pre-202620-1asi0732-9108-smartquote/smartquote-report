@@ -6901,7 +6901,19 @@ Cada tarjeta lleva en el **frente** la pregunta, el porqué, la hipótesis (si a
 
 ### 8.2.1. Hypotheses
 
+Cada hipótesis de trabajo (HW) tiene su hipótesis nula (H0), está vinculada a una tarjeta y a una métrica del catálogo de 8.2.2 y se puede refutar con datos. Las preguntas exploratorias (EC07 y EC08) no llevan hipótesis. **Los valores objetivo son metas de validación, no resultados alcanzados.** Se relacionan con H1–H5 de la sección 1.2.2.3.
+
+| ID | Tarjeta | Métrica | Hipótesis de trabajo (HW) | Hipótesis nula (H0) | Regla de decisión |
+|---|---|---|---|---|---|
+| HW01 / H0-01 | EC01 | M02, M03 | La precisión de campos obligatorios es de al menos 90 % y no se inventan valores ausentes (M03 = 0). *(H1)* | La precisión es menor de 90 % o hay al menos un valor inventado. | Se **refuta** si el límite superior del IC 95 % de M02 es menor de 90 %. Se **sostiene provisionalmente** si M02 ≥ 90 % y el límite inferior ≥ 85 % y M03 = 0. En otro caso, **no concluyente**. |
+| HW02 / H0-02 | EC02 | M01 | La mediana del tiempo de estructuración con el flujo asistido es menor que con el manual. *(H1)* | La mediana de las diferencias (manual − asistido) es menor o igual a cero. | Prueba pareada unilateral (t pareada o Wilcoxon si no hay normalidad), α = 0,05. Se rechaza H0 si p < 0,05. El tamaño de efecto mínimo de interés debe acordarse en el equipo. |
+| HW03 / H0-03 | EC03 | M04, M05 | Al menos 2 de 3 participantes localizan la fuente y corrigen un campo ambiguo sin ayuda. *(H2)* | Como máximo 1 de 3 lo logra sin ayuda. | Conteo descriptivo por participante; con n = 3 no hay contraste estadístico. Se registran errores (M06) y confianza (M05). |
+| HW04 / H0-04 | EC04 | M07, M08, M09 | En todos los escenarios evaluados, el ranking es coherente con sus reglas, las ofertas con incumplimiento obligatorio se excluyen y la repetición con las mismas entradas da el mismo resultado. *(H3)* | Existe al menos un escenario con ranking incoherente, una oferta incumplidora no excluida o un resultado distinto en la repetición. | Un solo contraejemplo refuta HW04. |
+| HW05 / H0-05 | EC05 | M04, M12 | Al menos 2 de 3 especialistas registran una solicitud completa sin ayuda. *(H4)* | Como máximo 1 de 3 la completa sin ayuda. | Conteo descriptivo; M12 debe ser 100 % en los casos logrados. |
+| HW06 / H0-06 | EC06 | M13 | Repetir la misma aprobación no genera órdenes adicionales (M13 = 0). *(H5)* | Al menos una repetición genera una orden duplicada. | Un solo duplicado refuta HW06. |
+
 ### 8.2.2. Domain Business Metrics
+
 
 ### 8.2.3. Measures
 
