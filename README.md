@@ -430,6 +430,14 @@ Proyecto
         - [Aspect Leaders and Collaborators](#aspect-leaders-and-collaborators-1)
         - [Sprint Backlog 2](#sprint-backlog-2)
         - [Evidencias para Sprint Review](#evidencias-para-sprint-review)
+      - [5.2.1.3. Sprint 3](#5213-sprint-3)
+        - [Sprint Planning 3](#sprint-planning-3)
+        - [Sprint 3 Goal](#sprint-3-goal)
+        - [Aspect Leaders and Collaborators — LACX 3](#aspect-leaders-and-collaborators--lacx-3)
+        - [Sprint Backlog 3](#sprint-backlog-3)
+        - [Resumen de estimaciones de Sprint 3](#resumen-de-estimaciones-de-sprint-3)
+        - [Secuencia, dependencias y Definition of Done](#secuencia-dependencias-y-definition-of-done)
+        - [Sincronización y evidencias de Sprint 3](#sincronización-y-evidencias-de-sprint-3)
     - [5.2.2. Implemented Landing Page Evidence](#522-implemented-landing-page-evidence)
       - [Repositorio de código fuente](#repositorio-de-código-fuente)
       - [Despliegue](#despliegue)
@@ -484,6 +492,28 @@ Proyecto
     - [6.1.2. Core Integration Tests](#612-core-integration-tests)
     - [6.1.3. Core Behavior-Driven Development](#613-core-behavior-driven-development)
     - [6.1.4. Core System Tests](#614-core-system-tests)
+  - [6.2. Static testing \& Verification](#62-static-testing--verification)
+    - [6.2.1. Static Code Analysis](#621-static-code-analysis)
+      - [6.2.1.1. Coding standard \& Code conventions](#6211-coding-standard--code-conventions)
+      - [6.2.1.2. Code Quality \& Code Security](#6212-code-quality--code-security)
+    - [6.2.2. Reviews](#622-reviews)
+  - [6.3. Validation Interviews](#63-validation-interviews)
+    - [6.3.1. Diseño de Entrevistas](#631-diseño-de-entrevistas)
+    - [6.3.2. Registro de Entrevistas](#632-registro-de-entrevistas)
+  - [Segmento 2: Producción y Sanidad](#segmento-2-producción-y-sanidad)
+    - [Ficha de registro — Entrevista de validación S2-1](#ficha-de-registro--entrevista-de-validación-s2-1)
+    - [Ficha de registro — Entrevista de validación S2-2](#ficha-de-registro--entrevista-de-validación-s2-2)
+    - [6.3.3. Evaluaciones según heurísticas](#633-evaluaciones-según-heurísticas)
+  - [6.4. Auditoría de Experiencias de Usuario](#64-auditoría-de-experiencias-de-usuario)
+    - [6.4.1. Auditoría realizada](#641-auditoría-realizada)
+      - [6.4.1.1. Información del grupo auditado](#6411-información-del-grupo-auditado)
+      - [6.4.1.2. Cronograma de auditoría realizada](#6412-cronograma-de-auditoría-realizada)
+      - [6.4.1.3. Contenido de auditoría realizada](#6413-contenido-de-auditoría-realizada)
+    - [6.4.2. Auditoría recibida](#642-auditoría-recibida)
+      - [6.4.2.1. Información del grupo auditor](#6421-información-del-grupo-auditor)
+      - [6.4.2.2. Cronograma de auditoría recibida](#6422-cronograma-de-auditoría-recibida)
+      - [6.4.2.3. Contenido de auditoría recibida](#6423-contenido-de-auditoría-recibida)
+      - [6.4.2.4. Resumen de modificaciones para subsanar hallazgos](#6424-resumen-de-modificaciones-para-subsanar-hallazgos)
   - [Capítulo VII: DevOps Practices](#capítulo-vii-devops-practices)
     - [7.1. Continuous Integration](#71-continuous-integration)
       - [7.1.1. Tools and Practices](#711-tools-and-practices)
@@ -494,6 +524,46 @@ Proyecto
     - [7.3. Continuous Deployment](#73-continuous-deployment)
       - [7.3.1. Tools and Practices](#731-tools-and-practices)
       - [7.3.2. Production Deployment Pipeline Components](#732-production-deployment-pipeline-components)
+    - [7.4. Continuous Monitoring](#74-continuous-monitoring)
+      - [7.4.1. Tools and Practices](#741-tools-and-practices)
+      - [7.4.2. Monitoring Pipeline Components](#742-monitoring-pipeline-components)
+      - [7.4.3. Alerting Pipeline Components](#743-alerting-pipeline-components)
+      - [7.4.4. Notification Pipeline Components](#744-notification-pipeline-components)
+- [Capítulo VIII: Experiment-Driven Development](#capítulo-viii-experiment-driven-development)
+  - [8.1. Experiment Planning](#81-experiment-planning)
+    - [8.1.1. As-Is Summary (J03)](#811-as-is-summary-j03)
+      - [Proceso de compra actual (sin SmartQuote)](#proceso-de-compra-actual-sin-smartquote)
+      - [Estado actual de los sistemas de SmartQuote (hechos del informe)](#estado-actual-de-los-sistemas-de-smartquote-hechos-del-informe)
+      - [Hechos observados frente a aspectos desconocidos](#hechos-observados-frente-a-aspectos-desconocidos)
+    - [8.1.2. Raw Material: Assumptions, Knowledge Gaps, Ideas, Claims](#812-raw-material-assumptions-knowledge-gaps-ideas-claims)
+      - [Assumptions (suposiciones)](#assumptions-suposiciones)
+      - [Knowledge Gaps (brechas de conocimiento)](#knowledge-gaps-brechas-de-conocimiento)
+      - [Ideas (propuestas de solución, aún no validadas)](#ideas-propuestas-de-solución-aún-no-validadas)
+      - [Claims (afirmaciones de fuentes; no verificadas por el equipo)](#claims-afirmaciones-de-fuentes-no-verificadas-por-el-equipo)
+      - [Premisas que conviene investigar primero](#premisas-que-conviene-investigar-primero)
+    - [8.1.3. Experiment-Ready Questions](#813-experiment-ready-questions)
+    - [8.1.4. Question Backlog](#814-question-backlog)
+    - [8.1.5. Experiment Cards](#815-experiment-cards)
+      - [EC01 — Precisión de extracción](#ec01--precisión-de-extracción)
+      - [EC02 — Tiempo de estructuración manual frente a asistido](#ec02--tiempo-de-estructuración-manual-frente-a-asistido)
+      - [EC03 — Verificación explicable](#ec03--verificación-explicable)
+      - [EC04 — Simulación por escenarios](#ec04--simulación-por-escenarios)
+      - [EC05 — Registro móvil de solicitudes](#ec05--registro-móvil-de-solicitudes)
+      - [EC06 — Aprobación idempotente](#ec06--aprobación-idempotente)
+      - [EC07 — Proceso real del segmento operativo (exploratoria)](#ec07--proceso-real-del-segmento-operativo-exploratoria)
+      - [EC08 — Línea base del cuadro comparativo (exploratoria)](#ec08--línea-base-del-cuadro-comparativo-exploratoria)
+  - [8.2. Experiment Design](#82-experiment-design)
+    - [8.2.1. Hypotheses](#821-hypotheses)
+    - [8.2.2. Domain Business Metrics](#822-domain-business-metrics)
+    - [8.2.3. Measures](#823-measures)
+    - [8.2.4. Conditions](#824-conditions)
+    - [8.2.5. Scale Calculations and Decisions](#825-scale-calculations-and-decisions)
+    - [8.2.6. Methods Selection](#826-methods-selection)
+    - [8.2.7. Data Analytics: Goals, KPIs and Metrics Selection](#827-data-analytics-goals-kpis-and-metrics-selection)
+    - [8.2.8. Web and Mobile Tracking Plan](#828-web-and-mobile-tracking-plan)
+  - [8.3. Experimentation](#83-experimentation)
+    - [8.3.1. To-Be User Stories](#831-to-be-user-stories)
+    - [8.3.2. To-Be Product Backlog](#832-to-be-product-backlog)
 - [Conclusiones](#conclusiones)
   - [Conclusiones y recomendaciones](#conclusiones-y-recomendaciones)
 - [Bibliografía](#bibliografía)
@@ -1126,8 +1196,6 @@ Al igual que el As-Is, el escenario *To-Be* se presenta por segmento: uno para A
 
 ## 3.2. User Stories
 
-Las nuevas historias mantienen los identificadores existentes de las épicas EP04, EP05 y EP06 para ampliar las capacidades ya definidas. Se incorpora EP02 para autenticación, que no estaba registrada previamente; US15 se asigna a EP07 para la gestión de proveedores y US16 a EP08 para mantener la analítica del proceso de compras como un objetivo diferenciado.
-
 | **Story ID** | **User** | **Priority** | **Epic** |
 | --- | --- | --- | --- |
 | US01 | Visitante de una empresa avícola | Media | EP01 – Presencia digital |
@@ -1269,7 +1337,61 @@ Las nuevas historias mantienen los identificadores existentes de las épicas EP0
 | **Description** | Como jefe de adquisiciones, deseo visualizar indicadores clave sobre el tiempo de atención de solicitudes y el ahorro generado para evaluar la eficiencia del proceso de compras. |  |  |
 | **Acceptance Criteria** | **Escenario 1: Consulta de indicadores**<br>**Dado que** existen solicitudes y órdenes con fechas y montos registrados<br>**Cuando** el jefe de adquisiciones abre el panel de métricas<br>**Entonces** el sistema presenta el tiempo promedio de atención y el ahorro calculado para el período, junto con la definición de cada indicador.<br><br>**Escenario 2: Filtros y detalle**<br>**Dado que** el panel contiene información de más de un período o estado<br>**Cuando** el usuario selecciona filtros disponibles<br>**Entonces** los indicadores se recalculan con los datos que cumplen esos filtros y permiten consultar el período y volumen de registros considerados.<br><br>**Escenario 3: Datos insuficientes**<br>**Dado que** el período seleccionado no contiene información suficiente para calcular un indicador<br>**Cuando** el sistema actualiza el panel<br>**Entonces** identifica el indicador como no disponible y no presenta un valor de ahorro o tiempo sin respaldo en los registros. |  |  |
 
-**Definición operativa de US16.** El período se selecciona por la fecha de emisión de órdenes en UTC y solo considera órdenes con estado `Issued`. El tiempo promedio de atención se expresa en horas desde la creación de la solicitud asociada hasta la creación de la orden; se calcula únicamente cuando ambas fechas existen y tienen orden cronológico válido. El ahorro comparativo estimado se expresa en PEN y suma, por cada orden, `máximo(0, precio de la alternativa elegible más barata − precio de la cotización elegida)`. Se comparan cotizaciones de la misma simulación, usando el tipo de cambio conservado en esa simulación cuando corresponde. Este indicador no representa un ahorro financiero realizado. Si faltan al menos dos cotizaciones elegibles comparables o los datos de una métrica son insuficientes, el valor se presenta como no disponible. La respuesta incluye el período y la cantidad de órdenes y muestras usadas para cada indicador.
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US15 | Analista de adquisiciones y especialista de producción y sanidad | Alta | EP03 – Solicitudes de compra |
+| **Title** | Resolver aclaraciones técnicas entre adquisiciones y producción |  |  |
+| **Description** | Como analista de adquisiciones, deseo solicitar aclaraciones al especialista de producción y sanidad sobre especificaciones ambiguas para continuar la evaluación con una interpretación técnica confirmada y trazable. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Registro de una consulta técnica**<br>**Dado que** una solicitud activa contiene un requisito cuya interpretación necesita aclaración<br>**Cuando** el analista registra la consulta e identifica el ítem, el requisito y el especialista destinatario<br>**Entonces** el sistema conserva la consulta vinculada con la solicitud, registra al autor y la fecha, y comunica al especialista que existe una aclaración pendiente.<br><br>**Escenario 2: Respuesta del especialista**<br>**Dado que** existe una consulta pendiente dirigida a un especialista autorizado<br>**Cuando** el especialista responde e indica la interpretación técnica correspondiente<br>**Entonces** el sistema conserva la respuesta, su responsable y fecha, actualiza el estado de la consulta y permite al analista consultar la aclaración junto con su contexto de origen.<br><br>**Escenario 3: Modificación de un requisito a partir de la aclaración**<br>**Dado que** la respuesta implica cambiar un requisito y existe una evaluación basada en su versión anterior<br>**Cuando** el especialista autorizado confirma la nueva especificación<br>**Entonces** el sistema conserva la versión anterior, registra el cambio y exige una nueva evaluación antes de aprobar una compra afectada; la respuesta a una consulta no autoriza por sí sola el incumplimiento de un requisito obligatorio. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US16 | Especialista de producción y sanidad | Media | EP03 – Solicitudes de compra |
+| **Title** | Programar solicitudes recurrentes de insumos |  |  |
+| **Description** | Como especialista de producción y sanidad, deseo programar solicitudes periódicas de insumos para reducir el registro repetitivo de necesidades de abastecimiento y revisar cada solicitud antes de enviarla a adquisiciones. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Registro de una programación válida**<br>**Dado que** el especialista identifica una necesidad recurrente y dispone de los datos obligatorios de sus ítems y requisitos técnicos<br>**Cuando** establece una fecha de inicio, una periodicidad positiva y el plazo entre la generación de cada solicitud y su fecha requerida<br>**Entonces** el sistema registra la programación con su responsable y zona horaria de operación, y determina la siguiente ocurrencia sin crear una orden de compra.<br><br>**Escenario 2: Generación de una solicitud para revisión**<br>**Dado que** una programación se encuentra activa y alcanza la fecha de una ocurrencia<br>**Cuando** el sistema procesa esa ocurrencia<br>**Entonces** crea una solicitud pendiente de revisión del especialista con los ítems, cantidades, requisitos y fecha requerida correspondientes, sin enviarla automáticamente a adquisiciones; el envío requiere la confirmación del especialista y las validaciones de registro de solicitudes.<br><br>**Escenario 3: Reintento de una ocurrencia procesada**<br>**Dado que** una ocurrencia ya genera una solicitud vinculada con la programación<br>**Cuando** el sistema vuelve a procesar la misma ocurrencia<br>**Entonces** identifica la solicitud existente, no crea un duplicado y conserva las modificaciones que el especialista realiza durante su revisión.<br><br>**Escenario 4: Suspensión de la programación**<br>**Dado que** existe una programación activa con próximas ocurrencias<br>**Cuando** el especialista responsable la suspende<br>**Entonces** el sistema no genera solicitudes para las ocurrencias comprendidas durante la suspensión y conserva las solicitudes anteriores y el historial de la programación. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US17 | Analista de adquisiciones | Media | EP07 – Gestión de proveedores y notificaciones |
+| **Title** | Recibir alertas anticipadas del vencimiento de cotizaciones |  |  |
+| **Description** | Como analista de adquisiciones, deseo recibir alertas sobre cotizaciones próximas a vencer para priorizar decisiones antes de que sus condiciones comerciales pierdan vigencia. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Detección de una cotización próxima a vencer**<br>**Dado que** una cotización verificada y vigente pertenece a una solicitud activa, todavía no adjudicada y con un analista asignado<br>**Cuando** su vencimiento se encuentra dentro del plazo de anticipación configurado según la zona horaria de operación<br>**Entonces** el sistema registra una alerta para el analista responsable con la solicitud, la cotización, el proveedor y el vencimiento que requiere atención.<br><br>**Escenario 2: Comprobaciones repetidas de vencimiento**<br>**Dado que** el sistema ya registra una alerta para la misma cotización, fecha de vencimiento y plazo de anticipación<br>**Cuando** vuelve a comprobar su vigencia o el analista consulta nuevamente las alertas<br>**Entonces** conserva la alerta existente y su estado de lectura, sin generar avisos duplicados para esa misma condición.<br><br>**Escenario 3: Finalización del seguimiento preventivo**<br>**Dado que** una solicitud deja de estar activa o se adjudica, o la cotización alcanza su vencimiento<br>**Cuando** el sistema comprueba las condiciones de seguimiento<br>**Entonces** no genera nuevos avisos preventivos para esa condición, conserva los avisos históricos e identifica la oferta vencida como no vigente, sin prorrogar sus condiciones ni autorizar su aprobación. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US18 | Jefe de adquisiciones | Alta | EP07 – Gestión de proveedores y notificaciones |
+| **Title** | Habilitar o suspender proveedores para nuevas compras |  |  |
+| **Description** | Como jefe de adquisiciones, deseo administrar la habilitación de proveedores para nuevas compras para impedir adjudicaciones a proveedores suspendidos por la organización y conservar el sustento de cada decisión. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Habilitación de un proveedor**<br>**Dado que** un proveedor identificado se encuentra pendiente de habilitación<br>**Cuando** un jefe de adquisiciones autorizado confirma su habilitación y registra una justificación<br>**Entonces** el sistema establece al proveedor como habilitado y conserva el estado anterior, el responsable, la fecha y el motivo de la decisión, sin presentarla como una certificación externa ni una aprobación emitida por la IA.<br><br>**Escenario 2: Suspensión de un proveedor**<br>**Dado que** un proveedor habilitado participa en recomendaciones todavía pendientes de aprobación<br>**Cuando** el jefe de adquisiciones confirma su suspensión e indica el motivo<br>**Entonces** el sistema registra la decisión y señala que las recomendaciones pendientes que incluyen al proveedor requieren una nueva evaluación; los resultados históricos y las órdenes previamente aprobadas permanecen intactos.<br><br>**Escenario 3: Intento de una nueva adjudicación no permitida**<br>**Dado que** el proveedor de una alternativa se encuentra suspendido o pendiente de habilitación<br>**Cuando** un usuario intenta aprobar una nueva orden a su favor<br>**Entonces** el sistema rechaza la adjudicación, informa la condición del proveedor y no genera la orden, aunque la alternativa conserve una recomendación anterior.<br><br>**Escenario 4: Reactivación de un proveedor suspendido**<br>**Dado que** un proveedor se encuentra suspendido y conserva decisiones anteriores en su historial<br>**Cuando** el jefe de adquisiciones autoriza su reactivación con una justificación<br>**Entonces** el sistema conserva el historial y registra la nueva habilitación, sin aprobar automáticamente compras pendientes ni restablecer como vigentes evaluaciones que necesitan repetirse. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US19 | Jefe de adquisiciones | Media | EP05 – Evaluación y decisión de compra |
+| **Title** | Analizar la sensibilidad de la recomendación de compra |  |  |
+| **Description** | Como jefe de adquisiciones, deseo analizar cómo cambia la alternativa recomendada al variar las ponderaciones comerciales para identificar si la decisión se mantiene estable dentro de las configuraciones evaluadas. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Análisis de configuraciones comparables**<br>**Dado que** existe una solicitud con al menos dos cotizaciones verificadas y elegibles, criterios vigentes y variaciones de ponderación dentro de los rangos permitidos cuya suma alcanza el total requerido<br>**Cuando** el jefe de adquisiciones solicita el análisis de sensibilidad<br>**Entonces** el sistema evalúa cada configuración manteniendo los mismos datos de las ofertas, requisitos obligatorios y tipo de cambio aplicable, y conserva las configuraciones utilizadas, sus puntajes y alternativas recomendadas sin modificar los criterios vigentes.<br><br>**Escenario 2: Identificación de cambios de recomendación**<br>**Dado que** el análisis contiene resultados para varias configuraciones válidas<br>**Cuando** el usuario consulta la comparación<br>**Entonces** el sistema identifica en cuáles configuraciones cambia el proveedor recomendado y en cuáles permanece, muestra los pesos correspondientes y delimita la conclusión a las configuraciones efectivamente evaluadas.<br><br>**Escenario 3: Configuración o información insuficiente**<br>**Dado que** las variaciones contienen ponderaciones inválidas o existen menos de dos cotizaciones elegibles<br>**Cuando** se solicita el análisis<br>**Entonces** el sistema rechaza la ejecución, informa la condición incumplida y no presenta una conclusión de estabilidad sin resultados suficientes.<br><br>**Escenario 4: Uso del análisis para una decisión de compra**<br>**Dado que** el usuario identifica una configuración de interés durante el análisis<br>**Cuando** solicita continuar hacia la aprobación de una compra<br>**Entonces** el sistema exige que la configuración seleccionada cuente con criterios y una simulación vigentes sujetos a las validaciones de aprobación; el análisis de sensibilidad por sí solo no emite una orden ni sustituye la autorización del responsable. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US20 | Jefe de adquisiciones | Alta | EP05 – Evaluación y decisión de compra |
+| **Title** | Controlar el presupuesto de una adquisición |  |  |
+| **Description** | Como jefe de adquisiciones, deseo establecer un presupuesto máximo para una solicitud y contrastarlo con las alternativas evaluadas para evitar comprometer importes superiores al límite autorizado. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Registro de un presupuesto válido**<br>**Dado que** existe una solicitud activa y un jefe de adquisiciones autorizado define un límite positivo en PEN<br>**Cuando** confirma el presupuesto y su justificación<br>**Entonces** el sistema registra una versión del presupuesto vinculada con la solicitud, su responsable y fecha; un límite ausente o inválido no se interpreta como un presupuesto de cero.<br><br>**Escenario 2: Aprobación dentro del límite autorizado**<br>**Dado que** una solicitud cuenta con un presupuesto vigente y una alternativa cumple las demás reglas de aprobación<br>**Cuando** se solicita aprobar una adquisición cuyo importe total es menor o igual al límite<br>**Entonces** el sistema permite continuar la aprobación e informa el importe y el margen disponible en PEN, utilizando la tasa conservada en la simulación si existen importes en USD; en una adjudicación distribuida considera la suma de todas sus órdenes, no cada orden de forma aislada.<br><br>**Escenario 3: Presupuesto excedido o conversión no disponible**<br>**Dado que** el importe total de la adquisición supera el presupuesto vigente o no existe una tasa válida para contrastar un importe en USD<br>**Cuando** se intenta aprobar la adquisición<br>**Entonces** el sistema impide la generación de sus órdenes e informa el exceso calculable o la falta de conversión, sin omitir partidas ni sustituir la tasa por un valor no autorizado.<br><br>**Escenario 4: Cambio del presupuesto antes de aprobar**<br>**Dado que** una alternativa se evalúa frente a una versión del presupuesto y el jefe de adquisiciones registra un nuevo límite con su justificación<br>**Cuando** se intenta aprobar utilizando la comprobación presupuestal anterior<br>**Entonces** el sistema conserva ambas versiones y exige contrastar nuevamente el importe con el presupuesto vigente antes de generar órdenes, sin alterar las ya aprobadas. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US21 | Analista y jefe de adquisiciones | Alta | EP05 – Evaluación y decisión de compra |
+| **Title** | Simular una compra distribuida entre proveedores |  |  |
+| **Description** | Como analista de adquisiciones, deseo simular la adjudicación de los ítems de una solicitud entre proveedores elegibles para obtener una combinación con mejor ajuste técnico y comercial sin depender de una única oferta para toda la compra. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Simulación de una adjudicación por ítem**<br>**Dado que** una solicitud contiene varios ítems, dispone de al menos dos cotizaciones verificadas y vigentes y cuenta con criterios de evaluación válidos<br>**Cuando** el analista solicita una simulación de compra distribuida<br>**Entonces** el sistema evalúa las ofertas correspondientes a cada ítem, propone un único proveedor elegible para cubrir toda su cantidad y presenta el proveedor, la cotización, el puntaje y el importe de cada asignación junto con el total de la combinación y la trazabilidad de sus datos.<br><br>**Escenario 2: Cobertura técnica o de cantidad insuficiente**<br>**Dado que** una oferta incumple un requisito obligatorio de un ítem o no cubre toda su cantidad solicitada<br>**Cuando** el sistema construye la combinación<br>**Entonces** excluye esa oferta para el ítem afectado y explica la causa; si algún ítem queda sin una oferta elegible que cubra su cantidad, identifica la cobertura pendiente y no presenta la combinación como lista para aprobación ni divide la cantidad del ítem entre proveedores.<br><br>**Escenario 3: Aprobación y generación de órdenes por proveedor**<br>**Dado que** la combinación cubre todos los ítems una sola vez, conserva sus datos y criterios vigentes y cumple los controles de habilitación y presupuesto que le corresponden<br>**Cuando** el jefe de adquisiciones autoriza la adjudicación distribuida<br>**Entonces** el sistema genera una orden por proveedor con sus partidas completas y referencias a la misma solicitud, simulación y aprobación, sin duplicar cantidades; si una validación impide completar la adjudicación, no deja un subconjunto de órdenes emitidas para esa aprobación.<br><br>**Escenario 4: Reintento de una adjudicación aprobada**<br>**Dado que** una aprobación distribuida ya cuenta con sus órdenes generadas<br>**Cuando** el sistema recibe nuevamente la misma solicitud de generación<br>**Entonces** devuelve el conjunto de órdenes existente y conserva sus referencias, sin crear nuevas órdenes ni repetir cantidades. |  |  |
+
+| **Story ID** | **User** | **Priority** | **Epic** |
+| --- | --- | --- | --- |
+| US22 | Jefe y analista de adquisiciones | Alta | EP03 – Solicitudes de compra |
+| **Title** | Asignar y reasignar solicitudes a un analista responsable |  |  |
+| **Description** | Como jefe de adquisiciones, deseo asignar cada solicitud a un analista responsable para distribuir la carga de trabajo y evitar solicitudes desatendidas o con responsabilidades ambiguas. |  |  |
+| **Acceptance Criteria** | **Escenario 1: Asignación de una solicitud activa**<br>**Dado que** existe una solicitud activa sin responsable y el destinatario posee una cuenta activa con rol de analista de adquisiciones<br>**Cuando** el jefe de adquisiciones autorizado confirma la asignación<br>**Entonces** el sistema registra un único analista responsable, conserva al usuario que asigna y la fecha, y permite identificar esa responsabilidad sin modificar al solicitante ni el estado de la solicitud.<br><br>**Escenario 2: Reasignación justificada**<br>**Dado que** una solicitud activa cuenta con un analista responsable<br>**Cuando** el jefe de adquisiciones confirma su reasignación a otro analista activo e indica el motivo<br>**Entonces** el sistema sustituye al responsable vigente y conserva al anterior, al nuevo responsable, el autor, la fecha y la justificación, sin eliminar las actuaciones previas ni mantener dos asignaciones vigentes para la misma solicitud.<br><br>**Escenario 3: Destinatario o solicitud no habilitados para asignación**<br>**Dado que** el destinatario no posee una cuenta activa con el rol requerido o la solicitud ya no se encuentra activa<br>**Cuando** se intenta asignar o reasignar la solicitud<br>**Entonces** el sistema rechaza la operación, comunica la condición incumplida y conserva sin cambios la asignación existente.<br><br>**Escenario 4: Consulta del trabajo asignado**<br>**Dado que** un analista autenticado tiene solicitudes bajo su responsabilidad<br>**Cuando** consulta las solicitudes que tiene asignadas<br>**Entonces** el sistema devuelve las que corresponden a su asignación vigente con su prioridad, fecha requerida y estado, excluye las reasignadas a otro analista de ese conjunto y mantiene los controles de acceso asociados a su rol. |  |  |
 
 ## 3.3. Product Backlog
 
@@ -1297,6 +1419,16 @@ El Product Backlog se ordena según el valor para el negocio, la entrega de la p
 | 18 | TS04 | Exponer un endpoint RESTful para integrar órdenes de compra con sistemas externos | Como Developer, deseo exponer un endpoint RESTful que entregue el detalle de las órdenes de compra en JSON normalizado para permitir su sincronización con los sistemas de inventario o contabilidad de la empresa. | 3 |
 | 19 | TS03 | Integrar una fuente de tipo de cambio para la conversión de cotizaciones | Como Developer, deseo consumir un servicio web oficial de tipo de cambio, como los publicados por SUNAT o SBS, para convertir automáticamente las cotizaciones en dólares estadounidenses (USD) a soles peruanos (PEN) durante la simulación de precios. | 5 |
 | 20 | US13 | Registrar y consultar el desempeño histórico de los proveedores | Como analista de adquisiciones, deseo registrar una calificación de cumplimiento del plazo y la calidad del proveedor después de una entrega para considerar su desempeño histórico en futuras evaluaciones. | 8 |
+| 21 | US22 | Asignar y reasignar solicitudes a un analista responsable | Como jefe de adquisiciones, deseo asignar cada solicitud a un analista responsable para distribuir la carga de trabajo y evitar solicitudes desatendidas o con responsabilidades ambiguas. | 3 |
+| 22 | US15 | Resolver aclaraciones técnicas entre adquisiciones y producción | Como analista de adquisiciones, deseo solicitar aclaraciones al especialista de producción y sanidad sobre especificaciones ambiguas para continuar la evaluación con una interpretación técnica confirmada y trazable. | 5 |
+| 23 | US18 | Habilitar o suspender proveedores para nuevas compras | Como jefe de adquisiciones, deseo administrar la habilitación de proveedores para nuevas compras para impedir adjudicaciones a proveedores suspendidos por la organización y conservar el sustento de cada decisión. | 5 |
+| 24 | US20 | Controlar el presupuesto de una adquisición | Como jefe de adquisiciones, deseo establecer un presupuesto máximo para una solicitud y contrastarlo con las alternativas evaluadas para evitar comprometer importes superiores al límite autorizado. | 5 |
+| 25 | US21 | Simular una compra distribuida entre proveedores | Como analista de adquisiciones, deseo simular la adjudicación de los ítems de una solicitud entre proveedores elegibles para obtener una combinación con mejor ajuste técnico y comercial sin depender de una única oferta para toda la compra. | 8 |
+| 26 | US19 | Analizar la sensibilidad de la recomendación de compra | Como jefe de adquisiciones, deseo analizar cómo cambia la alternativa recomendada al variar las ponderaciones comerciales para identificar si la decisión se mantiene estable dentro de las configuraciones evaluadas. | 5 |
+| 27 | US16 | Programar solicitudes recurrentes de insumos | Como especialista de producción y sanidad, deseo programar solicitudes periódicas de insumos para reducir el registro repetitivo de necesidades de abastecimiento y revisar cada solicitud antes de enviarla a adquisiciones. | 8 |
+| 28 | US17 | Recibir alertas anticipadas del vencimiento de cotizaciones | Como analista de adquisiciones, deseo recibir alertas sobre cotizaciones próximas a vencer para priorizar decisiones antes de que sus condiciones comerciales pierdan vigencia. | 3 |
+
+**Tablero único:** [Trello SmartQuote](https://trello.com/b/8zqlWB0a). El estado de sincronización se documenta en Sprint 3.
 
 ![Trello Product Backlog](assets/requirements/product-backlog-smartquote.png)
 
@@ -5202,6 +5334,165 @@ La siguiente distribución de 68 horas corresponde a TK44–TK58, antes de la am
 
 Durante el Sprint se registrarán, según el modelo de la guía: tabla de commits de desarrollo, tabla de commits y resultados de pruebas, capturas y video de ejecución, endpoints OpenAPI del alcance, evidencias de despliegue y analíticas de colaboración. Esta sección se completará con los artefactos generados por la ejecución.
 
+#### 5.2.1.3. Sprint 3
+
+Sprint 3 selecciona **únicamente US15–US22**, las ocho historias nuevas de AV2. Los ítems de Sprint 1 y Sprint 2 se mantienen como antecedentes y dependencias del flujo; no se incorporan otra vez como alcance del sprint. Esta sección documenta planificación, no certifica implementación ni aceptación.
+
+##### Sprint Planning 3
+
+| Campo | Plan de Sprint 3 |
+| --- | --- |
+| Sprint # | 3 |
+| Sprint Planning Background | Ampliar el flujo de adquisiciones con coordinación técnica, recurrencia, alertas, control de proveedores, sensibilidad, presupuesto, compra distribuida y responsabilidad vigente. |
+| Date | 2026-11-07: fecha de preparación documental. |
+| Time / Location | No registrados: no se atribuye una reunión ni un horario no comprobados. |
+| Prepared By | Bardales Tejada, Luis Alexis. |
+| Equipo previsto | Luis Alexis Bardales Tejada; Mathias Marcelo De La Cruz De Los Santos; Jhon Danny Guerrero Vasquez; Fabio Cesar Vallejo Trujillo. Esta lista no acredita asistencia a una reunión. |
+| Sprint 2 Review Summary | Se conservan las evidencias de Sprint 2 ya documentadas. No se declara aceptado el sprint ni se calcula velocidad observada sin acta y resultados verificables. |
+| Sprint 2 Retrospective Summary | Sin registro de retrospectiva consultado. Se planifican contrato temprano, pruebas por escenario y sincronización de evidencias sin atribuir estos acuerdos a una reunión realizada. |
+| Sprint Goal & User Stories | US15, US16, US17, US18, US19, US20, US21 y US22. |
+| Duración de referencia | 4 semanas, siguiendo el horizonte utilizado en los sprints anteriores; fechas de inicio y cierre por registrar según el calendario del equipo. |
+| Sum of Story Points | 42 Story Points de estimación inicial. |
+| Sprint 3 Velocity | No disponible como dato observado. Los 42 puntos son alcance planificado y no prueban capacidad efectiva ni velocidad. |
+| Estimación operativa | 182 horas de tareas propuestas; la disponibilidad individual debe contrastarse antes de comprometer el alcance. |
+| Tablero | [Tablero único de Trello](https://trello.com/b/8zqlWB0a); identificar estas tarjetas mediante Sprint 3 y su título actual. |
+
+##### Sprint 3 Goal
+
+**Nuestro enfoque está en** entregar una ampliación integrada de SmartQuote que permita coordinar requisitos y responsables, anticipar necesidades y vencimientos y evaluar compras con control de habilitación, presupuesto y distribución por ítem.
+
+**Creemos que esto aporta** decisiones de compra sustentadas y responsabilidades claras a adquisiciones, producción y sanidad, manteniendo revisión humana, trazabilidad y consistencia entre web, Flutter y API.
+
+**Se confirmará cuando** los escenarios de US15–US22 de 3.2 se ejecuten con datos autorizados: las aclaraciones preserven versiones; una programación genere solicitudes únicas para revisión y respete suspensión; las alertas no se dupliquen; proveedores no habilitados y presupuestos excedidos bloqueen nuevas adjudicaciones; la sensibilidad se limite a configuraciones probadas; una combinación cubra cada ítem completo exactamente una vez y emita órdenes por proveedor de forma atómica e idempotente; y la reasignación mantenga un responsable vigente y actualice su conjunto de trabajo. La confirmación requiere resultados y evidencias reales, no solo presencia del código.
+
+##### Aspect Leaders and Collaborators — LACX 3
+
+La asignación sigue el reparto AV2: Fabio lidera backend y pruebas; Mathias implementa web y US18–US20 móviles; Fabio implementa US15–US17 móviles; Alexis implementa US21–US22 móviles y mantiene backlog e informe. Jhon lidera la revisión funcional prevista de criterios y aporta contexto de los segmentos. Esta revisión no equivale a sus entrevistas reales, que conservan su entrega independiente.
+
+L = líder del aspecto; C = colaborador; — = sin tarea prevista en ese aspecto.
+
+| Integrante | GitHub | Backend/contratos | Web | Flutter US15–17 | Flutter US18–20 | Flutter US21–22 | Revisión funcional | Backlog/informe |
+| --- | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Luis Alexis Bardales Tejada | AlexisBardales | C | C | — | — | L | C | L |
+| Mathias Marcelo De La Cruz De Los Santos | Dela050406 | C | L | C | L | C | C | C |
+| Jhon Danny Guerrero Vasquez | Feli386 | — | — | — | — | — | L | C |
+| Fabio Cesar Vallejo Trujillo | fabiovallejo | L | C | L | C | C | C | C |
+
+El liderazgo no implica aceptación automática del trabajo. Las pruebas automatizadas quedan asignadas a Fabio en cada historia; la revisión funcional de Jhon se separa de su ejecución técnica.
+
+##### Sprint Backlog 3
+
+Los identificadores continúan después de TK76 para evitar colisiones. Cada historia se desglosa en contrato/backend, web, Flutter, pruebas automatizadas, revisión funcional y trazabilidad. Los puntos estiman tamaño relativo de la historia; las horas dimensionan tareas y no se convierten unos en otras.
+
+**Estado inicial:** To-do significa ejecución no verificada para este desglose. El estado “Completado” de una actividad general en la hoja de reparto no demuestra por sí solo aceptación de cada historia; las tareas se actualizarán con evidencia específica. La preparación de L01/L02 no significa que US15–US22 estén terminadas.
+
+| Story ID | Task ID | Task Title | Description | Estimation (Hours) | Assigned To | Status |
+| --- | --- | --- | --- | ---: | --- | --- |
+| US15 | TK77 | Contrato e implementación backend | Publicar contrato e implementar consultas y respuestas técnicas con permisos, historial y versionado; invalidar evaluaciones cuando cambie un requisito. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US15 | TK78 | Implementación web | Integrar consulta, respuesta y contexto del requisito; mostrar aclaraciones pendientes y necesidad de reevaluación. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US15 | TK79 | Implementación Flutter | Integrar consultas y respuestas con el mismo control de requisitos y vigencia que web. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US15 | TK80 | Pruebas automatizadas e integración | Cubrir registro, respuesta autorizada y cambio de requisito; rechazar accesos indebidos y aprobación de evaluación obsoleta. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US15 | TK81 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US15 | TK82 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US16 | TK83 | Contrato e implementación backend | Publicar contrato y persistir programación, zona horaria, periodicidad y ocurrencias idempotentes; generar solicitudes para revisión y respetar suspensión. | 8 | Fabio Cesar Vallejo Trujillo | To-do |
+| US16 | TK84 | Implementación web | Integrar programación, revisión y suspensión; diferenciar borrador generado de solicitud enviada. | 6 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US16 | TK85 | Implementación Flutter | Implementar programación recurrente, revisión previa al envío y suspensión en Flutter. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US16 | TK86 | Pruebas automatizadas e integración | Cubrir programación válida/inválida, ocurrencia única, revisión obligatoria y suspensión; verificar conservación de cambios en reintentos. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US16 | TK87 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US16 | TK88 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US17 | TK89 | Contrato e implementación backend | Publicar contrato y detectar vencimientos dentro del plazo configurado; crear alertas únicas y conservar lectura/historial al finalizar seguimiento. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US17 | TK90 | Implementación web | Mostrar alertas por responsable, vencimiento y lectura sin duplicar avisos ni permitir aprobar ofertas vencidas. | 3 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US17 | TK91 | Implementación Flutter | Integrar listado y lectura de alertas con reglas equivalentes a web. | 3 | Fabio Cesar Vallejo Trujillo | To-do |
+| US17 | TK92 | Pruebas automatizadas e integración | Cubrir anticipación y zona horaria, comprobaciones repetidas y cese por vencimiento/adjudicación; conservar historial. | 3 | Fabio Cesar Vallejo Trujillo | To-do |
+| US17 | TK93 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US17 | TK94 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US18 | TK95 | Contrato e implementación backend | Publicar contrato y habilitar, suspender y reactivar proveedores con autorización e historial; bloquear adjudicación y exigir reevaluación cuando corresponda. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US18 | TK96 | Implementación web | Integrar estados y decisiones justificadas; mostrar impacto sobre recomendaciones pendientes sin alterar órdenes históricas. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US18 | TK97 | Implementación Flutter | Implementar administración de habilitación de proveedores, restricciones de rol e historial en Flutter. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US18 | TK98 | Pruebas automatizadas e integración | Cubrir los cuatro escenarios: habilitación, suspensión, bloqueo de adjudicación y reactivación sin restaurar automáticamente evaluaciones. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US18 | TK99 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US18 | TK100 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US19 | TK101 | Contrato e implementación backend | Publicar contrato y analizar variaciones válidas de pesos conservando entradas, requisitos y tasa; no modificar criterios vigentes ni emitir órdenes. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US19 | TK102 | Implementación web | Comparar configuraciones, puntajes y cambios de proveedor, delimitando la conclusión al conjunto evaluado. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US19 | TK103 | Implementación Flutter | Implementar sensibilidad, comparación y mensajes de información insuficiente con paridad web. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US19 | TK104 | Pruebas automatizadas e integración | Cubrir configuraciones comparables, cambios de recomendación, rechazo de pesos/datos insuficientes y aprobación mediante simulación vigente. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US19 | TK105 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US19 | TK106 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US20 | TK107 | Contrato e implementación backend | Publicar contrato y versionar presupuesto positivo en PEN; validar importe global, conversión conservada y presupuesto vigente antes de aprobar. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US20 | TK108 | Implementación web | Integrar presupuesto y margen/exceso, distinguiendo ausencia de límite y falta de conversión de presupuesto cero. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US20 | TK109 | Implementación Flutter | Implementar presupuesto y sus bloqueos de aprobación en Flutter, considerando total distribuido. | 4 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US20 | TK110 | Pruebas automatizadas e integración | Cubrir límite válido, igualdad al máximo, exceso, falta de tasa y cambio de versión; sumar todas las órdenes distribuidas. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US20 | TK111 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US20 | TK112 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US21 | TK113 | Contrato e implementación backend | Publicar contrato y simular un proveedor por ítem completo; validar cobertura total, vigencia, habilitación y presupuesto; emitir órdenes por proveedor en transacción idempotente. | 10 | Fabio Cesar Vallejo Trujillo | To-do |
+| US21 | TK114 | Implementación web | Mostrar proveedor/cotización/puntaje/importe por ítem, total y cobertura pendiente; integrar aprobación del conjunto sin duplicados. | 6 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US21 | TK115 | Implementación Flutter | Implementar US21 en Flutter: combinación por ítem, exclusiones, total y aprobación autorizada con las mismas reglas que web. | 6 | Luis Alexis Bardales Tejada | To-do |
+| US21 | TK116 | Pruebas automatizadas e integración | Cubrir los cuatro escenarios; rechazar cobertura incompleta y reparto de un ítem; probar atomicidad, versiones, presupuesto global y reintento sin duplicados. | 6 | Fabio Cesar Vallejo Trujillo | To-do |
+| US21 | TK117 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US21 | TK118 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+| US22 | TK119 | Contrato e implementación backend | Publicar contrato e implementar asignación única, reasignación justificada e historial; validar solicitud activa, analista activo y permisos. | 4 | Fabio Cesar Vallejo Trujillo | To-do |
+| US22 | TK120 | Implementación web | Integrar asignación/reasignación y consulta de trabajo vigente; conservar solicitante y estado. | 3 | Mathias Marcelo De La Cruz De Los Santos | To-do |
+| US22 | TK121 | Implementación Flutter | Implementar US22 en Flutter: asignación, reasignación y solicitudes propias con paridad web y control de rol. | 3 | Luis Alexis Bardales Tejada | To-do |
+| US22 | TK122 | Pruebas automatizadas e integración | Cubrir los cuatro escenarios, destinatario inválido, solicitud inactiva y retiro del conjunto del responsable anterior; conservar historial. | 3 | Fabio Cesar Vallejo Trujillo | To-do |
+| US22 | TK123 | Revisión funcional de criterios | Revisar cobertura de los escenarios de 3.2 y observaciones de validación para esta historia; registrar aceptación solo con evidencia verificable. | 2 | Jhon Danny Guerrero Vasquez | To-do |
+| US22 | TK124 | Trazabilidad, informe y Trello | Relacionar criterios, tareas y evidencias reales; actualizar 3.3, Sprint 3 y tarjeta sin marcar ejecución no comprobada. | 2 | Luis Alexis Bardales Tejada | To-do |
+
+##### Resumen de estimaciones de Sprint 3
+
+| Story ID | Título de 3.2 | Story Points | Horas de tareas |
+| --- | --- | ---: | ---: |
+| US15 | Resolver aclaraciones técnicas entre adquisiciones y producción | 5 | 22 |
+| US16 | Programar solicitudes recurrentes de insumos | 8 | 28 |
+| US17 | Recibir alertas anticipadas del vencimiento de cotizaciones | 3 | 17 |
+| US18 | Habilitar o suspender proveedores para nuevas compras | 5 | 22 |
+| US19 | Analizar la sensibilidad de la recomendación de compra | 5 | 22 |
+| US20 | Controlar el presupuesto de una adquisición | 5 | 22 |
+| US21 | Simular una compra distribuida entre proveedores | 8 | 32 |
+| US22 | Asignar y reasignar solicitudes a un analista responsable | 3 | 17 |
+| **Total** | **8 historias** | **42** | **182** |
+
+| Integrante | Horas estimadas |
+| --- | ---: |
+| Fabio Cesar Vallejo Trujillo | 95 |
+| Mathias Marcelo De La Cruz De Los Santos | 46 |
+| Jhon Danny Guerrero Vasquez | 16 |
+| Luis Alexis Bardales Tejada | 25 |
+| **Total** | **182** |
+
+La carga propuesta no es uniforme: Fabio concentra 95 horas por backend, pruebas y tres historias móviles. Esa concentración es un riesgo de capacidad que debe contrastarse con su disponibilidad; no se presenta como un compromiso aceptado por el equipo. Los clientes pueden avanzar sobre contratos OpenAPI y pruebas con dobles, pero la aceptación exige integración con el backend real del entorno de prueba.
+
+##### Secuencia, dependencias y Definition of Done
+
+1. Publicar contratos de las ocho historias y confirmar los controles base de autenticación, solicitudes, cotizaciones verificadas, criterios y órdenes.
+2. Integrar US22 y US15 para responsabilidad y coordinación. En paralelo, trabajar US18 y US20 como controles previos a adjudicar.
+3. Integrar US21 sobre vigencia, habilitación y presupuesto global. US19 conserva configuraciones separadas y nunca aprueba directamente.
+4. Integrar US16 y US17, verificando ocurrencias y avisos idempotentes, revisión humana y zona horaria.
+5. Ejecutar los escenarios de cada US en API/web/Flutter, revisar resultados y sincronizar evidencias antes de mover una historia a Done.
+
+Una historia está Done cuando cumple todos los escenarios actuales de 3.2, respeta autorización y reglas de negocio, conserva persistencia y trazabilidad, funciona en web y Flutter contra el contrato vigente y cuenta con pruebas ejecutadas, revisión funcional y enlaces de versión/resultado. No se acepta una captura de navegador estrecho como prueba de Flutter nativo. Las evidencias no deben exponer credenciales ni datos personales innecesarios.
+
+##### Sincronización y evidencias de Sprint 3
+
+El 7 de noviembre de 2026 se crearon y verificaron las ocho tarjetas de Sprint 3 en el [tablero existente de SmartQuote](https://trello.com/b/8zqlWB0a), dentro de **Sprint Backlog (To-Do)**. Las veinte tarjetas previas se conservaron. El prefijo Sprint 3 y el título actual distinguen las nuevas US15 y US16 de las historias con numeración histórica coincidente.
+
+Cada tarjeta contiene descripción, prioridad de 3.2, estimación de puntos coincidente con 3.3, épica, criterios de aceptación íntegros, fuente y Definition of Done. Se verificaron **30 escenarios** y **48 elementos de checklist**, seis por historia, con los IDs TK77–TK124, responsables y horas de este plan. Todos los elementos permanecen sin completar; esta sincronización no acredita implementación de las historias.
+
+| Story ID | Tarjeta verificada | Puntos | Tareas | Estado observado |
+| --- | --- | ---: | ---: | --- |
+| US22 | [Asignar y reasignar solicitudes a un analista responsable](https://trello.com/c/41WZ6l5p/21-sprint-3-us22-asignar-y-reasignar-solicitudes-a-un-analista-responsable-3-sp) | 3 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US15 | [Resolver aclaraciones técnicas entre adquisiciones y producción](https://trello.com/c/BLO1fgK0/22-sprint-3-us15-resolver-aclaraciones-t%C3%A9cnicas-entre-adquisiciones-y-producci%C3%B3n-5-sp) | 5 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US18 | [Habilitar o suspender proveedores para nuevas compras](https://trello.com/c/wG96Xf2M/23-sprint-3-us18-habilitar-o-suspender-proveedores-para-nuevas-compras-5-sp) | 5 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US20 | [Controlar el presupuesto de una adquisición](https://trello.com/c/PPzNYa5f/24-sprint-3-us20-controlar-el-presupuesto-de-una-adquisici%C3%B3n-5-sp) | 5 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US21 | [Simular una compra distribuida entre proveedores](https://trello.com/c/QWnN8s0k/25-sprint-3-us21-simular-una-compra-distribuida-entre-proveedores-8-sp) | 8 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US19 | [Analizar la sensibilidad de la recomendación de compra](https://trello.com/c/ixzniBOQ/26-sprint-3-us19-analizar-la-sensibilidad-de-la-recomendaci%C3%B3n-de-compra-5-sp) | 5 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US16 | [Programar solicitudes recurrentes de insumos](https://trello.com/c/F24XwuWV/27-sprint-3-us16-programar-solicitudes-recurrentes-de-insumos-8-sp) | 8 | 6 | Sprint Backlog (To-Do), 0/6 |
+| US17 | [Recibir alertas anticipadas del vencimiento de cotizaciones](https://trello.com/c/9hi3BEw9/28-sprint-3-us17-recibir-alertas-anticipadas-del-vencimiento-de-cotizaciones-3-sp) | 3 | 6 | Sprint Backlog (To-Do), 0/6 |
+| **Total** | **8 tarjetas** | **42** | **48** | **Pendientes de ejecución** |
+
+La comprobación se realizó reabriendo cada tarjeta y verificando el contenido de sus criterios y sus seis elementos sin completar. Los enlaces de cada tarjeta permiten consultar la evidencia de planificación; no se presentan como evidencia de implementación de API, web o Flutter.
+
+Esta sección incorpora al informe el Product Backlog ampliado y la planificación de Sprint 3, sincronizados con las ocho tarjetas enlazadas. El cierre de las actividades documentales L01 y L02 no equivale a completar la implementación de US15–US22, cuyas tareas conservan el estado observado en Trello.
+
 ### 5.2.2. Implemented Landing Page Evidence
 
 La Landing Page de SmartQuote se implementó como un sitio estático en HTML5, CSS3 y JavaScript vainilla, sin frameworks ni dependencias de build, orientado a comunicar la propuesta de valor a los segmentos de Adquisiciones y de Producción y Sanidad. Incluye soporte bilingüe (español e inglés) mediante `i18n.js`, un simulador interactivo que recalcula en tiempo real el ranking de tres cotizaciones de ejemplo según criterios ponderados por el usuario (precio, plazo de entrega, etc.), y un formulario de contacto con validación de campos en el cliente (nombre, correo corporativo y empresa).
@@ -5654,54 +5945,173 @@ Duración: **00:02:45**
 
 ## 6.1. Testing Suites & Validation
 
-Las pruebas de esta sección se ejecutaron el **3 de octubre de 2026** con datos ficticios, PostgreSQL 16.15 local y el proveedor de extracción `Stub`. Las primeras ejecuciones se hicieron sobre copias locales de `smartquote-web-services` (base `develop`, commit `9af0fed`) y `smartquote-frontend-web` (base `develop`, commit `421558f`). Después, las pruebas nuevas del backend se incorporaron a `Back/develop` en los commits `3af19f8` y `596e1db`; el panel US16 y su prueba unitaria se incorporaron a `Front/develop` en `3651074`. Los resultados describen solo las ejecuciones locales documentadas: no prueban uso real, extracción con el proveedor de IA externo, producción ni Android. No se ha verificado la ejecución de CI.
+La verificación de Sprint 3 comprende las reglas de negocio y los contratos de US15–US22 en el backend, junto con los componentes móviles implementados para US15, US16, US17, US21 y US22. Las nuevas historias de la aplicación web y las funciones móviles de US18, US19 y US20 quedan fuera del alcance de ejecución de clientes de esta iteración. Los resultados del 10/11/2026 se obtienen con datos sintéticos y entornos locales aislados; las evidencias anteriores se conservan como regresión del flujo existente.
 
 | Nivel | Herramienta y alcance | Resultado local | Evidencia |
 |---|---|---|---|
-| Unitaria backend | xUnit: dominio e identidad/acceso | 32 aprobadas; 0 fallidas | [Resultados Domain](assets/testing/domain.trx) y [IdentityAccess](assets/testing/identity.trx) |
-| Unitaria frontend | Node Test Runner: reglas y adaptadores web, incluido US16 | 15 aprobadas; 0 fallidas | [Registro actualizado](assets/testing/web-unit-tests-15.log) |
-| Integración API y persistencia | `WebApplicationFactory`, xUnit y PostgreSQL | 3 aprobadas; 0 fallidas | [Resultado TRX](assets/testing/integration-waf.trx) |
-| Comprobación adicional API | Script HTTP sobre API y PostgreSQL locales | 20 comprobaciones aprobadas | [Salida](assets/testing/api-persistence.log) |
-| BDD | Reqnroll, Gherkin, xUnit, API y PostgreSQL | 3 escenarios aprobados; 0 fallidos | [Resultado TRX](assets/testing/bdd.trx) |
-| Sistema web | Playwright con Chrome, frontend, API y PostgreSQL | 2 recorridos aprobados en ejecuciones separadas | [Flujo de compra](assets/testing/web-e2e-full.log) y [acceso adaptable](assets/testing/web-e2e-responsive.log) |
-| Sistema web US16 | Playwright con Edge, frontend, API local y PostgreSQL; autenticación de prueba | 1 aprobada; 0 fallidas | [JUnit XML](assets/testing/us16-front-api-e2e.xml) |
-| Sistema Android nativo | Dispositivo o emulador Android | Pendiente de ejecución | Aún no hay evidencia de ejecución nativa |
+| Unitaria backend | xUnit: dominio e identidad/acceso; ejecución del 10/11/2026 | 76 aprobadas; 0 fallidas; 0 omitidas | [Dominio](assets/testing/backend-domain-2026-11-10.trx) e [identidad y acceso](assets/testing/backend-identity-2026-11-10.trx) |
+| Integración API y persistencia | xUnit, `WebApplicationFactory` y PostgreSQL temporal; regresión y US15–US22 | 98 aprobadas; 0 fallidas; 0 omitidas | [Resultados de integración](assets/testing/backend-integration-2026-11-10.trx) |
+| BDD | Reqnroll, Gherkin, xUnit, API y PostgreSQL; ejecución del 10/11/2026 | 3 escenarios aprobados; 0 fallidos; 0 omitidos; no incluye US15–US22 | [Resultados BDD](assets/testing/backend-bdd-2026-11-10.trx) |
+| Unitaria y componentes móviles | Flutter Test: dominio, repositorios con dobles y widgets; ocho archivos locales, incluidas US15–US17, US21 y US22 | 50 aprobadas; 0 fallidas; 0 omitidas | [Registro de Flutter](assets/testing/mobile-tests-2026-11-10.jsonl) |
+| Integración HTTP móvil | Repositorios móviles contra API ASP.NET Core y PostgreSQL temporales; flujo de compra existente | 1 recorrido aprobado; 0 fallidos | [Registro HTTP móvil](assets/testing/mobile-api-tests-2026-11-10.jsonl) |
+| Unitaria frontend, evidencia previa | Node Test Runner: reglas y adaptadores web del alcance anterior | 15 aprobadas; 0 fallidas | [Registro conservado](assets/testing/web-unit-tests-15.log) |
+| Comprobación adicional API, evidencia previa | Script HTTP sobre API y PostgreSQL locales | 20 comprobaciones aprobadas | [Salida conservada](assets/testing/api-persistence.log) |
+| Sistema web, evidencia previa | Playwright con Chrome, frontend, API y PostgreSQL | 2 recorridos aprobados en ejecuciones separadas | [Flujo de compra](assets/testing/web-e2e-full.log) y [acceso adaptable](assets/testing/web-e2e-responsive.log) |
+| Sistema web US14, evidencia previa | Panel de métricas con Playwright, Edge, API local y PostgreSQL; autenticación de prueba | 1 aprobada; 0 fallidas | [JUnit XML](assets/testing/us16-front-api-e2e.xml), conservado con su nombre original |
+| Sistema Android nativo | Recorrido de pantallas en dispositivo o emulador Android | Sin ejecución documentada para las nuevas historias | Evidencia pendiente |
+
+**Entorno y conservación de resultados.** La ejecución utiliza Windows, .NET 10, PostgreSQL 16 en Docker y Flutter 3.47.9 con Dart 3.13.7. El backend registra **177 pruebas aprobadas** entre dominio, identidad, integración y BDD. Las 50 pruebas locales de Flutter combinan pruebas unitarias y pruebas de widgets; no se clasifican en su totalidad como pruebas unitarias de entidades. Los registros JSONL conservan los eventos de resultados de Flutter en formato máquina y excluyen los mensajes auxiliares del depurador. La integración HTTP móvil utiliza red real hacia el entorno temporal; sus resultados no acreditan un recorrido por las pantallas ni una ejecución en Android.
+
+**Ejecución y artefactos en CI.** El workflow del backend ejecuta `tests/run-tests.ps1 -Coverage` y publica `backend-test-results` con archivos TRX y cobertura Cobertura. El workflow móvil utiliza `tool/run-tests.ps1 -Level Unit -Coverage -Machine`, descubre los ocho archivos locales y publica `mobile-test-results` y `mobile-test-coverage`. La prueba de red opcional `live_backend_test.dart` se excluye de esta selección. Un trabajo separado ejecuta el recorrido HTTP contra el backend aislado y publica `mobile-api-integration-results`; selecciona la revisión compatible del backend mediante `SMARTQUOTE_BACKEND_TEST_REF`. Los resultados de esta sección corresponden a la ejecución local; la configuración de los workflows no sustituye la evidencia de una ejecución en GitHub Actions.
+
+![Resultados y artefactos de pruebas del backend en GitHub Actions](assets/testing/6.1-01-backend-ci-tests.png)
+
+![Resultados y artefactos de pruebas móviles en GitHub Actions](assets/testing/6.1-02-mobile-ci-tests.png)
 
 ### 6.1.1. Core Entities Unit Tests
 
-Se ejecutaron los proyectos xUnit de `smartquote-web-services` en configuración `Release`. `SmartQuote.Domain.Tests` aprobó **15 de 15** pruebas: 9 preexistentes y 6 nuevas para creación de solicitudes, transiciones permitidas y prohibidas, historial y cierre. `SmartQuote.Modules.IdentityAccess.Tests` aprobó **17 de 17** pruebas: 16 preexistentes y 1 nueva que verifica los límites exactos de longitud de la contraseña. Los resultados se guardaron en [domain.trx](assets/testing/domain.trx) e [identity.trx](assets/testing/identity.trx). Las 7 pruebas nuevas forman parte de `Back/develop` mediante los commits `3af19f8` y `596e1db`.
+Las pruebas unitarias verifican las entidades, los objetos de valor y las reglas de negocio del backend de SmartQuote de forma aislada. Se utiliza **xUnit sobre .NET 10**, con casos positivos y negativos, datos sintéticos y fechas controladas cuando la regla depende del tiempo. Su ejecución no necesita navegador, aplicación móvil, PostgreSQL, credenciales de producción ni servicios externos de OpenAI o SUNAT. Este nivel comprueba invariantes del dominio; la autorización HTTP, la persistencia y las transacciones entre contextos se verifican por separado mediante pruebas de integración.
 
-Como comprobación complementaria de reglas de la aplicación web, `npm test` aprobó **15 de 15** pruebas el 4 de octubre de 2026. Entre los casos ejecutados están la validación de cantidades y requisitos de solicitudes, las transiciones de estado, las restricciones para aprobar simulaciones y el tratamiento explícito de respuestas HTTP `401`, `403` y `409`. Su [salida de consola actualizada](assets/testing/web-unit-tests-15.log) conserva los nombres de los casos y el resultado, incluida la prueba de US16 sobre período, consulta HTTP y valores no disponibles. Estas pruebas web no sustituyen las pruebas de entidades del backend.
+| Proyecto | Alcance | Aprobadas | Fallidas | Omitidas | Evidencia |
+| --- | --- | --- | --- | --- | --- |
+| `SmartQuote.Domain.Tests` | Solicitudes, cotizaciones, evaluación, órdenes, auditoría, entregas, métricas y reglas de las nuevas historias | 59 | 0 | 0 | [Resultados de dominio](assets/testing/backend-domain-2026-11-10.trx) |
+| `SmartQuote.Modules.IdentityAccess.Tests` | Reglas de identidad, cuentas y credenciales | 17 | 0 | 0 | [Resultados de identidad y acceso](assets/testing/backend-identity-2026-11-10.trx) |
+| **Total** | **Pruebas unitarias del backend** | **76** | **0** | **0** | Archivos TRX de la ejecución |
+
+**Reglas nuevas y trazabilidad.** Las pruebas de las historias nuevas mantienen los identificadores de historia y escenario mediante atributos `Trait("Story", "US##")` y `Trait("Scenario", "E#")`; las variantes de una regla se expresan con `Theory` e `InlineData`. Los comentarios de los casos identifican el comportamiento comprobado. La relación siguiente describe la cobertura unitaria existente, sin atribuir a una prueba aislada la validación de todos los escenarios HTTP de una historia.
+
+| Historia y escenarios comprobados | Contexto y componentes | Regla, límites y errores verificados | Archivo de pruebas |
+| --- | --- | --- | --- |
+| US15 — E2 y E3 | SupplyRequests: `TechnicalClarification`, `PurchaseRequest` y requisitos técnicos | Solo el destinatario responde; una respuesta no se registra dos veces; la revisión conserva la identidad del requisito y sus valores anterior/nuevo; un requisito obligatorio no se elimina mediante la aclaración. | `RequestWorkflowTests.cs` |
+| US16 — E1, E2 y E4 | SupplyRequests: `RecurringRequestSchedule` y borradores de solicitudes | Se rechazan intervalos nulos o negativos y anticipaciones negativas; se conserva la zona horaria; el borrador no genera un evento de envío hasta su confirmación; no se reenvía ni se envía con fecha vencida; la pausa conserva las ocurrencias anteriores. | `RequestWorkflowTests.cs` |
+| US17 — E2 y E3 | QuotationIntake: `QuotationExpiryAlert` | La lectura repetida conserva su fecha; la reasignación no borra el estado de lectura; otro destinatario no puede leer la alerta; una oferta vencida no genera una alerta preventiva nueva. | `AdvancedPurchasingTests.cs` |
+| US18 — E1 y E4 | PurchaseOrdering: `SupplierAccount` | El proveedor identificado comienza pendiente; una habilitación exige justificación y conserva actor, fecha y cambio de estado; la reactivación incrementa la versión y mantiene el historial. | `OrderingPolicyTests.cs` |
+| US19 — E3 | EvaluationSimulation: `SensitivityAnalysis` | No se admite un análisis que presente conclusiones con menos de dos ofertas elegibles en alguna configuración. | `AdvancedPurchasingTests.cs` |
+| US20 — E1 a E4 | PurchaseOrdering: `PurchaseBudget`, `BudgetAssessment` y contraste monetario de aplicación | Se rechazan cero, importes negativos y presupuestos en una moneda distinta de PEN; la ausencia del límite no equivale a cero; la igualdad con el límite se permite; se suma toda la adquisición; el exceso se identifica; USD exige una tasa conservada y no se omiten partidas; las revisiones mantienen las autorizaciones anteriores. | `OrderingPolicyTests.cs` |
+| US21 — E1 y E2 | EvaluationSimulation: `DistributedSimulationEngine` | Se evalúa por ítem usando la cantidad solicitada y una tasa común; se conservan importes originales y PEN; las ofertas parciales no se suman para completar la cantidad de un ítem; una cobertura incompleta no queda aprobable. | `AdvancedPurchasingTests.cs` |
+| US22 — E2 | SupplyRequests: asignación de `PurchaseRequest` | Una reasignación exige motivo y conserva solicitante, estado, responsable anterior, nuevo responsable y autor del cambio. | `RequestWorkflowTests.cs` |
+
+Estos casos complementan las pruebas de regresión existentes de solicitudes, criterios técnicos, conversión monetaria, auditoría, evaluación de entregas y métricas. Por ejemplo, `FastFlowTests.cs` comprueba la interpretación de valores decimales y unidades, y `ExchangeRateTests.cs` verifica reglas de conversión sin consultar el servicio oficial. Las pruebas unitarias utilizan valores conocidos: no constituyen una evaluación de precisión del modelo de IA ni una comprobación de disponibilidad de SUNAT.
+
+**Ejemplo de comprobación de límites de US20 — E1:**
+
+```csharp
+[Theory, Trait("Story", "US20"), Trait("Scenario", "E1")]
+[InlineData(0, "PEN"), InlineData(-1, "PEN"), InlineData(100, "USD")]
+public void InvalidBudgetCannotBeAuthorized(decimal amount, string currency) =>
+    Assert.Throws<DomainException>(() => PurchaseBudget.Create(
+        Guid.NewGuid(), amount, currency, "Autorización",
+        Guid.NewGuid(), DateTimeOffset.UtcNow));
+```
+
+La evidencia corresponde a la ejecución del 10/11/2026 mediante `pwsh -NoProfile -File tests/run-tests.ps1 -Level All -Coverage`, identificada como `41c10ad85deb450f80ec85da192c58e5`. La selección `-Level Unit` también ejecuta las 76 pruebas unitarias: las clases de reglas de solicitudes y políticas de compra incluyen la categoría `Unit`. Los identificadores `Story` y `Scenario` permiten seleccionar una historia sin cambiar los nombres de sus pruebas.
+
+```powershell
+# Desde la raíz de smartquote-web-services.
+pwsh -NoProfile -File tests/run-tests.ps1 -Level Unit
+pwsh -NoProfile -File tests/run-tests.ps1 -Story US15 -Level Unit
+```
+
+Los proyectos unitarios también pueden ejecutarse por separado con `dotnet test tests/SmartQuote.Domain.Tests/SmartQuote.Domain.Tests.csproj --configuration Release` y `dotnet test tests/SmartQuote.Modules.IdentityAccess.Tests/SmartQuote.Modules.IdentityAccess.Tests.csproj --configuration Release`. En JetBrains Rider, los atributos de xUnit permiten ejecutar una clase o un caso individual y revisar su resultado en el explorador de pruebas.
 
 ### 6.1.2. Core Integration Tests
 
-Se agregaron tres pruebas xUnit con `WebApplicationFactory<Program>` que inician la API ASP.NET Core en memoria, aplican las migraciones y consultan directamente una base PostgreSQL de prueba. Las tres aprobaron:
+Las pruebas de `SmartQuote.Integration.Tests` comprueban los contratos REST, la autorización por rol, las migraciones, la persistencia y las operaciones entre contextos. `WebApplicationFactory<Program>` ejecuta los controladores y servicios reales con PostgreSQL temporal. El proyecto está incluido en `SmartQuote.sln`, junto con las pruebas de dominio, identidad y BDD. La ejecución del 10/11/2026 registra **98 casos aprobados, 0 fallidos y 0 omitidos** en el [resultado TRX de integración](assets/testing/backend-integration-2026-11-10.trx).
 
-1. Una solicitud creada por el rol de producción devuelve `201`, puede recuperarse por API y tiene estado `Submitted` en la tabla `supply_requests.purchase_requests`.
-2. Un lote con un PDF de prueba y un archivo `.txt` no admitido devuelve `207`; la cotización válida queda en `quotation_intake.poultry_quotes` y el archivo inválido devuelve `unsupported_media_type`.
-3. Dos archivos PDF idénticos en un lote hacen referencia a la misma cotización y dejan una sola fila persistida.
+**Aislamiento y datos de prueba.** `tests/run-tests.ps1` crea un contenedor PostgreSQL exclusivo, asigna un puerto local disponible, prepara credenciales y claves temporales y aplica las migraciones. Al finalizar retira el proceso de API, el contenedor y los archivos temporales de esa ejecución. Las comprobaciones no utilizan la base de trabajo ni credenciales de producción. Los límites de extracción de documentos y tipo de cambio se sustituyen por adaptadores controlados; los controladores, las reglas del dominio y PostgreSQL se ejecutan realmente. Los casos de SUNAT comprueban el uso y la conservación de una tasa conocida y el rechazo ante indisponibilidad, sin acreditar la disponibilidad del servicio oficial.
 
-El [archivo TRX de integración](assets/testing/integration-waf.trx) registra **3 aprobadas y 0 fallidas**. Además, una comprobación HTTP independiente contra la API local aprobó **20 verificaciones** de registro e inicio de sesión, autorización por rol, creación y lectura de solicitud, dos transiciones de estado y carga parcial. Su [registro](assets/testing/api-persistence.log) y [resumen JSON](assets/testing/api-persistence-result.json) muestran los códigos de respuesta y los identificadores generados.
+**Trazabilidad de US15–US22.** Las pruebas incluyen casos etiquetados para los 30 escenarios de aceptación de las ocho historias. La cobertura siguiente corresponde al backend y no implica que las pantallas web o móviles estén implementadas o verificadas de extremo a extremo.
 
-Los PDF empleados son archivos sintéticos mínimos; estos resultados verifican la aceptación, persistencia y manejo de errores del lote con el proveedor `Stub`, pero no la calidad de extracción de cotizaciones reales. Las pruebas de integración están incluidas en `Back/develop` (`596e1db`). Su proyecto se ejecuta por separado: no forma parte de `SmartQuote.sln`. No se ha verificado una ejecución de CI.
+| Historia | Escenarios | Contratos, permisos y persistencia comprobados | Archivo en `tests/SmartQuote.Integration.Tests` |
+| --- | --- | --- | --- |
+| US15 — Aclaraciones técnicas | E1–E3 | Origen de la pregunta y destinatario; respuesta autorizada; conservación del requisito hasta una revisión explícita; versiones e invalidación de decisiones basadas en especificaciones anteriores. | `RequestWorkflowAcceptanceTests.cs` |
+| US16 — Solicitudes recurrentes | E1–E4 | Programación válida con responsable y zona horaria; borrador privado y editable; envío explícito; generación única de ocurrencias concurrentes; pausa con conservación del historial. | `RequestWorkflowAcceptanceTests.cs` |
+| US17 — Alertas de vencimiento | E1–E3 | Bandeja del analista responsable; ausencia de duplicados en comprobaciones paralelas; lectura persistente y reasignación; invalidación de evaluaciones vencidas y cese de alertas preventivas. | `AdvancedPurchasingAcceptanceTests.cs` |
+| US18 — Habilitación de proveedores | E1–E4 | Estado pendiente y decisiones reservadas al jefe; suspensión que invalida recomendaciones pendientes; bloqueo de nuevas órdenes y conflictos concurrentes; reactivación sin restaurar simulaciones anteriores. | `OrderingPolicyAcceptanceTests.cs` |
+| US19 — Sensibilidad | E1–E4 | Configuraciones comparables con las mismas entradas y tasa; variación de recomendaciones; rechazo de pesos inválidos u ofertas insuficientes; promoción explícita y atómica a una simulación oficial vigente. | `AdvancedPurchasingAcceptanceTests.cs` |
+| US20 — Presupuesto | E1–E4 | Límite positivo en PEN y permisos; igualdad con el máximo; conversión conservada; rechazo del exceso o de evidencia cambiaria ausente; historial y control de cambios concurrentes. | `OrderingPolicyAcceptanceTests.cs` |
+| US21 — Compra distribuida | E1–E4 | Evaluación por ítem y cantidad completa; bloqueo por cobertura insuficiente; una orden por proveedor con importes trazables; presupuesto global; reversión de la operación ante fallos e idempotencia concurrente. | `AdvancedPurchasingAcceptanceTests.cs` |
+| US22 — Asignación de analista | E1–E4 | Asignación a una cuenta habilitada sin cambiar autor o estado; motivo e historial de reasignación; conflictos de versión; rechazo de destinatarios inválidos y bandeja propia con restricciones de acceso. | `RequestWorkflowAcceptanceTests.cs` |
+
+`PurchaseAwardMigrationTests.cs` complementa US21 mediante una actualización real sobre una orden anterior: verifica que la migración hacia adjudicaciones conserve identificador, número, moneda y referencias de origen. Las pruebas de concurrencia y reversión comprueban el estado persistido después del conflicto, además de la respuesta HTTP. La regresión incluye registro de solicitudes, cargas parciales, rechazo de archivos no admitidos y deduplicación de documentos.
+
+**Ejecución reproducible.** Desde la raíz del backend, con Docker disponible:
+
+```powershell
+pwsh -NoProfile -File tests/run-tests.ps1 -Level Integration -Coverage
+pwsh -NoProfile -File tests/run-tests.ps1 -Story US21 -Level Integration
+```
+
+**Integración de repositorios móviles.** `tool/core_api_test.dart` ejecuta un recorrido con los clientes HTTP de Flutter contra una API local y PostgreSQL exclusivos. Comprueba inicio de sesión real, permisos, solicitud y adjunto, carga y corrección de cotizaciones, simulación, orden idempotente, consultas, PDF, auditoría, métricas y evaluación de entrega. La preparación habilita al proveedor mediante el contrato vigente antes de simular. Este paso prepara los datos de la prueba; no acredita una pantalla móvil de administración de proveedores. El [registro HTTP móvil del 10/11/2026](assets/testing/mobile-api-tests-2026-11-10.jsonl) contiene **1 recorrido aprobado y 0 fallidos**.
+
+```powershell
+# Desde SmartquoteApp-mobile/smartquote_mobile, con Flutter y Docker disponibles.
+pwsh -NoProfile -File tool/run-tests.ps1 -Level Integration -BackendPath E:\smartquote-web-services
+```
+
+El recorrido HTTP móvil cubre el flujo anterior a US15–US22. Las nuevas funciones móviles de US15–US17, US21 y US22 cuentan con las comprobaciones locales de contratos y widgets detalladas en 6.1.4; utilizan respuestas controladas y no sustituyen una prueba de integración de sus pantallas con la API. La aplicación web todavía no aporta integración de las nuevas historias. Las funciones móviles de US18–US20 no forman parte del alcance implementado de esta iteración.
+
+![Resultados de integración HTTP y persistencia del backend](assets/testing/6.1.2-01-backend-integration-results.png)
 
 ### 6.1.3. Core Behavior-Driven Development
 
-Se implementaron tres escenarios ejecutables en Gherkin con Reqnroll y xUnit, conectados a una API local con PostgreSQL. El [resultado TRX](assets/testing/bdd.trx) registra **3 escenarios aprobados y 0 fallidos**:
+El desarrollo dirigido por comportamiento expresa las reglas observables mediante **Gherkin**, siguiendo la estructura `Given–When–Then`. SmartQuote utiliza **Reqnroll y xUnit** en el proyecto `SmartQuote.Bdd.Tests`: cada escenario de `Features/PurchaseFlow.feature` se vincula con métodos ejecutables de `Steps/PurchaseFlowSteps.cs`. Los pasos realizan peticiones a la API ASP.NET Core y comprueban las respuestas y la recuperación posterior de los recursos; no dependen de las pantallas web o móviles.
 
-| Escenario | Resultado observado |
-|---|---|
-| Producción registra una solicitud completa | La API devuelve `201` y la solicitud se lee con estado `Submitted`. |
-| Un analista intenta registrar una solicitud de producción | La API devuelve `403` por la restricción de rol. |
-| Se carga un PDF junto con un archivo no admitido | La API devuelve `207`; se conserva la cotización válida y se informa el error del otro archivo. |
+Las condiciones previas preparan datos ficticios y roles conocidos. La API utiliza PostgreSQL aislado y credenciales de prueba; el ejecutor crea los recursos temporales y los elimina al finalizar. Los escenarios vigentes no invocan el proveedor real de IA ni SUNAT. El aislamiento permite repetir las comprobaciones sin afectar la base de trabajo ni utilizar claves de producción.
 
-Estos escenarios cubren el registro de solicitudes y la incorporación de cotizaciones correspondientes a **US02** y **US04**. Se ejecutaron localmente con datos ficticios y están incluidos en `Back/develop` (`596e1db`); no se ha verificado un resultado de estos escenarios en GitHub Actions.
+| Historia / escenario etiquetado | Escenario Gherkin implementado | Comprobación ejecutada | Resultado |
+| --- | --- | --- | --- |
+| `@US02 @E1` | `Production registers a complete purchase request` | Con la API disponible y el rol de producción, el registro devuelve `201`; la solicitud se recupera con el mismo identificador y estado `Submitted`. | Aprobado |
+| `@TS02 @E3` | `Purchasing cannot register a production request` | Un analista intenta registrar una solicitud reservada al rol de producción; la API devuelve `403`. | Aprobado |
+| `@US04 @US10 @E2` | `A batch preserves a valid quotation when another file is unsupported` | La carga de un PDF y un archivo no permitido devuelve `207`; el PDF queda disponible en la consulta de cotizaciones y el archivo no admitido se rechaza con `unsupported_media_type`. | Aprobado |
+
+Las etiquetas vinculan la especificación con la historia y el escenario; Reqnroll genera los casos de xUnit a partir del archivo `.feature`. El TRX conserva los nombres y resultados de los casos generados, de modo que la evidencia corresponde a comportamientos ejecutados y no únicamente a una descripción textual.
+
+La ejecución del 10/11/2026 mantiene **3 escenarios aprobados, 0 fallidos y 0 omitidos**, según el [registro BDD](assets/testing/backend-bdd-2026-11-10.trx). Estos resultados forman parte de las 177 pruebas del backend registradas en 6.1.
+
+**Ejemplo ejecutable de éxito incluido en `PurchaseFlow.feature`:**
+
+```gherkin
+@US02 @E1
+Scenario: Production registers a complete purchase request
+  Given the SmartQuote API and PostgreSQL are available
+  And I have the ProductionSpecialist role
+  When I register a complete purchase request
+  Then the API responds with 201
+  And the request can be read back with Submitted status
+```
+
+**Ejemplo ejecutable de rechazo del mismo archivo:**
+
+```gherkin
+@TS02 @E3
+Scenario: Purchasing cannot register a production request
+  Given the SmartQuote API and PostgreSQL are available
+  And I have the PurchaseAnalyst role
+  When I register a complete purchase request
+  Then the API responds with 403
+```
+
+**Alcance de las nuevas historias.** US15–US22 cuentan con comprobaciones xUnit de dominio y de integración HTTP/PostgreSQL, pero todavía no tienen escenarios Gherkin vinculados a pasos ejecutables. Por tanto, los tres resultados BDD anteriores no se presentan como aceptación BDD de estas historias. Su ampliación requiere los siguientes comportamientos de éxito y rechazo:
+
+| Historia | Comportamiento de éxito para ampliar la especificación | Comportamiento de rechazo para ampliar la especificación | Estado BDD |
+| --- | --- | --- | --- |
+| US15 | Aclaración respondida por su destinatario y revisión técnica trazable. | Respuesta de un tercero o aprobación basada en una especificación anterior. | Pendiente de automatización y ejecución en Gherkin |
+| US16 | Generación de un único borrador recurrente y confirmación explícita del especialista. | Duplicación de una ocurrencia, envío de un borrador vencido o generación de una programación pausada. | Pendiente de automatización y ejecución en Gherkin |
+| US17 | Alerta para el analista responsable sin duplicados ni pérdida de lectura. | Generación preventiva para una oferta vencida o aprobación con condiciones comerciales vencidas. | Pendiente de automatización y ejecución en Gherkin |
+| US18 | Habilitación y reactivación justificadas con historial de decisiones. | Nueva adjudicación a un proveedor pendiente o suspendido. | Pendiente de automatización y ejecución en Gherkin |
+| US19 | Variantes comparables y promoción explícita a criterios y simulación oficiales. | Ponderaciones inválidas, ofertas elegibles insuficientes o promoción de un análisis desactualizado. | Pendiente de automatización y ejecución en Gherkin |
+| US20 | Aprobación de la adquisición completa dentro del presupuesto vigente, incluida la conversión conservada. | Exceso global, evidencia cambiaria ausente o comprobación de una versión presupuestal anterior. | Pendiente de automatización y ejecución en Gherkin |
+| US21 | Adjudicación completa por ítem, una orden por proveedor y reintento idempotente. | Cobertura incompleta o fallo de la emisión, sin dejar una adjudicación parcial. | Pendiente de automatización y ejecución en Gherkin |
+| US22 | Asignación vigente y reasignación justificada con conservación del historial. | Destinatario no habilitado o solicitud cerrada, sin alterar al responsable existente. | Pendiente de automatización y ejecución en Gherkin |
+
+La ejecución local reproducible se realiza mediante `pwsh -NoProfile -File tests/run-tests.ps1 -Level All`. Con la API y el entorno aislado ya disponibles, el proyecto BDD también se ejecuta mediante `dotnet test tests/SmartQuote.Bdd.Tests/SmartQuote.Bdd.Tests.csproj --configuration Release`. Los resultados documentados acreditan la ejecución local de los tres escenarios existentes; no constituyen evidencia de CI, producción ni recorridos en Android.
 
 ### 6.1.4. Core System Tests
 
 Se ejecutaron dos pruebas Playwright de la aplicación **web** en Chrome. La primera comprobó el acceso en inglés y español y una pantalla adaptable; aprobó **1 de 1**. La segunda recorrió la creación de una solicitud desde producción y el flujo de adquisiciones desde la interfaz hasta la orden de compra, con la API y PostgreSQL locales; aprobó **1 de 1**. Quedaron los registros del [acceso adaptable](assets/testing/web-e2e-responsive.log) y del [flujo de compra](assets/testing/web-e2e-full.log).
 
-Además, una prueba Playwright de US16 aprobó la consulta del panel contra la API y PostgreSQL locales con datos ficticios. El ingreso se simuló con un token de prueba; el endpoint de métricas respondió desde la API local. El [resultado JUnit XML](assets/testing/us16-front-api-e2e.xml) registra 1 aprobada y 0 fallidas. Esta comprobación corresponde al panel web, no a Android.
+Además, una prueba Playwright del panel de métricas, correspondiente a US14 en la numeración vigente, aprobó la consulta contra la API y PostgreSQL locales con datos ficticios. El ingreso se simuló con un token de prueba; el endpoint de métricas respondió desde la API local. El [resultado JUnit XML](assets/testing/us16-front-api-e2e.xml), conservado con su nombre original, registra 1 aprobada y 0 fallidas. Esta comprobación corresponde al panel web, no a Android ni a la programación recurrente de US16.
 
 La ejecución del flujo produjo una [captura de comparación en escritorio](assets/testing/vue-comparison-desktop.png) y una [captura de la orden en una ventana web estrecha](assets/testing/vue-order-narrow-web.png). Ambas utilizan datos ficticios. La segunda imagen corresponde al navegador web con ancho reducido: **no es evidencia de la aplicación Android nativa**.
 
@@ -5709,7 +6119,7 @@ La ejecución del flujo produjo una [captura de comparación en escritorio](asse
 
 ![Orden de compra en la aplicación web con ventana estrecha](assets/testing/vue-order-narrow-web.png)
 
-**Capturas del proyecto móvil ejecutado en Chrome (evidencia visual facilitada por el integrante responsable).** El compañero indicó que ejecutó la aplicación en Chrome. Tres capturas muestran `localhost:50661`; la captura de la lista de solicitudes está recortada y no permite identificar el dispositivo. Estas imágenes muestran pantallas de la interfaz, pero no documentan un recorrido de prueba completo ni una ejecución en Android.
+**Capturas del proyecto móvil ejecutado en Chrome.** Tres capturas muestran `localhost:50661`; la captura de la lista de solicitudes está recortada y no permite identificar el dispositivo. Estas imágenes documentan las pantallas del flujo previo, sin constituir evidencia de un recorrido completo de las nuevas historias ni de una ejecución en Android.
 
 ![Pantalla de inicio de sesión del proyecto Flutter ejecutado en Chrome](assets/testing/flutter-chrome-login.png)
 
@@ -5719,7 +6129,504 @@ La ejecución del flujo produjo una [captura de comparación en escritorio](asse
 
 ![Notificaciones del proyecto Flutter ejecutado en Chrome](assets/testing/flutter-chrome-notifications.png)
 
-**Pendiente para cerrar 6.1.4:** ejecutar el flujo principal en un dispositivo o emulador Android, registrar versión de la aplicación, dispositivo, fecha, pasos y resultado, y adjuntar capturas o video de esa ejecución. Hasta contar con esa evidencia, el recorrido de extremo a extremo queda verificado únicamente para la aplicación web en el entorno local descrito.
+**Verificación local de componentes móviles de Sprint 3.** El 10/11/2026 se ejecutan las pruebas existentes de US15, US16, US17, US21 y US22 con Flutter 3.47.9 y Dart 3.13.7 en Windows, sin dispositivo Android. La selección completa comprende ocho archivos y registra **50 pruebas aprobadas, 0 fallidas y 0 omitidas**. Dentro de esa selección, 19 casos están identificados con las cinco historias nuevas implementadas. El [registro en formato máquina](assets/testing/mobile-tests-2026-11-10.jsonl) conserva los nombres y resultados individuales. Los casos de widgets interactúan con controles reales de Flutter, pero sus repositorios reciben respuestas del doble `TestApi`; por ello verifican comportamiento de componentes y contratos enviados, no persistencia real ni un recorrido completo del sistema.
+
+| Historia | Archivo en `test` | Casos aprobados | Comportamiento comprobado en el cliente | Alcance de la evidencia |
+| --- | --- | --- | --- | --- |
+| US15 — Aclaraciones técnicas | `request_workflows_test.dart` | 6 | Origen de la aclaración; respuesta explícita del especialista; comandos independientes de respuesta y revisión; conservación del requisito obligatorio y de las versiones enviadas. | Repositorio y widgets con respuestas controladas. |
+| US16 — Solicitudes recurrentes | `request_workflows_test.dart` | 8 | Rechazo local de programación inválida; conservación de ítems y requisitos del borrador; guardado sin envío automático; comandos versionados; ocurrencias visibles y pausa con conservación de referencias. | Validación local, repositorio y widgets; la generación única del servidor se verifica en integración del backend. |
+| US17 — Alertas de vencimiento | `request_workflows_test.dart` | 2 | Lectura de la bandeja, proveedor y vigencia; marcado de lectura mediante el contrato del servidor sin modificar la validez de la cotización. | Repositorio y widgets; la planificación de alertas se verifica en integración del backend. |
+| US21 — Compra distribuida | `distributed_purchase_test.dart` | 1 | Bloqueo de cobertura incompleta y exceso de presupuesto; emisión explícita del conjunto de órdenes revisado. | Estados del panel y solicitudes enviadas con respuestas controladas; no comprueba transacciones de PostgreSQL. |
+| US22 — Asignación de analista | `request_assignment_test.dart` | 2 | Motivo obligatorio y versión observada al reasignar; actualización de la responsabilidad; filtro de solicitudes propias y recarga de la bandeja. | Interacción de widgets y contratos enviados; no comprueba permisos del servidor. |
+
+La repetición de una historia se realiza con el mismo ejecutor local, sin cambiar la selección de archivos ni los nombres de los casos:
+
+```powershell
+# Desde SmartquoteApp-mobile/smartquote_mobile.
+pwsh -NoProfile -File tool/run-tests.ps1 -Level Unit
+pwsh -NoProfile -File tool/run-tests.ps1 -Story US15 -Level Unit
+pwsh -NoProfile -File tool/run-tests.ps1 -Story US21 -Level Unit
+pwsh -NoProfile -File tool/run-tests.ps1 -Story US22 -Level Unit
+```
+
+**Estado de verificación de extremo a extremo.** Las nuevas historias web permanecen pendientes de implementación y no se presentan como recorridos aprobados. En móvil, US15–US17, US21 y US22 disponen de componentes implementados y pruebas locales, pero no cuentan todavía con un recorrido documentado de sus pantallas contra la API en un dispositivo o emulador Android. US18–US20 permanecen fuera del alcance móvil implementado. El recorrido HTTP descrito en 6.1.2 verifica los repositorios del flujo previo; `integration_test/core_workflow_test.dart` reutiliza ese recorrido y no automatiza la navegación por las pantallas.
+
+| Registro de ejecución | Aplicación y entorno | Datos | Resultado acreditado | Verificación pendiente |
+| --- | --- | --- | --- | --- |
+| Regresión web conservada | Navegadores Chrome y Edge, API y PostgreSQL locales | Solicitud y cotizaciones ficticias | Flujo de compra, acceso adaptable y panel de métricas del alcance previo. | Recorridos de US15–US22 cuando sus pantallas estén implementadas. |
+| Componentes Flutter, 10/11/2026 | Entorno de pruebas Flutter en Windows; sin dispositivo | Respuestas sintéticas y roles controlados en `TestApi` | 50 pruebas aprobadas, incluidas 19 de US15–US17, US21 y US22. | Flujo real de las cinco historias implementadas en Android, con API y persistencia. |
+| Repositorios HTTP Flutter, 10/11/2026 | Entorno Flutter en Windows, API ASP.NET Core y PostgreSQL temporales | Cuentas y documentos sintéticos; extracción `Stub` | 1 recorrido del flujo previo aprobado. | Navegación e interacción de las pantallas móviles con esos servicios. |
+
+La evidencia nativa de sistema requiere registrar dispositivo, versión de la aplicación, entorno de API, fecha, pasos, resultado y captura o video del recorrido. La compilación de un APK y las capturas aisladas de Chrome no sustituyen ese registro.
+
+## 6.2. Static testing & Verification
+
+Esta sección reúne las técnicas de verificación estática aplicadas a SmartQuote: métodos que examinan el código y los artefactos del proyecto sin ejecutarlos, para comprobar que cumplen los estándares de calidad y seguridad antes de su despliegue. Su objetivo es identificar defectos en una fase temprana del ciclo de desarrollo, cuando corregirlos es más simple y económico que después de una prueba de sistema o de un despliegue.
+
+El alcance comprende los tres repositorios de la solución —`smartquote-web-services`, `smartquote-frontend-web` y `smartquote-native-mobile`— en las revisiones que incorporan las historias del Sprint 3 (US15–US22). La verificación estática se organiza en dos partes: el análisis automatizado del código con herramientas propias de cada lenguaje (6.2.1) y las revisiones del código realizadas por los integrantes del equipo (6.2.2). Ambas complementan las pruebas dinámicas de la sección 6.1.
+
+### 6.2.1. Static Code Analysis
+
+El análisis estático revisa el código fuente sin ejecutarlo para detectar defectos, desviaciones del estándar, vulnerabilidades y oportunidades de mejora antes de que el software llegue a pruebas dinámicas o a producción. En SmartQuote se aplica a los tres sistemas que componen la solución —backend en ASP.NET Core, aplicación web en Vue y aplicación móvil en Flutter— y combina herramientas automatizadas propias de cada lenguaje con revisiones manuales del código. Detectar estos problemas durante el desarrollo reduce el costo de corregirlos y evita que se acumulen entre sprints.
+
+El alcance se organiza en dos frentes: el cumplimiento del estándar de codificación y las convenciones de cada lenguaje (6.2.1.1) y la evaluación de la calidad y la seguridad del código (6.2.1.2). Cada resultado indica la revisión analizada, la herramienta y su versión, de modo que pueda reproducirse sobre el mismo commit.
+
+#### 6.2.1.1. Coding standard & Code conventions
+
+Las normas de codificación y las convenciones son las directrices que el equipo sigue para que el código de SmartQuote sea legible, mantenible y coherente entre sus tres sistemas: el backend en ASP.NET Core, la aplicación web en Vue y la aplicación móvil en Flutter. Se aplican los siguientes principios:
+
+- **Clean Code.** Los nombres de clases, métodos y variables provienen del lenguaje del negocio y describen su intención, por ejemplo `PurchaseRequest`, `SupplierAccount`, `PurchaseBudget` o `assertTransition`. Cada método tiene una responsabilidad concreta y valida sus precondiciones al inicio, lanzando excepciones del dominio (`DomainException`, `ConflictException`) en lugar de devolver estados ambiguos. Se evita el código muerto: ESLint y el analizador de Dart rechazan variables e importaciones sin uso. Los comentarios se reservan para explicar decisiones del negocio, y las pruebas se nombran por historia y escenario (por ejemplo, `US20 E3`).
+- **Clean Architecture.** Cada módulo del backend se divide en cuatro capas: *Domain* (agregados, entidades, objetos de valor y reglas, sin dependencias de frameworks), *Application* (casos de uso y puertos), *Infrastructure* (Entity Framework Core con PostgreSQL y los adaptadores de OpenAI y SUNAT) e *Interfaces* (controladores REST, recursos y ensambladores de transformación). Las dependencias apuntan hacia el dominio y `Program.cs` actúa como raíz de composición. Los clientes reproducen esta organización por contexto en `domain`, `application`, `infrastructure` y `presentation`; en la aplicación web, una prueba de arquitectura impide que el dominio y la aplicación importen Vue, PrimeVue o el cliente HTTP.
+- **Domain-Driven Design (DDD).** El sistema se divide en los *bounded contexts* `IdentityAccess`, `SupplyRequests`, `QuotationIntake`, `EvaluationSimulation` y `PurchaseOrdering`, más un *shared kernel* (`SmartQuote.Shared`) con excepciones, eventos y unidad de trabajo. El lenguaje ubicuo traduce los términos del negocio de forma estable (solicitud, cotización, simulación, adjudicación y orden de compra). Los agregados protegen sus invariantes, por ejemplo `PurchaseRequest` con sus ítems y requisitos técnicos, y los identificadores tipados como objetos de valor (`PurchaseRequestId`, `TechnicalRequirementId`) evitan mezclar entidades. Los repositorios se definen como puertos del dominio o de la aplicación; los eventos de dominio comunican cambios entre contextos, y los adaptadores de `SmartQuote.API/Integration` actúan como capa anticorrupción mediante los contratos `OutboundServices` de cada módulo. Las operaciones de escritura y lectura se separan en servicios de comandos y de consultas.
+
+**Convenciones por lenguaje**
+
+Cada repositorio versiona sus reglas, de modo que todos los integrantes trabajan con la misma configuración:
+
+| Sistema | Fuente | Cómo se aplica | Reglas principales |
+| --- | --- | --- | --- |
+| Backend (C# 14, .NET 10) | `.editorconfig` en la raíz; tipos de referencia anulables habilitados en los 11 proyectos | Rider muestra las reglas durante la edición; el compilador de C# (Roslyn) ejecuta los analizadores del SDK en cada compilación. Las reglas de estilo no se exigen al compilar ni en CI. | UTF-8 sin BOM, fin de línea LF, sin espacios finales; 4 espacios en C# y 2 en JSON/YAML. Interfaces con prefijo `I`; tipos, métodos y propiedades en PascalCase; parámetros y variables locales en camelCase. |
+| Frontend web (JavaScript y Vue 3) | `eslint.config.js` con `eslint-plugin-vue` (`flat/essential`) | `npm run lint` en el desarrollo y en el workflow de CI | Reglas esenciales de plantillas Vue; `no-unused-vars` y `no-undef` como errores. Archivos en kebab-case con sufijo por capa (`*.entity.js`, `*.service.js`, `*.repository.js`). |
+| Aplicación móvil (Dart 3 y Flutter) | `analysis_options.yaml` con `flutter_lints` 6.0.0 | `dart analyze` en el desarrollo y en el workflow de CI; `dart format` desde el editor | Reglas recomendadas de Dart y Flutter: tipos en `UpperCamelCase`, miembros en `lowerCamelCase`, archivos en `snake_case` y uso seguro de `BuildContext`. Formato oficial de `dart format`. |
+
+**Verificación del cumplimiento**
+
+Se verificaron estas convenciones sobre copias limpias de las revisiones `04b9d93` del backend (`develop`), `bc5a412` del frontend (`feature/av2-m01-us15-us22`) y `52923d5` de la aplicación móvil (`feature/av2-m02-us18-us20`):
+
+| Sistema | Herramienta | Resultado | Decisión | Estado |
+| --- | --- | --- | --- | --- |
+| Backend | Compilación con .NET SDK 10.0.301 exigiendo las reglas del `.editorconfig` | 0 advertencias y 0 errores: las reglas de nombres se cumplen en los 11 proyectos. | Ninguna. | Cumple |
+| Backend | `dotnet format` 10.0.301 (medición complementaria) | 115 de 396 archivos con diferencias: 93 guardados con BOM y 149 ajustes de espacios en 22 archivos, concentrados en QuotationIntake, EvaluationSimulation y las clases de US15–US22. Las reglas solo se observan en el editor y no se verifican en CI. | Normalizar los archivos con `dotnet format whitespace` en un commit exclusivo de formato y luego agregar `dotnet format --verify-no-changes` al workflow. | Pendiente |
+| Backend | `dotnet format` 10.0.301 (sugerencias informativas) | 282 sugerencias; 149 indican que el espacio de nombres `SmartQuote.API.<Contexto>` no coincide con la carpeta del módulo `SmartQuote.Modules.<Contexto>`. | Conservar los espacios de nombres hasta un refactor coordinado del monolito modular, porque el cambio afecta referencias entre módulos y pruebas. | Pendiente |
+| Frontend web | ESLint 9.39.5 | 110 archivos sin errores ni advertencias. Prettier figura como dependencia, pero no tiene configuración, script ni paso en CI. | Decidir en el equipo si se adopta Prettier o se elimina la dependencia sin uso. | Cumple con ESLint |
+| Aplicación móvil | `dart analyze` (Dart 3.13.3) y `dart format` | Sin hallazgos del analizador; 1 de 65 archivos sin el formato oficial (`test/request_assignment_test.dart`). | Aplicar `dart format` al archivo. | Corregido |
+
+En Windows, `core.autocrlf=true` convierte los archivos a CRLF al extraerlos, aunque el repositorio los guarda con LF; por eso la medición se realizó sobre copias extraídas sin esa conversión, para no contar como errores diferencias que no existen en el repositorio.
+
+#### 6.2.1.2. Code Quality & Code Security
+
+La calidad y la seguridad del código son esenciales para que SmartQuote sea confiable: una plataforma que respalda decisiones de compra debe ser fácil de mantener y proteger la información de solicitudes, proveedores y presupuestos.
+
+- **Calidad del código.** Se mide con la complejidad ciclomática, el tamaño de las funciones, el acoplamiento entre clases, el índice de mantenibilidad y el porcentaje de código duplicado, complementados con las pruebas automatizadas de 6.1, que protegen el comportamiento al refactorizar. SmartQuote no utiliza SonarQube; para esta evaluación se emplearon herramientas de línea de comandos: los analizadores de .NET (reglas CA1502, CA1505, CA1506 y el conjunto completo `AnalysisMode=All`), ESLint, lizard 1.26.0 para la complejidad en C#, JavaScript, Vue y Dart, y jscpd 4.0.5 para la duplicación.
+- **Seguridad del código.** Se busca prevenir vulnerabilidades comunes como inyección SQL, XSS, exposición de credenciales y accesos no autorizados mediante prácticas de codificación segura, validación de entradas y revisión de las dependencias. La verificación combina las reglas de seguridad de los analizadores, la auditoría de dependencias (`dotnet list package --vulnerable`, `npm audit` y los avisos de pub.dev) y la búsqueda de patrones de riesgo y secretos versionados.
+
+**Resultados de calidad**
+
+Medición sobre el código productivo de las mismas revisiones de 6.2.1.1, sin pruebas ni migraciones generadas:
+
+| Métrica | Backend | Frontend web | Aplicación móvil |
+| --- | --- | --- | --- |
+| Tamaño analizado | 187 archivos; 6 816 líneas de código | 80 archivos; 3 009 líneas de código | 52 archivos; 6 333 líneas de código |
+| Complejidad ciclomática promedio | 2.47 | 1.58 | 3.74 |
+| Funciones con complejidad mayor que 10 | 20 de 676 (máximo 29) | 3 de 647 (máximo 13) | 34 de 375 (máximo 40) |
+| Funciones con más de 50 líneas | 16 | 0 | 30 |
+| Código duplicado | 1.67 % | 0.76 % | 2.08 % |
+| Mantenibilidad y acoplamiento | Solo `Program` tiene un índice de mantenibilidad menor que 20 (18) y 122 dependencias, por ser la raíz de composición | — | — |
+
+La complejidad del backend se concentra en los flujos de aprobación: `ApproveAsync` de adjudicaciones distribuidas (29), `ApproveAndGenerateAsync` de órdenes (22) y `PoultryQuote.ApplyCorrectedValue` (22). En la aplicación móvil, los valores altos corresponden a métodos `build` que deciden qué controles mostrar según el rol y el estado; en la web esa lógica reside en las plantillas Vue, que la herramienta no mide, por lo que ambos clientes no son directamente comparables. La duplicación es baja en los tres sistemas y proviene de pares *View*/*Resource* del backend, que separan intencionalmente el modelo interno del contrato de la API, y de estructuras de listados paginados en los clientes. Con todas las reglas CA activas, los analizadores de .NET informan 767 advertencias en código productivo; el 85 % corresponde a CA2007 (`ConfigureAwait`), innecesaria en ASP.NET Core, y a CA1062 (argumentos nulos), cubierta por los tipos de referencia anulables.
+
+**Prácticas de seguridad aplicadas**
+
+- **Accesos no autorizados:** JWT de 10 minutos con sesión de renovación en una cookie `HttpOnly`, autorización por rol en cada endpoint y verificación de cuenta activa en las operaciones de US15, US16 y US22.
+- **Fuerza bruta:** límite de intentos en inicio de sesión y registro (`RateLimiter`), política de contraseñas y almacenamiento con el `PasswordHasher` de ASP.NET Core.
+- **Inyección SQL:** acceso a datos con Entity Framework Core; las consultas SQL explícitas usan texto constante o interpolación parametrizada.
+- **XSS:** la aplicación web no utiliza `v-html`, `innerHTML` ni `eval`; Vue escapa el contenido interpolado y el token de acceso permanece en memoria (`localStorage` solo guarda el idioma).
+- **Exposición de información:** los errores no controlados se devuelven como `ProblemDetails` con un mensaje genérico, y CORS solo admite los orígenes configurados.
+- **Credenciales:** las claves de JWT, OpenAI y SUNAT se configuran con *user-secrets* o variables de entorno; ningún repositorio versiona `.env`, certificados ni almacenes de claves, y la aplicación móvil exige HTTPS en la versión de distribución.
+- **Integridad de las operaciones:** versión esperada (`expectedVersion`) en las modificaciones y claves de idempotencia en la aprobación de adjudicaciones, para evitar cambios perdidos u órdenes duplicadas.
+
+La verificación no encontró reglas de seguridad infringidas en el código productivo (CA2100 y CA5394 solo aparecen en proyectos de prueba), patrones de riesgo en la web, hallazgos de `dart analyze` ni secretos versionados. El backend no tiene paquetes NuGet vulnerables y pub.dev no informa avisos para la aplicación móvil; las únicas vulnerabilidades conocidas están en dependencias de la aplicación web.
+
+**Hallazgos y tratamiento**
+
+| Id | Sistema | Hallazgo | Decisión | Estado |
+| --- | --- | --- | --- | --- |
+| QS-01 | Frontend web | 8 dependencias con vulnerabilidades altas. En producción: `vue-i18n` 11.4.10 y paquetes `@intlify/*`, con un XSS cuando un parámetro de traducción se inserta en `srcdoc` (GHSA-8rc2-428q-7ww3), y `source-map-js` 1.2.1, con denegación de servicio mediante mapas de código manipulados (GHSA-68fv-2mgg-jv7q). Solo en desarrollo: `vite` 8.3.0 y `brace-expansion`. La exposición del XSS es baja porque los mensajes son estáticos y no se usa `v-html`. | Actualizar `vue-i18n` a 11.4.14 o superior y `vite`, aplicar `npm audit fix`, verificar `source-map-js` cuando la cadena de Vue publique la corrección y repetir las pruebas. | Pendiente |
+| QS-02 | Backend | 20 métodos con complejidad mayor que 10, principalmente en la aprobación de órdenes y adjudicaciones. | Separar las validaciones de proveedor, presupuesto y vigencia al modificar esos flujos, con las pruebas de integración de US18–US21 como red de seguridad. | Pendiente |
+| QS-03 | Aplicación móvil | 34 métodos con complejidad mayor que 10; el mayor es `_RequestWorkspaceState.detail` (40 de complejidad y 190 líneas). | Extraer subwidgets en las pantallas que se modifiquen en el siguiente sprint. | Pendiente |
+| QS-04 | Web y móvil | Estructuras de listado paginado repetidas entre pantallas nuevas. | Extraer un componente común de listado en cada cliente. | Pendiente |
+| QS-05 | Backend | 767 advertencias de calidad en modo `All`, el 85 % de reglas no aplicables. | No activar el modo `All`; evaluar `AnalysisLevel=latest-recommended` sin CA2007 ni CA1062. | Pendiente |
+
+**Limitaciones.** lizard realiza un análisis sintáctico ligero, por lo que sus valores son aproximados. La auditoría de dependencias refleja los avisos publicados al 11/11/2026. No se realizaron pruebas dinámicas de seguridad sobre la API en ejecución; estos resultados no sustituyen una auditoría de seguridad completa.
+
+### 6.2.2. Reviews
+
+Las revisiones de código verifican que cada cambio cumpla los estándares de 6.2.1, respete la arquitectura y satisfaga los criterios de aceptación de su historia antes de integrarse en `develop`. SmartQuote combina dos tipos de revisión:
+
+- **Revisión entre pares:** un integrante distinto del autor lee el cambio, lo contrasta con la historia de usuario y con el contrato de la API, y registra sus observaciones. Cuando una observación requiere ejecutar el sistema, la revisión se apoya en las pruebas de 6.1.
+- **Revisión automática:** los workflows de GitHub Actions ejecutan las pruebas del backend, ESLint y las pruebas del frontend, y `dart analyze` y las pruebas de la aplicación móvil en cada push a una rama de trabajo, en cada pull request hacia `develop` o `main` y como validación previa a cada despliegue.
+
+**Proceso de revisión**
+
+1. El autor trabaja en una rama `feature/*` creada desde `develop` y abre un pull request hacia `develop` que identifica las historias, las tareas y las pruebas asociadas.
+2. Los workflows de CI deben completarse sin errores.
+3. Un revisor distinto del autor examina el cambio con la lista de verificación y registra sus observaciones en el pull request o, si la corrección se realiza en otra rama, en el commit que la resuelve.
+4. El autor corrige las observaciones bloqueantes antes de la integración; las mejoras no bloqueantes se registran como deuda técnica con su decisión.
+
+**Lista de verificación**
+
+- **Criterios de aceptación:** el cambio cubre los escenarios Given/When/Then de la historia y respeta las reglas del backend (roles, versiones esperadas, estados válidos).
+- **Estándar y arquitectura:** cumple las convenciones de 6.2.1.1 y mantiene la separación entre dominio, aplicación, infraestructura y presentación.
+- **Calidad:** nombres del lenguaje del negocio, métodos con una responsabilidad, sin duplicación innecesaria ni código sin uso.
+- **Seguridad:** sin credenciales versionadas, autorización por rol en el servidor, validación de entradas y sin contenido HTML sin escapar.
+- **Pruebas:** incluye pruebas identificadas con la historia y el escenario, y los workflows de CI se completan sin errores.
+- **Experiencia del usuario:** los textos de la interfaz usan el lenguaje del usuario; no muestran identificadores internos, rutas de datos ni valores del API sin traducir.
+
+**Revisiones realizadas en el Sprint 3**
+
+| Cambio revisado | Autor | Observaciones | Decisión y evidencia |
+| --- | --- | --- | --- |
+| Backend US15–US22: commits `cb2c301`, `ee2b053` y `db1615d` en `develop` | Fabio Vallejo | Los contratos se revisaron al integrar las pantallas web y móviles. Se confirmó una regla no documentada: una revisión técnica debe cambiar al menos un valor de la especificación. El análisis de 6.2.1 detectó en estas clases archivos con BOM, formato compacto y métodos de aprobación con complejidad de 22 a 29. | La regla se incorporó como validación en el cliente web (commit `e349881`). El formato y la complejidad se registraron como CS-01 y QS-02, pendientes. |
+| Aplicación móvil US15–US17: commit `760e861` en `develop` | Fabio Vallejo | Las aclaraciones mostraban el ítem, el requisito y los autores como UUID. El historial de toda solicitud nueva mostraba «Borrador por revisar → Enviada», porque el backend registra el estado interno `Draft`. La pantalla de verificación de cotizaciones mostraba rutas internas como `líneas[0].cantidad`. | Corregido: nombres del ítem y del requisito, roles en lugar de identificadores, «Registro» para solicitudes que no provienen de una programación y rótulos «Línea 1 · Cantidad» (commit `846b842`, PR #3). |
+| Aplicación móvil US21–US22: PR #2 (`feature/av2-l03-us21-us22`) | Alexis Bardales | El código cumple la arquitectura e incluye pruebas para ambas historias; conserva la decisión si se pierde la respuesta de la aprobación y excluye al analista actual al reasignar. El analista responsable y su historial se mostraban como UUID, y el área responsable con valores del API en inglés. | Corregido: nombre del analista o «Tú», y áreas en español (commit `846b842`, PR #3). La paginación repetida entre pantallas se registró como QS-04. |
+| Frontend web US15–US22 (PR #7) y aplicación móvil US18–US20 (PR #3) | Mathias De La Cruz | Antes de la integración se ejecutaron contra la API real. El análisis de sensibilidad mostraba los pesos como «—%» al promover una configuración, porque usaba los criterios vigentes en lugar de los analizados; en web, la configuración vigente no aparecía primero y los filtros de estado se mostraban vacíos. | Corregido antes de la integración (commits `e349881` y `846b842`). |
+
+**Hallazgos del proceso**
+
+Ningún pull request del Sprint 3 registra una aprobación o comentarios en GitHub: el PR #2 fue integrado por un integrante distinto del autor sin una revisión formal, y los PR #3 y #7 fueron integrados por su autor. Además, los cambios del backend y el commit `760e861` de la aplicación móvil se incorporaron a `develop` sin pull request; en esos casos los workflows de CI se ejecutaron recién al publicarse el cambio en `develop`, como validación previa al despliegue de staging, y no antes de su integración. La rama `develop` no tiene reglas de protección. Las revisiones de la tabla anterior se realizaron después de la integración y sus correcciones se entregaron en otros commits. Por eso se adoptan las siguientes decisiones para los próximos sprints: proteger la rama `develop` para exigir un pull request con al menos una aprobación de un integrante distinto del autor y los workflows de CI aprobados; agregar una plantilla de pull request con la lista de verificación anterior; y registrar las observaciones como comentarios del pull request para conservar su trazabilidad.
+
+## 6.3. Validation Interviews
+
+### 6.3.1. Diseño de Entrevistas
+
+Las entrevistas de validación buscan observar si los representantes de Adquisiciones y de Producción y Sanidad comprenden la propuesta de SmartQuote y completan tareas de su trabajo en la Landing Page, la aplicación web y la aplicación móvil. Complementan los datos de perfil con evidencia de uso; no sustituyen las pruebas técnicas ni permiten afirmar resultados representativos de todo el sector con solo seis participantes.
+
+**Formato y duración.** Se realizan tres sesiones por segmento, de aproximadamente 8–10 minutos: presentación y consentimiento (1 minuto), cuatro tareas breves (5–6 minutos), preguntas y cierre (2–3 minutos). La ficha de perfil se recoge previamente para evitar repetir preguntas. El registro audiovisual puede editarse a 3–5 minutos por entrevista, conservando las dificultades y respuestas relevantes.
+
+**Preparación y conducción.** Cada sesión utiliza cuentas de prueba con el rol del participante, documentos ficticios y un caso preparado con una solicitud y cotizaciones comparables. El entrevistador solicita permiso para grabar y publicar el enlace privado de evaluación, explica que se evalúa el producto y no a la persona, y permite omitir preguntas o detener la sesión. Presenta las consignas sin indicar botones ni respuestas esperadas, observa el primer intento y registra toda ayuda posterior. No solicita contraseñas, documentos comerciales reales ni información clínica de terceros.
+
+**Ficha previa y preguntas de contexto comunes.**
+
+| Pregunta principal | Información complementaria, solo cuando resulta pertinente |
+|---|---|
+| ¿Cuál es su ocupación y qué responsabilidad tiene en la solicitud o compra de insumos? | Funciones, experiencia, frecuencia de la tarea, tipos de insumos y breve trayectoria laboral; objetivo principal y dificultad habitual. |
+| ¿Qué dispositivos, herramientas y canales utiliza para esa tarea? | Dispositivo preferido, familiaridad digital y habilidades; herramientas o marcas utilizadas, correo o mensajería y personas o fuentes que influyen en sus decisiones. |
+
+La ficha también recoge nombre y apellidos, edad y distrito de residencia. Género autodescrito, estado civil y contexto familiar son datos voluntarios: se incluyen únicamente si el participante desea aportarlos y ayudan a comprender su contexto de uso. Las preferencias, hábitos y rasgos de trabajo se registran como declaraciones del participante o conductas observadas, sin atribuirle rasgos de personalidad no sustentados.
+
+**Segmento 1 — Analistas y jefes de adquisiciones.**
+
+| Tarea | Producto | Consigna para el participante | Evidencia observable |
+|---|---|---|---|
+| A1 | Landing Page | Revise la presentación de SmartQuote, explique para quién sirve y encuentre cómo acceder al sistema. | Comprensión espontánea de la propuesta y acceso al destino correcto. |
+| A2 | Web | Localice la solicitud del caso e identifique qué dato de la cotización necesita revisar antes de compararla. Resuelva o derive la duda según su responsabilidad. | Localización de la solicitud, identificación del dato y comprensión de su origen o de la acción pendiente. |
+| A3 | Web | Compare las ofertas del caso y explique qué alternativa recomendaría y qué condición impediría continuar la compra. | Interpretación de criterios, recomendación, exclusiones y límites de autorización; no se exige aprobar con un rol sin permiso. |
+| A4 | Móvil | Encuentre el mismo caso desde el móvil e identifique su responsable y la siguiente acción pendiente. | Continuidad entre productos, localización del caso y comprensión del seguimiento. |
+
+| Pregunta principal al terminar las tareas | Pregunta complementaria, si se necesita profundizar |
+|---|---|
+| ¿Qué información utilizó para recomendar una alternativa y qué información le faltó? | ¿Qué comprobaría por su cuenta antes de continuar y por qué? |
+| ¿Qué parte del recorrido le resultó más difícil o diferente de su trabajo habitual? | ¿Qué ocurrió, qué esperaba que ocurriera y cómo lo resolvería actualmente? |
+
+**Segmento 2 — Especialistas de producción y sanidad.**
+
+| Tarea | Producto | Consigna para el participante | Evidencia observable |
+|---|---|---|---|
+| P1 | Landing Page | Revise la presentación y explique en qué parte de su trabajo podría utilizar SmartQuote. Encuentre cómo acceder al sistema. | Comprensión del alcance y acceso al destino correcto, sin sugerir que debe encontrarlo útil. |
+| P2 | Móvil | Registre la necesidad de insumos de la ficha del caso con su cantidad, fecha y requisitos técnicos. | Registro completo, interpretación de los campos y respuesta ante una validación. |
+| P3 | Móvil | Consulte el avance de la solicitud preparada e identifique quién debe actuar y qué información necesita esa persona. | Interpretación del estado, historial y responsabilidad pendiente. |
+| P4 | Web | Localice la solicitud del mismo caso desde la web y compruebe si expresa la necesidad técnica que desea comunicar. | Consistencia entre productos, comprensión de los requisitos e identificación de datos o aclaraciones pendientes. |
+
+| Pregunta principal al terminar las tareas | Pregunta complementaria, si se necesita profundizar |
+|---|---|
+| ¿Qué información de la solicitud permite expresar su necesidad y cuál le falta? | ¿Qué podría interpretar de otra manera el área de adquisiciones? |
+| ¿Cómo determina si su solicitud avanza o necesita una intervención suya? | ¿Qué haría si no encuentra la información necesaria y con quién coordinaría? |
+
+
+**Cierre común.** «¿Qué cambiaría primero de esta experiencia y por qué?». El entrevistador registra el resultado por tarea como **lograda sin ayuda**, **lograda con ayuda**, **no lograda** o **no evaluada**, junto con tiempo aproximado, errores, ayudas y expresiones relevantes. Las interpretaciones del equipo se separan de las respuestas y conductas del participante.
+
+### 6.3.2. Registro de Entrevistas
+## Segmento 2: Producción y Sanidad
+### Ficha de registro — Entrevista de validación S2-1
+
+| Elemento del registro | Información de la entrevista |
+|---|---|
+| **Nombres y apellidos** | _Pendiente (o código si no autoriza publicarlo)_ |
+| **Edad** | _Pendiente_ |
+| **Distrito de residencia** | _Pendiente_ |
+| **Segmento objetivo** | Área de Producción y Sanidad _(indicar cargo: veterinario, nutricionista, jefe de granja u otro)_ |
+| **Fecha de realización** | _Pendiente_ |
+| **Captura de pantalla (screenshot)** | `![Entrevista de validación S2-1](assets/research/validation/s2-1.png)` |
+| **Enlace (URL)** | _Pendiente: enlace privado del video_ |
+| **Minutaje (timing)** | **Inicio:** _hh:mm:ss_ · **Fin:** _hh:mm:ss_ · **Duración:** _hh:mm:ss_ |
+| **Resumen descriptivo y recolección de datos** | _Pendiente: 5–8 líneas. Ocupación y responsabilidad en la solicitud de insumos, herramientas y dispositivos, dificultad habitual, lo que se observó en cada tarea y lo que el participante dijo (sin atribuir rasgos de personalidad no sustentados)._ |
+
+**Resultado por tarea (según 6.3.1):**
+
+| Tarea | Producto | Resultado (lograda sin ayuda / con ayuda / no lograda / no evaluada) | Tiempo aprox. | Errores y ayudas | Expresión relevante del participante |
+|---|---|---|---|---|---|
+| P1 | Landing Page | _Pendiente_ | | | |
+| P2 | Móvil | _Pendiente_ | | | |
+| P3 | Móvil | _Pendiente_ | | | |
+| P4 | Web | _Pendiente_ | | | |
+
+**Cierre común:** «¿Qué cambiaría primero de esta experiencia y por qué?» → _Pendiente._
+
+### Ficha de registro — Entrevista de validación S2-2
+
+_Repetir exactamente la estructura anterior (imagen `s2-2.png`)._
+
+### 6.3.3. Evaluaciones según heurísticas
+
+La evaluación heurística se realizó el 12/11/2026 sobre los tres productos de SmartQuote, recorriendo las mismas tareas que se plantean a los participantes en 6.3.1. Cada problema se registró con la tarea en que apareció, la heurística o principio que incumple, su severidad, una captura y una recomendación. Además de las diez heurísticas de usabilidad de Nielsen, se revisaron principios de arquitectura de información (organización, rotulado e identificación de los elementos) y de diseño inclusivo (idioma del usuario, lectura por lectores de pantalla y mensajes comprensibles).
+
+**Aplicaciones evaluadas**
+
+- **Landing Page:** versión publicada en GitHub Pages.
+- **Aplicación web:** rama `develop`, ejecutada localmente contra la API de la misma rama.
+- **Aplicación móvil:** rama `develop`, compilada para navegador con Flutter y revisada en una vista de 375 × 812 px.
+
+Como la suscripción de Azure se encuentra deshabilitada (ver 7.4), la web y la API desplegadas no estaban disponibles; por ello, la web y el móvil se evaluaron en local con cuentas y datos de prueba ficticios: tres cuentas (jefe de adquisiciones, analista y especialista de producción) y solicitudes en todos los estados del flujo, desde *Enviada* hasta *Orden emitida*.
+
+**Tareas evaluadas**
+
+- **Landing Page (A1 y P1):** comprender la propuesta, encontrar el acceso al sistema y solicitar una demostración.
+- **Web (A2, A3 y P4):** localizar una solicitud, revisar sus cotizaciones e historial y comparar las ofertas.
+- **Móvil (A4, P2 y P3):** registrar una solicitud con requisitos técnicos, consultar su avance e identificar quién debe actuar.
+
+**Escala de severidad**
+
+- **1 — Cosmético:** no afecta la tarea; se corrige si hay tiempo disponible.
+- **2 — Menor:** genera dudas o pasos adicionales; corrección de baja prioridad.
+- **3 — Mayor:** impide o desvía la tarea, o induce a una conclusión equivocada; corrección de alta prioridad.
+- **4 — Catastrófico:** impide usar el producto; debe corregirse antes del lanzamiento.
+
+**Tabla resumen**
+
+| # | Problema | Producto | Severidad | Heurística o principio incumplido |
+| --- | --- | --- | --- | --- |
+| 1 | El formulario de demostración confirma un envío que no se realiza | Landing Page | 3 | Visibilidad del estado del sistema |
+| 2 | La Landing Page se muestra en inglés por defecto | Landing Page | 2 | Relación entre el sistema y el mundo real; diseño inclusivo |
+| 3 | La web no conserva el idioma elegido en la Landing Page | Web | 2 | Consistencia y estándares |
+| 4 | Sin conexión con la API, la web permanece hasta tres minutos restaurando la sesión | Web | 3 | Visibilidad del estado del sistema; ayuda a reconocer y recuperarse de errores |
+| 5 | Las solicitudes se identifican por la descripción del primer ítem y un código parcial | Web | 2 | Reconocer antes que recordar; identificación (arquitectura de información) |
+| 6 | El solicitante se muestra como un identificador interno | Web | 3 | Relación entre el sistema y el mundo real |
+| 7 | El historial muestra motivos en inglés e identificadores internos | Web | 2 | Consistencia y estándares; diseño inclusivo |
+| 8 | Las acciones deshabilitadas muestran indicaciones genéricas que no corresponden al estado | Web | 2 | Ayuda a reconocer y recuperarse de errores |
+| 9 | El móvil no indica qué persona es responsable de la solicitud | Móvil | 3 | Visibilidad del estado del sistema |
+| 10 | El detalle y el historial del móvil muestran identificadores internos y textos en inglés | Móvil | 2 | Relación entre el sistema y el mundo real; consistencia y estándares |
+| 11 | El código de la solicitud difiere entre la web y el móvil, y la lista repite información | Móvil | 2 | Consistencia y estándares; diseño estético y minimalista |
+| 12 | La unidad de medida se ingresa como texto libre | Móvil | 2 | Prevención de errores |
+| 13 | La pantalla de acceso muestra la dirección del servidor | Móvil | 1 | Diseño estético y minimalista |
+
+**Problema #1: El formulario de demostración confirma un envío que no se realiza**
+
+- **Severidad:** 3 (Mayor).
+- **Tarea:** A1 y P1.
+- **Heurística violada:** Visibilidad del estado del sistema.
+
+**Descripción del problema:** al completar el formulario «Envíanos tres cotizaciones reales», la página valida los campos y muestra «Solicitud recibida. Responderemos al correo que ingresaste dentro de un día hábil.», pero la solicitud no se envía a ningún servicio: el código del formulario solo muestra el mensaje y limpia los campos. El visitante espera una respuesta que no llegará y el equipo pierde el contacto.
+
+![Formulario de solicitud de demostración de la Landing Page](<assets/heuristics/6.3.3-01-landing-formulario-demo.png>)
+
+**Recomendación:** conectar el formulario a un servicio de contacto y mostrar la confirmación solo cuando el envío sea exitoso, con un mensaje de error y una alternativa (el correo `hola@smartquote.pe`) si falla. Mientras no exista el servicio, reemplazar el formulario por un enlace de correo.
+
+**Problema #2: La Landing Page se muestra en inglés por defecto**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A1 y P1.
+- **Heurística violada:** Relación entre el sistema y el mundo real; diseño inclusivo.
+
+**Descripción del problema:** en la primera visita, la página se muestra en inglés aunque el público objetivo son empresas avícolas peruanas; el idioma solo cambia si el visitante encuentra el selector «EN/ES» del encabezado o del pie de página. El título de la pestaña del navegador permanece en inglés incluso cuando se elige español.
+
+![Landing Page mostrada en inglés en una primera visita](<assets/heuristics/6.3.3-02-landing-idioma-ingles.png>)
+
+**Recomendación:** usar español como idioma predeterminado o tomarlo de la preferencia del navegador, y traducir también el título de la página.
+
+**Problema #3: La web no conserva el idioma elegido en la Landing Page**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A1, A2 y P4.
+- **Heurística violada:** Consistencia y estándares.
+
+**Descripción del problema:** un visitante que navega la Landing Page en español y selecciona «Ingresar a la aplicación web» llega a una pantalla de acceso en inglés («Sign in to SmartQuote»). La web usa inglés cuando no tiene un idioma guardado y no recibe el idioma de la Landing Page.
+
+![Pantalla de acceso de la web en inglés al llegar desde la Landing Page en español](<assets/heuristics/6.3.3-03-web-acceso-ingles.png>)
+
+**Recomendación:** enviar el idioma en el enlace de la Landing Page (por ejemplo, `?lang=es`) y, en su ausencia, usar la preferencia del navegador o español como predeterminado.
+
+**Problema #4: Sin conexión con la API, la web permanece hasta tres minutos restaurando la sesión**
+
+- **Severidad:** 3 (Mayor).
+- **Tarea:** A2 y P4.
+- **Heurística violada:** Visibilidad del estado del sistema; ayuda a reconocer y recuperarse de errores.
+
+**Descripción del problema:** al abrir la web desplegada mientras la API no responde, la pantalla muestra solo el texto «Restoring your session…» sobre un fondo vacío. La web espera hasta 180 segundos antes de abandonar la restauración y, al terminar, vuelve a la pantalla de acceso sin explicar qué ocurrió. El usuario no sabe si debe esperar, recargar o informar una falla.
+
+![Web desplegada detenida en la restauración de sesión](<assets/heuristics/6.3.3-04-web-restaurando-sesion.png>)
+
+**Recomendación:** reducir el tiempo de espera de la restauración a pocos segundos, mostrar un indicador de progreso y, ante una falla, un mensaje que indique que el servicio no está disponible con la opción «Reintentar».
+
+**Problema #5: Las solicitudes se identifican por la descripción del primer ítem y un código parcial**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A2 y P4.
+- **Heurística violada:** Reconocer antes que recordar; identificación (arquitectura de información).
+
+**Descripción del problema:** la lista de solicitudes muestra como título la descripción del primer ítem y, debajo, los primeros ocho caracteres de un identificador interno (por ejemplo, `925d57b7`). Varias solicitudes del mismo insumo aparecen con el mismo título y solo se distinguen por ese código, que el usuario no puede recordar ni dictar. Además, el buscador indica «Buscar en esta página», por lo que no encuentra solicitudes de otras páginas.
+
+![Lista de solicitudes de compra de la web](<assets/heuristics/6.3.3-05-web-lista-solicitudes.png>)
+
+**Recomendación:** asignar a cada solicitud un código legible y correlativo (por ejemplo, `SOL-2026-0148`), mostrar la granja o el solicitante y la cantidad de ítems en la lista, y buscar en todas las solicitudes.
+
+**Problema #6: El solicitante se muestra como un identificador interno**
+
+- **Severidad:** 3 (Mayor).
+- **Tarea:** A2.
+- **Heurística violada:** Relación entre el sistema y el mundo real.
+
+**Descripción del problema:** en el detalle de la solicitud, el campo «Solicitante» muestra un identificador interno (`02df858d-db7b-…`) en lugar del nombre de la persona. El analista no puede saber a quién consultar una duda sobre los requisitos, que es justamente lo que pide la tarea A2.
+
+![Detalle de solicitud con el solicitante mostrado como identificador](<assets/heuristics/6.3.3-06-web-solicitante-uuid.png>)
+
+**Recomendación:** mostrar el nombre y el rol del solicitante, y ofrecer desde ese dato la acción de registrar una aclaración.
+
+**Problema #7: El historial muestra motivos en inglés e identificadores internos**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A2 y P4.
+- **Heurística violada:** Consistencia y estándares; diseño inclusivo.
+
+**Descripción del problema:** en la pestaña «Historial», los cambios de estado muestran motivos generados por el servidor en inglés («Purchase request submitted.») y, como autor, un identificador interno. Las tres comparaciones guardadas aparecen con la misma fecha y hora, sin un dato que las diferencie.
+
+![Historial de la solicitud en la web](<assets/heuristics/6.3.3-07-web-historial.png>)
+
+**Recomendación:** traducir los motivos generados por el sistema a partir de un código de evento, mostrar el nombre del autor y diferenciar cada comparación por su versión y sus criterios.
+
+**Problema #8: Las acciones deshabilitadas muestran indicaciones genéricas que no corresponden al estado**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A3.
+- **Heurística violada:** Ayuda a reconocer y recuperarse de errores.
+
+**Descripción del problema:** en una solicitud con la orden ya emitida, el botón «Cargar cotizaciones» está deshabilitado y la indicación dice «Pasa a recopilación de cotizaciones o evaluación para cargar PDF», una acción que ya no es posible en ese estado. De forma similar, «Ejecutar comparación» aparece deshabilitado con una condición general, sin indicar cuál de las condiciones no se cumple.
+
+![Pestaña de cotizaciones de una solicitud con la orden emitida](<assets/heuristics/6.3.3-08-web-acciones-deshabilitadas.png>)
+
+**Recomendación:** mostrar la razón concreta según el estado de la solicitud (por ejemplo, «La orden de compra ya fue emitida; las cotizaciones son de solo lectura») y ocultar las acciones que ya no pueden realizarse.
+
+**Problema #9: El móvil no indica qué persona es responsable de la solicitud**
+
+- **Severidad:** 3 (Mayor).
+- **Tarea:** A4 y P3.
+- **Heurística violada:** Visibilidad del estado del sistema.
+
+**Descripción del problema:** el detalle de la solicitud solo muestra «Área responsable», que además aparece en inglés en algunos estados («Evaluation and Simulation»). Aunque la solicitud tiene un analista asignado, el móvil no lo muestra ni indica cuál es la siguiente acción. El especialista no puede completar la tarea P3, que consiste en identificar quién debe actuar y qué necesita.
+
+![Detalle de una solicitud en evaluación en el móvil](<assets/heuristics/6.3.3-09-movil-responsable.png>)
+
+**Recomendación:** mostrar el analista asignado y una línea «Siguiente paso» con la acción pendiente y su responsable, y traducir todas las áreas.
+
+**Problema #10: El detalle y el historial del móvil muestran identificadores internos y textos en inglés**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A4 y P3.
+- **Heurística violada:** Relación entre el sistema y el mundo real; consistencia y estándares.
+
+**Descripción del problema:** el detalle muestra el «Identificador» completo de la solicitud (36 caracteres) y el historial presenta motivos en inglés («Specialist confirmed recurring request.») con el identificador interno del autor. Los textos de apoyo del sistema, como la descripción del botón de menú («Open navigation menu»), también aparecen en inglés, porque la aplicación no incluye la traducción de los componentes de Flutter; un lector de pantalla los anunciaría en ese idioma.
+
+![Historial de estados de una solicitud en el móvil](<assets/heuristics/6.3.3-10-movil-historial.png>)
+
+**Recomendación:** retirar el identificador completo de la vista, mostrar el nombre del autor, traducir los motivos y configurar la traducción al español de los componentes de Flutter.
+
+**Problema #11: El código de la solicitud difiere entre la web y el móvil, y la lista repite información**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A4 y P4.
+- **Heurística violada:** Consistencia y estándares; diseño estético y minimalista.
+
+**Descripción del problema:** la misma solicitud aparece como `925d57b7` en la web y como `SOL-925d57b7` en el móvil, lo que dificulta confirmar que se trata del mismo caso al pasar de un producto a otro. En la lista del móvil, la segunda línea combina estado y área, y en algunos casos repite el mismo texto («Recepción de cotizaciones · Recepción de cotizaciones») o mezcla idiomas («En evaluación · Evaluation and Simulation»). El título de la pantalla también aparece truncado.
+
+![Lista de solicitudes en el móvil](<assets/heuristics/6.3.3-11-movil-lista.png>)
+
+**Recomendación:** usar el mismo código legible en ambos productos, mostrar el área solo cuando aporte información distinta del estado y acortar el título de la pantalla a «Solicitudes».
+
+**Problema #12: La unidad de medida se ingresa como texto libre**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** P2.
+- **Heurística violada:** Prevención de errores.
+
+**Descripción del problema:** al registrar una solicitud, el campo «Unidad (kg, dosis, unidad…)» acepta cualquier texto. Una misma unidad puede registrarse de varias formas (por ejemplo, «unit», «unidad» o «und»), lo que luego dificulta comparar cantidades entre solicitudes y cotizaciones; en los datos evaluados, el detalle muestra «Cantidad: 1 unit».
+
+![Formulario de nueva solicitud en el móvil](<assets/heuristics/6.3.3-12-movil-unidad-libre.png>)
+
+**Recomendación:** reemplazar el campo por una lista de unidades usadas en el abastecimiento avícola (kg, t, sacos, dosis, frascos, unidades), con la opción «Otra» solo cuando sea necesaria.
+
+**Problema #13: La pantalla de acceso muestra la dirección del servidor**
+
+- **Severidad:** 1 (Cosmético).
+- **Tarea:** A4, P2 y P3.
+- **Heurística violada:** Diseño estético y minimalista.
+
+**Descripción del problema:** debajo del formulario de acceso se muestra «Servidor: http://localhost:8080», un dato técnico que no ayuda al usuario a iniciar sesión.
+
+![Pantalla de acceso del móvil](<assets/heuristics/6.3.3-13-movil-servidor.png>)
+
+**Recomendación:** mostrar la dirección del servidor solo en compilaciones de desarrollo.
+
+**Aspectos verificados sin hallazgos.** La Landing Page ofrece un enlace para saltar al contenido principal, etiquetas en todos los campos, un selector de idioma que indica la opción activa a los lectores de pantalla y un reproductor de video operable con teclado. En la web, los campos y botones revisados tienen nombre accesible y el idioma del documento cambia junto con el de la interfaz.
+
+**Prioridad de corrección.** Los problemas de severidad 3 (#1, #4, #6 y #9) afectan directamente las tareas que se evaluarán con usuarios en 6.3.1, por lo que se recomienda corregirlos antes de las entrevistas de validación; los de severidad 2 y 1 pueden abordarse en el siguiente sprint.
+
+
+## 6.4. Auditoría de Experiencias de Usuario
+
+| Campo | Registro |
+|---|---|
+| Curso | Diseño de Experimentos de Ingeniería de Software |
+| NRC | 9108 |
+| Fecha de revisión | 12 de noviembre de 2026 |
+| Producto y equipo revisado | SmartQuote |
+| Modalidad | Revisión interna de implementación con el formato del Anexo D |
+| Responsable de la sección | Luis Alexis Bardales Tejada |
+
+### 6.4.1. Auditoría realizada
+
+#### 6.4.1.1. Información del grupo auditado
+
+La evaluación interna cubre la landing, la aplicación web Vue y la app Flutter de SmartQuote. Se revisaron el acceso desde la landing, la búsqueda de solicitudes en web y el control para mostrar u ocultar la contraseña en móvil. La evidencia es estática y procede del HTML y los componentes. La validación en navegador, dispositivo y lector de pantalla queda pendiente.
+
+#### 6.4.1.2. Cronograma de auditoría realizada
+
+| Fecha | Actividad | Evidencia |
+|---|---|---|
+| 12/11/2026 | Revisión del HTML de la landing y de los componentes web y Flutter | Referencias de código por hallazgo |
+| 12/11/2026 | Registro de hallazgos y severidades preliminares | Matriz de evaluación |
+| Por programar | Reproducción en navegador y dispositivo, captura y validación de correcciones | Capturas y resultados de ejecución |
+
+#### 6.4.1.3. Contenido de auditoría realizada
+
+| ID / canal | Tarea y hallazgo | Heurística o principio | Severidad preliminar | Recomendación |
+|---|---|---|---|---|
+| UX-01 · Landing | Abrir la app web desde la landing. El enlace de acceso del encabezado, del cuerpo y del pie se declara con `href="#"`. En el HTML estático, el destino depende de JavaScript. | Prevención de errores y mejora progresiva | 3 si el acceso queda bloqueado cuando falla el script | Declarar la URL de la app como destino real en el HTML. Comprobar los tres enlaces con JavaScript habilitado y deshabilitado. |
+| UX-02 · Web | Buscar una solicitud por título o ID. El campo filtra `data.items` de la página cargada, mientras el paginador usa `data.totalItems` del listado. Una solicitud que está en otra página puede quedar fuera de la búsqueda visible. | Visibilidad del estado del sistema | 3 si se confirma el falso «sin resultados» | Aplicar búsqueda en servidor y paginar el conjunto filtrado. Mientras tanto, rotular el alcance como «Buscar en esta página». Validar con una solicitud de la segunda página. |
+| UX-03 · Móvil | Mostrar u ocultar la contraseña al iniciar sesión. El `IconButton` alterna el icono y el estado, pero su código no define un nombre accesible explícito. | Diseño inclusivo, nombre accesible del control | 2, pendiente de comprobar con lector de pantalla | Agregar un `tooltip` dinámico «Mostrar contraseña» / «Ocultar contraseña» y verificar ambos estados con TalkBack. |
+
+**Evidencia de revisión**
+
+- UX-01 · [Landing, index.html](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page/blob/main/index.html#L83), líneas 83, 317 y 547. Blob revisado `3a2814ec291837e1a49fed3089b83b084e1689ea`.
+- UX-02 · Frontend web, copia local en `f7d18cc`, componente `request-list.vue`. Revisar la llamada paginada a `requests.list`, el filtro sobre `data.items` y el total del paginador.
+- UX-03 · Flutter, copia local en `b9df6e4`, componente `access_page.dart`, control de contraseña alrededor de las líneas 128–146.
+
+### 6.4.2. Auditoría recibida
+
+#### 6.4.2.1. Información del grupo auditor
+
+Pendiente de confirmar.
+
+#### 6.4.2.2. Cronograma de auditoría recibida
+
+Pendiente de coordinación.
+
+#### 6.4.2.3. Contenido de auditoría recibida
+
+Pendiente de recepción del informe externo.
+
+#### 6.4.2.4. Resumen de modificaciones para subsanar hallazgos
+
+Pendiente de revisar el informe externo y verificar las correcciones que correspondan.
+
 ## Capítulo VII: DevOps Practices
 
 Este capítulo describe la automatización de compilación, pruebas y publicación configurada en los repositorios de frontend web y servicios backend de SmartQuote. Los pipelines utilizan GitHub Actions y se dividen en integración continua (CI) y flujos de publicación por entorno (CD). Las evidencias disponibles de las ejecuciones y los artefactos se enlazan en las subsecciones correspondientes.
@@ -6126,6 +7033,682 @@ La comprobación de salud de producción se realiza de forma manual abriendo [`h
 
 ![Anexo 7.3.2.5 — Sitio SmartQuote de producción accesible mediante HTTPS](assets/devops/7.3.2-05-frontend-production-https.png)
 
+### 7.4. Continuous Monitoring
+
+Esta sección define la estrategia de monitoreo continuo de SmartQuote: las herramientas, la recolección de telemetría, las alertas y las notificaciones. La instrumentación de la API y de la aplicación web está implementada en el código; la configuración de los recursos de Azure se documenta como diseño, porque no pudo puesto que, la suscripción *Azure for Students* que aloja el proyecto se encontraba deshabilitada y en modo de solo lectura (`ReadOnlyDisabledSubscription`), y ningún integrante del equipo dispone de créditos para habilitar otra. La suscripción conserva el acceso de lectura, por lo que se presentan como evidencia las métricas de plataforma que Azure Monitor registró automáticamente para la API, la aplicación web y la base de datos durante los 30 días previos; en cambio, la telemetría de aplicación, la prueba de disponibilidad, las alertas y las notificaciones no pudieron crearse ni ejecutarse.
+
+#### 7.4.1. Tools and Practices
+
+El monitoreo continuo permite conocer el estado de SmartQuote en Azure después de cada despliegue: si la API responde, cuánto tarda, qué operaciones fallan y cómo se comportan sus dependencias (PostgreSQL, SUNAT y OpenAI). Como la API se ejecuta en Azure App Service y la aplicación web en Azure Static Web Apps, se selecciona **Azure Monitor** con **Application Insights**, que se integra con ambos servicios sin infraestructura adicional y admite OpenTelemetry, el estándar abierto de telemetría.
+
+| Herramienta | Función |
+| --- | --- |
+| Application Insights (basado en área de trabajo) | Recibe solicitudes, dependencias, excepciones, registros y métricas de la API, y vistas de página, errores y llamadas HTTP del navegador. |
+| Log Analytics workspace | Almacena la telemetría y permite consultarla con KQL (Kusto Query Language). |
+| Métricas de plataforma de Azure Monitor | Informa CPU, memoria, solicitudes, errores HTTP 5xx y tiempo de respuesta del App Service sin cambios en el código. |
+| Pruebas de disponibilidad de Application Insights | Consultan periódicamente el endpoint `/health` de la API desde varias regiones. |
+| Azure Monitor OpenTelemetry Distro 1.6.0 (`Azure.Monitor.OpenTelemetry.AspNetCore`) | Instrumenta la API ASP.NET Core: solicitudes, excepciones, registros, llamadas HTTP salientes y comandos de PostgreSQL (fuente `Npgsql`). |
+| SDK de Application Insights para JavaScript 3.4.6 (`@microsoft/applicationinsights-web`) | Instrumenta la aplicación web: vistas de página, excepciones del navegador y llamadas a la API. |
+| Endpoints `/health` y `/health/live` | `/health` comprueba la conexión con cada base de datos de los contextos; `/health/live` confirma que el proceso responde. |
+
+**Prácticas adoptadas**
+
+- **Activación por configuración:** la API envía telemetría solo cuando existe la variable `APPLICATIONINSIGHTS_CONNECTION_STRING` en la configuración del App Service, y la aplicación web solo cuando se compila con `VITE_APPINSIGHTS_CONNECTION_STRING`, tomada de la variable de repositorio `APPINSIGHTS_CONNECTION_STRING` en los despliegues. El desarrollo local, las pruebas y los pull requests no envían telemetría. El SDK web se descarga en un archivo aparte únicamente cuando el monitoreo está activo.
+- **Sin credenciales en el código:** la cadena de conexión se configura en Azure y en GitHub, nunca en los repositorios. No es un secreto de autenticación, pero se administra fuera del código para cambiarla sin publicar una nueva versión.
+- **Privacidad:** no se registran nombres, correos ni contenidos de solicitudes o cotizaciones; el SDK web no utiliza cookies y agrupa las vistas por patrón de ruta (por ejemplo, `/requests/:id`) para no registrar identificadores. Las cabeceras de correlación solo se envían a la API configurada.
+- **Correlación de extremo a extremo:** cada solicitud del navegador comparte el identificador de operación con la solicitud de la API y sus consultas a PostgreSQL, de modo que un error puede seguirse desde la pantalla hasta la base de datos. Los componentes se distinguen por su rol: `smartquote-api` y `smartquote-web`.
+- **Métricas operativas:** tasa de solicitudes, porcentaje de solicitudes fallidas (HTTP 5xx), tiempo de respuesta promedio y percentil 95, dependencias fallidas por destino, excepciones, disponibilidad de `/health` y tiempo de carga y llamadas fallidas en el navegador.
+- **Retención:** 30 días en el área de trabajo de Log Analytics, suficientes para comparar el comportamiento entre sprints sin costos de retención adicional.
+- **Acceso:** el propietario de la suscripción administra los recursos; los demás integrantes reciben el rol *Monitoring Reader* para consultar la telemetría, sin permisos para modificar la configuración.
+- **Aplicación móvil:** no incluye un SDK de telemetría; sus operaciones se observan a través de las solicitudes que recibe la API, identificables por el rol `smartquote-api`.
+
+#### 7.4.2. Monitoring Pipeline Components
+
+El pipeline de monitoreo sigue el recorrido de la telemetría desde cada componente hasta su consulta:
+
+| Componente | Origen | Datos que recolecta | Destino |
+| --- | --- | --- | --- |
+| Instrumentación de la API | `Program.cs` del backend (rama `feature/monitoring`) | Solicitudes HTTP con código y duración, excepciones, registros, llamadas a SUNAT y OpenAI, y comandos de PostgreSQL | Application Insights, rol `smartquote-api` |
+| Instrumentación web | `src/shared/infrastructure/monitoring.js` del frontend (rama `feature/monitoring`) | Vistas de página por ruta, excepciones del navegador y llamadas `fetch` a la API | Application Insights, rol `smartquote-web` |
+| Métricas de plataforma | Azure App Service | CPU, memoria, solicitudes, errores HTTP 5xx y tiempo de respuesta | Azure Monitor (métricas) |
+| Prueba de disponibilidad | Application Insights, prueba estándar sobre `/health` cada 5 minutos desde 3 regiones | Resultado, duración y región de cada comprobación | Application Insights |
+| Consulta y panel | Log Analytics workspace y un panel (*dashboard*) de Azure | Las consultas KQL siguientes | Panel compartido del equipo |
+
+**Evidencia: métricas de plataforma de Azure Monitor**
+
+Sin instrumentación adicional, Azure Monitor registra métricas de plataforma para cada recurso. Las consultadas el 11/11/2026 cubren los 30 días previos (12/10/2026–11/11/2026) y muestran la actividad de SmartQuote hasta que sus servicios dejaron de recibir tráfico, alrededor del 08/11/2026, cuando la suscripción quedó deshabilitada:
+
+| Recurso | Métrica (agregación en 30 días) | Valor | Lectura |
+| --- | --- | --- | --- |
+| API (`smartquote-api`, App Service) | Solicitudes (suma) | 417 | Pico cercano a 250 solicitudes alrededor del 25/10, coincidente con las pruebas del flujo de compra. |
+| API | Errores HTTP 5xx (suma) | 0 | No se registraron errores del servidor en el periodo. |
+| API | Tiempo de respuesta (promedio) | 588,66 ms | Picos aislados cercanos a 20 s a mediados de octubre y a inicios de noviembre, compatibles con arranques en frío del plan B1 tras periodos sin tráfico. |
+| API | Datos recibidos / enviados (suma) | 636,4 kB / 3 MB | Tráfico bajo, propio de pruebas y demostraciones. |
+| Aplicación web (`smartquote-frontend`, Static Web Apps) | Visitas (`SiteHits`, suma) | 156 | Picos alrededor del 25/10 y a inicios de noviembre. |
+| Aplicación web | Errores (`SiteErrors`, suma) | Sin registros | No se registraron errores del sitio estático. |
+| Base de datos (`smartquote-pg`, PostgreSQL) | Conexiones activas (promedio) | 8,23 | Aumento a cerca de 9,6 conexiones a inicios de noviembre, con la incorporación de los procesos en segundo plano de US16 y US17. |
+| Base de datos | CPU (promedio) | 6,68 % | Uso estable entre 6 % y 7,5 %, sin saturación. |
+
+El estado *Admin disabled* del App Service confirma la suspensión del servicio por la suscripción.
+
+![Métricas de la API en 30 días: estado del App Service, errores HTTP 5xx y tráfico](assets/devops/7.4.2-01-api-errors-traffic-30d.png)
+
+![Métricas de la API en 30 días: solicitudes, tiempo de respuesta y almacenamiento](assets/devops/7.4.2-02-api-requests-latency-30d.png)
+
+![Métricas de la aplicación web en 30 días: visitas y errores de Static Web Apps](assets/devops/7.4.2-03-web-hits-errors-30d.png)
+
+![Métricas de PostgreSQL en 30 días: conexiones activas y uso de CPU](assets/devops/7.4.2-04-postgresql-connections-cpu-30d.png)
+
+Estas métricas evidencian la recolección de tráfico, errores y latencias de la API y de la aplicación web, y del estado de su base de datos. No sustituyen la telemetría de aplicación: no identifican la operación, la pantalla ni la dependencia que originó cada valor, y no incluyen la disponibilidad medida desde el exterior. Esa información corresponde a los componentes de Application Insights descritos en esta sección, que no pudieron activarse.
+
+**Configuración prevista en Azure**
+
+1. Crear un Log Analytics workspace y un recurso de Application Insights basado en ese workspace, en el mismo grupo de recursos y región de la API; fijar la retención del workspace en 30 días.
+2. En el App Service de la API, agregar la configuración `APPLICATIONINSIGHTS_CONNECTION_STRING` con la cadena de conexión del recurso y reiniciar la aplicación.
+3. En el repositorio del frontend, crear la variable `APPINSIGHTS_CONNECTION_STRING` con la misma cadena; el siguiente despliegue compila la aplicación web con la instrumentación activa.
+4. Crear una prueba de disponibilidad estándar sobre `https://<api>/health` con frecuencia de 5 minutos y 3 ubicaciones.
+5. Asignar el rol *Monitoring Reader* a los integrantes del equipo.
+
+**Consultas reproducibles (KQL)**
+
+Solicitudes, errores y latencia de la API por hora:
+
+```kusto
+AppRequests
+| where TimeGenerated > ago(24h) and AppRoleName == "smartquote-api"
+| summarize Solicitudes = count(),
+            Fallidas = countif(toint(ResultCode) >= 500),
+            PromedioMs = avg(DurationMs),
+            P95Ms = percentile(DurationMs, 95)
+  by bin(TimeGenerated, 1h)
+| order by TimeGenerated asc
+```
+
+Dependencias de la API (PostgreSQL, SUNAT y OpenAI) por destino:
+
+```kusto
+AppDependencies
+| where TimeGenerated > ago(24h) and AppRoleName == "smartquote-api"
+| summarize Llamadas = count(), Fallidas = countif(Success == false),
+            PromedioMs = avg(DurationMs)
+  by DependencyType, Target
+| order by Fallidas desc, Llamadas desc
+```
+
+Disponibilidad del endpoint `/health`:
+
+```kusto
+AppAvailabilityResults
+| where TimeGenerated > ago(24h)
+| summarize DisponibilidadPct = round(100.0 * countif(Success == true) / count(), 2)
+  by bin(TimeGenerated, 1h), Location
+```
+
+Pantallas más visitadas de la aplicación web y su tiempo de carga:
+
+```kusto
+AppPageViews
+| where TimeGenerated > ago(7d) and AppRoleName == "smartquote-web"
+| summarize Vistas = count(), CargaPromedioMs = avg(DurationMs) by Pantalla = Name
+| order by Vistas desc
+```
+
+Llamadas fallidas desde el navegador hacia la API:
+
+```kusto
+AppDependencies
+| where TimeGenerated > ago(7d) and AppRoleName == "smartquote-web" and Success == false
+| summarize LlamadasFallidas = count() by Target, ResultCode
+| order by LlamadasFallidas desc
+```
+
+**Estado.** La instrumentación de la API y de la aplicación web está implementada en las ramas `feature/monitoring` de ambos repositorios: la API compila sin advertencias, inicia correctamente con la telemetría activada y supera sus pruebas de dominio, y la aplicación web supera sus 67 pruebas unitarias, incluidas las del monitoreo. Los pasos de configuración y las consultas anteriores quedan definidos para aplicarse cuando el proyecto disponga de una suscripción activa; hasta entonces, la evidencia disponible corresponde a las métricas de plataforma presentadas.
+
+#### 7.4.3. Alerting Pipeline Components
+
+Las alertas convierten la telemetría vistas en 7.4.2 en avisos accionables. Se definen como reglas de Azure Monitor sobre el recurso de Application Insights y el App Service de la API; cada regla evalúa una señal en una ventana de tiempo, se dispara al superar su umbral y se resuelve automáticamente cuando la condición deja de cumplirse.
+
+| Id | Señal | Condición | Ventana y frecuencia | Severidad | Propósito |
+| --- | --- | --- | --- | --- | --- |
+| AL-01 | Prueba de disponibilidad de `/health` | Falla en 2 o más de las 3 ubicaciones | Evaluación cada 5 minutos | 1 (Error) | Detectar que la API o alguna de sus bases de datos no responde. |
+| AL-02 | Solicitudes fallidas de la API (HTTP 5xx) | Más de 5 solicitudes | Ventana de 5 minutos; evaluación cada minuto | 2 (Advertencia) | Detectar errores del servidor tras un despliegue o una falla de dependencias. |
+| AL-03 | Tiempo de respuesta del servidor | Promedio mayor que 2 segundos | Ventana de 15 minutos; evaluación cada 5 minutos | 3 (Informativa) | Detectar degradación del rendimiento antes de que afecte a los usuarios. |
+| AL-04 | Dependencias fallidas de la API (PostgreSQL, SUNAT y OpenAI) | Más de 5 llamadas fallidas | Ventana de 15 minutos; evaluación cada 5 minutos | 2 (Advertencia) | Distinguir fallas de servicios externos de errores propios de la API. |
+| AL-05 | Excepciones en el navegador (`smartquote-web`) | Más de 10 excepciones | Ventana de 15 minutos; evaluación cada 5 minutos | 3 (Informativa) | Detectar errores de la aplicación web que no llegan a la API. |
+
+Las severidades orientan la respuesta: una alerta de severidad 1 requiere atención inmediata del responsable del backend, mientras que las de severidad 2 y 3 se revisan el mismo día. Para evitar avisos repetidos, cada regla espera a resolverse antes de volver a dispararse.
+
+**Comprobación controlada prevista.** Para verificar el pipeline sin afectar a los usuarios, se crea temporalmente una prueba de disponibilidad adicional sobre una ruta inexistente de la API, de modo que falle en todas las ubicaciones y dispare una regla equivalente a AL-01. Se registran la hora de la falla, la hora en que la alerta pasa a *Fired*, la notificación recibida y, al eliminar la prueba temporal, la hora en que la alerta pasa a *Resolved*. La diferencia entre ambos momentos documenta el tiempo de detección y de recuperación.
+
+#### 7.4.4. Notification Pipeline Components
+
+Las notificaciones entregan cada alerta a las personas responsables mediante un **grupo de acciones** de Azure Monitor (*Action Group*), reutilizable por todas las reglas establecidas en 7.4.3.
+
+- **Grupo de acciones:** `ag-smartquote-equipo`, con nombre corto `SQAlertas`, en el mismo grupo de recursos que la API.
+- **Destinatarios y canales:** correo electrónico a la cuenta institucional de cada integrante del equipo y notificación *push* en la aplicación móvil de Azure para el responsable del backend. Las direcciones se registran solo en Azure, no en el repositorio ni en este informe.
+- **Contenido:** se habilita el esquema común de alertas (*common alert schema*), de modo que cada correo indique la regla, la severidad, el recurso afectado, el valor medido, el umbral y el enlace a la alerta en el portal.
+- **Asignación por severidad:** las reglas de severidad 1 y 2 (AL-01, AL-02 y AL-04) notifican a todo el equipo; las de severidad 3 (AL-03 y AL-05) solo al responsable del sistema afectado, para evitar el exceso de avisos.
+- **Recuperación:** cuando una alerta se resuelve, el mismo grupo envía la notificación de cierre, de modo que el equipo sabe que el incidente terminó sin consultar el portal.
+
+El recorrido completo es: la telemetría llega a Application Insights, una regla de alerta detecta la condición, la alerta invoca `ag-smartquote-equipo` y Azure Monitor envía el correo y la notificación *push* a los destinatarios. La prueba prevista de este recorrido utiliza la opción *Test action group* del portal, que envía una notificación de muestra a cada destinatario, y luego la comprobación controlada que valida el flujo con una alerta real.
+
+# Capítulo VIII: Experiment-Driven Development
+
+## 8.1. Experiment Planning
+
+### 8.1.1. As-Is Summary (J03)
+
+Esta sección describe el estado actual que servirá de referencia para los experimentos. Se separan los **hechos observados** (con su fuente en el informe) de lo **todavía desconocido**. Ninguna expectativa del equipo se presenta como resultado.
+
+#### Proceso de compra actual (sin SmartQuote)
+
+| Fase | Hecho observado | Fuente |
+|---|---|---|
+| Requerimiento | En un caso el requerimiento se registra en SAP HANA. En el segmento de producción/almacén, la necesidad se comunica mediante un informe al jefe, quien la deriva a otras áreas. | Entrevistas N.º 1 y N.º 3 (2.2.2) |
+| Recepción de ofertas | Las cotizaciones llegan de varios proveedores; un participante las gestiona por correo. | N.º 1 y N.º 2 |
+| Consolidación y comparación | Ambos analistas trasladan manualmente precio, disponibilidad y especificaciones a hojas de cálculo; lo describen como varias horas por requerimiento. La comparación ocurre fuera del ERP. | N.º 1 y N.º 2 (2.2.3, 2.3.5) |
+| Fricción principal | Cotizaciones incompletas o ambiguas son la causa de retrasos reportada por los dos analistas. | N.º 1 y N.º 2 |
+| Decisión y orden | La selección se mantiene bajo supervisión humana; en un caso la orden se formaliza en el ERP. La validación técnica pasa por filtros de supervisión y recomendación del jefe de área antes de la decisión de gerencia. | N.º 1, N.º 2 y N.º 3 |
+| Seguimiento | Las solicitudes físicas se traspapelan; las aclaraciones son frecuentes porque las áreas usan modelos y lenguajes distintos. | N.º 3 |
+| Condiciones de confianza | Confidencialidad de la información comercial, origen visible de cada dato y supervisión humana final. | N.º 1 y N.º 2 |
+
+#### Estado actual de los sistemas de SmartQuote (hechos del informe)
+
+| Componente | Hecho observado | Fuente |
+|---|---|---|
+| Backend | Monolito modular ASP.NET Core con Identity and Access Management, Supply Requests, Quotation Intake, Evaluation & Simulation y Purchase Ordering; utiliza PostgreSQL y Docker. Los endpoints de salud y Swagger respondieron `200 OK` en la comprobación local documentada. | 4.8, 5.2.6 |
+| Pruebas automatizadas | La ejecución del 10/11/2026 registra 76 pruebas unitarias del backend, 98 casos de integración y contratos y 3 escenarios BDD aprobados. La suite móvil registra 50 pruebas locales y un recorrido HTTP del flujo previo aprobados. Las evidencias web previas incluyen 15 pruebas unitarias y dos recorridos de sistema. | 6.1 |
+| App Android nativa | Ejecución nativa **pendiente**; no hay evidencia. | 6.1 |
+| Extracción con IA | El Spike SP01 (corpus anonimizado, prueba de concepto y medición de precisión) figura en la planificación del Sprint 1 con tareas TK04–TK07 en estado *To-do*. **No hay resultado de precisión publicado en el informe.** | 5.2.1.1 |
+| Sprint 3 | US15–US22 están seleccionadas para el ciclo. Las revisiones documentan cambios de backend y clientes para estas historias; las pruebas registradas en 6.1 verifican el backend y parte del alcance móvil. La selección y las revisiones no constituyen por sí solas una aceptación por usuarios. | 5.2.1.3, 6.1, 6.2.2 |
+| Validación con usuarios | Las entrevistas de validación (6.3.2) aún no están registradas. | 6.3.2 |
+
+Las ejecuciones de pruebas y las revisiones anteriores describen las versiones y fechas de sus respectivas evidencias; no constituyen resultados de las tarjetas experimentales de este capítulo ni acreditan por sí solas el estado de una versión desplegada posteriormente.
+
+#### Hechos observados frente a aspectos desconocidos
+
+| Hechos observados (con fuente) | Aspectos todavía desconocidos |
+|---|---|
+| Dos analistas trasladan datos a Excel y describen varias horas de trabajo (N.º 1, N.º 2). | Duración exacta por requerimiento, número de cotizaciones por periodo y costo del retrabajo. |
+| Un registro del segmento operativo (almacén) describe comunicación jerárquica y pérdida de solicitudes (N.º 3). | Cómo operan veterinarios, nutricionistas y jefes de granja; solo hay n = 1 y es un subperfil de almacén. |
+| Ambos analistas valoran origen visible del dato y control humano. | Qué restricciones concretas de confidencialidad o almacenamiento impiden cargar cotizaciones. |
+| Un analista usa SAP HANA y pide complementarlo, no reemplazarlo (N.º 1). | Qué ERP usa el resto de empresas y cómo se integraría. |
+| Existe el flujo extremo a extremo implementado y probado a nivel técnico (6.1). | Precisión real de extracción en cotizaciones heterogéneas; rendimiento en Android nativo; desempeño con usuarios reales. |
+| La muestra de entrevistas es pequeña (2 + 1). | Emociones, motivaciones, dispositivos, conectividad en granja (T12) y datos de perfil faltantes (2.2.3). |
+
+### 8.1.2. Raw Material: Assumptions, Knowledge Gaps, Ideas, Claims
+
+Se clasifica el material de partida **sin presentar creencias como resultados comprobados**. «Origen» indica de dónde sale cada elemento; «Investigar» indica si conviene convertirlo en pregunta de experimento y con qué urgencia.
+
+#### Assumptions (suposiciones)
+
+| ID | Suposición | Origen | Investigar |
+|---|---|---|---|
+| A01 | Las empresas avícolas contratarían una membresía B2B SaaS si se reduce el esfuerzo de compras. | BA1 (1.2.2.2) | Media: sin evidencia de disposición de pago. |
+| A02 | Complementar el ERP es más viable que reemplazarlo. | BA2; N.º 1 | Alta: depende de integración y confidencialidad. |
+| A03 | Demoras, errores y pérdida de trazabilidad tienen un costo que justifica una solución especializada. | BA3 | Alta: no hay datos de costo. |
+| A04 | Los analistas necesitan comparar ofertas sin dominar todas las especificaciones técnicas. | UA1 | Media. |
+| A05 | Producción, sanidad y operación necesitan requisitos claros y seguimiento sin documentos físicos. | UA2; N.º 3 | Alta: solo un registro. |
+| A06 | Los aprobadores requieren recomendación explicable, evidencia de origen y control humano. | UA3; N.º 1, N.º 2 | Alta. |
+| A07 | Un agente de IA convierte PDF heterogéneos en datos estructurados sin inventar valores. | FA1 | **Muy alta:** es el riesgo central. |
+| A08 | Mostrar fuente, confianza, valor original y correcciones permite resolver excepciones antes de verificar. | FA2 | Alta. |
+| A09 | Criterios obligatorios y pesos configurables permiten simular prioridades sin ocultar ofertas no elegibles. | FA3 | Media. |
+| A10 | Un formulario móvil con requisitos, adjuntos, historial y notificaciones facilita la coordinación. | FA4 | Alta: depende del contexto de campo. |
+| A11 | Roles, versionado e idempotencia permiten aprobar sin duplicar órdenes. | FA5 | Media: verificable técnicamente. |
+| A12 | Estructurar y comparar cotizaciones reducirá el tiempo del cuadro comparativo. | OA1 | **Muy alta.** |
+| A13 | Campos normalizados y requisitos claros reducirán aclaraciones y datos incompletos. | OA2 | Media. |
+| A14 | Evidencia, historial y aprobación humana aumentarán la confianza en la recomendación. | OA3 | Alta. |
+| A15 | El seguimiento digital reducirá solicitudes perdidas y permitirá anticipar retrasos. | OA4 | Media. |
+
+#### Knowledge Gaps (brechas de conocimiento)
+
+| ID | Brecha | Origen | Investigar |
+|---|---|---|---|
+| G01 | Precisión real de la extracción por campo en cotizaciones heterogéneas (sin medición publicada). | 5.2.1.1 (SP01) | **Muy alta.** |
+| G02 | Línea base: tiempo real de elaboración del cuadro comparativo. | 2.2.3 (solo «varias horas») | **Muy alta.** |
+| G03 | Volumen de solicitudes y cotizaciones por periodo. | 2.2.3 (dato no recogido) | Alta. |
+| G04 | Proceso real de veterinarios, nutricionistas y jefes de granja (n = 1, almacén). | 2.2.3 | **Muy alta.** |
+| G05 | Cómo valida producción/sanidad la conformidad técnica de una cotización y qué decisiones exigen aprobación profesional. | Guion T6, T8, T9; no respondido | Alta. |
+| G06 | Restricciones de confidencialidad, permisos y almacenamiento para cargar documentos comerciales. | Guion A13; N.º 2 solo menciona confidencialidad | Alta. |
+| G07 | Integración con ERP en empresas distintas a la de N.º 1. | N.º 2 no lo aborda | Media. |
+| G08 | Conectividad y uso del teléfono en granja o campo. | Guion T12; no recogido | Alta. |
+| G09 | Comportamiento de la app en Android nativo. | 6.1 (pendiente) | Media. |
+| G10 | Resultados de las pruebas de tareas con usuarios en Landing, web y móvil. | 6.3.2 (vacío) | Alta. |
+| G11 | Emociones y motivaciones de los analistas. | 2.3.4–2.3.5 (marcado Pendiente) | Baja. |
+
+#### Ideas (propuestas de solución, aún no validadas)
+
+Siguiendo la guía, **se prueban las premisas que sostienen cada idea, no la idea en sí**.
+
+| ID | Idea | Premisa subyacente que se pondría a prueba | Origen |
+|---|---|---|---|
+| I01 | Formulario móvil de solicitudes con requisitos técnicos y adjuntos. | El personal operativo puede y quiere registrar requisitos técnicos completos desde el móvil en su contexto de trabajo (A10, G08). | Lean UX Canvas, bloque 5 |
+| I02 | Carga de PDF con extracción asistida por IA que muestre confianza y evidencia de origen. | Las cotizaciones llegan en PDF legibles y el analista confía en el resultado cuando ve la evidencia (A07, A08). | Lean UX Canvas, bloque 5 |
+| I03 | Corrección auditable de campos extraídos. | Corregir un campo extraído es más rápido que transcribirlo desde cero (A12). | Lean UX Canvas, bloque 5 |
+| I04 | Simulación con criterios obligatorios y ponderados, con explicación del ranking. | Los pesos configurables reflejan cómo se decide en la práctica (A09, A06). | Lean UX Canvas, bloque 5 |
+| I05 | Campos estandarizados y vocabulario común entre áreas. | La falta de lenguaje común es una causa real de las aclaraciones (A13, C04). | N.º 3; 2.4 Ubiquitous Language |
+| I06 | Integración gradual con el ERP. | Las empresas permiten intercambiar datos con su ERP y eso es técnicamente viable (A02, G06, G07). | Lean UX Canvas; N.º 1 |
+
+#### Claims (afirmaciones de fuentes; no verificadas por el equipo)
+
+C03 y C06 son afirmaciones sobre el producto; C01, C02, C04 y C05 son afirmaciones sobre el problema.
+
+| ID | Afirmación | Quién la hace | Estado |
+|---|---|---|---|
+| C01 | Trasladar y comparar ofertas consume varias horas por requerimiento. | N.º 1 y N.º 2 | Reportado; sin medición. |
+| C02 | Cotizaciones incompletas o ambiguas son la principal causa de retraso. | N.º 1 y N.º 2 | Reportado; sin medición. |
+| C03 | Una plataforma con IA ahorraría tiempo y reduciría errores. | N.º 1 y N.º 2 | Expectativa, no mejora demostrada. |
+| C04 | Las solicitudes físicas se traspapelan y las aclaraciones son frecuentes por lenguajes distintos. | N.º 3 | Reportado por una sola persona. |
+| C05 | Compras tardías o incorrectas causan pérdidas económicas y retrasos en ventas. | N.º 3 | Reportado; sin cuantificar. |
+| C06 | La herramienta no debería reemplazar al ERP sino integrarse con él. | N.º 1 | Preferencia expresada por una persona. |
+
+#### Premisas que conviene investigar primero
+
+1. **A07 / G01** (extracción sin inventar valores): es la premisa de mayor riesgo y la base de H1.
+2. **A12 / G02 / C01** (reducción de tiempo): sin línea base no se puede afirmar mejora.
+3. **A05 / G04 / C04** (necesidades del segmento operativo): la evidencia es de una sola persona.
+4. **A02 / G06 / G07** (ERP y confidencialidad): condicionan si el producto puede usarse en la práctica.
+5. **A08 / A14** (confianza en la evidencia mostrada): sostiene la propuesta de «IA que recomienda, no decide».
+
+### 8.1.3. Experiment-Ready Questions
+
+Las preguntas convierten el material de 8.1.2 en algo investigable. Se distinguen las **basadas en creencias** (ponen a prueba una suposición con una hipótesis y un criterio) de las **exploratorias** (buscan comprender, sin hipótesis previa). Cada una precisa quién, qué y en qué contexto se busca aprender.
+
+| ID | Tipo | Pregunta investigable | Quién | Qué se busca aprender | Contexto | Origen |
+|---|---|---|---|---|---|---|
+| Q01 | Basada en creencia | ¿La extracción asistida por IA alcanza una precisión de al menos 90 % en los campos obligatorios de cotizaciones PDF heterogéneas, sin introducir valores ausentes? | Agente de extracción evaluado con la referencia verificada del equipo | Precisión por campo y tasa de valores inventados | Corpus anonimizado de cotizaciones con tres o más estructuras documentales | A07, G01, H1 (Lean UX) |
+| Q02 | Basada en creencia | ¿El flujo asistido reduce el tiempo de estructurar una cotización frente al proceso manual en Excel? | Analistas de adquisiciones | Diferencia de tiempo por cotización | Sesión controlada con cotizaciones comparables y cuentas de prueba | A12, G02, C01, H1 |
+| Q03 | Basada en creencia | ¿Mostrar confianza, fuente y valor original permite al analista localizar el origen de un dato y corregir un campo ambiguo sin ayuda? | Analistas y jefes de adquisiciones | Éxito de tarea, errores y confianza reportada | Prueba de tareas moderada en la web (tarea A2 de 6.3.1) | A08, A14, H2 |
+| Q04 | Basada en creencia | ¿Dos escenarios con pesos distintos producen rankings coherentes con sus reglas, excluyen incumplimientos obligatorios y repiten el resultado con las mismas entradas? | Motor de simulación (verificado por el equipo) | Coherencia, exclusión correcta y repetibilidad | Al menos dos cotizaciones verificadas, una con incumplimiento obligatorio | A09, H3 |
+| Q05 | Basada en creencia | ¿Un especialista de producción o sanidad puede registrar en el móvil una solicitud completa con requisitos técnicos sin ayuda? | Especialistas de producción y sanidad | Éxito de tarea y completitud de la solicitud | Prueba moderada con ficha de caso (tarea P2 de 6.3.1) | A10, I01, H4 |
+| Q06 | Basada en creencia | ¿El seguimiento por estado, historial y responsable permite identificar quién debe actuar y qué necesita? | Especialistas de producción y sanidad | Comprensión del estado y de la responsabilidad pendiente | Prueba moderada (tarea P3 de 6.3.1) | A15, H4 |
+| Q07 | Basada en creencia | ¿Repetir una misma aprobación devuelve la orden existente sin crear un duplicado? | Servicio de órdenes de compra (probado por el equipo) | Número de órdenes duplicadas | Pruebas automatizadas con el mismo identificador de aprobación | A11, H5 |
+| Q08 | Exploratoria | ¿Cómo piden y validan hoy veterinarios, nutricionistas y jefes de granja los insumos con adquisiciones, y qué datos técnicos suelen faltar o interpretarse distinto? | Veterinarios, nutricionistas, jefes de granja | Flujo real, canales, datos omitidos y puntos de decisión | Entrevistas semiestructuradas en su entorno de trabajo | A05, G04, G05, C04 |
+| Q09 | Exploratoria | ¿Cuánto tiempo, volumen y retrabajo implica hoy elaborar un cuadro comparativo? | Analistas de adquisiciones | Línea base de tiempo, volumen de cotizaciones y correcciones | Observación del proceso actual con datos autorizados | A03, G02, G03, C01, C05 |
+| Q10 | Exploratoria | ¿Qué restricciones de confidencialidad, permisos y ERP condicionan la carga de cotizaciones a una plataforma externa? | Analistas, jefes de compras y personal de TI | Restricciones y requisitos de integración | Entrevistas en empresas avícolas medianas | A02, G06, G07, C06 |
+| Q11 | Exploratoria | ¿Qué evidencia necesitan los aprobadores para confiar en una recomendación generada por IA? | Jefes de compras y gerencia | Criterios de confianza y evidencia mínima | Revisión de escenarios de aprobación con participantes | A06, A14 |
+| Q12 | Exploratoria | ¿Qué conectividad y dispositivos tiene el personal de granja o almacén al registrar solicitudes? | Personal de granja y almacén | Restricciones de uso móvil | Observación contextual y entrevistas | A10, G08, G09 |
+| Q13 | Exploratoria | ¿Qué condiciones de precio y decisión influirían en contratar una membresía? | Decisores de empresas avícolas | Disposición y condiciones de contratación | Entrevistas con decisores | A01 |
+| Q14 | Exploratoria | ¿En qué formatos reciben realmente las cotizaciones (PDF digital, escaneado, imagen, hoja de cálculo, mensajería) y cuántas llegan incompletas? | Analistas de adquisiciones | Distribución de formatos y proporción de cotizaciones incompletas | Observación de las cotizaciones recibidas, con documentos autorizados | A07, C02, 5W1H |
+
+**Premisas ocultas detectadas con las Cinco Ws y una H.** Se aplicó la técnica al flujo de extracción: *Who* envía la cotización (¿el proveedor la redacta siempre igual?), *What* formato tiene, *Where* se recibe (correo, mensajería, portal), *When* vence su vigencia, *Why* llega incompleta y *How* se corrige hoy. De ahí surgió una premisa oculta no escrita en 8.1.2: **la extracción supone PDF digitales legibles**, no escaneos ni fotografías. Esa premisa dio origen a Q14.
+
+### 8.1.4. Question Backlog
+
+El Question Backlog ordena **preguntas de aprendizaje**, no funcionalidades: no es el Product Backlog de la sección 3.3 (que contiene historias de usuario y tareas técnicas) y sus ítems no se estiman en Story Points.
+
+**Escala propuesta (1–5), por confirmar con la guía del curso:**
+
+- **Confianza (C):** cuánta evidencia ya existe. 1 = casi ninguna; 5 = evidencia sólida.
+- **Riesgo (R):** qué tan grave sería que la creencia fuera falsa. 5 = compromete el valor central del producto.
+- **Impacto (I):** cuánto cambiaría una decisión de producto o de alcance según la respuesta.
+- **Interés (In):** interés del equipo en aprenderlo ahora.
+- **Puntaje de prioridad = R + I + In + (6 − C).** Un puntaje alto indica algo importante y poco conocido. **Desempate:** mayor riesgo; si persiste, mayor impacto y luego mayor interés.
+
+Los puntajes son juicios iniciales del equipo y deben acordarse en una sesión; no son mediciones.
+
+| Orden | ID | Pregunta (resumen) | Motivación | C | R | I | In | Puntaje |
+|---:|---|---|---|---:|---:|---:|---:|---:|
+| 1 | Q08 | Proceso real y datos faltantes en producción y sanidad | Solo hay un registro de almacén; el segmento operativo sostiene la solicitud y la validación técnica. | 1 | 5 | 5 | 5 | 20 |
+| 2 | Q01 | Precisión de extracción ≥ 90 % sin valores inventados | Es el riesgo técnico central; no hay medición publicada. | 2 | 5 | 5 | 5 | 19 |
+| 3 | Q09 | Línea base de tiempo, volumen y retrabajo | Sin línea base no se puede afirmar ninguna mejora. | 1 | 4 | 5 | 4 | 18 |
+| 4 | Q14 | Formatos reales de cotización y proporción de incompletas | Si llegan escaneos o imágenes, la extracción por PDF digital pierde valor y cambia el alcance. | 1 | 5 | 4 | 3 | 17 |
+| 5 | Q02 | Reducción de tiempo de estructuración | Es el beneficio principal prometido (OA1). | 2 | 4 | 5 | 4 | 17 |
+| 6 | Q10 | Confidencialidad y ERP | Puede impedir el uso real del producto. | 2 | 5 | 4 | 3 | 16 |
+| 7 | Q11 | Evidencia para confiar en la IA | Sostiene el principio «IA recomienda, humano decide». | 2 | 4 | 4 | 4 | 16 |
+| 8 | Q13 | Disposición a contratar | Valida el modelo de negocio. | 1 | 4 | 4 | 3 | 16 |
+| 9 | Q03 | Localizar fuente y corregir campo ambiguo | Valida la verificación explicable (H2). | 3 | 4 | 4 | 4 | 15 |
+| 10 | Q05 | Registro móvil sin ayuda | Valida el canal del segmento 2 (H4). | 3 | 3 | 4 | 4 | 14 |
+| 11 | Q12 | Conectividad en granja/almacén | Condiciona el diseño móvil. | 2 | 3 | 3 | 3 | 13 |
+| 12 | Q07 | Aprobación idempotente | Verificable técnicamente; evidencia previa de pruebas. | 4 | 4 | 3 | 3 | 12 |
+| 13 | Q04 | Escenarios coherentes y repetibles | Hay pruebas de dominio previas. | 4 | 3 | 4 | 3 | 12 |
+| 14 | Q06 | Seguimiento: estado y responsable | Complementa Q05. | 3 | 3 | 3 | 3 | 12 |
+
+**Backlog amplio y profundo.** La guía distingue ambos. La tabla anterior es el backlog **amplio** (*broad*): cubre muchos temas distintos del producto. El backlog **profundo** (*deep*) baja a sub-preguntas de una pregunta amplia; estas se ejecutan después de la pregunta madre y no compiten con las amplias hasta entonces.
+
+| ID | Pregunta madre | Sub-pregunta | Motivación | C | R | I | In | Puntaje |
+|---|---|---|---|---:|---:|---:|---:|---:|
+| Q01.1 | Q01 | ¿En qué tipos de campo y de estructura documental falla más la extracción? | Permite corregir donde más duele. | 1 | 4 | 4 | 4 | 17 |
+| Q01.2 | Q01 | ¿Qué umbral de confianza separa los campos correctos de los dudosos? | Define cuándo pedir revisión humana. | 1 | 4 | 3 | 4 | 16 |
+| Q02.1 | Q02 | ¿Qué actividad consume más tiempo: transcribir, pedir aclaraciones o comparar? | Indica qué automatizar primero. | 2 | 3 | 4 | 4 | 15 |
+| Q08.1 | Q08 | ¿Qué datos técnicos se omiten más según el tipo de insumo (alimento, vacuna, medicamento)? | Define los campos obligatorios de la solicitud. | 1 | 4 | 4 | 4 | 17 |
+
+**Selección para el primer ciclo:** se llevan a Experiment Cards Q01, Q02, Q03, Q04, Q05, Q07, Q08 y Q09. **Q14 se responde dentro de EC08** (la hoja de registro anota el formato de cada cotización). Q10, Q11, Q12 y Q13 quedan para el siguiente ciclo; Q06 se cubrirá junto con Q05 si el tiempo de la sesión lo permite.
+
+### 8.1.5. Experiment Cards
+
+Cada tarjeta lleva en el **frente** la pregunta, el porqué, la hipótesis (si aplica) y el *Simplest Useful Thing* (lo mínimo que permite aprender). En el **reverso** van medidas, condiciones y escala. Solo se usan métricas definidas en 8.2.2 y los IDs son trazables hacia 8.2.1, 8.2.3, 8.2.4 y 8.2.5.
+
+#### EC01 — Precisión de extracción
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q01 |
+| **Por qué** | Es la premisa de mayor riesgo (A07/G01): si la extracción inventa u omite campos, el resto del flujo pierde valor. |
+| **Hipótesis** | HW01 / H0-01 |
+| **Simplest Useful Thing** | Ejecutar la prueba de concepto de SP01 sobre el corpus anonimizado y comparar cada campo obligatorio con la referencia verificada. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M02, M03 |
+| **Condiciones** | Sin grupo control; la referencia verificada actúa como criterio. Ver 8.2.4. |
+| **Escala** | Aproximación inicial de 139 observaciones independientes para ±5 pp y confianza del 95 %; debe ajustarse por agrupación en cotizaciones. El corpus de factibilidad no garantiza esa precisión. Ver 8.2.5. |
+
+#### EC02 — Tiempo de estructuración manual frente a asistido
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q02 |
+| **Por qué** | Reducir tiempo es el beneficio central (OA1) y hoy solo hay relatos de «varias horas». |
+| **Hipótesis** | HW02 / H0-02 |
+| **Simplest Useful Thing** | Cada analista estructura cotizaciones comparables con su método habitual (Excel) y con SmartQuote, alternando el orden, y se cronometra con la grabación. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M01 (principal), M02 (secundaria) |
+| **Condiciones** | Control: Excel; experimental: flujo asistido; diseño pareado con orden contrabalanceado. |
+| **Escala** | Aproximadamente 12 pares independientes para un efecto grande (dz = 0,8); mediciones repetidas del mismo analista no se consideran pares independientes sin ajustar el análisis. Ver 8.2.5. |
+
+#### EC03 — Verificación explicable
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q03 |
+| **Por qué** | La propuesta depende de que el analista pueda comprobar el origen del dato (A08, A14). |
+| **Hipótesis** | HW03 / H0-03 |
+| **Simplest Useful Thing** | Tarea A2 de 6.3.1 con una cotización ambigua preparada, cuenta de prueba y documentos ficticios. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M04, M05, M06 |
+| **Condiciones** | Grupo de estudio: analistas o jefes de adquisiciones; sin grupo control. |
+| **Escala** | n = 3 (6.3.1); resultado descriptivo, no estimación de tasa. |
+
+#### EC04 — Simulación por escenarios
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q04 |
+| **Por qué** | Si los rankings no son coherentes o no se repiten, la recomendación no es defendible (A09). |
+| **Hipótesis** | HW04 / H0-04 |
+| **Simplest Useful Thing** | Ejecutar dos escenarios con pesos distintos sobre las mismas cotizaciones verificadas, incluida una con incumplimiento obligatorio, y repetir cada ejecución. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M07, M08, M09 |
+| **Condiciones** | Entradas fijas; solo cambian los pesos entre escenarios. |
+| **Escala** | Hasta 59 repeticiones automatizadas por escenario para observar repetibilidad; no constituyen una estimación independiente de la tasa general de fallos. |
+
+#### EC05 — Registro móvil de solicitudes
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q05 |
+| **Por qué** | El segmento 2 usa el móvil para originar la solicitud (A10) y hoy depende de informes físicos (C04). |
+| **Hipótesis** | HW05 / H0-05 |
+| **Simplest Useful Thing** | Tarea P2 de 6.3.1 con la ficha del caso, cuenta de prueba y observación del primer intento. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M04, M12, M06 |
+| **Condiciones** | Grupo de estudio: especialistas de producción y sanidad. |
+| **Escala** | n = 3 (6.3.1); resultado descriptivo. |
+
+#### EC06 — Aprobación idempotente
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q07 |
+| **Por qué** | Una orden duplicada tiene consecuencias comerciales (A11). |
+| **Hipótesis** | HW06 / H0-06 |
+| **Simplest Useful Thing** | Enviar la misma solicitud de aprobación repetidamente en una prueba automatizada y contar órdenes creadas. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M13 |
+| **Condiciones** | Misma aprobación vigente, mismo identificador. |
+| **Escala** | Hasta 59 reintentos automatizados de la misma aprobación para comprobar la idempotencia en las condiciones ensayadas. |
+
+#### EC07 — Proceso real del segmento operativo (exploratoria)
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q08 |
+| **Por qué** | La evidencia del segmento 2 es de un solo registro de almacén (G04). |
+| **Hipótesis** | No aplica (pregunta exploratoria). |
+| **Simplest Useful Thing** | Entrevistas semiestructuradas con la guía T1–T14 del 2.2.1 a veterinarios, nutricionistas o jefes de granja. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M10 y M11 (autorreportadas) |
+| **Condiciones** | Grupo y contexto de estudio delimitados en 8.2.4. |
+| **Escala** | 3 a 5 entrevistas, hasta que no aparezcan temas nuevos. |
+
+#### EC08 — Línea base del cuadro comparativo (exploratoria)
+
+| Frente | |
+|---|---|
+| **Pregunta** | Q09 y Q14 |
+| **Por qué** | Sin línea base no se puede validar ninguna reducción de tiempo (G02). |
+| **Hipótesis** | No aplica (pregunta exploratoria). |
+| **Simplest Useful Thing** | Hoja de registro simple donde analistas anotan, con datos autorizados, tiempo, correcciones y formato de cada cotización recibida. |
+
+| Reverso | |
+|---|---|
+| **Medidas** | M14, M15, M10, M16 |
+| **Condiciones** | Grupo de estudio: analistas de adquisiciones en su proceso actual. |
+| **Escala** | Descriptivo; objetivo propuesto de al menos 10 cuadros registrados, sujeto al acceso. |
+
+## 8.2. Experiment Design
+
+### 8.2.1. Hypotheses
+
+Cada hipótesis de trabajo (HW) tiene su hipótesis nula (H0), está vinculada a una tarjeta y a una métrica del catálogo de 8.2.2 y se puede refutar con datos. Las preguntas exploratorias (EC07 y EC08) no llevan hipótesis. **Los valores objetivo son metas de validación, no resultados alcanzados.** Se relacionan con H1–H5 de la sección 1.2.2.3.
+
+| ID | Tarjeta | Métrica | Hipótesis de trabajo (HW) | Hipótesis nula (H0) | Regla de decisión |
+|---|---|---|---|---|---|
+| HW01 / H0-01 | EC01 | M02, M03 | La precisión de campos obligatorios alcanza al menos 90 % y no se observan valores inventados en el corpus evaluado. *(H1)* | La precisión es menor de 90 % o se observa al menos un valor inventado en el corpus. | Se identifica incumplimiento si el límite superior del IC 95 % ajustado de M02 es menor de 90 % o se observa un valor inventado. Se considera apoyada provisionalmente si el límite inferior del IC es al menos 90 % y no se observan valores inventados; en los demás casos el resultado es no concluyente. Cero valores inventados en una muestra no demuestra su ausencia en todas las cotizaciones. |
+| HW02 / H0-02 | EC02 | M01 | El tiempo de estructuración con el flujo asistido es menor que con el manual. *(H1)* | No hay reducción del tiempo de estructuración con el flujo asistido. | Para pares independientes se evalúa la diferencia manual − asistido con una prueba pareada unilateral definida según sus supuestos, α = 0,05. Si un analista procesa varios pares, se considera la agrupación por participante; con pocos analistas se presentan diferencias descriptivas sin atribuir potencia ni significación no sustentadas. |
+| HW03 / H0-03 | EC03 | M04, M05 | Al menos 2 de 3 participantes localizan la fuente y corrigen un campo ambiguo sin ayuda. *(H2)* | Como máximo 1 de 3 lo logra sin ayuda. | Conteo descriptivo por participante; con n = 3 no hay contraste estadístico. Se registran errores (M06) y confianza (M05). |
+| HW04 / H0-04 | EC04 | M07, M08, M09 | En todos los escenarios evaluados, el ranking es coherente con sus reglas, las ofertas con incumplimiento obligatorio se excluyen y la repetición con las mismas entradas da el mismo resultado. *(H3)* | Existe al menos un escenario con ranking incoherente, una oferta incumplidora no excluida o un resultado distinto en la repetición. | Un solo contraejemplo refuta HW04. |
+| HW05 / H0-05 | EC05 | M04, M12 | Al menos 2 de 3 especialistas registran una solicitud completa sin ayuda. *(H4)* | Como máximo 1 de 3 la completa sin ayuda. | Conteo descriptivo; M12 debe ser 100 % en los casos logrados. |
+| HW06 / H0-06 | EC06 | M13 | Repetir la misma aprobación no genera órdenes adicionales (M13 = 0). *(H5)* | Al menos una repetición genera una orden duplicada. | Un solo duplicado refuta HW06. |
+
+### 8.2.2. Domain Business Metrics
+
+Catálogo único de métricas. Las tarjetas y el diseño experimental usan **solo** estas métricas; no se crean métricas ad hoc en cada tarjeta. Cuando la meta depende de una línea base aún no medida, se indica así y no se inventa un número.
+
+| ID | Métrica | Significado | Fórmula | Unidad | Fuente / técnica de recolección | Meta |
+|---|---|---|---|---|---|---|
+| M01 | Tiempo de estructuración de cotización | Tiempo para dejar una cotización con sus campos obligatorios completos y verificados. | Hora de fin − hora de inicio, por cotización. | Minutos | Cronometraje desde la grabación de la sesión. | Menor que el tiempo manual medido en EC02; EC08 aporta una línea base complementaria del cuadro comparativo completo. |
+| M02 | Precisión de campos obligatorios | Proporción de campos extraídos que coinciden con la referencia verificada. | (campos coincidentes ÷ campos obligatorios evaluados) × 100. | % | Comparación campo por campo con la referencia verificada. | ≥ 90 % (H1) |
+| M03 | Valores inventados | Campos con un valor que no figura en el documento. | (campos con valor no presente ÷ campos obligatorios evaluados) × 100. | % | Revisión contra el documento fuente. | 0 % |
+| M04 | Tasa de éxito de tarea sin ayuda | Tareas logradas sin ayuda sobre las evaluadas. | (tareas «lograda sin ayuda» ÷ tareas evaluadas) × 100. | % | Registro por tarea según 6.3.1. | Por calibrar con la prueba (descriptivo). |
+| M05 | Confianza reportada | Confianza del participante en el resultado mostrado. | Mediana de la escala de 1 a 5 tras la tarea. | Puntos (1–5) | Pregunta posterior a la tarea. | Por calibrar (descriptivo). |
+| M06 | Errores y ayudas por tarea | Fallos observados y ayudas necesarias. | Conteo por tarea. | Eventos | Observación registrada en la ficha. | Tendencia a la baja entre ciclos. |
+| M07 | Coherencia del ranking | Escenarios cuyo ranking coincide con el esperado por sus reglas. | (escenarios coherentes ÷ escenarios ejecutados) × 100. | % | Cálculo esperado a mano frente a la salida del sistema. | 100 % |
+| M08 | Exclusión correcta de incumplimientos | Ofertas que incumplen un criterio obligatorio y quedan excluidas. | (excluidas correctamente ÷ ofertas incumplidoras) × 100. | % | Revisión de la salida de la simulación. | 100 % |
+| M09 | Repetibilidad de la simulación | Repeticiones con mismas entradas y mismo resultado. | (repeticiones idénticas ÷ repeticiones totales) × 100. | % | Comparación de ranking y huella de entrada entre ejecuciones. | 100 % |
+| M10 | Aclaraciones por solicitud | Veces que una solicitud requiere aclaración. | Conteo de aclaraciones ÷ solicitudes observadas. | Aclaraciones/solicitud | Hoja de registro o relato declarado. | Menor que la línea base (por medir). |
+| M11 | Solicitudes localizables | Solicitudes que se encuentran cuando se buscan. | (solicitudes localizadas ÷ solicitudes buscadas) × 100. | % | Registro de búsqueda o relato declarado. | Mayor que la línea base (por medir). |
+| M12 | Completitud de la solicitud | Campos obligatorios completos de una solicitud registrada. | (campos obligatorios completos ÷ campos obligatorios) × 100. | % | Revisión del registro creado en la sesión. | 100 % |
+| M13 | Órdenes duplicadas | Órdenes adicionales creadas al repetir una aprobación. | Conteo de órdenes − 1, por aprobación repetida. | Órdenes | Consulta a la base de datos o a la API. | 0 |
+| M14 | Tiempo de elaboración del cuadro comparativo | Tiempo total para comparar las ofertas de un requerimiento. | Hora de fin − hora de inicio, por requerimiento. | Minutos | Hoja de registro del analista. | Es una línea base; no tiene meta. |
+| M15 | Cotizaciones procesadas por periodo | Volumen de trabajo del analista. | Conteo de cotizaciones ÷ periodo observado. | Cotizaciones/semana | Hoja de registro o dato autorizado. | Es una línea base; no tiene meta. |
+| M16 | Distribución de formatos de cotización | Peso de cada formato en las cotizaciones recibidas. | (cotizaciones de un formato ÷ cotizaciones totales) × 100, por formato. | % | Hoja de registro del analista. | Es una línea base; no tiene meta. |
+
+**Vínculo con los objetivos de negocio.** Según la guía, cada métrica debe responder a un objetivo de negocio. Se usan los resultados del Lean UX Canvas (bloque 2); son objetivos por medir, no logrados.
+
+| Objetivo de negocio (Lean UX Canvas, bloque 2) | Métricas |
+|---|---|
+| Reducir el tiempo de atención y el retrabajo. | M01, M14, M15 |
+| Disminuir errores y datos incompletos. | M02, M03, M07, M08, M12, M16 |
+| Disminuir aclaraciones y solicitudes no localizadas. | M10, M11 |
+| Conservar evidencia de criterios, fuentes y aprobaciones (evitar órdenes duplicadas). | M09, M13 |
+| Favorecer la adopción mediante confianza y facilidad de uso. | M04, M05, M06 |
+
+### 8.2.3. Measures
+
+Medidas necesarias para responder cada pregunta, su cálculo, su periodicidad, la evidencia principal y secundaria, y el tiempo de observación.
+
+| Tarjeta | Medida | Cálculo | Periodicidad | Evidencia principal | Evidencia secundaria | Tiempo de observación |
+|---|---|---|---|---|---|---|
+| EC01 | M02, M03 | Según 8.2.2, con IC 95 % ajustado por agrupación en documentos. | Una corrida por versión del corpus. | Salida del agente frente a la referencia verificada. | Valores no resueltos y niveles de confianza reportados. | Una ejecución completa del corpus. |
+| EC02 | M01 (M02 secundaria) | Diferencia pareada manual − asistido con cotizaciones comparables, identificando las mediciones del mismo analista. | Por cotización en cada sesión. | Cronometraje de la grabación. | Observaciones y comentarios del analista. | Una sesión por analista. |
+| EC03 | M04, M05, M06 | Conteos y mediana por participante. | Por tarea. | Resultado registrado en la ficha. | Grabación y expresiones relevantes. | Sesión de 8–10 min (6.3.1). |
+| EC04 | M07, M08, M09 | Comparación con el resultado esperado y entre repeticiones. | Por ejecución automatizada. | Salida del motor de simulación. | Huella de entrada (`InputFingerprint`). | Hasta 59 repeticiones por escenario; alcance limitado a las condiciones ensayadas. |
+| EC05 | M04, M12, M06 | Conteo y porcentaje por participante. | Por tarea. | Registro creado en la sesión. | Grabación y observación del primer intento. | Sesión de 8–10 min. |
+| EC06 | M13 | Conteo de órdenes tras N repeticiones. | Por repetición. | Consulta a base de datos. | Respuesta de la API. | Hasta 59 reintentos de una aprobación bajo las condiciones ensayadas. |
+| EC07 | M10, M11 (declaradas) | Conteo y porcentaje declarados, con la guía T1–T14. | Por entrevista. | Transcripción o grabación. | Notas del entrevistador. | Entrevista de 15–25 min (2.2.1). |
+| EC08 | M14, M15, M10, M16 | Según 8.2.2. | Por cuadro comparativo registrado. | Hoja de registro del analista. | Entrevista breve posterior. | El periodo que se pueda autorizar; por definir con la empresa. |
+
+### 8.2.4. Conditions
+
+| Tarjeta | Condición de control | Condición experimental | Población | Asignación | Variables que se mantienen |
+|---|---|---|---|---|---|
+| EC01 | No aplica; la referencia verificada es el criterio. | Extracción asistida sobre el corpus. | Cotizaciones anonimizadas con tres o más estructuras documentales. | Todo el corpus se evalúa. | Lista de campos obligatorios, versión del agente y del modelo, formato del PDF. |
+| EC02 | Estructuración manual en Excel. | Estructuración con el flujo asistido de SmartQuote. | Analistas de adquisiciones. | Orden contrabalanceado (unos empiezan manual y otros asistido). | Mismos campos, cotizaciones de dificultad comparable, dispositivo y consignas. |
+| EC03 | No aplica (descriptivo). | Prueba de tareas con cuenta de prueba y documentos ficticios. | Analistas o jefes de adquisiciones. | Todos realizan la misma tarea. | Caso preparado, consigna sin indicar botones, mismo entorno. |
+| EC04 | Escenario A. | Escenario B con pesos distintos. | Mismo conjunto de cotizaciones verificadas. | Ambos escenarios se ejecutan sobre las mismas entradas. | Cotizaciones, criterios obligatorios y reloj de vigencia. |
+| EC05 | No aplica (descriptivo). | Registro móvil con ficha de caso. | Especialistas de producción y sanidad. | Todos realizan la misma tarea. | Ficha, cuenta de prueba y dispositivo. |
+| EC06 | Primera solicitud de aprobación. | Solicitudes repetidas con el mismo identificador. | Aprobación vigente única. | Repetición automatizada. | Identificador, usuario autorizado y versión de la simulación. |
+| EC07 | No aplica. **Grupo y contexto de estudio:** veterinarios, nutricionistas y jefes de granja de empresas avícolas. | Entrevista semiestructurada. | Personal técnico del segmento 2, no solo almacén. | Muestreo por conveniencia con consentimiento. | Misma guía y mismo entrevistador. |
+| EC08 | No aplica. **Grupo y contexto de estudio:** analistas de adquisiciones en su proceso actual. | Registro del proceso habitual. | Analistas de empresas avícolas. | Voluntaria, con datos autorizados. | Hoja de registro común. |
+
+### 8.2.5. Scale Calculations and Decisions
+
+Los cálculos justifican tamaño de muestra y duración con significación, potencia, efecto mínimo detectable y supuestos. **No se afirma ninguna muestra ya ejecutada.** Supuestos de trabajo (por confirmar con la guía): α = 0,05 (unilateral donde se indica), potencia = 0,80.
+
+| Tarjeta | Cálculo y supuestos | Resultado | Decisión |
+|---|---|---|---|
+| EC01 | Estimar una proporción esperada de 0,90 con margen de ±5 pp y confianza del 95 %: n = 1,96² · 0,9 · 0,1 / 0,05². Si se necesitan ±4 pp o ±3 pp, n sube a 217 o 385. | **139 observaciones de campo.** | Los campos de una misma cotización no son independientes. Con un supuesto de 8 campos obligatorios por cotización y correlación intraclase 0,3 (efecto de diseño 3,1), se necesitan unas **54 cotizaciones**. Ambos valores son supuestos a confirmar con TK04. |
+| EC01 (corpus de SP01) | Con 15 cotizaciones y 8 campos: 120 observaciones; con efecto de diseño 3,1, el tamaño efectivo es ≈ 39. | Margen de error ≈ **±9,4 pp**. | El corpus de SP01 sirve como **estudio de factibilidad**: no basta para sostener «≥ 90 %». Se debe informar el IC y ampliar el corpus. |
+| EC02 | Aproximación para prueba t pareada unilateral, α = 0,05, potencia 0,80 y pares independientes. | Para dz = 0,8, aproximadamente **12 pares independientes**. | El cálculo es orientativo y depende de los supuestos de la prueba. Si solo participan 2 o 3 analistas y cada uno procesa varias cotizaciones, las mediciones están agrupadas: no se consideran 12 participantes independientes ni se garantiza esa potencia. Se informan las diferencias descriptivas; cualquier análisis inferencial debe justificar el tratamiento de la agrupación y el tamaño disponible. |
+| EC03 y EC05 | Tres participantes por segmento, como define 6.3.1. Con 3 de 3 éxitos, el límite inferior del IC 95 % exacto es 29 %; con 5 de 5, 48 %. | Intervalos muy amplios. | Se usan para **detectar problemas de usabilidad**, no para estimar tasas. No se generalizan al sector. |
+| EC04 y EC06 | Se repiten comprobaciones automatizadas bajo las mismas condiciones para observar resultados y posibles duplicados. | Hasta **59 repeticiones** por escenario o aprobación como objetivo operativo. | Un fallo contradice el comportamiento esperado en el caso ensayado. Repeticiones deterministas de la misma entrada no son muestras independientes de una población; no permiten afirmar un límite de confianza ni una tasa general de fallos. |
+| EC07 | Entrevistas cualitativas; no hay potencia estadística. | 3 a 5 entrevistas (mínimo de 2.2.3). | Se detiene cuando las últimas entrevistas no aportan temas nuevos. |
+| EC08 | Estudio descriptivo de línea base. | Al menos 10 cuadros registrados (propuesta). | Depende del acceso y de datos autorizados; no se calcula potencia. |
+
+El cálculo inicial de EC01 busca una precisión aproximada para estimar una proporción; por sí solo no garantiza potencia para demostrar que el límite inferior del intervalo supera el umbral del 90 %. El número final de cotizaciones y el método de intervalo ajustado deben definirse según la variabilidad y la agrupación observadas, antes de interpretar el resultado frente a HW01.
+
+**Parámetros de certeza y precisión por tarjeta** (la guía los define así: certeza = nivel de significación y poder estadístico; precisión = efecto mínimo detectable, MDE).
+
+| Tarjeta | Nivel de significación | Poder estadístico | MDE o precisión |
+|---|---|---|---|
+| EC01 | α = 0,05 (IC 95 %) | No aplica (estimación) | Precisión de ±5 pp en la proporción |
+| EC02 | α = 0,05 unilateral, si se aplica un contraste válido | 0,80 bajo el supuesto de pares independientes | dz = 0,8; la potencia no queda garantizada con mediciones agrupadas |
+| EC03 y EC05 | No aplica | No aplica | Descriptivo; detecta problemas, no estima tasas |
+| EC04 y EC06 | No aplica a la repetición determinista | No aplica | Repetibilidad e idempotencia en los casos y condiciones ensayados; sin estimación de tasa general |
+| EC07 y EC08 | No aplica | No aplica | Exploratorio |
+
+**Limitaciones.** Los participantes son pocos y por conveniencia; las cotizaciones de prueba pueden no representar la variedad real; no se han medido todavía la correlación intraclase ni el número real de campos obligatorios.
+
+### 8.2.6. Methods Selection
+
+Se elige el método más simple que responda cada pregunta con las condiciones y la escala de 8.2.4 y 8.2.5.
+
+| Tarjeta | Método elegido | Por qué es el más simple útil | Alternativa descartada | Riesgos éticos y de solapamiento |
+|---|---|---|---|---|
+| EC01 | Evaluación fuera de línea contra una referencia verificada. | No requiere usuarios ni tráfico real; mide directamente la precisión. | Prueba A/B con usuarios: no hay tráfico y mide otra cosa. | Los documentos deben estar anonimizados y autorizados (TK08). No cargar cotizaciones reales de proveedores sin permiso. |
+| EC02 | Comparación pareada intra-sujeto con orden contrabalanceado. | Controla la variabilidad entre analistas con pocos participantes. | Grupos independientes: requeriría muchos más participantes. | Evitar el efecto de aprendizaje con cotizaciones distintas. No reutilizar al mismo analista en EC03 durante la misma sesión. |
+| EC03 y EC05 | Prueba de tareas moderada con observación del primer intento. | Es el método de 6.3.1 y revela dificultades concretas. | Encuesta: no muestra el comportamiento real. | Consentimiento para grabar; se evalúa el producto, no a la persona; se puede detener o omitir. Sin contraseñas ni datos clínicos de terceros. |
+| EC04 y EC06 | Pruebas automatizadas deterministas (xUnit y BDD). | Ya existen en el repo y son repetibles. | Prueba manual repetida: más lenta y menos fiable. | Sin datos personales; usar datos ficticios. |
+| EC07 | Entrevista semiestructurada. | Permite explorar lo que se conoce sin imponer hipótesis. | Encuesta cerrada: presupone lo que se quiere descubrir. | No repetir al mismo participante en otras tarjetas el mismo día. Consentimiento y opción de anonimato. |
+| EC08 | Observación con hoja de registro simple. | Obtiene la línea base con poco esfuerzo para el analista. | Medición con software de seguimiento: invasivo y requiere permisos de TI. | Los datos deben ser autorizados y sin información comercial sensible. |
+
+**Solapamientos.** Un mismo usuario no participa en dos experimentos sobre el mismo tema en un mismo ciclo (por ejemplo, EC02 y EC03 con los mismos analistas se separan en el tiempo y con documentos distintos). Para EC02 se usa un orden contrabalanceado. **Riesgos éticos comunes:** consentimiento explícito, derecho a retirarse, protección de la confidencialidad comercial, anonimización y almacenamiento privado de los videos.
+
+---
+
+### 8.2.7. Data Analytics: Goals, KPIs and Metrics Selection
+
+El análisis utiliza el catálogo de 8.2.2 y las tarjetas EC01–EC08. Cada observación se vincula con su tarjeta, condición, versión del producto y fuente de evidencia. La selección incluye indicadores principales, medidas de apoyo y líneas base.
+
+| Objetivo | Indicador y cálculo | Segmentos y filtros | Criterio de interpretación |
+|---|---|---|---|
+| Reducir el tiempo de estructuración y el retrabajo | **M01** = hora de fin − hora de inicio por cotización. En EC02, calcular la diferencia pareada manual − asistido por analista y cotizaciones comparables. **M14** = fin − inicio por cuadro comparativo. **M15** = cotizaciones ÷ semanas observadas. | EC02 por analista, orden de ejecución, condición y formato. EC08 por periodo y proceso habitual, con registros autorizados. | Una diferencia positiva en M01 favorece al flujo asistido. Interpretar junto con M02 y la agrupación por analista. M14 y M15 describen la línea base. |
+| Verificar la calidad de extracción | **M02** = campos coincidentes ÷ campos obligatorios evaluados × 100. **M03** = campos con valor ausente del documento ÷ campos obligatorios evaluados × 100. **M16** = cotizaciones de un formato ÷ cotizaciones totales × 100. | EC01 por estructura documental y versión del corpus/agente. Usar referencia verificada y mantener los campos no resueltos en el denominador cuando sean evaluables. M16 usa los registros de EC08 por formato. | Referencias de M02 ≥ 90 % y M03 = 0 %. Reportar numeradores, denominadores e IC ajustado por agrupación en documentos según 8.2.3. M16 caracteriza la mezcla de formatos. |
+| Verificar el resultado del ranking y las exclusiones | **M07** = escenarios coherentes ÷ escenarios ejecutados × 100. **M08** = ofertas correctamente excluidas ÷ ofertas incumplidoras × 100. **M09** = repeticiones idénticas ÷ repeticiones totales × 100. | EC04 por escenario y versión de criterios. Para M09 comparar ejecuciones con entradas idénticas dentro de la misma condición, mediante la huella de entrada. | Meta de 100 % en cada indicador para los casos probados. Registrar el escenario y la discrepancia de cada incumplimiento. |
+| Reducir aclaraciones y mejorar la localización | **M10** = aclaraciones ÷ solicitudes observadas. **M11** = solicitudes localizadas ÷ solicitudes buscadas × 100. | EC07 por rol del segmento de producción y sanidad y fuente declarada. EC08 por periodo y registro del analista cuando aplique. Identificar el origen y conservar denominadores por fuente. | Comparar M10 y M11 con una línea base equivalente cuando exista. Los resultados declarados se reportan con su contexto y tamaño de muestra. |
+| Mejorar el registro y la experiencia de uso | **M04** = tareas logradas sin ayuda ÷ tareas evaluadas × 100. **M05** = mediana de confianza declarada en escala 1–5. **M06** = conteo de errores y ayudas por tarea. **M12** = campos obligatorios completos ÷ campos obligatorios × 100. | EC03 y EC05 por segmento, plataforma y tarea. Evaluar el primer intento según el protocolo. Mantener abandonos y tareas con ayuda entre las tareas evaluadas. M12 se calcula sobre el registro de EC05. | M04 y M05 son descriptivos. Para M06, buscar una reducción entre ciclos comparables. M12 tiene meta de 100 %. Reportar participantes y tareas observadas. |
+| Evitar duplicación de órdenes al aprobar | **M13** = órdenes persistidas − 1 por aprobación simple repetida, según EC06. | Agrupar por aprobación, identificador de idempotencia y versión de simulación. Contar órdenes persistidas tras cada reintento autorizado. | Meta de 0 órdenes duplicadas. Para una aprobación distribuida US21, validar por separado que se conserve el conjunto de órdenes esperado y que cada ítem se cubra una vez. La fórmula de M13 de EC06 se aplica a la aprobación simple. |
+
+La unidad de observación se conserva al agregar resultados. El informe registra faltantes y denominadores vacíos como no disponibles. Las comparaciones entre plataformas requieren el mismo alcance de tarea y condiciones comparables. En las pruebas de usabilidad se presentan conteos y resultados descriptivos por el tamaño de muestra.
+
+### 8.2.8. Web and Mobile Tracking Plan
+
+El plan define la captura de los flujos web (Vue) y móvil (Flutter), así como de las confirmaciones de negocio en la API. Los dos clientes usan el mismo nombre y esquema para una misma acción, con `platform` para distinguir web, Android e iOS. Cada evento de negocio se emite después de que la API confirma la operación correspondiente. Se propone usar Application Insights para los eventos del sistema y fichas de estudio de acceso restringido para observaciones, respuestas y referencias verificadas.
+
+#### Contrato y control de calidad
+
+Cada evento contiene `event_id` (UUID), `event_name`, `schema_version`, `occurred_at` y `received_at` en UTC, `environment`, `platform`, `app_version` y `result`. Cuando corresponda, se añade `actor_role`, `actor_key` y `entity_key` seudónimos, `interaction_id`, `correlation_id`, `study_id`, `condition_id` y un `reason_code` de lista cerrada. Las claves se generan en el servidor y se limitan al ámbito del estudio u organización. Se omiten si bastan datos agregados. El payload solo admite propiedades autorizadas y excluye identificadores directos, credenciales, textos libres, archivos y contenido de cotizaciones.
+
+| Evento | Disparador y origen | Propiedades adicionales | Métrica o uso |
+|---|---|---|---|
+| `task_started`, `task_finished` | Inicio de la tarea y cierre confirmado por el observador en web o móvil. | `task_id`, `completion_status`, `assistance_count`, `observed_error_count`. | M04 y M06 con la ficha de EC03/EC05. M05 requiere respuesta explícita en la ficha (escala 1–5). |
+| `quotation_processing_started`, `quotation_processing_finished`, `quotation_verified` | Inicio y fin de procesamiento y verificación persistida. API. | `quotation_key`, `processing_run_key`, `document_format_class`, `extraction_mode`, `required_field_count`, `unresolved_field_count`. | M01 se toma del cronometraje de EC02, incluido el flujo manual. M02/M03 se calculan con la referencia verificada por campo y el documento fuente de EC01. Los eventos sirven para conciliar las corridas. |
+| `request_created` (US02) | Solicitud registrada por la API. | `request_key`, `required_field_count`, `completed_required_field_count`. | M12, verificando el registro de la sesión de EC05. |
+| `request_search_submitted`, `request_search_resolved` | Búsqueda de una solicitud iniciada y resultado observado en web o móvil. | `search_key`, `task_id`, `target_found`. | Apoyo para M11 cuando se conoce el objetivo de búsqueda. El registro o relato de EC07 sigue siendo la fuente del proceso actual. |
+| `technical_clarification_created`, `technical_clarification_answered` (US15) | Consulta o respuesta persistida por la API. | `request_key`, `clarification_key`, `requirement_changed`, `reevaluation_required`. | Apoyo para M10. Conciliar consultas únicas con las solicitudes observadas y conservar por separado la fuente declarada del proceso actual. |
+| `recurring_schedule_created`, `recurring_request_generated`, `recurring_schedule_suspended` (US16) | Programación, generación de una solicitud para revisión o suspensión confirmadas por la API. | `schedule_key`, `occurrence_key`, `frequency_code`, `review_required`. | Diagnóstico de recurrencia y deduplicación por ocurrencia. El catálogo actual carece de una métrica específica. |
+| `quotation_expiry_alert_created`, `quotation_expiry_alert_read` (US17) | Creación de alerta y primera lectura confirmadas por la API. | `alert_key`, `quotation_key`, `expiry_at`, `advance_window_code`. | Diagnóstico de la ventana de aviso y de lectura. El catálogo actual carece de una métrica específica. |
+| `supplier_eligibility_changed` (US18) | Habilitación, suspensión o reactivación persistida por la API. | `supplier_key`, `previous_status`, `new_status`, `decision_version`. | Diagnóstico de control de elegibilidad. M08 se calcula con las ofertas y criterios obligatorios de EC04. |
+| `simulation_completed`, `sensitivity_analysis_completed` (US07/US19) | Simulación o análisis válido registrado por el servidor. | `simulation_key`, `criteria_version`, `input_fingerprint`, `configuration_count`, `recommendation_changed`. | Apoyo a M07–M09. Comparar la salida con el ranking esperado, las exclusiones obligatorias y las repeticiones de entradas idénticas de EC04. |
+| `request_budget_saved`, `request_budget_checked` (US20) | Versión del presupuesto persistida o contraste concluido en el servidor. | `budget_version`, `simulation_key`, `currency`, `within_budget`, `conversion_available`. | Diagnóstico del control presupuestal. El catálogo actual carece de una métrica específica. |
+| `distributed_simulation_completed`, `distributed_approval_completed` (US21) | Simulación distribuida registrada o conjunto de órdenes confirmado en una transacción. API. | `simulation_key`, `approval_key`, `item_count`, `covered_item_count`, `supplier_count`, `order_count`, `all_items_covered_once`. | Validación de cobertura e idempotencia del conjunto de órdenes. EC04 y EC06 aportan una relación parcial según 8.3.1. |
+| `purchase_approval_completed` (US08) | Aprobación simple persistida. API. | `approval_key`, `simulation_key`, `order_count`, `idempotent_replay`. | M13 se verifica por el conteo de órdenes persistidas en la API o base de datos de EC06. |
+| `request_analyst_assigned`, `request_analyst_reassigned`, `assigned_requests_viewed` (US22) | Asignación/reasignación confirmada por API o bandeja autorizada mostrada por el cliente. | `assignment_version`, `active_assignee_count`, `assignee_key` seudónimo, `result_count`. | Diagnóstico de responsable único y consulta de bandeja. Q06 aporta relación parcial. |
+| `operation_rejected`, `operation_failed` | Rechazo de negocio o fallo técnico definitivo. API o cliente según origen. | `operation_code`, `story_id`, `reason_code`, `retryable`. | Apoyo diagnóstico. M06 conserva los errores y ayudas observados en la ficha de la tarea. |
+
+Las fichas de EC08 registran inicio y fin del cuadro comparativo para M14, periodo y cotizaciones para M15, y clase de formato para M16. Estas medidas describen el proceso habitual observado. Las fichas y los eventos se vinculan por identificador seudónimo de observación o entidad.
+
+Para validar la futura captura, ejecutar el mismo flujo en web y Flutter y comprobar paridad de nombres y propiedades, deduplicación por `event_id` y por versión de la operación, y conciliación con registros persistidos. Separar ambientes y versiones. Una secuencia sin inicio produce una duración no disponible. Probar que una operación rechazada no genera un éxito, que el reintento de una aprobación conserva las mismas órdenes y que una reasignación conserva un único responsable. Filtrar los datos de prueba de los resultados de estudio y conservar la trazabilidad de los denominadores sin muestrear sus eventos principales.
+
+## 8.3. Experimentation
+
+### 8.3.1. To-Be User Stories
+
+| User Story ID | Título | Descripción | Criterios de aceptación | Relacionado con (Epic ID) |
+| --- | --- | --- | --- | --- |
+| US15 | Resolver aclaraciones técnicas entre adquisiciones y producción | Como analista de adquisiciones, deseo solicitar aclaraciones al especialista de producción y sanidad sobre especificaciones ambiguas para continuar la evaluación con una interpretación técnica confirmada y trazable. | **Escenario 1: Registro de una consulta técnica**<br>**Dado que** una solicitud activa contiene un requisito cuya interpretación necesita aclaración<br>**Cuando** el analista registra la consulta e identifica el ítem, el requisito y el especialista destinatario<br>**Entonces** el sistema conserva la consulta vinculada con la solicitud, registra al autor y la fecha, y comunica al especialista que existe una aclaración pendiente.<br><br>**Escenario 2: Respuesta del especialista**<br>**Dado que** existe una consulta pendiente dirigida a un especialista autorizado<br>**Cuando** el especialista responde e indica la interpretación técnica correspondiente<br>**Entonces** el sistema conserva la respuesta, su responsable y fecha, actualiza el estado de la consulta y permite al analista consultar la aclaración junto con su contexto de origen.<br><br>**Escenario 3: Modificación de un requisito a partir de la aclaración**<br>**Dado que** la respuesta implica cambiar un requisito y existe una evaluación basada en su versión anterior<br>**Cuando** el especialista autorizado confirma la nueva especificación<br>**Entonces** el sistema conserva la versión anterior, registra el cambio y exige una nueva evaluación antes de aprobar una compra afectada; la respuesta a una consulta no autoriza por sí sola el incumplimiento de un requisito obligatorio. | EP03 |
+| US16 | Programar solicitudes recurrentes de insumos | Como especialista de producción y sanidad, deseo programar solicitudes periódicas de insumos para reducir el registro repetitivo de necesidades de abastecimiento y revisar cada solicitud antes de enviarla a adquisiciones. | **Escenario 1: Registro de una programación válida**<br>**Dado que** el especialista identifica una necesidad recurrente y dispone de los datos obligatorios de sus ítems y requisitos técnicos<br>**Cuando** establece una fecha de inicio, una periodicidad positiva y el plazo entre la generación de cada solicitud y su fecha requerida<br>**Entonces** el sistema registra la programación con su responsable y zona horaria de operación, y determina la siguiente ocurrencia sin crear una orden de compra.<br><br>**Escenario 2: Generación de una solicitud para revisión**<br>**Dado que** una programación se encuentra activa y alcanza la fecha de una ocurrencia<br>**Cuando** el sistema procesa esa ocurrencia<br>**Entonces** crea una solicitud pendiente de revisión del especialista con los ítems, cantidades, requisitos y fecha requerida correspondientes, sin enviarla automáticamente a adquisiciones; el envío requiere la confirmación del especialista y las validaciones de registro de solicitudes.<br><br>**Escenario 3: Reintento de una ocurrencia procesada**<br>**Dado que** una ocurrencia ya genera una solicitud vinculada con la programación<br>**Cuando** el sistema vuelve a procesar la misma ocurrencia<br>**Entonces** identifica la solicitud existente, no crea un duplicado y conserva las modificaciones que el especialista realiza durante su revisión.<br><br>**Escenario 4: Suspensión de la programación**<br>**Dado que** existe una programación activa con próximas ocurrencias<br>**Cuando** el especialista responsable la suspende<br>**Entonces** el sistema no genera solicitudes para las ocurrencias comprendidas durante la suspensión y conserva las solicitudes anteriores y el historial de la programación. | EP03 |
+| US17 | Recibir alertas anticipadas del vencimiento de cotizaciones | Como analista de adquisiciones, deseo recibir alertas sobre cotizaciones próximas a vencer para priorizar decisiones antes de que sus condiciones comerciales pierdan vigencia. | **Escenario 1: Detección de una cotización próxima a vencer**<br>**Dado que** una cotización verificada y vigente pertenece a una solicitud activa, todavía no adjudicada y con un analista asignado<br>**Cuando** su vencimiento se encuentra dentro del plazo de anticipación configurado según la zona horaria de operación<br>**Entonces** el sistema registra una alerta para el analista responsable con la solicitud, la cotización, el proveedor y el vencimiento que requiere atención.<br><br>**Escenario 2: Comprobaciones repetidas de vencimiento**<br>**Dado que** el sistema ya registra una alerta para la misma cotización, fecha de vencimiento y plazo de anticipación<br>**Cuando** vuelve a comprobar su vigencia o el analista consulta nuevamente las alertas<br>**Entonces** conserva la alerta existente y su estado de lectura, sin generar avisos duplicados para esa misma condición.<br><br>**Escenario 3: Finalización del seguimiento preventivo**<br>**Dado que** una solicitud deja de estar activa o se adjudica, o la cotización alcanza su vencimiento<br>**Cuando** el sistema comprueba las condiciones de seguimiento<br>**Entonces** no genera nuevos avisos preventivos para esa condición, conserva los avisos históricos e identifica la oferta vencida como no vigente, sin prorrogar sus condiciones ni autorizar su aprobación. | EP07 |
+| US18 | Habilitar o suspender proveedores para nuevas compras | Como jefe de adquisiciones, deseo administrar la habilitación de proveedores para nuevas compras para impedir adjudicaciones a proveedores suspendidos por la organización y conservar el sustento de cada decisión. | **Escenario 1: Habilitación de un proveedor**<br>**Dado que** un proveedor identificado se encuentra pendiente de habilitación<br>**Cuando** un jefe de adquisiciones autorizado confirma su habilitación y registra una justificación<br>**Entonces** el sistema establece al proveedor como habilitado y conserva el estado anterior, el responsable, la fecha y el motivo de la decisión, sin presentarla como una certificación externa ni una aprobación emitida por la IA.<br><br>**Escenario 2: Suspensión de un proveedor**<br>**Dado que** un proveedor habilitado participa en recomendaciones todavía pendientes de aprobación<br>**Cuando** el jefe de adquisiciones confirma su suspensión e indica el motivo<br>**Entonces** el sistema registra la decisión y señala que las recomendaciones pendientes que incluyen al proveedor requieren una nueva evaluación; los resultados históricos y las órdenes previamente aprobadas permanecen intactos.<br><br>**Escenario 3: Intento de una nueva adjudicación no permitida**<br>**Dado que** el proveedor de una alternativa se encuentra suspendido o pendiente de habilitación<br>**Cuando** un usuario intenta aprobar una nueva orden a su favor<br>**Entonces** el sistema rechaza la adjudicación, informa la condición del proveedor y no genera la orden, aunque la alternativa conserve una recomendación anterior.<br><br>**Escenario 4: Reactivación de un proveedor suspendido**<br>**Dado que** un proveedor se encuentra suspendido y conserva decisiones anteriores en su historial<br>**Cuando** el jefe de adquisiciones autoriza su reactivación con una justificación<br>**Entonces** el sistema conserva el historial y registra la nueva habilitación, sin aprobar automáticamente compras pendientes ni restablecer como vigentes evaluaciones que necesitan repetirse. | EP07 |
+| US19 | Analizar la sensibilidad de la recomendación de compra | Como jefe de adquisiciones, deseo analizar cómo cambia la alternativa recomendada al variar las ponderaciones comerciales para identificar si la decisión se mantiene estable dentro de las configuraciones evaluadas. | **Escenario 1: Análisis de configuraciones comparables**<br>**Dado que** existe una solicitud con al menos dos cotizaciones verificadas y elegibles, criterios vigentes y variaciones de ponderación dentro de los rangos permitidos cuya suma alcanza el total requerido<br>**Cuando** el jefe de adquisiciones solicita el análisis de sensibilidad<br>**Entonces** el sistema evalúa cada configuración manteniendo los mismos datos de las ofertas, requisitos obligatorios y tipo de cambio aplicable, y conserva las configuraciones utilizadas, sus puntajes y alternativas recomendadas sin modificar los criterios vigentes.<br><br>**Escenario 2: Identificación de cambios de recomendación**<br>**Dado que** el análisis contiene resultados para varias configuraciones válidas<br>**Cuando** el usuario consulta la comparación<br>**Entonces** el sistema identifica en cuáles configuraciones cambia el proveedor recomendado y en cuáles permanece, muestra los pesos correspondientes y delimita la conclusión a las configuraciones efectivamente evaluadas.<br><br>**Escenario 3: Configuración o información insuficiente**<br>**Dado que** las variaciones contienen ponderaciones inválidas o existen menos de dos cotizaciones elegibles<br>**Cuando** se solicita el análisis<br>**Entonces** el sistema rechaza la ejecución, informa la condición incumplida y no presenta una conclusión de estabilidad sin resultados suficientes.<br><br>**Escenario 4: Uso del análisis para una decisión de compra**<br>**Dado que** el usuario identifica una configuración de interés durante el análisis<br>**Cuando** solicita continuar hacia la aprobación de una compra<br>**Entonces** el sistema exige que la configuración seleccionada cuente con criterios y una simulación vigentes sujetos a las validaciones de aprobación; el análisis de sensibilidad por sí solo no emite una orden ni sustituye la autorización del responsable. | EP05 |
+| US20 | Controlar el presupuesto de una adquisición | Como jefe de adquisiciones, deseo establecer un presupuesto máximo para una solicitud y contrastarlo con las alternativas evaluadas para evitar comprometer importes superiores al límite autorizado. | **Escenario 1: Registro de un presupuesto válido**<br>**Dado que** existe una solicitud activa y un jefe de adquisiciones autorizado define un límite positivo en PEN<br>**Cuando** confirma el presupuesto y su justificación<br>**Entonces** el sistema registra una versión del presupuesto vinculada con la solicitud, su responsable y fecha; un límite ausente o inválido no se interpreta como un presupuesto de cero.<br><br>**Escenario 2: Aprobación dentro del límite autorizado**<br>**Dado que** una solicitud cuenta con un presupuesto vigente y una alternativa cumple las demás reglas de aprobación<br>**Cuando** se solicita aprobar una adquisición cuyo importe total es menor o igual al límite<br>**Entonces** el sistema permite continuar la aprobación e informa el importe y el margen disponible en PEN, utilizando la tasa conservada en la simulación si existen importes en USD; en una adjudicación distribuida considera la suma de todas sus órdenes, no cada orden de forma aislada.<br><br>**Escenario 3: Presupuesto excedido o conversión no disponible**<br>**Dado que** el importe total de la adquisición supera el presupuesto vigente o no existe una tasa válida para contrastar un importe en USD<br>**Cuando** se intenta aprobar la adquisición<br>**Entonces** el sistema impide la generación de sus órdenes e informa el exceso calculable o la falta de conversión, sin omitir partidas ni sustituir la tasa por un valor no autorizado.<br><br>**Escenario 4: Cambio del presupuesto antes de aprobar**<br>**Dado que** una alternativa se evalúa frente a una versión del presupuesto y el jefe de adquisiciones registra un nuevo límite con su justificación<br>**Cuando** se intenta aprobar utilizando la comprobación presupuestal anterior<br>**Entonces** el sistema conserva ambas versiones y exige contrastar nuevamente el importe con el presupuesto vigente antes de generar órdenes, sin alterar las ya aprobadas. | EP05 |
+| US21 | Simular una compra distribuida entre proveedores | Como analista de adquisiciones, deseo simular la adjudicación de los ítems de una solicitud entre proveedores elegibles para obtener una combinación con mejor ajuste técnico y comercial sin depender de una única oferta para toda la compra. | **Escenario 1: Simulación de una adjudicación por ítem**<br>**Dado que** una solicitud contiene varios ítems, dispone de al menos dos cotizaciones verificadas y vigentes y cuenta con criterios de evaluación válidos<br>**Cuando** el analista solicita una simulación de compra distribuida<br>**Entonces** el sistema evalúa las ofertas correspondientes a cada ítem, propone un único proveedor elegible para cubrir toda su cantidad y presenta el proveedor, la cotización, el puntaje y el importe de cada asignación junto con el total de la combinación y la trazabilidad de sus datos.<br><br>**Escenario 2: Cobertura técnica o de cantidad insuficiente**<br>**Dado que** una oferta incumple un requisito obligatorio de un ítem o no cubre toda su cantidad solicitada<br>**Cuando** el sistema construye la combinación<br>**Entonces** excluye esa oferta para el ítem afectado y explica la causa; si algún ítem queda sin una oferta elegible que cubra su cantidad, identifica la cobertura pendiente y no presenta la combinación como lista para aprobación ni divide la cantidad del ítem entre proveedores.<br><br>**Escenario 3: Aprobación y generación de órdenes por proveedor**<br>**Dado que** la combinación cubre todos los ítems una sola vez, conserva sus datos y criterios vigentes y cumple los controles de habilitación y presupuesto que le corresponden<br>**Cuando** el jefe de adquisiciones autoriza la adjudicación distribuida<br>**Entonces** el sistema genera una orden por proveedor con sus partidas completas y referencias a la misma solicitud, simulación y aprobación, sin duplicar cantidades; si una validación impide completar la adjudicación, no deja un subconjunto de órdenes emitidas para esa aprobación.<br><br>**Escenario 4: Reintento de una adjudicación aprobada**<br>**Dado que** una aprobación distribuida ya cuenta con sus órdenes generadas<br>**Cuando** el sistema recibe nuevamente la misma solicitud de generación<br>**Entonces** devuelve el conjunto de órdenes existente y conserva sus referencias, sin crear nuevas órdenes ni repetir cantidades. | EP05 |
+| US22 | Asignar y reasignar solicitudes a un analista responsable | Como jefe de adquisiciones, deseo asignar cada solicitud a un analista responsable para distribuir la carga de trabajo y evitar solicitudes desatendidas o con responsabilidades ambiguas. | **Escenario 1: Asignación de una solicitud activa**<br>**Dado que** existe una solicitud activa sin responsable y el destinatario posee una cuenta activa con rol de analista de adquisiciones<br>**Cuando** el jefe de adquisiciones autorizado confirma la asignación<br>**Entonces** el sistema registra un único analista responsable, conserva al usuario que asigna y la fecha, y permite identificar esa responsabilidad sin modificar al solicitante ni el estado de la solicitud.<br><br>**Escenario 2: Reasignación justificada**<br>**Dado que** una solicitud activa cuenta con un analista responsable<br>**Cuando** el jefe de adquisiciones confirma su reasignación a otro analista activo e indica el motivo<br>**Entonces** el sistema sustituye al responsable vigente y conserva al anterior, al nuevo responsable, el autor, la fecha y la justificación, sin eliminar las actuaciones previas ni mantener dos asignaciones vigentes para la misma solicitud.<br><br>**Escenario 3: Destinatario o solicitud no habilitados para asignación**<br>**Dado que** el destinatario no posee una cuenta activa con el rol requerido o la solicitud ya no se encuentra activa<br>**Cuando** se intenta asignar o reasignar la solicitud<br>**Entonces** el sistema rechaza la operación, comunica la condición incumplida y conserva sin cambios la asignación existente.<br><br>**Escenario 4: Consulta del trabajo asignado**<br>**Dado que** un analista autenticado tiene solicitudes bajo su responsabilidad<br>**Cuando** consulta las solicitudes que tiene asignadas<br>**Entonces** el sistema devuelve las que corresponden a su asignación vigente con su prioridad, fecha requerida y estado, excluye las reasignadas a otro analista de ese conjunto y mantiene los controles de acceso asociados a su rol. | EP03 |
+
+**Trazabilidad experimental**
+
+
+| Historia | Pregunta, hipótesis y experimento relacionados | Alcance de la relación |
+| --- | --- | --- |
+| US15 | Q08; EC07; sin hipótesis, por tratarse de una pregunta exploratoria. | Relación parcial: Q08 y EC07 exploran el intercambio de información y las interpretaciones distintas entre áreas; no evalúan directamente la consulta, respuesta ni revisión de requisitos en SmartQuote. |
+| US16 | Sin pregunta, hipótesis ni tarjeta específica en 8.1–8.2. | Los experimentos existentes sobre registro de solicitudes no evalúan la programación, sus ocurrencias ni su suspensión. |
+| US17 | Sin pregunta, hipótesis ni tarjeta específica en 8.1–8.2. | Las preguntas y tarjetas actuales no evalúan las alertas preventivas ni sus condiciones de seguimiento. |
+| US18 | Sin pregunta, hipótesis ni tarjeta específica en 8.1–8.2. | Las tarjetas actuales no estudian las decisiones de habilitación ni el bloqueo de adjudicaciones a proveedores no habilitados. |
+| US19 | Q04; HW04 / H0-04; EC04. | Relación parcial: EC04 compara escenarios con pesos distintos y verifica coherencia y repetibilidad. No evalúa por sí sola todos los escenarios del análisis de sensibilidad ni la promoción de una configuración. |
+| US20 | Sin pregunta, hipótesis ni tarjeta específica en 8.1–8.2. | Las tarjetas actuales no evalúan el registro del presupuesto, el límite global ni el control de sus versiones. |
+| US21 | Q04, HW04 / H0-04 y EC04; Q07, HW06 / H0-06 y EC06. | Relación parcial: EC04 aborda coherencia y exclusión en la simulación; EC06 estudia la idempotencia de una aprobación. Sus diseños actuales no verifican de forma específica la distribución por ítem ni la idempotencia del conjunto de órdenes. |
+| US22 | Q06; sin hipótesis ni tarjeta específica. | Relación parcial: Q06 indaga la comprensión del estado y la responsabilidad pendiente. No evalúa directamente la asignación, la reasignación ni la bandeja de trabajo; su cobertura se contempla junto con Q05 si el tiempo de la sesión lo permite. |
+
+
+### 8.3.2. To-Be Product Backlog
+
+El backlog To-Be reúne las ocho historias de la sección 8.3.1. La prioridad conserva el orden 21–28 del Product Backlog (3.3) y la estimación de las tarjetas de Sprint 3 (5.2.1). Los resultados experimentales podrán sustentar un cambio de prioridad en el tablero existente. La evidencia por obtener se indica en la última columna.
+
+| Prioridad To-Be | ID | Historia y tarjeta de Trello | Story Points | Trazabilidad experimental | Evidencia por obtener |
+|---|---|---|---|---|---|
+| 21 | US22 | [Asignar y reasignar solicitudes a un analista responsable](https://trello.com/c/41WZ6l5p/21-sprint-3-us22-asignar-y-reasignar-solicitudes-a-un-analista-responsable-3-sp) | 3 | Q06 (parcial). | Verificar responsable único y visibilidad de la solicitud tras reasignarla. |
+| 22 | US15 | [Resolver aclaraciones técnicas entre adquisiciones y producción](https://trello.com/c/BLO1fgK0/22-sprint-3-us15-resolver-aclaraciones-t%C3%A9cnicas-entre-adquisiciones-y-producci%C3%B3n-5-sp) | 5 | Q08 / EC07 (parcial). | Validar que la aclaración y la respuesta queden vinculadas a la solicitud. |
+| 23 | US18 | [Habilitar o suspender proveedores para nuevas compras](https://trello.com/c/wG96Xf2M/23-sprint-3-us18-habilitar-o-suspender-proveedores-para-nuevas-compras-5-sp) | 5 | Sin experimento específico. | Comprobar que un proveedor suspendido quede excluido de nuevas adjudicaciones. |
+| 24 | US20 | [Controlar el presupuesto de una adquisición](https://trello.com/c/PPzNYa5f/24-sprint-3-us20-controlar-el-presupuesto-de-una-adquisici%C3%B3n-5-sp) | 5 | Sin experimento específico. | Comprobar el control del límite vigente antes de aprobar. |
+| 25 | US21 | [Simular una compra distribuida entre proveedores](https://trello.com/c/QWnN8s0k/25-sprint-3-us21-simular-una-compra-distribuida-entre-proveedores-8-sp) | 8 | Q04 / HW04 / EC04 y Q07 / HW06 / EC06 (parcial). | Comprobar cobertura por ítem e idempotencia del conjunto de órdenes. |
+| 26 | US19 | [Analizar la sensibilidad de la recomendación de compra](https://trello.com/c/ixzniBOQ/26-sprint-3-us19-analizar-la-sensibilidad-de-la-recomendaci%C3%B3n-de-compra-5-sp) | 5 | Q04 / HW04 / EC04 (parcial). | Comparar la estabilidad de la recomendación bajo distintos pesos. |
+| 27 | US16 | [Programar solicitudes recurrentes de insumos](https://trello.com/c/F24XwuWV/27-sprint-3-us16-programar-solicitudes-recurrentes-de-insumos-8-sp) | 8 | Sin experimento específico. | Validar generación única por ocurrencia, revisión y suspensión. |
+| 28 | US17 | [Recibir alertas anticipadas del vencimiento de cotizaciones](https://trello.com/c/9hi3BEw9/28-sprint-3-us17-recibir-alertas-anticipadas-del-vencimiento-de-cotizaciones-3-sp) | 3 | Sin experimento específico. | Comprobar el aviso previo al vencimiento y su deduplicación. |
+
 # Conclusiones
 
 ## Conclusiones y recomendaciones
@@ -6190,3 +7773,4 @@ El desarrollo documental de SmartQuote permite establecer las siguientes conclus
 
 - **To-Be Scenario Mapping** (Lucidchart): <https://lucid.app/lucidchart/63eeb3ac-dccc-418e-b44e-39a3f170b394/edit?viewport_loc=158%2C-2009%2C7125%2C4056%2C0_0&invitationId=inv_9dda55b5-fe7d-4339-b4b2-62507b26eb4a>
 - **Impact Mapping** (Lucidchart): <https://lucid.app/lucidchart/13a6f9fc-7c96-45e5-b767-2f3b6f50c81d/edit?viewport_loc=-3448%2C-421%2C8163%2C6048%2C0_0&invitationId=inv_3fc3599f-7fd4-49c3-9fa8-518b6b6af74b>
+
