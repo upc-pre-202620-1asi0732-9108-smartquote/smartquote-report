@@ -6368,6 +6368,207 @@ _Repetir exactamente la estructura anterior (imagen `s2-2.png`)._
 
 ### 6.3.3. Evaluaciones según heurísticas
 
+La evaluación heurística se realizó el 12/11/2026 sobre los tres productos de SmartQuote, recorriendo las mismas tareas que se plantean a los participantes en 6.3.1. Cada problema se registró con la tarea en que apareció, la heurística o principio que incumple, su severidad, una captura y una recomendación. Además de las diez heurísticas de usabilidad de Nielsen, se revisaron principios de arquitectura de información (organización, rotulado e identificación de los elementos) y de diseño inclusivo (idioma del usuario, lectura por lectores de pantalla y mensajes comprensibles).
+
+**Aplicaciones evaluadas**
+
+- **Landing Page:** versión publicada en GitHub Pages.
+- **Aplicación web:** rama `develop`, ejecutada localmente contra la API de la misma rama.
+- **Aplicación móvil:** rama `develop`, compilada para navegador con Flutter y revisada en una vista de 375 × 812 px.
+
+Como la suscripción de Azure se encuentra deshabilitada (ver 7.4), la web y la API desplegadas no estaban disponibles; por ello, la web y el móvil se evaluaron en local con cuentas y datos de prueba ficticios: tres cuentas (jefe de adquisiciones, analista y especialista de producción) y solicitudes en todos los estados del flujo, desde *Enviada* hasta *Orden emitida*.
+
+**Tareas evaluadas**
+
+- **Landing Page (A1 y P1):** comprender la propuesta, encontrar el acceso al sistema y solicitar una demostración.
+- **Web (A2, A3 y P4):** localizar una solicitud, revisar sus cotizaciones e historial y comparar las ofertas.
+- **Móvil (A4, P2 y P3):** registrar una solicitud con requisitos técnicos, consultar su avance e identificar quién debe actuar.
+
+**Escala de severidad**
+
+- **1 — Cosmético:** no afecta la tarea; se corrige si hay tiempo disponible.
+- **2 — Menor:** genera dudas o pasos adicionales; corrección de baja prioridad.
+- **3 — Mayor:** impide o desvía la tarea, o induce a una conclusión equivocada; corrección de alta prioridad.
+- **4 — Catastrófico:** impide usar el producto; debe corregirse antes del lanzamiento.
+
+**Tabla resumen**
+
+| # | Problema | Producto | Severidad | Heurística o principio incumplido |
+| --- | --- | --- | --- | --- |
+| 1 | El formulario de demostración confirma un envío que no se realiza | Landing Page | 3 | Visibilidad del estado del sistema |
+| 2 | La Landing Page se muestra en inglés por defecto | Landing Page | 2 | Relación entre el sistema y el mundo real; diseño inclusivo |
+| 3 | La web no conserva el idioma elegido en la Landing Page | Web | 2 | Consistencia y estándares |
+| 4 | Sin conexión con la API, la web permanece hasta tres minutos restaurando la sesión | Web | 3 | Visibilidad del estado del sistema; ayuda a reconocer y recuperarse de errores |
+| 5 | Las solicitudes se identifican por la descripción del primer ítem y un código parcial | Web | 2 | Reconocer antes que recordar; identificación (arquitectura de información) |
+| 6 | El solicitante se muestra como un identificador interno | Web | 3 | Relación entre el sistema y el mundo real |
+| 7 | El historial muestra motivos en inglés e identificadores internos | Web | 2 | Consistencia y estándares; diseño inclusivo |
+| 8 | Las acciones deshabilitadas muestran indicaciones genéricas que no corresponden al estado | Web | 2 | Ayuda a reconocer y recuperarse de errores |
+| 9 | El móvil no indica qué persona es responsable de la solicitud | Móvil | 3 | Visibilidad del estado del sistema |
+| 10 | El detalle y el historial del móvil muestran identificadores internos y textos en inglés | Móvil | 2 | Relación entre el sistema y el mundo real; consistencia y estándares |
+| 11 | El código de la solicitud difiere entre la web y el móvil, y la lista repite información | Móvil | 2 | Consistencia y estándares; diseño estético y minimalista |
+| 12 | La unidad de medida se ingresa como texto libre | Móvil | 2 | Prevención de errores |
+| 13 | La pantalla de acceso muestra la dirección del servidor | Móvil | 1 | Diseño estético y minimalista |
+
+**Problema #1: El formulario de demostración confirma un envío que no se realiza**
+
+- **Severidad:** 3 (Mayor).
+- **Tarea:** A1 y P1.
+- **Heurística violada:** Visibilidad del estado del sistema.
+
+**Descripción del problema:** al completar el formulario «Envíanos tres cotizaciones reales», la página valida los campos y muestra «Solicitud recibida. Responderemos al correo que ingresaste dentro de un día hábil.», pero la solicitud no se envía a ningún servicio: el código del formulario solo muestra el mensaje y limpia los campos. El visitante espera una respuesta que no llegará y el equipo pierde el contacto.
+
+![Formulario de solicitud de demostración de la Landing Page](<assets/heuristics/6.3.3-01-landing-formulario-demo.png>)
+
+**Recomendación:** conectar el formulario a un servicio de contacto y mostrar la confirmación solo cuando el envío sea exitoso, con un mensaje de error y una alternativa (el correo `hola@smartquote.pe`) si falla. Mientras no exista el servicio, reemplazar el formulario por un enlace de correo.
+
+**Problema #2: La Landing Page se muestra en inglés por defecto**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A1 y P1.
+- **Heurística violada:** Relación entre el sistema y el mundo real; diseño inclusivo.
+
+**Descripción del problema:** en la primera visita, la página se muestra en inglés aunque el público objetivo son empresas avícolas peruanas; el idioma solo cambia si el visitante encuentra el selector «EN/ES» del encabezado o del pie de página. El título de la pestaña del navegador permanece en inglés incluso cuando se elige español.
+
+![Landing Page mostrada en inglés en una primera visita](<assets/heuristics/6.3.3-02-landing-idioma-ingles.png>)
+
+**Recomendación:** usar español como idioma predeterminado o tomarlo de la preferencia del navegador, y traducir también el título de la página.
+
+**Problema #3: La web no conserva el idioma elegido en la Landing Page**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A1, A2 y P4.
+- **Heurística violada:** Consistencia y estándares.
+
+**Descripción del problema:** un visitante que navega la Landing Page en español y selecciona «Ingresar a la aplicación web» llega a una pantalla de acceso en inglés («Sign in to SmartQuote»). La web usa inglés cuando no tiene un idioma guardado y no recibe el idioma de la Landing Page.
+
+![Pantalla de acceso de la web en inglés al llegar desde la Landing Page en español](<assets/heuristics/6.3.3-03-web-acceso-ingles.png>)
+
+**Recomendación:** enviar el idioma en el enlace de la Landing Page (por ejemplo, `?lang=es`) y, en su ausencia, usar la preferencia del navegador o español como predeterminado.
+
+**Problema #4: Sin conexión con la API, la web permanece hasta tres minutos restaurando la sesión**
+
+- **Severidad:** 3 (Mayor).
+- **Tarea:** A2 y P4.
+- **Heurística violada:** Visibilidad del estado del sistema; ayuda a reconocer y recuperarse de errores.
+
+**Descripción del problema:** al abrir la web desplegada mientras la API no responde, la pantalla muestra solo el texto «Restoring your session…» sobre un fondo vacío. La web espera hasta 180 segundos antes de abandonar la restauración y, al terminar, vuelve a la pantalla de acceso sin explicar qué ocurrió. El usuario no sabe si debe esperar, recargar o informar una falla.
+
+![Web desplegada detenida en la restauración de sesión](<assets/heuristics/6.3.3-04-web-restaurando-sesion.png>)
+
+**Recomendación:** reducir el tiempo de espera de la restauración a pocos segundos, mostrar un indicador de progreso y, ante una falla, un mensaje que indique que el servicio no está disponible con la opción «Reintentar».
+
+**Problema #5: Las solicitudes se identifican por la descripción del primer ítem y un código parcial**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A2 y P4.
+- **Heurística violada:** Reconocer antes que recordar; identificación (arquitectura de información).
+
+**Descripción del problema:** la lista de solicitudes muestra como título la descripción del primer ítem y, debajo, los primeros ocho caracteres de un identificador interno (por ejemplo, `925d57b7`). Varias solicitudes del mismo insumo aparecen con el mismo título y solo se distinguen por ese código, que el usuario no puede recordar ni dictar. Además, el buscador indica «Buscar en esta página», por lo que no encuentra solicitudes de otras páginas.
+
+![Lista de solicitudes de compra de la web](<assets/heuristics/6.3.3-05-web-lista-solicitudes.png>)
+
+**Recomendación:** asignar a cada solicitud un código legible y correlativo (por ejemplo, `SOL-2026-0148`), mostrar la granja o el solicitante y la cantidad de ítems en la lista, y buscar en todas las solicitudes.
+
+**Problema #6: El solicitante se muestra como un identificador interno**
+
+- **Severidad:** 3 (Mayor).
+- **Tarea:** A2.
+- **Heurística violada:** Relación entre el sistema y el mundo real.
+
+**Descripción del problema:** en el detalle de la solicitud, el campo «Solicitante» muestra un identificador interno (`02df858d-db7b-…`) en lugar del nombre de la persona. El analista no puede saber a quién consultar una duda sobre los requisitos, que es justamente lo que pide la tarea A2.
+
+![Detalle de solicitud con el solicitante mostrado como identificador](<assets/heuristics/6.3.3-06-web-solicitante-uuid.png>)
+
+**Recomendación:** mostrar el nombre y el rol del solicitante, y ofrecer desde ese dato la acción de registrar una aclaración.
+
+**Problema #7: El historial muestra motivos en inglés e identificadores internos**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A2 y P4.
+- **Heurística violada:** Consistencia y estándares; diseño inclusivo.
+
+**Descripción del problema:** en la pestaña «Historial», los cambios de estado muestran motivos generados por el servidor en inglés («Purchase request submitted.») y, como autor, un identificador interno. Las tres comparaciones guardadas aparecen con la misma fecha y hora, sin un dato que las diferencie.
+
+![Historial de la solicitud en la web](<assets/heuristics/6.3.3-07-web-historial.png>)
+
+**Recomendación:** traducir los motivos generados por el sistema a partir de un código de evento, mostrar el nombre del autor y diferenciar cada comparación por su versión y sus criterios.
+
+**Problema #8: Las acciones deshabilitadas muestran indicaciones genéricas que no corresponden al estado**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A3.
+- **Heurística violada:** Ayuda a reconocer y recuperarse de errores.
+
+**Descripción del problema:** en una solicitud con la orden ya emitida, el botón «Cargar cotizaciones» está deshabilitado y la indicación dice «Pasa a recopilación de cotizaciones o evaluación para cargar PDF», una acción que ya no es posible en ese estado. De forma similar, «Ejecutar comparación» aparece deshabilitado con una condición general, sin indicar cuál de las condiciones no se cumple.
+
+![Pestaña de cotizaciones de una solicitud con la orden emitida](<assets/heuristics/6.3.3-08-web-acciones-deshabilitadas.png>)
+
+**Recomendación:** mostrar la razón concreta según el estado de la solicitud (por ejemplo, «La orden de compra ya fue emitida; las cotizaciones son de solo lectura») y ocultar las acciones que ya no pueden realizarse.
+
+**Problema #9: El móvil no indica qué persona es responsable de la solicitud**
+
+- **Severidad:** 3 (Mayor).
+- **Tarea:** A4 y P3.
+- **Heurística violada:** Visibilidad del estado del sistema.
+
+**Descripción del problema:** el detalle de la solicitud solo muestra «Área responsable», que además aparece en inglés en algunos estados («Evaluation and Simulation»). Aunque la solicitud tiene un analista asignado, el móvil no lo muestra ni indica cuál es la siguiente acción. El especialista no puede completar la tarea P3, que consiste en identificar quién debe actuar y qué necesita.
+
+![Detalle de una solicitud en evaluación en el móvil](<assets/heuristics/6.3.3-09-movil-responsable.png>)
+
+**Recomendación:** mostrar el analista asignado y una línea «Siguiente paso» con la acción pendiente y su responsable, y traducir todas las áreas.
+
+**Problema #10: El detalle y el historial del móvil muestran identificadores internos y textos en inglés**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A4 y P3.
+- **Heurística violada:** Relación entre el sistema y el mundo real; consistencia y estándares.
+
+**Descripción del problema:** el detalle muestra el «Identificador» completo de la solicitud (36 caracteres) y el historial presenta motivos en inglés («Specialist confirmed recurring request.») con el identificador interno del autor. Los textos de apoyo del sistema, como la descripción del botón de menú («Open navigation menu»), también aparecen en inglés, porque la aplicación no incluye la traducción de los componentes de Flutter; un lector de pantalla los anunciaría en ese idioma.
+
+![Historial de estados de una solicitud en el móvil](<assets/heuristics/6.3.3-10-movil-historial.png>)
+
+**Recomendación:** retirar el identificador completo de la vista, mostrar el nombre del autor, traducir los motivos y configurar la traducción al español de los componentes de Flutter.
+
+**Problema #11: El código de la solicitud difiere entre la web y el móvil, y la lista repite información**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** A4 y P4.
+- **Heurística violada:** Consistencia y estándares; diseño estético y minimalista.
+
+**Descripción del problema:** la misma solicitud aparece como `925d57b7` en la web y como `SOL-925d57b7` en el móvil, lo que dificulta confirmar que se trata del mismo caso al pasar de un producto a otro. En la lista del móvil, la segunda línea combina estado y área, y en algunos casos repite el mismo texto («Recepción de cotizaciones · Recepción de cotizaciones») o mezcla idiomas («En evaluación · Evaluation and Simulation»). El título de la pantalla también aparece truncado.
+
+![Lista de solicitudes en el móvil](<assets/heuristics/6.3.3-11-movil-lista.png>)
+
+**Recomendación:** usar el mismo código legible en ambos productos, mostrar el área solo cuando aporte información distinta del estado y acortar el título de la pantalla a «Solicitudes».
+
+**Problema #12: La unidad de medida se ingresa como texto libre**
+
+- **Severidad:** 2 (Menor).
+- **Tarea:** P2.
+- **Heurística violada:** Prevención de errores.
+
+**Descripción del problema:** al registrar una solicitud, el campo «Unidad (kg, dosis, unidad…)» acepta cualquier texto. Una misma unidad puede registrarse de varias formas (por ejemplo, «unit», «unidad» o «und»), lo que luego dificulta comparar cantidades entre solicitudes y cotizaciones; en los datos evaluados, el detalle muestra «Cantidad: 1 unit».
+
+![Formulario de nueva solicitud en el móvil](<assets/heuristics/6.3.3-12-movil-unidad-libre.png>)
+
+**Recomendación:** reemplazar el campo por una lista de unidades usadas en el abastecimiento avícola (kg, t, sacos, dosis, frascos, unidades), con la opción «Otra» solo cuando sea necesaria.
+
+**Problema #13: La pantalla de acceso muestra la dirección del servidor**
+
+- **Severidad:** 1 (Cosmético).
+- **Tarea:** A4, P2 y P3.
+- **Heurística violada:** Diseño estético y minimalista.
+
+**Descripción del problema:** debajo del formulario de acceso se muestra «Servidor: http://localhost:8080», un dato técnico que no ayuda al usuario a iniciar sesión.
+
+![Pantalla de acceso del móvil](<assets/heuristics/6.3.3-13-movil-servidor.png>)
+
+**Recomendación:** mostrar la dirección del servidor solo en compilaciones de desarrollo.
+
+**Aspectos verificados sin hallazgos.** La Landing Page ofrece un enlace para saltar al contenido principal, etiquetas en todos los campos, un selector de idioma que indica la opción activa a los lectores de pantalla y un reproductor de video operable con teclado. En la web, los campos y botones revisados tienen nombre accesible y el idioma del documento cambia junto con el de la interfaz.
+
+**Prioridad de corrección.** Los problemas de severidad 3 (#1, #4, #6 y #9) afectan directamente las tareas que se evaluarán con usuarios en 6.3.1, por lo que se recomienda corregirlos antes de las entrevistas de validación; los de severidad 2 y 1 pueden abordarse en el siguiente sprint.
+
 
 ## 6.4. Auditoría de Experiencias de Usuario
 
