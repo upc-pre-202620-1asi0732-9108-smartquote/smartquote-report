@@ -6572,23 +6572,60 @@ Como la suscripción de Azure se encuentra deshabilitada (ver 7.4), la web y la 
 
 ## 6.4. Auditoría de Experiencias de Usuario
 
+| Campo | Registro |
+|---|---|
+| Curso | Diseño de Experimentos de Ingeniería de Software |
+| NRC | 9108 |
+| Fecha de revisión | 12 de noviembre de 2026 |
+| Producto y equipo revisado | SmartQuote |
+| Modalidad | Revisión interna de implementación con el formato del Anexo D |
+| Responsable de la sección | Luis Alexis Bardales Tejada |
+
 ### 6.4.1. Auditoría realizada
 
 #### 6.4.1.1. Información del grupo auditado
 
+La evaluación interna cubre la landing, la aplicación web Vue y la app Flutter de SmartQuote. Se revisaron el acceso desde la landing, la búsqueda de solicitudes en web y el control para mostrar u ocultar la contraseña en móvil. La evidencia es estática y procede del HTML y los componentes. La validación en navegador, dispositivo y lector de pantalla queda pendiente.
+
 #### 6.4.1.2. Cronograma de auditoría realizada
 
+| Fecha | Actividad | Evidencia |
+|---|---|---|
+| 12/11/2026 | Revisión del HTML de la landing y de los componentes web y Flutter | Referencias de código por hallazgo |
+| 12/11/2026 | Registro de hallazgos y severidades preliminares | Matriz de evaluación |
+| Por programar | Reproducción en navegador y dispositivo, captura y validación de correcciones | Capturas y resultados de ejecución |
+
 #### 6.4.1.3. Contenido de auditoría realizada
+
+| ID / canal | Tarea y hallazgo | Heurística o principio | Severidad preliminar | Recomendación |
+|---|---|---|---|---|
+| UX-01 · Landing | Abrir la app web desde la landing. El enlace de acceso del encabezado, del cuerpo y del pie se declara con `href="#"`. En el HTML estático, el destino depende de JavaScript. | Prevención de errores y mejora progresiva | 3 si el acceso queda bloqueado cuando falla el script | Declarar la URL de la app como destino real en el HTML. Comprobar los tres enlaces con JavaScript habilitado y deshabilitado. |
+| UX-02 · Web | Buscar una solicitud por título o ID. El campo filtra `data.items` de la página cargada, mientras el paginador usa `data.totalItems` del listado. Una solicitud que está en otra página puede quedar fuera de la búsqueda visible. | Visibilidad del estado del sistema | 3 si se confirma el falso «sin resultados» | Aplicar búsqueda en servidor y paginar el conjunto filtrado. Mientras tanto, rotular el alcance como «Buscar en esta página». Validar con una solicitud de la segunda página. |
+| UX-03 · Móvil | Mostrar u ocultar la contraseña al iniciar sesión. El `IconButton` alterna el icono y el estado, pero su código no define un nombre accesible explícito. | Diseño inclusivo, nombre accesible del control | 2, pendiente de comprobar con lector de pantalla | Agregar un `tooltip` dinámico «Mostrar contraseña» / «Ocultar contraseña» y verificar ambos estados con TalkBack. |
+
+**Evidencia de revisión**
+
+- UX-01 · [Landing, index.html](https://github.com/upc-pre-202620-1asi0732-9108-smartquote/smartquote-landing-page/blob/main/index.html#L83), líneas 83, 317 y 547. Blob revisado `3a2814ec291837e1a49fed3089b83b084e1689ea`.
+- UX-02 · Frontend web, copia local en `f7d18cc`, componente `request-list.vue`. Revisar la llamada paginada a `requests.list`, el filtro sobre `data.items` y el total del paginador.
+- UX-03 · Flutter, copia local en `b9df6e4`, componente `access_page.dart`, control de contraseña alrededor de las líneas 128–146.
 
 ### 6.4.2. Auditoría recibida
 
 #### 6.4.2.1. Información del grupo auditor
 
+Pendiente de confirmar.
+
 #### 6.4.2.2. Cronograma de auditoría recibida
+
+Pendiente de coordinación.
 
 #### 6.4.2.3. Contenido de auditoría recibida
 
+Pendiente de recepción del informe externo.
+
 #### 6.4.2.4. Resumen de modificaciones para subsanar hallazgos
+
+Pendiente de revisar el informe externo y verificar las correcciones que correspondan.
 
 ## Capítulo VII: DevOps Practices
 
